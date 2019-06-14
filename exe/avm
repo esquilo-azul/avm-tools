@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+$LOAD_PATH.unshift("#{__dir__}/../lib")
+
+require 'avm/tools'
+require 'eac_ruby_utils'
+
+class AvmRunner < ::EacRubyUtils::Console::DocoptRunner
+  include ::EacRubyUtils::Console::Speaker
+
+  DOC = <<~DOCOPT
+    Tools for AVM.
+
+    Usage:
+      __PROGRAM__ [options] [<anyarg>...]
+      __PROGRAM__ -h | --help
+
+    Options:
+      -h --help             Show this screen.
+  DOCOPT
+
+  private
+
+  def run
+    infov 'Options', options
+  end
+
+end
+
+AvmRunner.new
