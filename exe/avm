@@ -13,7 +13,7 @@ class AvmRunner < ::EacRubyUtils::Console::DocoptRunner
     Tools for AVM.
 
     Usage:
-      __PROGRAM__ [options] [<anyarg>...]
+      __PROGRAM__ [options] git complete-issue
       __PROGRAM__ -h | --help
 
     Options:
@@ -23,9 +23,18 @@ class AvmRunner < ::EacRubyUtils::Console::DocoptRunner
   private
 
   def run
-    infov 'Options', options
+    raise "Unknown command: #{options}" unless git_complete_issue?
+
+    ::Avm::Tools::Git::CompleteIssue.new(git_complete_issue_options)
   end
 
+  def git_complete_issue_options
+    { dir: '.' }
+  end
+
+  def git_complete_issue?
+    options.fetch('git') && options.fetch('complete-issue')
+  end
 end
 
 AvmRunner.new
