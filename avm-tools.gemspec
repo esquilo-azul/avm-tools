@@ -16,5 +16,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'eac_launcher', '~> 0.6'
   s.add_dependency 'eac_ruby_utils', '~> 0.9'
+  s.add_development_dependency 'rspec',  '3.8'
   s.add_development_dependency 'rubocop', '~> 0.74.0'
 end
