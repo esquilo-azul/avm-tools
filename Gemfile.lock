@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     avm-tools (0.1.0)
-      eac_launcher (~> 0.5)
+      eac_launcher (~> 0.6)
 
 GEM
   remote: https://rubygems.org/
