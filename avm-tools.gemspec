@@ -15,4 +15,5 @@ Gem::Specification.new do |s|
   s.executables = s.files.grep(%r{^exe/}) { |f| File.basename(f) }
 
   s.add_dependency 'eac_launcher', '~> 0.6'
+  s.add_dependency 'eac_ruby_utils', '~> 0.9'
 end
