@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'eac_launcher/git/base'
+require 'eac_ruby_utils/console/speaker'
 require 'eac_ruby_utils/simple_cache'
 
 module Avm

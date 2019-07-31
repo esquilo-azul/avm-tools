@@ -3,12 +3,10 @@
 
 $LOAD_PATH.unshift("#{__dir__}/../lib")
 
-require 'avm/tools'
-require 'eac_ruby_utils'
+require 'avm/tools/git/complete_issue'
+require 'eac_ruby_utils/console/docopt_runner'
 
 class AvmRunner < ::EacRubyUtils::Console::DocoptRunner
-  include ::EacRubyUtils::Console::Speaker
-
   DOC = <<~DOCOPT
     Tools for AVM.
 
