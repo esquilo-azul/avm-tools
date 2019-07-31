@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
+require 'eac_ruby_utils/simple_cache'
+
 module Avm
   module Tools
     module Git
       class CompleteIssue
-        include ::Eac::SimpleCache
+        include ::EacRubyUtils::SimpleCache
         include ::EacRubyUtils::Console::Speaker
 
         def initialize(options)
