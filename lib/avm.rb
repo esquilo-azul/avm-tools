@@ -3,5 +3,6 @@
 module Avm
   require 'avm/configs'
   require 'avm/instances'
+  require 'avm/stereotypes'
   require 'avm/tools'
 end
