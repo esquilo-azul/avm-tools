@@ -17,11 +17,12 @@ module Avm
               Load utility for EacRailsBase instance.
 
               Usage:
-                __PROGRAM__ <dump-path>
+                __PROGRAM__ (<dump-path>|--source-instance=<source-instance>)
                 __PROGRAM__ -h | --help
 
               Options:
-                -h --help               Show this screen.
+                -h --help                               Show this screen.
+                -S --source-instance=<source-instance>  Informa a instância a ser extraída o dump.
             DOCUMENT
 
             def run
@@ -35,7 +36,16 @@ module Avm
             end
 
             def dump_path_uncached
-              options.fetch('<dump-path>').to_s
+              return options.fetch('<dump-path>').to_s if options.fetch('<dump-path>').present?
+              return source_instance_dump_path if options.fetch('--source-instance').present?
+
+              raise "Dump path unknown (Options: #{options})"
+            end
+
+            def source_instance_dump_path
+              ::Avm::Stereotypes::EacWordpressBase0::Instance.by_id(
+                options.fetch('--source-instance')
+              ).data_dump
             end
 
             def load_dump
