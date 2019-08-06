@@ -2,6 +2,7 @@
 
 require 'eac_ruby_utils/console/docopt_runner'
 require 'avm/tools/runner/eac_wordpress_base0/data/dump'
+require 'avm/tools/runner/eac_wordpress_base0/data/load'
 
 module Avm
   module Tools
