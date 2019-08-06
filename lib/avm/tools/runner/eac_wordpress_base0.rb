@@ -3,6 +3,7 @@
 require 'eac_ruby_utils/console/docopt_runner'
 require 'eac_ruby_utils/simple_cache'
 require 'avm/stereotypes/eac_wordpress_base0/instance'
+require 'avm/tools/runner/eac_wordpress_base0/data'
 
 module Avm
   module Tools
