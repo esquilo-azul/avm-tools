@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    avm-tools (0.4.1)
+    avm-tools (0.6.0)
       eac_launcher (~> 0.6)
       eac_ruby_utils (~> 0.10)
 
