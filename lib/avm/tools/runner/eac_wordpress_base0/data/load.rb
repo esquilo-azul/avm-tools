@@ -26,6 +26,7 @@ module Avm
 
               before_load
               load_dump
+              fix_web_addresses
               success("Dump loaded from \"#{dump_path}\"")
             end
 
@@ -59,6 +60,15 @@ module Avm
 
             def load_command
               context(:instance).pg.psql_command.prepend(['gzip', '-d', '@ESC_|'])
+            end
+
+            def fix_web_addresses
+              info 'Fixing web addresses...'
+              run_sql(<<~SQL)
+                update wp_options
+                set option_value = '#{context(:instance).read_entry('url')}'
+                where option_name in ('siteurl', 'home')
+              SQL
             end
           end
         end
