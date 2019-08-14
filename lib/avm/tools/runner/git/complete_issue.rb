@@ -12,11 +12,12 @@ module Avm
             Closes a issue in a Git repository.
 
             Usage:
-              __PROGRAM__
+              __PROGRAM__ [options]
               __PROGRAM__ -h | --help
 
             Options:
               -h --help             Show this screen.
+              -C <path>             Path to Git repository [default: .].
           DOCOPT
 
           def run
@@ -26,7 +27,7 @@ module Avm
           private
 
           def git_complete_issue_options
-            { dir: '.' }
+            { dir: options.fetch('-C') }
           end
         end
       end
