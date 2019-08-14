@@ -18,16 +18,16 @@ module Avm
             Options:
               -h --help             Show this screen.
           DOCOPT
-        end
 
-        def run
-          ::Avm::Tools::Git::CompleteIssue.new(git_complete_issue_options)
-        end
+          def run
+            ::Avm::Tools::Git::CompleteIssue.new(git_complete_issue_options)
+          end
 
-        private
+          private
 
-        def git_complete_issue_options
-          { dir: '.' }
+          def git_complete_issue_options
+            { dir: '.' }
+          end
         end
       end
     end
