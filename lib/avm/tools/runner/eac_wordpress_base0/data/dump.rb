@@ -37,6 +37,7 @@ module Avm
                 warn(format(NO_DUMP_MESSAGE, dump_path))
               end
               success("Dump path: \"#{dump_path}\"")
+              dump_path
             end
 
             private
