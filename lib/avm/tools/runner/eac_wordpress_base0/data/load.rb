@@ -18,6 +18,10 @@ module Avm
 
               Usage:
                 __PROGRAM__ <dump-path>
+                __PROGRAM__ -h | --help
+
+              Options:
+                -h --help               Show this screen.
             DOCUMENT
 
             def run
