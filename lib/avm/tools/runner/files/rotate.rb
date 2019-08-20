@@ -15,16 +15,24 @@ module Avm
             Rotates a file (Like a backup).
 
             Usage:
-              __PROGRAM__ <path>
+              __PROGRAM__ [options] <path>
               __PROGRAM__ -h | --help
 
             Options:
-              -h --help             Show this screen.
+              -h --help                 Show this screen.
+              -L --space-limit=<space>  Limit by <space> the space used by rotated files.
           DOCOPT
 
           def run
-            error_message = ::Avm::Files::Rotate.new(options.fetch('<path>')).run
+            error_message = rotate.run
             fatal_error(error_message) if error_message
+          end
+
+          def rotate
+            @rotate ||= ::Avm::Files::Rotate.new(
+              options.fetch('<path>'),
+              space_limit: options.fetch('--space-limit')
+            )
           end
         end
       end
