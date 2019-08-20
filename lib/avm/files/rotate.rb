@@ -8,10 +8,11 @@ module Avm
     class Rotate
       include ::EacRubyUtils::SimpleCache
 
-      attr_reader :source_path
+      attr_reader :options, :source_path
 
-      def initialize(source_path)
+      def initialize(source_path, options = {})
         @source_path = source_path
+        @options = options
       end
 
       def run
@@ -19,10 +20,43 @@ module Avm
         return validate_msg if validate_msg.present?
 
         ::FileUtils.mv(source_path, target_path)
+        check_space_limit
         nil
       end
 
+      def space_limit
+        r = options[:space_limit].try(:to_i)
+        return r if r.present? && r.positive?
+
+        r
+      end
+
+      def space_used
+        rotated_files.inject(0) { |a, e| a + ::File.size(e) }
+      end
+
+      def rotated_files
+        ::Dir["#{dirname}/#{source_basename_without_extension}*#{source_extension}"]
+      end
+
+      def oldest_rotated_file
+        rotated_files.min_by { |file| [::File.mtime(file)] }
+      end
+
       private
+
+      def check_space_limit
+        return unless space_limit
+
+        while space_used > space_limit
+          file = oldest_rotated_file
+          unless file
+            raise 'oldest_rotated_file returned nil ' \
+              "(Limit: #{space_limit}, used: #{space_used})"
+          end
+          ::File.delete(file)
+        end
+      end
 
       def validate
         return "Source file \"#{source_path}\" does not exist" unless ::File.exist?(source_path)
@@ -44,7 +78,11 @@ module Avm
       end
 
       def target_path_uncached
-        ::File.join(::File.dirname(source_path), target_basename)
+        ::File.join(dirname, target_basename)
+      end
+
+      def dirname
+        ::File.dirname(source_path)
       end
 
       def target_basename
