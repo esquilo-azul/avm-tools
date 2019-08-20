@@ -25,8 +25,8 @@ module Avm
       private
 
       def validate
-        return 'Source not exist' unless ::File.exist?(source_path)
-        return 'Already rotated' if source_rotated?
+        return "Source file \"#{source_path}\" does not exist" unless ::File.exist?(source_path)
+        return "File \"#{source_path}\" is already rotated" if source_rotated?
 
         nil
       end
