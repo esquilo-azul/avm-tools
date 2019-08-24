@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
+require 'eac_ruby_utils/require_sub'
+::EacRubyUtils.require_sub(__FILE__)
+
 module Avm
   module Stereotypes
-    Dir["#{File.dirname(__FILE__)}/#{::File.basename(__FILE__, '.*')}/*.rb"].each do |path|
-      require path
-    end
   end
 end
