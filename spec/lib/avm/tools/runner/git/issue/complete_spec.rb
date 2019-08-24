@@ -5,7 +5,7 @@ require 'avm/tools/runner'
 require 'tmpdir'
 require 'fileutils'
 
-::RSpec.describe ::Avm::Tools::Runner::Git::CompleteIssue do
+::RSpec.describe ::Avm::Tools::Runner::Git::Issue::Complete do
   let(:remote_name) { 'origin' }
   let(:issue_ref) { 'issue_123' }
   let(:remote_repos) do
@@ -39,9 +39,9 @@ require 'fileutils'
       expect(local_repos.remote_hashs(remote_name)).not_to include("refs/tags/#{issue_ref}")
     end
 
-    context 'when complete-issue is called' do
+    context 'when "git issue complete" is called' do
       before do
-        ::Avm::Tools::Runner.new(argv: %w[git complete-issue -C] + [local_repos]).run
+        ::Avm::Tools::Runner.new(argv: %w[git issue complete -C] + [local_repos]).run
       end
 
       it 'remote repos does not have a issue branch' do
