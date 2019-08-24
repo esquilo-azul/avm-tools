@@ -5,9 +5,9 @@ require 'eac_ruby_utils/console/speaker'
 require 'eac_ruby_utils/simple_cache'
 
 module Avm
-  module Tools
-    module Git
-      class CompleteIssue
+  module Git
+    module Issue
+      class Complete
         include ::EacRubyUtils::SimpleCache
         include ::EacRubyUtils::Console::Speaker
 

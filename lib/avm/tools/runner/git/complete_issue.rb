@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'eac_ruby_utils/console/docopt_runner'
-require 'avm/tools/git/complete_issue'
+require 'avm/git/issue/complete'
 
 module Avm
   module Tools
@@ -21,7 +21,7 @@ module Avm
           DOCOPT
 
           def run
-            ::Avm::Tools::Git::CompleteIssue.new(git_complete_issue_options)
+            ::Avm::Git::Issue::Complete.new(git_complete_issue_options)
           end
 
           private
