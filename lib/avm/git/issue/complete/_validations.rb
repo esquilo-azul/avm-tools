@@ -8,7 +8,8 @@ module Avm
       class Complete
         VALIDATIONS = {
           branch_name: 'Branch name',
-          branch_hash: 'Branch hash'
+          branch_hash: 'Branch hash',
+          follow_master: 'Follow master?'
         }.freeze
 
         def valid?

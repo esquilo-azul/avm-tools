@@ -32,6 +32,20 @@ module Avm
           )
         end
 
+        def follow_master_result
+          return ::Avm::Result.neutral('No branch hash') unless branch_hash
+
+          r = follow_master?
+          ::Avm::Result.success_or_error(
+            r ? 'yes' : 'no',
+            r
+          )
+        end
+
+        def follow_master?
+          remote_master_hash ? @git.descendant?(branch_hash, remote_master_hash) : true
+        end
+
         def remove_local_branch
           info 'Removendo branch local...'
           bn = branch_name
