@@ -15,14 +15,19 @@ module Avm
 
         def initialize(options)
           @git = ::EacLauncher::Git::Base.new(options.fetch(:dir))
-          run
+        end
+
+        def start_banner
+          validations_banner
         end
 
         def run
-          check_issue_branch
+          return false unless valid?
+
           assert_tag
           push
           remove_local_branch
+          true
         end
 
         def issue_id
@@ -33,12 +38,6 @@ module Avm
         private
 
         attr_reader :options
-
-        def check_issue_branch
-          raise "Branch is not a issue branch (\"#{branch}\"|\"#{branch_name}\")" unless
-          branch_valid?
-          raise "Hash not found for \"#{branch}\"" unless branch_hash
-        end
 
         def git(args, exit_outputs = {})
           r = @git.execute!(args, exit_outputs: exit_outputs)

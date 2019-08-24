@@ -21,7 +21,9 @@ module Avm
           DOCOPT
 
           def run
-            ::Avm::Git::Issue::Complete.new(git_complete_issue_options)
+            complete = ::Avm::Git::Issue::Complete.new(git_complete_issue_options)
+            complete.start_banner
+            fatal_error('Some validation did not pass') unless complete.run
           end
 
           private
