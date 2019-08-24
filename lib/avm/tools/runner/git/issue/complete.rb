@@ -19,6 +19,7 @@ module Avm
               Options:
                 -h --help             Show this screen.
                 -C <path>             Path to Git repository [default: .].
+                --no-avm              Does not require valid AVM issue\'s branch/tag name.
             DOCOPT
 
             def run
@@ -30,7 +31,7 @@ module Avm
             private
 
             def git_complete_issue_options
-              { dir: options.fetch('-C') }
+              { dir: options.fetch('-C'), no_avm_branch_name: options.fetch('--no-avm') }
             end
           end
         end

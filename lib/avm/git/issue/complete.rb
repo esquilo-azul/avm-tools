@@ -2,6 +2,7 @@
 
 require 'avm/patches/eac_launcher_git_base'
 require 'eac_ruby_utils/console/speaker'
+require 'eac_ruby_utils/options_consumer'
 require 'eac_ruby_utils/require_sub'
 require 'eac_ruby_utils/simple_cache'
 ::EacRubyUtils.require_sub(__FILE__)
@@ -13,8 +14,13 @@ module Avm
         include ::EacRubyUtils::SimpleCache
         include ::EacRubyUtils::Console::Speaker
 
+        attr_reader :no_avm_branch_name
+
         def initialize(options)
-          @git = ::EacLauncher::Git::Base.new(options.fetch(:dir))
+          consumer = ::EacRubyUtils::OptionsConsumer.new(options)
+          dir, @no_avm_branch_name = consumer.consume_all(:dir, :no_avm_branch_name)
+          consumer.validate
+          @git = ::EacLauncher::Git::Base.new(dir)
         end
 
         def start_banner
@@ -36,8 +42,6 @@ module Avm
         end
 
         private
-
-        attr_reader :options
 
         def git(args, exit_outputs = {})
           r = @git.execute!(args, exit_outputs: exit_outputs)

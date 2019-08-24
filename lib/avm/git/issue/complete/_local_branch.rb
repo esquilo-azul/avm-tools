@@ -21,7 +21,7 @@ module Avm
         def branch_name_result
           ::Avm::Result.success_or_error(
             branch_name,
-            issue_id || options.fetch(:no_avm_branch_name)
+            issue_id || no_avm_branch_name
           )
         end
 
