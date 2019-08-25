@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'eac_launcher/git/base'
+require 'avm/patches/eac_launcher_git_base'
 require 'eac_ruby_utils/console/speaker'
 require 'eac_ruby_utils/require_sub'
 require 'eac_ruby_utils/simple_cache'

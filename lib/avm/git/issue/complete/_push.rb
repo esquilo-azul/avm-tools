@@ -4,6 +4,22 @@ module Avm
   module Git
     module Issue
       class Complete
+        def dry_push_args
+          %w[push --dry-run] + [remote_name] + pushs
+        end
+
+        def dry_push_result
+          return ::Avm::Result.error('Nothing to push') if pushs.empty?
+
+          r = @git.execute(dry_push_args)
+          message = if r.fetch(:exit_code).zero?
+                      'ok'
+                    else
+                      r.fetch(:stderr) + "\n#{::Shellwords.join(dry_push_args)}"
+                    end
+          ::Avm::Result.success_or_error(message, r.fetch(:exit_code).zero?)
+        end
+
         def push
           if pushs.empty?
             info 'PUSH: Nada a enviar'
@@ -26,7 +42,9 @@ module Avm
         end
 
         def tag_push
-          !remote_tag_hash || remote_tag_hash != branch_hash ? tag : nil
+          return nil unless !remote_tag_hash || remote_tag_hash != branch_hash
+
+          "#{branch_hash}:#{tag}"
         end
       end
     end

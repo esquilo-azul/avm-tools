@@ -9,7 +9,8 @@ module Avm
         VALIDATIONS = {
           branch_name: 'Branch name',
           branch_hash: 'Branch hash',
-          follow_master: 'Follow master?'
+          follow_master: 'Follow master?',
+          dry_push: 'Dry push?'
         }.freeze
 
         def valid?
