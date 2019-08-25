@@ -41,7 +41,7 @@ require 'fileutils'
 
     context 'when "git issue complete" is called' do
       before do
-        ::Avm::Tools::Runner.new(argv: %w[git issue complete -C] + [local_repos]).run
+        ::Avm::Tools::Runner.new(argv: %w[git issue complete --yes -C] + [local_repos]).run
       end
 
       it 'remote repos does not have a issue branch' do
