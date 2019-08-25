@@ -11,6 +11,7 @@ module Avm
           branch_hash: 'Branch hash',
           follow_master: 'Follow master?',
           commits: 'Commits?',
+          bifurcations: 'Bifurcations?',
           dry_push: 'Dry push?'
         }.freeze
 
