@@ -10,6 +10,7 @@ module Avm
           branch_name: 'Branch name',
           branch_hash: 'Branch hash',
           follow_master: 'Follow master?',
+          commits: 'Commits?',
           dry_push: 'Dry push?'
         }.freeze
 
