@@ -21,7 +21,7 @@ require 'fileutils'
     ::EacLauncher::Git::Base.new('/tmp/local_repos')
   end
 
-  context 'when branch is pusshed' do
+  context 'when branch is pushed' do
     before do
       local_repos.assert_remote_url(remote_name, remote_repos)
       local_repos.execute!('checkout', '-b', issue_ref)
