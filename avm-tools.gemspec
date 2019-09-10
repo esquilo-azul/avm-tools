@@ -14,6 +14,7 @@ Gem::Specification.new do |s|
   s.bindir = 'exe'
   s.executables = s.files.grep(%r{^exe/}) { |f| File.basename(f) }
 
+  s.add_dependency 'clipboard', '~> 1.3', '>= 1.3.3'
   s.add_dependency 'eac_launcher', '~> 0.6', '>= 0.6.1'
   s.add_dependency 'eac_ruby_utils', '~> 0.11'
   s.add_development_dependency 'rspec',  '3.8'
