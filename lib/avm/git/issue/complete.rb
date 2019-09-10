@@ -14,11 +14,11 @@ module Avm
         include ::EacRubyUtils::SimpleCache
         include ::EacRubyUtils::Console::Speaker
 
-        attr_reader :no_avm_branch_name
+        attr_reader :no_validate_branch
 
         def initialize(options)
           consumer = ::EacRubyUtils::OptionsConsumer.new(options)
-          dir, @no_avm_branch_name = consumer.consume_all(:dir, :no_avm_branch_name)
+          dir, @no_validate_branch = consumer.consume_all(:dir, :no_validate_branch)
           consumer.validate
           @git = ::EacLauncher::Git::Base.new(dir)
         end

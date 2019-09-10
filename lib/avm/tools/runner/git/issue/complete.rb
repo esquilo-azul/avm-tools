@@ -20,10 +20,10 @@ module Avm
                 __PROGRAM__ -h | --help
 
               Options:
-                -h --help             Show this screen.
-                -C <path>             Path to Git repository [default: .].
-                --no-avm              Does not require valid AVM issue\'s branch/tag name.
-                -y --yes              Does not ask for user confirmation.
+                -h --help                 Show this screen.
+                -C <path>                 Path to Git repository [default: .].
+                -B --no-validate-branch   Does not validate branch/tag name.
+                -y --yes                  Does not ask for user confirmation.
             DOCOPT
 
             def run
@@ -40,7 +40,8 @@ module Avm
             end
 
             def git_complete_issue_options
-              { dir: options.fetch('-C'), no_avm_branch_name: options.fetch('--no-avm') }
+              { dir: options.fetch('-C'),
+                no_validate_branch: options.fetch('--no-validate-branch') }
             end
           end
         end
