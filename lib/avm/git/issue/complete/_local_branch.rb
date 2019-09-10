@@ -6,11 +6,11 @@ module Avm
   module Git
     module Issue
       class Complete
-        def branch
+        def branch_uncached
           @git.current_branch
         end
 
-        def branch_hash
+        def branch_hash_uncached
           @git.rev_parse("refs/heads/#{branch}")
         end
 

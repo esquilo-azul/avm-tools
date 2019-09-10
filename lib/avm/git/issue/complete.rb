@@ -33,6 +33,7 @@ module Avm
           assert_tag
           push
           remove_local_branch
+          clipboard_copy_tracker_message
           true
         end
 
