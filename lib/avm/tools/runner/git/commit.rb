@@ -73,8 +73,8 @@ module Avm
           end
 
           def file_value(file)
-            s = "status: #{file.status}"
-            s += ", size: #{bytes_size(file.dst_size)}" if show_size?
+            s = file.status
+            s += ", #{bytes_size(file.dst_size)}" if show_size?
             s
           end
 
