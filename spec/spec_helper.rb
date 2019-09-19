@@ -6,3 +6,5 @@ require 'tmpdir'
 RSpec.configure do |config|
   config.example_status_persistence_file_path = ::File.join(::Dir.tmpdir, 'avm-tools_rspec')
 end
+
+require 'aranha/parsers/spec/source_target_fixtures_example'
