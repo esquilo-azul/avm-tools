@@ -59,7 +59,7 @@ module Avm
           end
 
           def size_banner
-            return unless options.fetch('--sizes')
+            return unless show_size?
 
             infov 'Total files size', bytes_size(commit.files_size)
           end
@@ -74,7 +74,7 @@ module Avm
 
           def file_value(file)
             s = "status: #{file.status}"
-            s += ", size: #{bytes_size(file.dst_size)}" if options.fetch('--sizes')
+            s += ", size: #{bytes_size(file.dst_size)}" if show_size?
             s
           end
 
@@ -101,6 +101,10 @@ module Avm
           def bytes_size(size)
             b = "#{size} B"
             "#{::Filesize.from(b).pretty} (#{b})"
+          end
+
+          def show_size?
+            options.fetch('--size')
           end
         end
       end
