@@ -23,7 +23,7 @@ RSpec.describe ::Avm::Git::Commit do
     first_commit_sha1
     ::File.write(::File.join(git, 'a.txt'), 'AAAAA')
     ::File.unlink(::File.join(git, 'b.txt'))
-    ::File.write(::File.join(git, 'c.txt'), 'CCC')
+    ::File.write(::File.join(git, 'ç.txt'), 'CCC')
     git.execute!('add', '.')
     git.execute!('commit', '-m', 'Second commit.')
     git.rev_parse('HEAD')
@@ -35,6 +35,19 @@ RSpec.describe ::Avm::Git::Commit do
   describe '#files' do
     it { expect(first_commit.files.count).to eq(2) }
     it { expect(second_commit.files.count).to eq(3) }
+
+    {
+      'first_commit' => %w[a.txt b.txt],
+      'second_commit' => %w[a.txt b.txt ç.txt]
+    }.each do |commit_name, filenames|
+      filenames.each do |filename|
+        it "find file \"#{filename}\" in commit \"#{commit_name}\"" do
+          commit = send(commit_name)
+          file = commit.files.find { |f| f.path == filename }
+          expect(file).to be_a(::Avm::Git::Commit::File)
+        end
+      end
+    end
   end
 
   describe '#files_size' do
