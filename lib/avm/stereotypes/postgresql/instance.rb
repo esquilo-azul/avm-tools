@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'avm/stereotypes/postgresql/instance/data_unit'
+
 module Avm
   module Stereotypes
     module Postgresql
@@ -7,6 +9,10 @@ module Avm
         def initialize(env, connection_params)
           @env = env
           @connection_params = connection_params.with_indifferent_access
+        end
+
+        def data_unit
+          ::Avm::Stereotypes::Postgresql::Instance::DataUnit.new(self)
         end
 
         def dump_command
