@@ -17,7 +17,12 @@ module Avm
 
           Options:
             -h --help             Show this screen.
+            -C <path>                 Path to Git repository [default: .].
         DOCOPT
+
+        def repository_path
+          options.fetch('-C')
+        end
       end
     end
   end

@@ -24,7 +24,6 @@ module Avm
 
             Options:
               -h --help        Mostra esta ajuda.
-              -C <git-local>   Caminho do repositório local [default: .].
               -f --files       Mostra os arquivos.
               -s --size        Mostra o tamanho de arquivos.
           DOCOPT
@@ -87,7 +86,7 @@ module Avm
           end
 
           def git_uncached
-            ::EacLauncher::Git::Base.new(options.fetch('-C'))
+            ::EacLauncher::Git::Base.new(context(:repository_path))
           end
 
           def commit_uncached

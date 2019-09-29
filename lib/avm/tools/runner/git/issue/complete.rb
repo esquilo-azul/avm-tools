@@ -21,7 +21,6 @@ module Avm
 
               Options:
                 -h --help                 Show this screen.
-                -C <path>                 Path to Git repository [default: .].
                 -B --no-validate-branch   Does not validate branch/tag name.
                 -y --yes                  Does not ask for user confirmation.
             DOCOPT
@@ -40,7 +39,7 @@ module Avm
             end
 
             def git_complete_issue_options
-              { dir: options.fetch('-C'),
+              { dir: context(:repository_path),
                 no_validate_branch: options.fetch('--no-validate-branch') }
             end
           end
