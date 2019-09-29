@@ -4,7 +4,7 @@ require 'eac_launcher/git/base'
 require 'tmpdir'
 require 'avm/git/commit'
 
-RSpec.describe ::Avm::Git::Commit do
+RSpec.describe ::Avm::Git::Commit, git: true do
   let(:git) do
     r = ::EacLauncher::Git::Base.new(::Dir.mktmpdir)
     r.init
