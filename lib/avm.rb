@@ -3,6 +3,7 @@
 module Avm
   require 'avm/configs'
   require 'avm/data'
+  require 'avm/executables'
   require 'avm/git'
   require 'avm/instances'
   require 'avm/patches'
