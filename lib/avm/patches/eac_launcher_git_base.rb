@@ -12,6 +12,11 @@ module Avm
         args, options = build_args(args)
         ::EacRubyUtils::Envs.local.command(*args).execute(options)
       end
+
+      def command(*args)
+        args, _options = build_args(args)
+        ::EacRubyUtils::Envs.local.command(*args)
+      end
     end
   end
 end
