@@ -5,15 +5,11 @@ require 'tmpdir'
 require 'avm/git/commit'
 
 RSpec.describe ::Avm::Git::Commit, git: true do
-  let(:git) do
-    r = ::EacLauncher::Git::Base.new(::Dir.mktmpdir)
-    r.init
-    r
-  end
+  let(:git) { stubbed_git_repository }
 
   let(:first_commit_sha1) do
-    ::File.write(::File.join(git, 'a.txt'), 'AAA')
-    ::File.write(::File.join(git, 'b.txt'), 'BBB')
+    git.file('a.txt').write('AAA')
+    git.file('b.txt').write('BBB')
     git.execute!('add', '.')
     git.execute!('commit', '-m', 'First commit.')
     git.rev_parse('HEAD')
@@ -21,9 +17,9 @@ RSpec.describe ::Avm::Git::Commit, git: true do
 
   let(:second_commit_sha1) do
     first_commit_sha1
-    ::File.write(::File.join(git, 'a.txt'), 'AAAAA')
-    ::File.unlink(::File.join(git, 'b.txt'))
-    ::File.write(::File.join(git, 'ç.txt'), 'CCC')
+    git.file('a.txt').write('AAAAA')
+    git.file('b.txt').delete
+    git.file('ç.txt').write('CCC')
     git.execute!('add', '.')
     git.execute!('commit', '-m', 'Second commit.')
     git.rev_parse('HEAD')

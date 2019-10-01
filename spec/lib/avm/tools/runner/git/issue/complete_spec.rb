@@ -2,30 +2,21 @@
 
 require 'eac_launcher/git/base'
 require 'avm/tools/runner'
+require 'avm/git/spec_helper'
 require 'tmpdir'
 require 'fileutils'
 
 ::RSpec.describe ::Avm::Tools::Runner::Git::Issue::Complete, git: true do
   let(:remote_name) { 'origin' }
   let(:issue_ref) { 'issue_123' }
-  let(:remote_repos) do
-    path = '/tmp/remote_repos'
-    ::FileUtils.rm_rf(path)
-    ::FileUtils.mkdir_p(::File.dirname(path))
-    ::EacRubyUtils::Envs.local.command('git', 'init', '--bare', path).system!
-    ::EacLauncher::Git::Base.new(path)
-  end
-
-  let(:local_repos) do
-    ::FileUtils.rm_rf('/tmp/local_repos')
-    ::EacLauncher::Git::Base.new('/tmp/local_repos')
-  end
+  let(:remote_repos) { stubbed_git_repository(true) }
+  let(:local_repos) { stubbed_git_repository }
 
   context 'when branch is pushed' do
     before do
       local_repos.assert_remote_url(remote_name, remote_repos)
       local_repos.execute!('checkout', '-b', issue_ref)
-      ::FileUtils.touch(::File.join(local_repos, 'myfile1.txt'))
+      local_repos.file('myfile1.txt').touch
       local_repos.execute!('add', '.')
       local_repos.execute!('commit', '-m', 'myfile1.txt')
       local_repos.execute!('push', 'origin', issue_ref)
