@@ -50,6 +50,12 @@ module Avm
           ::EacRubyUtils::Envs.ssh("#{read_entry('user')}@#{read_entry('host')}")
         end
       end
+
+      private
+
+      def source_instance_uncached
+        ::Avm::Instances::Base.by_id(read_entry(:source_instance_id))
+      end
     end
   end
 end
