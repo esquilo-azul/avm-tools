@@ -9,5 +9,6 @@ module Avm
   require 'avm/patches'
   require 'avm/result'
   require 'avm/stereotypes'
+  require 'avm/templates'
   require 'avm/tools'
 end
