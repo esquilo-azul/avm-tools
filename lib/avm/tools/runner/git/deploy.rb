@@ -17,9 +17,9 @@ module Avm
           DOC = <<~DOCOPT
             Deploy a Git revision to a location (Local or remote).
 
-            Usage:
-              __PROGRAM__ [options] <target-url>
-              __PROGRAM__ -h | --help
+              Usage:
+              __PROGRAM__ [options] <target-url> [<append-directories>...]
+            __PROGRAM__ -h | --help
 
             Options:
               -h --help                    Mostra esta ajuda.
@@ -63,8 +63,11 @@ module Avm
           end
 
           def deploy
-            commit = ::Avm::Git::Commit.new(git, reference_sha1)
-            commit.deploy_to_url(options.fetch('<target-url>'))
+            ::Avm::Git::Commit.new(git, reference_sha1)
+                              .deploy_to_url(options.fetch('<target-url>'))
+                              .append_directories(options.fetch('<append-directories>'))
+                              .variables_source_set(::Avm.configs)
+                              .run
           end
         end
       end
