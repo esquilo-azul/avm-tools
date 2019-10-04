@@ -39,6 +39,10 @@ module Avm
         "#{application.id}_#{suffix}"
       end
 
+      def to_s
+        id
+      end
+
       def host_env_uncached
         if read_entry('host') == 'localhost'
           ::EacRubyUtils::Envs.local
