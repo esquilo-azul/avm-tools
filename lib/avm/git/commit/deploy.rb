@@ -60,7 +60,7 @@ module Avm
 
         def clear_content
           target_env.command(
-            'find', target_path, '-mindepth', 1, '-exec', 'rm', '-rf', '{}', ';'
+            'find', target_path, '-mindepth', '1', '-maxdepth', '1', '-exec', 'rm', '-rf', '{}', ';'
           ).execute!
         end
 
