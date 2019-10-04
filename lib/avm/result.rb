@@ -66,5 +66,11 @@ module Avm
 
       raise "Tipo desconhecido: \"#{type}\" (Válido: #{self.class.lists.type.values.join(', ')})"
     end
+
+    class Error < StandardError
+      def to_result
+        ::Avm::Result.error(message)
+      end
+    end
   end
 end
