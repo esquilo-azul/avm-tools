@@ -22,8 +22,9 @@ module Avm
             __PROGRAM__ -h | --help
 
             Options:
-              -h --help                    Mostra esta ajuda.
-              -r --reference=<reference>   Reference [default: HEAD].
+              -h --help                     Mostra esta ajuda.
+              -r --reference=<reference>    Reference [default: HEAD].
+              -i --instance=<instance-id>   Read entries from instance with id=<instance-id>.
           DOCOPT
 
           def run
@@ -38,6 +39,7 @@ module Avm
           def input_banner
             infov 'Repository', git
             infov 'Reference', reference
+            infov 'Instance ID', instance_id.if_present('- BLANK -')
           end
 
           def validate
@@ -66,8 +68,20 @@ module Avm
             ::Avm::Git::Commit.new(git, reference_sha1)
                               .deploy_to_url(options.fetch('<target-url>'))
                               .append_directories(options.fetch('<append-directories>'))
-                              .variables_source_set(::Avm.configs)
+                              .variables_source_set(variables_source)
                               .run
+          end
+
+          def variables_source
+            instance || ::Avm.configs
+          end
+
+          def instance_uncached
+            instance_id.if_present { |v| ::Avm::Instances::Base.by_id(v) }
+          end
+
+          def instance_id
+            options.fetch('--instance')
           end
         end
       end

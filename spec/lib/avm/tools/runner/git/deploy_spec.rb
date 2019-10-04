@@ -72,6 +72,28 @@ require 'tmpdir'
     it { expect(::File.read(target_stub_file4)).to eq("MyValue: %%MY_VALUE%%\n") }
   end
 
+  context 'with instance' do
+    let(:target_dir) { ::File.join(::Dir.mktmpdir, 'target') }
+    let(:append_dirs) do
+      [1, 2].map { |n| ::File.join(__dir__, 'deploy_spec_files', "append#{n}") }
+    end
+    let(:target_stub_file3) { ::File.join(target_dir, 'stub3.txt') }
+    let(:target_stub_file4) { ::File.join(target_dir, 'stub4.txt') }
+
+    before do
+      ENV['MYINSTANCE_DEV_MY_VALUE'] = '123'
+      commit_sha1
+      ::Avm::Tools::Runner.new(argv: ['git', '-C', git] + %w[deploy -i my-instance_dev] +
+          [target_dir, append_dirs])
+                          .run
+    end
+
+    it { expect(::File.read(target_stub_file1)).to eq(stub_content1) }
+    it { expect(::File.exist?(target_stub_file2)).to eq(false) }
+    it { expect(::File.read(target_stub_file3)).to eq("MyValue: 123\n") }
+    it { expect(::File.read(target_stub_file4)).to eq("MyValue: %%MY_VALUE%%\n") }
+  end
+
   context 'with ssh target', ssh: true do
     let(:env) { ::EacRubyUtils::Rspec::StubbedSsh.default.build_env }
     let(:tmpdir) { env.command('mktemp', '-d').execute! }
