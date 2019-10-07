@@ -77,6 +77,7 @@ module Avm
         end
 
         def move_download_to_final_dest(download_path)
+          ::FileUtils.mkdir_p(::File.dirname(data_file_path))
           ::FileUtils.mv(download_path, data_file_path)
         end
 
