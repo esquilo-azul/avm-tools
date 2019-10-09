@@ -2,6 +2,7 @@
 
 require 'eac_ruby_utils/console/docopt_runner'
 require 'eac_ruby_utils/require_sub'
+require 'avm/patches/eac_launcher_git_base'
 ::EacRubyUtils.require_sub(__FILE__)
 
 module Avm
@@ -22,6 +23,10 @@ module Avm
 
         def repository_path
           options.fetch('-C')
+        end
+
+        def git
+          @git ||= ::EacLauncher::Git::Base.new(repository_path)
         end
       end
     end
