@@ -3,7 +3,7 @@
 require 'delegate'
 require 'eac_ruby_utils/core_ext'
 require 'eac_launcher/git/base'
-require 'avm/git/commit'
+require 'avm/git'
 require 'avm/patches/object/template'
 
 module Avm
@@ -14,8 +14,6 @@ module Avm
         enable_simple_cache
 
         attr_reader :instance, :git_reference
-
-        DEFAULT_REMOTE_NAME = 'origin'
 
         def initialize(instance, git_reference)
           @instance = instance
@@ -89,7 +87,7 @@ module Avm
         end
 
         def git_remote_name
-          DEFAULT_REMOTE_NAME
+          ::Avm::Git::DEFAULT_REMOTE_NAME
         end
 
         def git_remote_hashs_uncached

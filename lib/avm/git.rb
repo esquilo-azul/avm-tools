@@ -5,5 +5,6 @@ require 'eac_ruby_utils/require_sub'
 
 module Avm
   module Git
+    DEFAULT_REMOTE_NAME = 'origin'
   end
 end
