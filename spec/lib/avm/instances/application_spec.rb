@@ -6,7 +6,7 @@ RSpec.describe ::Avm::Instances::Application do
   let(:instance) { described_class.new('avm-tools') }
 
   before do
-    ENV['AVMTOOLS_EXIST'] = 'exist'
+    ::Avm.configs_storage_path = ::File.join(__dir__, 'application_spec_fixture.yml')
     ENV.delete('AVMTOOLS_NOT_EXIST')
   end
 
