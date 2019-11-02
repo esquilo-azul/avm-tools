@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/patches/object/asserts'
+require 'eac_ruby_utils/core_ext'
+require 'eac_ruby_utils/require_sub'
 require 'avm/configs'
+::EacRubyUtils.require_sub(__FILE__)
 
 module Avm
   module Instances
@@ -11,7 +13,7 @@ module Avm
       end
 
       def read_entry(entry_suffix, options = {})
-        ::Avm.configs.read_entry(full_entry_path(entry_suffix), options)
+        entry(entry_suffix, options).value
       end
 
       def full_entry_path(entry_suffix)
@@ -19,6 +21,12 @@ module Avm
           entry_suffix = ::EacRubyUtils::PathsHash.parse_entry_key(entry_suffix.to_s)
         end
         (path_prefix + entry_suffix).join('.')
+      end
+
+      private
+
+      def entry(suffix, options)
+        ::Avm::Instances::Entries::EntryReader.new(self, suffix, options)
       end
     end
   end
