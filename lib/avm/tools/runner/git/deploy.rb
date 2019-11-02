@@ -40,6 +40,7 @@ module Avm
             infov 'Repository', git
             infov 'Reference', reference
             infov 'Instance ID', instance_id.if_present('- BLANK -')
+            infov 'Appended directories', appended_directories
           end
 
           def validate
@@ -67,7 +68,7 @@ module Avm
           def deploy
             ::Avm::Git::Commit.new(git, reference_sha1)
                               .deploy_to_url(options.fetch('<target-url>'))
-                              .append_directories(options.fetch('<append-directories>'))
+                              .append_directories(appended_directories)
                               .variables_source_set(variables_source)
                               .run
           end
@@ -82,6 +83,10 @@ module Avm
 
           def instance_id
             options.fetch('--instance')
+          end
+
+          def appended_directories
+            options.fetch('<append-directories>')
           end
         end
       end
