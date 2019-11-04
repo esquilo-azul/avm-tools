@@ -8,12 +8,20 @@ module Avm
       class EntryReader
         common_constructor :parent, :suffix, :options
 
+        def auto_value
+          parent.respond_to?(auto_value_method, true) ? parent.send(auto_value_method) : nil
+        end
+
+        def auto_value_method
+          "auto_#{suffix.to_s.gsub('.', '_')}"
+        end
+
         def full_path
           (parent.path_prefix + suffix_as_array).join('.')
         end
 
         def optional_value
-          read(required: false, noinput: true)
+          read(required: false, noinput: true) || auto_value
         end
 
         def read(extra_options = {})
@@ -29,7 +37,7 @@ module Avm
         end
 
         def value
-          read
+          optional_value || read
         end
       end
     end

@@ -27,6 +27,16 @@ module Avm
         (path_prefix + entry_suffix).join('.')
       end
 
+      def inherited_entry_value(source_entry_suffix, target_entry_suffix, &block)
+        read_entry_optional(source_entry_suffix).if_present do |instance_id|
+          other_entry_value(instance_id, target_entry_suffix).if_present(&block)
+        end
+      end
+
+      def other_entry_value(instance_id, entry_suffix)
+        ::Avm::Instances::Base.by_id(instance_id).read_entry_optional(entry_suffix)
+      end
+
       private
 
       def entry(suffix, options)
