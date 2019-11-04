@@ -27,7 +27,8 @@ RSpec.describe ::Avm::Instances::Base do
           'ssh.url' => 'ssh://otheruser@otherhost.com'
         },
         'app_2' => {
-          'database.hostname' => '127.0.0.1'
+          'database.hostname' => '127.0.0.1',
+          'source_instance_id' => 'app_dev'
         },
         'app_3' => {
           'database.system' => 'postgresql',
