@@ -3,8 +3,15 @@ app_0:
   host_id: app_1
 app_1:
   host_id: app_2
+  database:
+    name: app_1_db
+    username: user1
+    password: pass1
+    hostname: database.net
 app_2:
   ssh:
     hostname: myhost.com
     username: myuser
     url: ssh://otheruser@otherhost.com
+app_3:
+  database_id: app_1

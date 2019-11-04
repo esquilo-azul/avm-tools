@@ -3,6 +3,8 @@
 require 'avm/instances/base'
 
 RSpec.describe ::Avm::Instances::Base do
+  let(:app2) { described_class.by_id('app_2') }
+  let(:app1) { described_class.by_id('app_1') }
   let(:app0) { described_class.by_id('app_0') }
 
   before do
@@ -13,9 +15,25 @@ RSpec.describe ::Avm::Instances::Base do
     context 'when a auto value is requested' do
       {
         'app_0' => {
+          'database.name' => 'app_0',
+          'database.username' => 'user1',
+          'database.password' => 'pass1',
+          'database.hostname' => 'database.net',
+          'database.port' => 5432,
           'ssh.hostname' => 'myhost.com',
           'ssh.username' => 'myuser',
           'ssh.url' => 'ssh://otheruser@otherhost.com'
+        },
+        'app_2' => {
+          'database.hostname' => '127.0.0.1'
+        },
+        'app_3' => {
+          'database.system' => 'postgresql',
+          'database.name' => 'app_1_db',
+          'database.username' => 'user1',
+          'database.password' => 'pass1',
+          'database.hostname' => 'database.net',
+          'database.port' => 5432
         }
       }.each do |instance_id, values|
         values.each do |input, expected|
