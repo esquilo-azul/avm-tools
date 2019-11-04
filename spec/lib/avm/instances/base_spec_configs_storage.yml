@@ -1,1 +1,10 @@
 ---
+app_0:
+  host_id: app_1
+app_1:
+  host_id: app_2
+app_2:
+  ssh:
+    hostname: myhost.com
+    username: myuser
+    url: ssh://otheruser@otherhost.com

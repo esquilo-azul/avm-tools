@@ -10,7 +10,7 @@ module Avm
         extend ::ActiveSupport::Concern
 
         included do
-          %w[].each do |class_name|
+          %w[Access].each do |class_name|
             include const_get(class_name)
           end
         end
