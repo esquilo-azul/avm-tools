@@ -1,0 +1,20 @@
+h1. AVM Tools
+
+h2. Instance's entries suffixes
+
+|_. Name |_. Description |_. Default value |
+| access | *@local@* or *@ssh@* | @self->ssh.url ? 'ssh' : 'local'@ |
+| data_fs_path | path to instance's data root directory | @host_id->data_fs_path + '/' + self->id@ |
+| database_id | ID of instance to fetch database parameters | @nil@ |
+| database.system | *@postgres@* or *@mysql@* or *@oracle@* | @nil@ |
+| database.hostname | hostname of database server | @database_id->database.hostname or host_id->database.hostname or '127.0.0.1'@ |
+| database.name | name of database | @database_id->database.name or self->id@ |
+| database.password | password to login in database | @database_id->database.password or host_id->database.password@ |
+| database.port | port of database server | @database.system->default_port@ |
+| database.username | username to login in database | @database_id->database.username or host_id->database.username@ |
+| fs_path | path to instance's installation  | @host_id->fs_path + '/' + self->id@ |
+| host_id | ID of instace to fetch host parameters | @nil@ |
+| ssh.url | SSH URL to access instance's host | @host_id->ssh.url or self->ssh.username + '@' self->ssh.hostname@ |
+| ssh.hostname | SSH hostname to access instance's host | @host_id->ssh.hostname@ |
+| ssh.port | SSH port to access instance's host | '22' |
+| ssh.username | SSH username to access instance's host | @host_id->ssh.username@ |
