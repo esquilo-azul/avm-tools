@@ -9,7 +9,7 @@ module Avm
       include ::EacRubyUtils::SimpleCache
 
       VARIABLE_DELIMITER = ::Regexp.quote('%%')
-      VARIABLE_PATTERN = /#{VARIABLE_DELIMITER}([a-z_][a-z0-9_]*)#{VARIABLE_DELIMITER}/i.freeze
+      VARIABLE_PATTERN = /#{VARIABLE_DELIMITER}([a-z0-9\._]*)#{VARIABLE_DELIMITER}/i.freeze
 
       attr_reader :path
 
