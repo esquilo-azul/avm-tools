@@ -15,6 +15,8 @@ RSpec.describe ::Avm::Instances::Base do
     context 'when a auto value is requested' do
       {
         'app_0' => {
+          fs_path: '/fs_root/app_0',
+          data_fs_path: '/data_fs_root/app_0',
           'database.name' => 'app_0',
           'database.username' => 'user1',
           'database.password' => 'pass1',

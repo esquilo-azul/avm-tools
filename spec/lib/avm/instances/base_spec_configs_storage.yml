@@ -2,6 +2,8 @@
 app_0:
   host_id: app_1
 app_1:
+  fs_path: /fs_root
+  data_fs_path: /data_fs_root
   host_id: app_2
   database:
     name: app_1_db
