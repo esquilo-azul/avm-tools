@@ -1,13 +1,16 @@
 # frozen_string_literal: true
 
+require 'eac_ruby_utils/require_sub'
 require 'eac_ruby_utils/simple_cache'
 require 'avm/instances/entries'
+::EacRubyUtils.require_sub(__FILE__)
 
 module Avm
   module Instances
     class Base
       include ::EacRubyUtils::Listable
       include ::EacRubyUtils::SimpleCache
+      include ::Avm::Instances::Base::AutoValues
       include ::Avm::Instances::Entries
 
       lists.add_string :access, :local, :ssh
