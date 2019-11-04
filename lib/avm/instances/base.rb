@@ -6,8 +6,11 @@ require 'avm/instances/entries'
 module Avm
   module Instances
     class Base
+      include ::EacRubyUtils::Listable
       include ::EacRubyUtils::SimpleCache
       include ::Avm::Instances::Entries
+
+      lists.add_string :access, :local, :ssh
 
       ID_PATTERN = /\A([a-z]+(?:\-[a-z]+)*)_(.+)\z/.freeze
 
@@ -44,10 +47,11 @@ module Avm
       end
 
       def host_env_uncached
-        if read_entry('host') == 'localhost'
-          ::EacRubyUtils::Envs.local
-        else
-          ::EacRubyUtils::Envs.ssh("#{read_entry('user')}@#{read_entry('host')}")
+        access = read_entry(:access, list: ::Avm::Instances::Base.lists.access.values)
+        case access
+        when 'local' then return ::EacRubyUtils::Envs.local
+        when 'ssh' then return ::EacRubyUtils::Envs.ssh(read_entry('ssh.url'))
+        else raise("Unmapped access value: \"#{access}\"")
         end
       end
 
