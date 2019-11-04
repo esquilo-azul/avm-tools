@@ -12,6 +12,10 @@ module Avm
           (parent.path_prefix + suffix_as_array).join('.')
         end
 
+        def optional_value
+          read(required: false, noinput: true)
+        end
+
         def read(extra_options = {})
           ::Avm.configs.read_entry(full_path, options.merge(extra_options))
         end

@@ -16,6 +16,10 @@ module Avm
         entry(entry_suffix, options).value
       end
 
+      def read_entry_optional(entry_suffix, options = {})
+        entry(entry_suffix, options).optional_value
+      end
+
       def full_entry_path(entry_suffix)
         unless entry_suffix.is_a?(::Array)
           entry_suffix = ::EacRubyUtils::PathsHash.parse_entry_key(entry_suffix.to_s)
