@@ -3,6 +3,8 @@ h1. AVM Tools
 h2. Instance's entries suffixes
 
 |_. Name |_. Description |_. Default value |
+| admin.email | Admin's e-mail address | @host_id->admin.email@ |
+| admin.name | Admin's name | @host_id->admin.name@ |
 | access | *@local@* or *@ssh@* | @self->ssh.url ? 'ssh' : 'local'@ |
 | data_fs_path | path to instance's data root directory | @host_id->data_fs_path + '/' + self->id@ |
 | database_id | ID of instance to fetch database parameters | @nil@ |
