@@ -10,6 +10,7 @@ module Avm
           bundle_install
           assert_database
           database_migrate
+          compile_assets
         end
 
         def assert_database
@@ -20,6 +21,11 @@ module Avm
         def bundle_install
           infom 'Running "bundle install"...'
           instance.bundle('install').system!
+        end
+
+        def compile_assets
+          infom 'Compiling assets...'
+          instance.rake('assets:clean', 'assets:precompile').system!
         end
 
         def database_migrate
