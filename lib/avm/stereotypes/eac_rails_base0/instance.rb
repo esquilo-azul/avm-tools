@@ -14,6 +14,10 @@ module Avm
                   .envvar('RAILS_ENV', 'production')
                   .chdir(read_entry('fs_path'))
         end
+
+        def rake(*args)
+          bundle('exec', 'rake', *args)
+        end
       end
     end
   end
