@@ -9,6 +9,7 @@ module Avm
         set_callback :assert_instance_branch, :after do
           bundle_install
           assert_database
+          database_migrate
         end
 
         def assert_database
@@ -19,6 +20,11 @@ module Avm
         def bundle_install
           infom 'Running "bundle install"...'
           instance.bundle('install').system!
+        end
+
+        def database_migrate
+          infom 'Running database migrations...'
+          instance.rake('db:migrate').system!
         end
       end
     end
