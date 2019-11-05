@@ -7,7 +7,7 @@ module Avm
   module Templates
     class << self
       def template(subpath, required = true)
-        path = template_path
+        path = template_path(subpath)
         if path.blank?
           return nil unless required
 
