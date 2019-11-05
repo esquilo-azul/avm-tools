@@ -70,6 +70,7 @@ module Avm
             mkdir_target
             clear_content
             send_untar_package
+            set_target_permission
           end
         end
 
@@ -106,6 +107,10 @@ module Avm
 
         def send_untar_package
           tar_build_command.pipe(untar_build_command).execute!
+        end
+
+        def set_target_permission
+          target_env.command('chmod', '755', target_path).execute!
         end
 
         def git_archive_command
