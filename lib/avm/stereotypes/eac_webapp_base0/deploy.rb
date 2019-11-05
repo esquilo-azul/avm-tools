@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'active_support/callbacks'
 require 'delegate'
 require 'eac_ruby_utils/core_ext'
 require 'eac_launcher/git/base'
@@ -10,8 +11,13 @@ module Avm
   module Stereotypes
     module EacWebappBase0
       class Deploy
+        include ::ActiveSupport::Callbacks
+
         enable_console_speaker
         enable_simple_cache
+
+        JOBS = %w[git_deploy setup_files_units assert_instance_branch].freeze
+        define_callbacks(*JOBS)
 
         attr_reader :instance, :git_reference
 
@@ -22,9 +28,11 @@ module Avm
 
         def run
           start_banner
-          git_deploy
-          setup_files_units
-          assert_instance_branch
+          JOBS.each do |job|
+            run_callbacks job do
+              send(job)
+            end
+          end
           ::Avm::Result.success('Deployed')
         rescue ::Avm::Result::Error => e
           e.to_result
