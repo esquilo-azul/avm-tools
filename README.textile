@@ -20,3 +20,5 @@ h2. Instance's entries suffixes
 | ssh.hostname | SSH hostname to access instance's host | @host_id->ssh.hostname@ |
 | ssh.port | SSH port to access instance's host | '22' |
 | ssh.username | SSH username to access instance's host | @host_id->ssh.username@ |
+| web.url | Root URL to web interface | @nil@ |
+| web.hostname | Hostname of web interface | @web.url->hostname@ |
