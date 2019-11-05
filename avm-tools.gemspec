@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.authors     = ['Esquilo Azul Company']
   s.summary     = 'Tools for AVM.'
 
-  s.files = Dir['{exe,lib}/**/*', 'Gemfile']
+  s.files = Dir['{exe,lib,template}/**/*', 'Gemfile']
   s.bindir = 'exe'
   s.executables = s.files.grep(%r{^exe/}) { |f| File.basename(f) }
 
