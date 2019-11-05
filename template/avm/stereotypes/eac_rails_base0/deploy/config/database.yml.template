@@ -8,7 +8,7 @@ default: &default
   host: %%DATABASE.HOSTNAME%%
   port: %%DATABASE.PORT%%
 
-development:
+development: &development
   <<: *default
   database: %%DATABASE.NAME%%
 
