@@ -17,6 +17,10 @@ module Avm
         def service(command)
           host_env.command('sudo', 'service', 'apache2', command)
         end
+
+        def site(name)
+          ::Avm::Stereotypes::EacUbuntuBase0::Apache::Site.new(self, name)
+        end
       end
     end
   end
