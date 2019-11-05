@@ -11,6 +11,7 @@ module Avm
           assert_database
           database_migrate
           compile_assets
+          touch_restart_file
         end
 
         def assert_database
@@ -31,6 +32,13 @@ module Avm
         def database_migrate
           infom 'Running database migrations...'
           instance.rake('db:migrate').system!
+        end
+
+        def touch_restart_file
+          infom 'Touching restart file...'
+          instance.host_env.command(
+            'touch', ::File.join(instance.read_entry(:fs_path), 'tmp', 'restart.txt')
+          ).system!
         end
       end
     end
