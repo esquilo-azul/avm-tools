@@ -8,6 +8,12 @@ module Avm
       class Deploy < ::Avm::Stereotypes::EacWebappBase0::Deploy
         set_callback :assert_instance_branch, :after do
           bundle_install
+          assert_database
+        end
+
+        def assert_database
+          infom 'Asserting database...'
+          instance.rake('db:create').system!
         end
 
         def bundle_install
