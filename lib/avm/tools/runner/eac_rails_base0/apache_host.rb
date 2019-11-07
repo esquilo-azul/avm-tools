@@ -20,7 +20,6 @@ module Avm
 
             Options:
               -h --help                       Show this screen.
-              -r --reference=<git-reference>  Git reference to deploy.
           DOCOPT
 
           def run
