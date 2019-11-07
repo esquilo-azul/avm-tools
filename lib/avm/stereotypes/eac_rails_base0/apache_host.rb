@@ -3,6 +3,7 @@
 require 'eac_ruby_utils/core_ext'
 require 'avm/stereotypes/eac_ubuntu_base0/apache'
 require 'avm/templates/file'
+require 'avm/patches/object/template'
 
 module Avm
   module Stereotypes
@@ -23,6 +24,12 @@ module Avm
           ::Avm::Result.success('Done')
         end
 
+        def no_ssl_site_content
+          ::Avm::Templates::File.new(
+            ::File.join(template_path, 'no_ssl.conf')
+          ).apply(instance)
+        end
+
         private
 
         def apache_uncached
@@ -37,12 +44,6 @@ module Avm
         def enable_ssl_site
           infom 'Enabling SSL site...'
           ssl_site.enable
-        end
-
-        def no_ssl_site_content
-          ::Avm::Templates::File.new(
-            ::File.join(template_path, 'no_ssl.conf')
-          ).apply(instance)
         end
 
         def no_ssl_site_uncached
