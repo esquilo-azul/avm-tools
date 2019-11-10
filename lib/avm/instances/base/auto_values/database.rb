@@ -15,7 +15,7 @@ module Avm
           DEFAULT_SYSTEM = 'postgresql'
 
           def auto_database_name
-            inherited_entry_value(:database_id, 'database.name') || id
+            inherited_entry_value(:'database.id', 'database.name') || id
           end
 
           def auto_database_hostname
@@ -41,7 +41,7 @@ module Avm
           private
 
           def database_auto_common(suffix)
-            inherited_entry_value(:database_id, "database.#{suffix}") ||
+            inherited_entry_value('database.id', "database.#{suffix}") ||
               inherited_entry_value(:host_id, "database.#{suffix}")
           end
 

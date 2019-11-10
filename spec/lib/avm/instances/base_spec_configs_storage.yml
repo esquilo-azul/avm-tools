@@ -16,4 +16,5 @@ app_2:
     username: myuser
     url: ssh://otheruser@otherhost.com
 app_3:
-  database_id: app_1
+  database:
+    id: app_1
