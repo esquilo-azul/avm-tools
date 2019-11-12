@@ -11,6 +11,7 @@ module Avm
       include ::EacRubyUtils::Listable
       include ::EacRubyUtils::SimpleCache
       include ::Avm::Instances::Base::AutoValues
+      include ::Avm::Instances::Base::Dockerizable
       include ::Avm::Instances::Entries
 
       lists.add_string :access, :local, :ssh
