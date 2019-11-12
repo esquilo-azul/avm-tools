@@ -51,7 +51,8 @@ RSpec.describe ::Avm::Instances::Base do
   describe '#by_id' do
     {
       'avm-tools_0' => %w[avm-tools 0],
-      'avm-tools_dev' => %w[avm-tools dev]
+      'avm-tools_dev' => %w[avm-tools dev],
+      'redmine1-abc2_dev3' => %w[redmine1-abc2 dev3]
     }.each do |id, expected|
       context "when input ID is \"#{id}\"" do
         let(:instance) { described_class.by_id(id) }

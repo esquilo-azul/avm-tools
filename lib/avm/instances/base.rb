@@ -15,7 +15,7 @@ module Avm
 
       lists.add_string :access, :local, :ssh
 
-      ID_PATTERN = /\A([a-z]+(?:\-[a-z]+)*)_(.+)\z/.freeze
+      ID_PATTERN = /\A([a-z0-9]+(?:\-[a-z0-9]+)*)_(.+)\z/.freeze
 
       class << self
         def by_id(id)
