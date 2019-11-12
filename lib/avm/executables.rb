@@ -12,6 +12,10 @@ module Avm
       def git
         @git ||= env.executable('git', '--version')
       end
+
+      def docker
+        @docker ||= env.executable('docker', '--version')
+      end
     end
   end
 end
