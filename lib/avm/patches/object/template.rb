@@ -1,24 +1,7 @@
 # frozen_string_literal: true
 
-require 'active_support/core_ext/string/inflections'
-require 'avm/templates'
+require 'eac_ruby_utils/patches/object/template'
 
-class Object
-  class << self
-    def template
-      @template ||= ::Avm::Templates.template(name.underscore)
-    end
-
-    def template_path
-      @template_path ||= ::Avm::Templates.template_path(name.underscore)
-    end
-  end
-
-  def template
-    self.class.template
-  end
-
-  def template_path
-    self.class.template_path
-  end
-end
+::EacRubyUtils::Templates::Searcher.default.included_paths << ::File.expand_path(
+  ('../' * 4) + 'template', __dir__
+)

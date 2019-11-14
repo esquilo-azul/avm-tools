@@ -3,7 +3,7 @@
 require 'eac_ruby_utils/core_ext'
 require 'avm/patches/object/template'
 require 'avm/stereotypes/eac_ubuntu_base0/apache'
-require 'avm/templates/file'
+require 'avm/patches/object/template'
 
 module Avm
   module Stereotypes
@@ -25,9 +25,8 @@ module Avm
         end
 
         def no_ssl_site_content
-          ::Avm::Templates::File.new(
-            ::File.join(::Avm::Stereotypes::EacWebappBase0::ApacheHost.template_path, 'no_ssl.conf')
-          ).apply(EntriesReader.new(self, instance))
+          ::Avm::Stereotypes::EacWebappBase0::ApacheHost.template.child('no_ssl.conf')
+                                                        .apply(EntriesReader.new(self, instance))
         end
 
         private

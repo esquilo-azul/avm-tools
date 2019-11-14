@@ -4,7 +4,7 @@ require 'addressable'
 require 'eac_ruby_utils/simple_cache'
 require 'eac_ruby_utils/require_sub'
 ::EacRubyUtils.require_sub(__FILE__)
-require 'avm/templates/directory'
+require 'avm/patches/object/template'
 
 module Avm
   module Git
@@ -92,7 +92,7 @@ module Avm
         def copy_appended_directory(directory)
           raise 'Variables source not set' if variables_source.blank?
 
-          ::Avm::Templates::Directory.new(directory).apply(variables_source, build_dir)
+          ::EacRubyUtils::Templates::Directory.new(directory).apply(variables_source, build_dir)
         end
 
         def mkdir_target
