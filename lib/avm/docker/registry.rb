@@ -7,7 +7,7 @@ module Avm
     class Registry
       class << self
         def default
-          @default ||= new(::Avm.configs.read_entry('docker.registry.name'))
+          @default ||= new(::Avm.configs.read_entry('self.docker.registry.name'))
         end
       end
 
