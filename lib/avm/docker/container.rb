@@ -22,13 +22,13 @@ module Avm
         if instance.docker_container_exist?
           run_start
         else
-          run_run
+          run_run(options)
         end
       end
 
-      def run_run
+      def run_run(options)
         infom "\"docker run #{instance.docker_container_name}...\""
-        ::Avm::Executables.docker.command.append(run_run_arguments).system!
+        ::Avm::Executables.docker.command.append(run_run_arguments(options)).system!
       end
 
       def run_start
@@ -36,9 +36,10 @@ module Avm
         ::Avm::Executables.docker.command.append(run_start_arguments).system!
       end
 
-      def run_run_arguments
+      def run_run_arguments(options)
+        entrypoint_args = options[:entrypoint_args].if_present([])
         ['run', '-it', '--name', instance.docker_container_name] + instance.docker_run_arguments +
-          [instance.docker_image.tag]
+          [instance.docker_image.tag] + entrypoint_args
       end
 
       def run_start_arguments

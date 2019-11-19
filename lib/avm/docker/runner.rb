@@ -14,7 +14,7 @@ module Avm
         Manipulate Docker images.
 
         Usage:
-          __PROGRAM__ [options] [-B <build-arg>...]
+          __PROGRAM__ [options] [-B <build-arg>...] [-E <run-arg>...]
           __PROGRAM__ -h | --help
 
         Options:
@@ -23,6 +23,7 @@ module Avm
           -p --push     Push the image to Docker registry.
           -r --run      Run or start a container with builded image.
           -B --build-arg=<build-arg>  Argument for "docker build".
+          -E --entrypoint-arg=<run-arg>    Argument for entrypoint on "docker run"
           -c --clear  Remove container if exist before run.
       DOCOPT
 
@@ -44,6 +45,7 @@ module Avm
         infov 'Registry name', registry
         infov 'Image name', instance.docker_image.tag
         infov 'Build arguments', build_args
+        infov 'Entrypoint arguments', entrypoint_args
       end
 
       def build
@@ -54,12 +56,21 @@ module Avm
         options.fetch('--build-arg')
       end
 
+      def entrypoint_args
+        options.fetch('--entrypoint-arg')
+      end
+
       def push
         instance.docker_image.push if options.fetch('--push')
       end
 
       def container_run
-        instance.docker_container.run(clear: options.fetch('--clear')) if options.fetch('--run')
+        return unless options.fetch('--run')
+
+        instance.docker_container.run(
+          entrypoint_args: entrypoint_args,
+          clear: options.fetch('--clear')
+        )
       end
 
       def registry_uncached
