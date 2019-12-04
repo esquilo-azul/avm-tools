@@ -25,6 +25,7 @@ module Avm
           -B --build-arg=<build-arg>  Argument for "docker build".
           -E --entrypoint-arg=<run-arg>    Argument for entrypoint on "docker run"
           -c --clear  Remove container if exist before run.
+          -S --no-snapshot    Does not add "-snapshot" to image tag.
           -V --no-version   Does not add version to image tag.
       DOCOPT
 
@@ -41,6 +42,7 @@ module Avm
       def setup
         instance.docker_image_options = {
           registry: registry,
+          snapshot: snapshot?,
           version: version?
         }
       end
@@ -48,6 +50,7 @@ module Avm
       def banner
         infov 'Registry name', registry
         infov 'Version?', version?
+        infov 'Snapshot?', snapshot?
         infov 'Image name', instance.docker_image.tag
         infov 'Build arguments', build_args
         infov 'Entrypoint arguments', entrypoint_args
@@ -82,6 +85,10 @@ module Avm
         options.fetch('--registry-name').if_present(::Avm::Docker::Registry.default) do |v|
           ::Avm::Docker::Registry.new(v)
         end
+      end
+
+      def snapshot?
+        !options.fetch('--no-snapshot')
       end
 
       def version?
