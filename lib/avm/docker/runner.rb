@@ -38,7 +38,9 @@ module Avm
       private
 
       def setup
-        instance.docker_registry = registry
+        instance.docker_image_options = {
+          registry: registry
+        }
       end
 
       def banner

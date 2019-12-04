@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'eac_ruby_utils/core_ext'
 require 'avm/docker/container'
 
 module Avm
@@ -7,10 +8,10 @@ module Avm
     class Base
       module Dockerizable
         enable_simple_cache
-        attr_reader :docker_registry
+        attr_reader :docker_image_options
 
-        def docker_registry=(new_value)
-          @docker_registry = new_value
+        def docker_image_options=(options)
+          @docker_image_options = ::ActiveSupport::HashWithIndifferentAccess.new(options)
           reset_cache
         end
 
@@ -31,7 +32,7 @@ module Avm
         end
 
         def docker_image_uncached
-          docker_image_class.new(docker_registry)
+          docker_image_class.new(docker_image_options.fetch(:registry))
         end
       end
     end
