@@ -8,9 +8,11 @@ module Avm
   module Docker
     class Image
       attr_reader :registry
+      attr_accessor :version
 
       def initialize(registry)
         @registry = registry
+        self.version = true
       end
 
       def build(extra_args = [])
@@ -18,6 +20,10 @@ module Avm
           template.apply(self, build_dir)
           run_docker_build(extra_args)
         end
+      end
+
+      def generator_version
+        ::Avm::Tools::VERSION
       end
 
       def push
@@ -48,7 +54,13 @@ module Avm
       end
 
       def tag_version
-        stereotype_tag
+        [tag_version_version, stereotype_tag].reject(&:blank?).join('_')
+      end
+
+      def tag_version_version
+        return nil unless version
+
+        generator_version.to_s
       end
 
       private
