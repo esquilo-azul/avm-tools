@@ -8,10 +8,12 @@ module Avm
   module Docker
     class Image
       attr_reader :registry
+      attr_accessor :snapshot
       attr_accessor :version
 
       def initialize(registry)
         @registry = registry
+        self.snapshot = true
         self.version = true
       end
 
@@ -60,7 +62,9 @@ module Avm
       def tag_version_version
         return nil unless version
 
-        generator_version.to_s
+        r = generator_version
+        r += '-snapshot' if snapshot
+        r
       end
 
       private
