@@ -7,6 +7,12 @@ require 'avm/patches/object/template'
 module Avm
   module Docker
     class Image
+      attr_reader :registry
+
+      def initialize(registry)
+        @registry = registry
+      end
+
       def build(extra_args = [])
         on_build_dir do
           template.apply(self, build_dir)
@@ -27,6 +33,22 @@ module Avm
 
       def run(instance)
         run_run(instance) if container_exist?(instance)
+      end
+
+      def tag
+        r = tag_name
+        r += ":#{tag_version}" if tag_version.present?
+        r
+      end
+
+      def tag_name
+        return registry.name if registry.name.present?
+
+        raise 'Registry name is blank'
+      end
+
+      def tag_version
+        stereotype_tag
       end
 
       private
