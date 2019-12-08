@@ -17,9 +17,9 @@ module Avm
           DOC = <<~DOCOPT
             Deploy a Git revision to a location (Local or remote).
 
-              Usage:
-              __PROGRAM__ [options] <target-url>
-            __PROGRAM__ -h | --help
+            Usage:
+              __PROGRAM__ [options] [<target-url>]
+              __PROGRAM__ -h | --help
 
             Options:
               -h --help                     Mostra esta ajuda.
@@ -42,12 +42,14 @@ module Avm
             infov 'Reference', reference
             infov 'Instance ID', instance_id.if_present('- BLANK -')
             infov 'Appended directories', appended_directories
+            infov 'Target URL', target_url
           end
 
           def validate
-            return if reference_sha1.present?
-
-            fatal_error "Object ID not found for reference \"#{reference}\""
+            unless reference_sha1.present?
+              fatal_error "Object ID not found for reference \"#{reference}\""
+            end
+            fatal_error 'Nor <target-url> nor --instance was setted' unless target_url.present?
           end
 
           def main_info_banner
@@ -68,10 +70,16 @@ module Avm
 
           def deploy
             ::Avm::Git::Commit.new(git, reference_sha1)
-                              .deploy_to_url(options.fetch('<target-url>'))
+                              .deploy_to_url(target_url)
                               .append_directories(appended_directories)
                               .variables_source_set(variables_source)
                               .run
+          end
+
+          def target_url
+            options['<target-url>'].if_present { |v| return v }
+            instance.if_present { |v| return v.read_entry('fs.url') }
+            nil
           end
 
           def variables_source
