@@ -16,6 +16,10 @@ require 'tmpdir'
     git.execute!('commit', '-m', 'First commit.')
     git.rev_parse('HEAD')
   end
+  let(:append_dirs) do
+    [1, 2].map { |n| ::File.join(__dir__, 'deploy_spec_files', "append#{n}") }
+  end
+  let(:target_dir) { ::File.join(::Dir.mktmpdir, 'target') }
 
   let(:commit_sha2) do
     git.execute!('checkout', commit_sha1)
@@ -30,8 +34,6 @@ require 'tmpdir'
   let(:target_stub_file2) { ::File.join(target_dir, stub_file2) }
 
   context 'with local target' do
-    let(:target_dir) { ::File.join(::Dir.mktmpdir, 'target') }
-
     before do
       commit_sha1
       ::Avm::Tools::Runner.new(argv: ['git', '-C', git] + %w[deploy] + [target_dir]).run
@@ -52,10 +54,6 @@ require 'tmpdir'
   end
 
   context 'with append directories' do
-    let(:target_dir) { ::File.join(::Dir.mktmpdir, 'target') }
-    let(:append_dirs) do
-      [1, 2].map { |n| ::File.join(__dir__, 'deploy_spec_files', "append#{n}") }
-    end
     let(:target_stub_file3) { ::File.join(target_dir, 'stub3.txt') }
     let(:target_stub_file4) { ::File.join(target_dir, 'stub4.txt') }
 
@@ -73,10 +71,6 @@ require 'tmpdir'
   end
 
   context 'with instance' do
-    let(:target_dir) { ::File.join(::Dir.mktmpdir, 'target') }
-    let(:append_dirs) do
-      [1, 2].map { |n| ::File.join(__dir__, 'deploy_spec_files', "append#{n}") }
-    end
     let(:target_stub_file3) { ::File.join(target_dir, 'stub3.txt') }
     let(:target_stub_file4) { ::File.join(target_dir, 'stub4.txt') }
 
