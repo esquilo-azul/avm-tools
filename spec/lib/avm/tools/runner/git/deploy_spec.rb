@@ -17,7 +17,7 @@ require 'tmpdir'
     git.rev_parse('HEAD')
   end
   let(:append_dirs) do
-    [1, 2].map { |n| ::File.join(__dir__, 'deploy_spec_files', "append#{n}") }
+    [1, 2].map { |n| ::File.join(__dir__, 'deploy_spec_files', "append#{n}") }.join(':')
   end
   let(:target_dir) { ::File.join(::Dir.mktmpdir, 'target') }
 
@@ -60,8 +60,8 @@ require 'tmpdir'
     before do
       ENV['MY_VALUE'] = '123'
       commit_sha1
-      ::Avm::Tools::Runner.new(argv: ['git', '-C', git] + %w[deploy] + [target_dir, append_dirs])
-                          .run
+      ::Avm::Tools::Runner.new(argv: ['git', '-C', git] + %w[deploy --append-dirs] +
+          [append_dirs, target_dir]).run
     end
 
     it { expect(::File.read(target_stub_file1)).to eq(stub_content1) }
@@ -77,9 +77,8 @@ require 'tmpdir'
     before do
       ENV['MYINSTANCE_DEV_MY_VALUE'] = '123'
       commit_sha1
-      ::Avm::Tools::Runner.new(argv: ['git', '-C', git] + %w[deploy -i my-instance_dev] +
-          [target_dir, append_dirs])
-                          .run
+      ::Avm::Tools::Runner.new(argv: ['git', '-C', git] +
+          %w[deploy -i my-instance_dev --append-dirs] + [append_dirs, target_dir]).run
     end
 
     it { expect(::File.read(target_stub_file1)).to eq(stub_content1) }

@@ -18,13 +18,14 @@ module Avm
             Deploy a Git revision to a location (Local or remote).
 
               Usage:
-              __PROGRAM__ [options] <target-url> [<append-directories>...]
+              __PROGRAM__ [options] <target-url>
             __PROGRAM__ -h | --help
 
             Options:
               -h --help                     Mostra esta ajuda.
               -r --reference=<reference>    Reference [default: HEAD].
               -i --instance=<instance-id>   Read entries from instance with id=<instance-id>.
+              -a --append-dirs=<append-dirs>  Append directories to deploy (List separated by ":").
           DOCOPT
 
           def run
@@ -86,7 +87,7 @@ module Avm
           end
 
           def appended_directories
-            options.fetch('<append-directories>')
+            options.fetch('--append-dirs').to_s.split(':')
           end
         end
       end
