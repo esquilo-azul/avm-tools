@@ -11,6 +11,10 @@ module Avm
             web_url_as_uri(&:host)
           end
 
+          def auto_web_path
+            web_url_as_uri(&:path)
+          end
+
           private
 
           def web_url_as_uri
