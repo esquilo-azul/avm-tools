@@ -65,7 +65,21 @@ module Avm
           end
 
           def git_uncached
-            ::EacLauncher::Git::Base.new(context(:repository_path))
+            ::EacLauncher::Git::Base.new(git_repository_path)
+          end
+
+          def git_repository_path
+            if context('repository_path?') || dev_instance_fs_path.blank?
+              return context(:repository_path)
+            end
+
+            dev_instance_fs_path
+          end
+
+          def dev_instance_fs_path
+            instance.if_present do |v|
+              v.application.instance('dev').read_entry_optional(:fs_path)
+            end
           end
 
           def deploy

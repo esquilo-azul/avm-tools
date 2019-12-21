@@ -12,6 +12,10 @@ module Avm
       def initialize(id)
         @id = id.to_s
       end
+
+      def instance(suffix)
+        ::Avm::Instances::Base.new(self, suffix)
+      end
     end
   end
 end
