@@ -51,7 +51,7 @@ module Avm
           ::Avm::Git::Commit.new(git, commit_sha1).deploy_to_env_path(
             instance.host_env,
             instance.read_entry(:fs_path)
-          ).append_directory(template_path).variables_source_set(instance).run
+          ).append_directory(template.path).variables_source_set(instance).run
         end
 
         def setup_files_units
