@@ -21,7 +21,7 @@ module Avm
         def uri_to_env(uri)
           case uri.scheme
           when 'file' then ::EacRubyUtils::Envs.local
-          when 'ssh' then ::EacRubyUtils::Envs.ssh(uri.authority)
+          when 'ssh' then ::EacRubyUtils::Envs.ssh(uri)
           else "Invalid schema \"#{uri.schema}\" (URI: #{uri})"
           end
         end
