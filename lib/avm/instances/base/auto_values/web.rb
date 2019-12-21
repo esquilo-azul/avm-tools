@@ -7,6 +7,10 @@ module Avm
     class Base
       module AutoValues
         module Web
+          def auto_web_authority
+            web_url_as_uri(&:authority)
+          end
+
           def auto_web_hostname
             web_url_as_uri(&:host)
           end
