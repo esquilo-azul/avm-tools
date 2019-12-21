@@ -23,6 +23,10 @@ module Avm
             web_url_as_uri(&:scheme)
           end
 
+          def auto_web_userinfo
+            web_url_as_uri(&:userinfo)
+          end
+
           private
 
           def web_url_as_uri
