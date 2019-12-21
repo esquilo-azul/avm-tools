@@ -10,7 +10,7 @@ module Avm
         extend ::ActiveSupport::Concern
 
         included do
-          %w[Access Admin Database Filesystem Source System Web].each do |class_name|
+          %w[Access Admin Database Filesystem Ruby Source System Web].each do |class_name|
             include const_get(class_name)
           end
         end
