@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
-require 'avm/instances/base'
 require 'avm/stereotypes/eac_ubuntu_base0/docker_image'
+require 'avm/stereotypes/eac_webapp_base0/instance'
 
 module Avm
   module Stereotypes
     module EacRedmineBase0
-      class Instance < ::Avm::Instances::Base
+      class Instance < ::Avm::Stereotypes::EacWebappBase0::Instance
+        FILES_UNITS = { files: 'files' }.freeze
+
         def docker_image_class
           ::Avm::Stereotypes::EacUbuntuBase0::DockerImage
         end
