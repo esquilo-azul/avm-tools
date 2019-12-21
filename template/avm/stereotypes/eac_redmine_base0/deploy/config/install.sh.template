@@ -1,0 +1,14 @@
+export postgresql_database='%%DATABASE.NAME%%'
+export postgresql_database_test='%%DATABASE.NAME%%_test'
+export postgresql_user='%%DATABASE.USERNAME%%'
+export postgresql_password='%%DATABASE.PASSWORD%%'
+export rvm_ruby='ruby-%%RUBY.VERSION%%'
+export redmine_git_hosting_ssh_key_name=redmine_git_hosting_id
+if [ '%%WEB.SCHEME%%' == 'https' ]; then
+  export address_https='true'
+else
+  export address_https='false'
+fi
+export address_host='%%WEB.AUTHORITY%%'
+export address_path='%%WEB.PATH%%'
+export git_repositories_hierarchical_organisation=false
