@@ -33,6 +33,7 @@ module Avm
             validate
             main_info_banner
             deploy
+            success 'Done'
           end
 
           private
