@@ -38,12 +38,16 @@ module Avm
           end
 
           def run
-            result = deploy_class.new(context(:instance), options.fetch('--reference')).run
+            result = deploy_class.new(context(:instance), deploy_options).run
             if result.error?
               fatal_error result.to_s
             else
               infov 'Result', result.label
             end
+          end
+
+          def deploy_options
+            { reference: options.fetch('--reference') }
           end
         end
       end

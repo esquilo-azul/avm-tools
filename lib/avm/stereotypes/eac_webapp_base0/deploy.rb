@@ -14,17 +14,19 @@ module Avm
       class Deploy
         include ::ActiveSupport::Callbacks
 
+        DEFAULT_REFERENCE = 'HEAD'
+
         enable_console_speaker
         enable_simple_cache
 
         JOBS = %w[git_deploy setup_files_units assert_instance_branch request_test].freeze
         define_callbacks(*JOBS)
 
-        attr_reader :instance, :git_reference
+        attr_reader :instance, :options
 
-        def initialize(instance, git_reference)
+        def initialize(instance, options = {})
           @instance = instance
-          @git_reference = git_reference
+          @options = options
         end
 
         def run
@@ -53,6 +55,10 @@ module Avm
             instance.host_env,
             instance.read_entry(:fs_path)
           ).append_directory(template.path).variables_source_set(instance).run
+        end
+
+        def git_reference
+          options[:reference] || DEFAULT_REFERENCE
         end
 
         def setup_files_units
