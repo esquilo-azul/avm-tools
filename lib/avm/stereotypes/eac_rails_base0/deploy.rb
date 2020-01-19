@@ -11,6 +11,7 @@ module Avm
           assert_database
           database_migrate
           compile_assets
+          restart_tasks_scheduler
           touch_restart_file
         end
 
@@ -32,6 +33,11 @@ module Avm
         def database_migrate
           infom 'Running database migrations...'
           instance.rake('db:migrate').system!
+        end
+
+        def restart_tasks_scheduler
+          infom 'Restarting Tasks Scheduler\'s daemon...'
+          instance.bundle('exec', 'tasks_scheduler', 'restart').system!
         end
 
         def touch_restart_file
