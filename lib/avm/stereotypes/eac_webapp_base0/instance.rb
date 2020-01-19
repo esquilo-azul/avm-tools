@@ -4,6 +4,7 @@ require 'avm/instances/base'
 require 'avm/stereotypes/postgresql/instance_with'
 require 'avm/data/instance/files_unit'
 require 'avm/data/instance/package'
+require 'avm/stereotypes/eac_webapp_base0/deploy/file_unit'
 
 module Avm
   module Stereotypes
