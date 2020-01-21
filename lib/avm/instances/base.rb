@@ -53,8 +53,8 @@ module Avm
       def host_env_uncached
         access = read_entry(:access, list: ::Avm::Instances::Base.lists.access.values)
         case access
-        when 'local' then return ::EacRubyUtils::Envs.local
-        when 'ssh' then return ::EacRubyUtils::Envs.ssh(read_entry('ssh.url'))
+        when 'local' then ::EacRubyUtils::Envs.local
+        when 'ssh' then ::EacRubyUtils::Envs.ssh(read_entry('ssh.url'))
         else raise("Unmapped access value: \"#{access}\"")
         end
       end
