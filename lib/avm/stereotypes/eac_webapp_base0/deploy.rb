@@ -14,6 +14,8 @@ module Avm
       class Deploy
         include ::ActiveSupport::Callbacks
 
+        require_relative 'deploy/_appended_directories'
+
         DEFAULT_REFERENCE = 'HEAD'
 
         enable_console_speaker
@@ -27,6 +29,13 @@ module Avm
         def initialize(instance, options = {})
           @instance = instance
           @options = options
+        end
+
+        def build_git_commit
+          ::Avm::Git::Commit.new(git, commit_sha1).deploy_to_env_path(
+            instance.host_env,
+            instance.read_entry(:fs_path)
+          ).variables_source_set(instance)
         end
 
         def run
@@ -47,14 +56,14 @@ module Avm
           infov 'Git remote name', git_remote_name
           infov 'Git reference (Found)', git_reference_found
           infov 'Git commit SHA1', commit_sha1
+          infov 'Appended directories', appended_directories
         end
 
         def git_deploy
           infom 'Deploying source code and appended content...'
-          ::Avm::Git::Commit.new(git, commit_sha1).deploy_to_env_path(
-            instance.host_env,
-            instance.read_entry(:fs_path)
-          ).append_directory(template.path).variables_source_set(instance).run
+          build_git_commit.append_directory(template.path).append_directories(
+            appended_directories
+          ).run
         end
 
         def git_reference
