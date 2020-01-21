@@ -6,6 +6,7 @@ require 'eac_ruby_utils/core_ext'
 require 'eac_launcher/git/base'
 require 'avm/git'
 require 'avm/patches/object/template'
+require 'net/http'
 
 module Avm
   module Stereotypes
@@ -16,7 +17,7 @@ module Avm
         enable_console_speaker
         enable_simple_cache
 
-        JOBS = %w[git_deploy setup_files_units assert_instance_branch].freeze
+        JOBS = %w[git_deploy setup_files_units assert_instance_branch request_test].freeze
         define_callbacks(*JOBS)
 
         attr_reader :instance, :git_reference
@@ -63,6 +64,14 @@ module Avm
         def assert_instance_branch
           infom 'Setting instance branch...'
           git.execute!('push', git_remote_name, "#{commit_sha1}:refs/heads/#{instance.id}", '-f')
+        end
+
+        def request_test
+          infom 'Requesting web interface...'
+          uri = URI(instance.read_entry('web.url'))
+          response = ::Net::HTTP.get_response(uri)
+          infov 'Response status', response.code
+          fatal_error "Request to #{uri} failed" unless response.code.to_i == 200
         end
 
         def commit_sha1_uncached
