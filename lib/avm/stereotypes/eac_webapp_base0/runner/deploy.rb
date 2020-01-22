@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'avm/path_string'
 require 'eac_ruby_utils/console/docopt_runner'
 require 'eac_ruby_utils/console/speaker'
 
@@ -20,6 +21,7 @@ module Avm
             Options:
               -h --help                       Show this screen.
               -r --reference=<git-reference>  Git reference to deploy.
+              -a --append-dirs=<append-dirs>  Append directories to deploy (List separated by ":").
           DOCOPT
           def initialize(settings = {})
             super settings.merge(doc: DOC.gsub('%%STEREOTYPE_NAME%%', stereotype_name))
@@ -47,7 +49,8 @@ module Avm
           end
 
           def deploy_options
-            { reference: options.fetch('--reference') }
+            { reference: options.fetch('--reference'),
+              appended_directories: ::Avm::PathString.paths(options.fetch('--append-dirs')) }
           end
         end
       end
