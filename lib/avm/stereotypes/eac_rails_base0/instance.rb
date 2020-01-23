@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'avm/stereotypes/eac_webapp_base0/instance'
+require 'avm/stereotypes/rails/instance'
 
 module Avm
   module Stereotypes
