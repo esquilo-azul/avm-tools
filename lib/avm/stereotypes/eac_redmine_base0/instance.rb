@@ -2,11 +2,14 @@
 
 require 'avm/stereotypes/eac_ubuntu_base0/docker_image'
 require 'avm/stereotypes/eac_webapp_base0/instance'
+require 'avm/stereotypes/rails/instance'
 
 module Avm
   module Stereotypes
     module EacRedmineBase0
       class Instance < ::Avm::Stereotypes::EacWebappBase0::Instance
+        include ::Avm::Stereotypes::Rails::Instance
+
         FILES_UNITS = { files: 'files' }.freeze
 
         def docker_image_class
