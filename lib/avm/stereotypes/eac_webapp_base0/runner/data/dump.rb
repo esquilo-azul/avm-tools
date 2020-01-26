@@ -32,6 +32,7 @@ module Avm
             DOCUMENT
 
             def run
+              infov 'Instance to dump', "#{context(:instance)} (#{context(:instance).class})"
               if package_dump.runnable?
                 package_dump.run
               else
