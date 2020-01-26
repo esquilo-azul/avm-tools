@@ -12,8 +12,6 @@ module Avm
       class Instance < ::Avm::Instances::Base
         include ::Avm::Stereotypes::Postgresql::InstanceWith
 
-        FILES_UNITS = { uploads: 'wp-content/uploads', themes: 'wp-content/themes' }.freeze
-
         def stereotype_name
           self.class.name.desconstantize.demodulize
         end
@@ -44,7 +42,7 @@ module Avm
         private
 
         def files_units
-          FILES_UNITS.map do |data_key, fs_path_subpath|
+          self.class.const_get('FILES_UNITS').map do |data_key, fs_path_subpath|
             [data_key, ::Avm::Data::Instance::FilesUnit.new(self, fs_path_subpath)]
           end.to_h
         end
