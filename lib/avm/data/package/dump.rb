@@ -11,6 +11,7 @@ module Avm
         enable_listable
 
         DEFAULT_EXPIRE_TIME = 1.days
+        DEFAULT_FILE_EXTENSION = '.tar'
 
         attr_reader :package, :data_file_path, :existing
 
