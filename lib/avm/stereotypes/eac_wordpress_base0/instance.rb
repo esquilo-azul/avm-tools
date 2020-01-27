@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'avm/instances/entry_keys'
 require 'avm/stereotypes/eac_webapp_base0/instance'
 
 module Avm
@@ -9,12 +10,12 @@ module Avm
         FILES_UNITS = { uploads: 'wp-content/uploads', themes: 'wp-content/themes' }.freeze
 
         def database_unit
-          self_instance = self
+          web_url = read_entry(::Avm::Instances::EntryKeys::WEB_URL)
           super.after_load do
             info 'Fixing web addresses...'
             run_sql(<<~SQL)
               update wp_options
-              set option_value = '#{self_instance.read_entry('url')}'
+              set option_value = '#{web_url}'
               where option_name in ('siteurl', 'home')
             SQL
           end
