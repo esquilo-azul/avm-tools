@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'avm/instances/entry_keys'
 require 'avm/stereotypes/postgresql/instance'
 
 module Avm
@@ -8,8 +9,9 @@ module Avm
       module InstanceWith
         def pg
           @pg ||= ::Avm::Stereotypes::Postgresql::Instance.new(
-            host_env, user: read_entry('database.user'), password: read_entry('database.password'),
-                      name: read_entry('database.name')
+            host_env, user: read_entry(::Avm::Instances::EntryKeys::DATABASE_USER),
+                      password: read_entry(::Avm::Instances::EntryKeys::DATABASE_PASSWORD),
+                      name: read_entry(::Avm::Instances::EntryKeys::DATABASE_NAME)
           )
         end
       end

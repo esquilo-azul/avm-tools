@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'avm/instances/entry_keys'
+
 module Avm
   module Instances
     class Base
@@ -15,7 +17,8 @@ module Avm
           DEFAULT_SYSTEM = 'postgresql'
 
           def auto_database_name
-            inherited_entry_value(:'database.id', 'database.name') || id
+            inherited_entry_value(::Avm::Instances::EntryKeys::DATABASE_ID,
+                                  ::Avm::Instances::EntryKeys::DATABASE_NAME) || id
           end
 
           def auto_database_hostname
@@ -41,12 +44,13 @@ module Avm
           private
 
           def database_auto_common(suffix)
-            inherited_entry_value('database.id', "database.#{suffix}") ||
-              inherited_entry_value(:host_id, "database.#{suffix}")
+            database_key = ::Avm::Instances::EntryKeys.const_get("database_#{suffix}".upcase)
+            inherited_entry_value(::Avm::Instances::EntryKeys::DATABASE_ID, database_key) ||
+              inherited_entry_value(:host_id, database_key)
           end
 
           def database_port_by_system
-            read_entry_optional('database.system').if_present do |v|
+            read_entry_optional(::Avm::Instances::EntryKeys::DATABASE_SYSTEM).if_present do |v|
               DEFAULT_PORTS.fetch(v)
             end
           end
