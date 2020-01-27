@@ -9,7 +9,7 @@ module Avm
       module InstanceWith
         def pg
           @pg ||= ::Avm::Stereotypes::Postgresql::Instance.new(
-            host_env, user: read_entry(::Avm::Instances::EntryKeys::DATABASE_USER),
+            host_env, user: read_entry(::Avm::Instances::EntryKeys::DATABASE_USERNAME),
                       password: read_entry(::Avm::Instances::EntryKeys::DATABASE_PASSWORD),
                       name: read_entry(::Avm::Instances::EntryKeys::DATABASE_NAME)
           )

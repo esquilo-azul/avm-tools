@@ -4,7 +4,7 @@ module Avm
   module Instances
     module EntryKeys
       {
-        database: %w[id hostname name password port system user username]
+        database: %w[id hostname name password port system username]
       }.each do |prefix, suffixes|
         suffixes.each do |suffix|
           key = "#{prefix}.#{suffix}"
