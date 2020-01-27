@@ -8,7 +8,7 @@ module Avm
   module Stereotypes
     module EacWebappBase0
       module Runner
-        module Data
+        class Data < ::EacRubyUtils::Console::DocoptRunner
           class Load < ::EacRubyUtils::Console::DocoptRunner
             include ::EacRubyUtils::SimpleCache
             include ::EacRubyUtils::Console::Speaker
