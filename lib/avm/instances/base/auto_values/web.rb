@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'addressable'
+require 'avm/instances/entry_keys'
 
 module Avm
   module Instances
@@ -34,7 +35,7 @@ module Avm
           private
 
           def web_url_as_uri
-            read_entry_optional('web.url').if_present do |v|
+            read_entry_optional(::Avm::Instances::EntryKeys::WEB_URL).if_present do |v|
               yield(::Addressable::URI.parse(v))
             end
           end
