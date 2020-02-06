@@ -62,7 +62,7 @@ module Avm
       def dump(data_path)
         run_callbacks :dump do
           infom "Dumping unit \"#{name}\" to \"#{data_path}\"..."
-          dump_command.execute!(output_file: data_path)
+          do_dump(data_path)
         end
       end
 
@@ -71,6 +71,12 @@ module Avm
           infom "Loading unit \"#{name}\" from \"#{data_path}\"..."
           load_command.execute!(input_file: data_path)
         end
+      end
+
+      protected
+
+      def do_dump(data_path)
+        dump_command.execute!(output_file: data_path)
       end
 
       private
