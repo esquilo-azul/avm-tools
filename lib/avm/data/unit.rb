@@ -12,11 +12,12 @@ module Avm
       enable_console_speaker
 
       %w[dump load].each do |action|
+        method_name = "#{action}_command"
         class_eval <<~CODE, __FILE__, __LINE__ + 1
           # Should be overrided.
           # @return [EacRubyUtils::Envs::Command]
-          def #{action}_command
-            fail "Abstract method. Override in #{singleton_class}."
+          def #{method_name}
+            fail "\\"#{method_name}\\" is a abstract method. Override in #{singleton_class}."
           end
         CODE
 
