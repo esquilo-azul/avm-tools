@@ -19,6 +19,10 @@ module Avm
         ::EacRubyUtils::Envs.local.command(*args)
       end
 
+      def dirty?
+        dirty_files.any?
+      end
+
       def dirty_files
         execute!('status', '--porcelain', '--untracked-files').each_line.map do |line|
           parse_status_line(line.gsub(/\n\z/, ''))
