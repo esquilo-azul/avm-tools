@@ -58,11 +58,11 @@ RSpec.describe ::Avm::Instances::Base do
       context "when input ID is \"#{id}\"" do
         let(:instance) { described_class.by_id(id) }
 
-        it "returns application.id=#{expected.first}" do
+        it "returns application.id=#{expected.first}" do # rubocop:disable RSpec/RepeatedDescription
           expect(instance.application.id).to eq(expected.first)
         end
 
-        it "returns instance.suffix=#{expected.last}" do
+        it "returns instance.suffix=#{expected.last}" do # rubocop:disable RSpec/RepeatedDescription
           expect(instance.suffix).to eq(expected.last)
         end
       end
