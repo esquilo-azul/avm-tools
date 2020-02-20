@@ -11,6 +11,8 @@ module Avm
       class Instance < ::Avm::Stereotypes::EacWebappBase0::Instance
         include ::Avm::Stereotypes::Rails::Instance
 
+        FILES_UNITS = { files: 'files' }.freeze
+
         def docker_image_class
           ::Avm::Stereotypes::EacUbuntuBase0::DockerImage
         end
