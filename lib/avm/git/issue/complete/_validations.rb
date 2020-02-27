@@ -8,6 +8,7 @@ module Avm
     module Issue
       class Complete
         VALIDATIONS = {
+          clean_workspace: 'Clean workspace?',
           branch_name: 'Branch name',
           branch_hash: 'Branch hash',
           follow_master: 'Follow master?',
