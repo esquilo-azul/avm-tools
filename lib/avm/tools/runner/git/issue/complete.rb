@@ -20,9 +20,13 @@ module Avm
                 __PROGRAM__ -h | --help
 
               Options:
-                -h --help                 Show this screen.
-                -B --no-validate-branch   Does not validate branch/tag name.
-                -y --yes                  Does not ask for user confirmation.
+                -h --help                             Show this screen.
+                -s --skip-validations=<validations>   Does not validate conditions on <validations>
+                                                      (Comma separated value).
+                -y --yes                              Does not ask for user confirmation.
+
+              Validations:
+              %%VALIDATIONS%%
             DOCOPT
 
             def run
@@ -32,15 +36,26 @@ module Avm
               complete.run if confirm?
             end
 
+            def doc
+              DOC.gsub('%%VALIDATIONS%%', doc_validations_list)
+            end
+
             private
 
             def confirm?
               options.fetch('--yes') || request_input('Confirm issue completion?', bool: true)
             end
 
+            def skip_validations
+              options.fetch('--skip-validations').to_s.split(',').map(&:strip).reject(&:blank?)
+            end
+
             def git_complete_issue_options
-              { dir: context(:repository_path),
-                no_validate_branch: options.fetch('--no-validate-branch') }
+              { dir: context(:repository_path), skip_validations: skip_validations }
+            end
+
+            def doc_validations_list
+              ::Avm::Git::Issue::Complete::VALIDATIONS.keys.map { |k| "  * #{k}" }.join("\n")
             end
           end
         end

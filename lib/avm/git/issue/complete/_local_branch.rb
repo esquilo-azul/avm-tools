@@ -19,10 +19,7 @@ module Avm
         end
 
         def branch_name_result
-          ::Avm::Result.success_or_error(
-            branch_name,
-            issue_id || no_validate_branch
-          )
+          ::Avm::Result.success_or_error(branch_name, issue_id.present?)
         end
 
         def branch_hash_result

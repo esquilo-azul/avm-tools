@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'avm/result'
+require 'ostruct'
 
 module Avm
   module Git
@@ -13,22 +14,38 @@ module Avm
           commits: 'Commits?',
           bifurcations: 'Bifurcations?',
           dry_push: 'Dry push?'
-        }.freeze
+        }.with_indifferent_access.freeze
 
         def valid?
-          validations.values.none?(&:error?)
+          validations.map(&:result).none?(&:error?)
         end
 
         def validations_banner
-          validations.each do |label, result|
-            infov label, result.label
+          validations.each do |v|
+            infov "[#{v.key}] #{v.label}", v.result.label
           end
         end
 
         def validations
           VALIDATIONS.map do |key, label|
-            [label, send("#{key}_result")]
-          end.to_h
+            ::OpenStruct.new(key: key, label: label, result: validation_result(key))
+          end
+        end
+
+        def validation_result(key)
+          if skip_validations.include?(key)
+            ::Avm::Result.neutral('skipped')
+          else
+            send("#{key}_result")
+          end
+        end
+
+        def validate_skip_validations
+          skip_validations.each do |validation|
+            next if VALIDATIONS.keys.include?(validation)
+
+            raise "\"#{validation}\" is not a registered validation"
+          end
         end
       end
     end
