@@ -11,7 +11,7 @@ module Avm
 
       def on_clean_envvars(*start_with_vars)
         old_values = envvars_starting_with(start_with_vars)
-        old_values.keys.each { |k| ENV.delete(k) }
+        old_values.keys.each { |k| ENV.delete(k) } # rubocop:disable Style/HashEachMethods
         yield
       ensure
         old_values&.each { |k, v| ENV[k] = v }

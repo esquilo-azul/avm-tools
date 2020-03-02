@@ -9,7 +9,7 @@ module Avm
 
     lists.add_string :type, :success, :error, :neutral
 
-    lists.type.values.each do |type|
+    lists.type.values.each do |type| # rubocop:disable Style/HashEachMethods
       class_eval <<-RUBY_EVAL, __FILE__, __LINE__ + 1
         def self.#{type}(value)
           new(value, TYPE_#{type.upcase})
@@ -51,7 +51,7 @@ module Avm
       self.class.const_get("type_#{type}_color".upcase)
     end
 
-    lists.type.values.each do |type|
+    lists.type.values.each do |type| # rubocop:disable Style/HashEachMethods
       class_eval <<-RUBY_EVAL, __FILE__, __LINE__ + 1
         def #{type}?
           @type == '#{type}'
