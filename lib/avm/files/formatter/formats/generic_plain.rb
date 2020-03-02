@@ -1,0 +1,34 @@
+# frozen_string_literal: true
+
+require 'avm/files/formatter/formats/base'
+
+module Avm
+  module Files
+    class Formatter
+      module Formats
+        class GenericPlain < ::Avm::Files::Formatter::Formats::Base
+          VALID_EXTENSIONS = %w[.bat .css.coffee .java .js .json .php .rb .scss .sql .tex .url .yml
+                                .yaml].freeze
+
+          VALID_TYPES = ['Bourne-Again shell script', 'ASCII text', 'UTF-8 Unicode text'].freeze
+
+          def internal_apply(files)
+            files.each { |file| file_apply(file) }
+          end
+
+          def file_apply(file)
+            file.write(string_apply(file.read))
+          end
+
+          def string_apply(string)
+            b = ''
+            string.each_line do |line|
+              b += "#{line.rstrip}\n"
+            end
+            "#{b.strip}\n".gsub(/\t/, '  ')
+          end
+        end
+      end
+    end
+  end
+end
