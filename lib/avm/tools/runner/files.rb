@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
 require 'eac_ruby_utils/console/docopt_runner'
-require 'avm/tools/runner/files/rotate'
+require 'eac_ruby_utils/core_ext'
 
 module Avm
   module Tools
     class Runner < ::EacRubyUtils::Console::DocoptRunner
       class Files < ::EacRubyUtils::Console::DocoptRunner
+        require_sub __FILE__
+
         DOC = <<~DOCOPT
           Files utilities for AVM.
 
