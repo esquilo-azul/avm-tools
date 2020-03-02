@@ -58,6 +58,7 @@ GEM
       ast (~> 2.4.0)
     public_suffix (4.0.3)
     rainbow (3.0.0)
+    rexml (3.2.4)
     rspec (3.8.0)
       rspec-core (~> 3.8.0)
       rspec-expectations (~> 3.8.0)
@@ -71,11 +72,12 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.8.0)
     rspec-support (3.8.3)
-    rubocop (0.79.0)
+    rubocop (0.80.1)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
       parser (>= 2.7.0.1)
       rainbow (>= 2.2.2, < 4.0)
+      rexml
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 1.7)
     rubocop-rspec (1.38.1)
@@ -92,7 +94,7 @@ PLATFORMS
 DEPENDENCIES
   avm-tools!
   rspec (= 3.8)
-  rubocop (~> 0.79.0)
+  rubocop (= 0.80.1)
   rubocop-rspec (~> 1.34, >= 1.34.1)
 
 BUNDLED WITH
