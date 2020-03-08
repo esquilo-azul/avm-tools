@@ -77,7 +77,7 @@ module Avm
       def show_results
         changed = @result.select(&:changed)
         changed.each do |h|
-          out h.file.t_s.cyan
+          out h.file.to_s.cyan
           out " (#{h.format})".yellow
           puts ' changed'.green
         end
