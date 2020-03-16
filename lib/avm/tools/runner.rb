@@ -22,13 +22,17 @@ module Avm
         Options:
           -h --help             Show this screen.
           -V --version          Show version.
+          -q --quiet            Quiet mode.
       DOCOPT
 
       def run
-        if options.fetch('--version')
-          out(::Avm::Tools::VERSION + "\n")
-        else
-          run_with_subcommand
+        on_speaker_node do |node|
+          node.stderr = ::StringIO.new if options.fetch('--quiet')
+          if options.fetch('--version')
+            out(::Avm::Tools::VERSION + "\n")
+          else
+            run_with_subcommand
+          end
         end
       end
     end
