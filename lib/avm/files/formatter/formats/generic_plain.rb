@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require 'avm/files/formatter/formats/base'
+require 'avm/files/formatter/formats/per_file_base'
 
 module Avm
   module Files
     class Formatter
       module Formats
-        class GenericPlain < ::Avm::Files::Formatter::Formats::Base
+        class GenericPlain < ::Avm::Files::Formatter::Formats::PerFileBase
           VALID_EXTENSIONS = %w[.bat .css.coffee .java .js .json .php .rb .scss .sql .tex .url .yml
                                 .yaml].freeze
 
