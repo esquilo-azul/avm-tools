@@ -16,6 +16,10 @@ module Avm
       def docker
         @docker ||= env.executable('docker', '--version')
       end
+
+      def php_cs_fixer
+        @php_cs_fixer ||= env.executable('php-cs-fixer', '--version')
+      end
     end
   end
 end
