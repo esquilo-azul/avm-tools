@@ -1,0 +1,10 @@
+<?php
+
+class MyClass
+{
+    private $attr;
+    public function __construct($arg)
+    {
+        $this->attr = $arg;
+    }
+}

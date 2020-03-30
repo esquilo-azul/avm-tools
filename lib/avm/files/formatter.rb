@@ -11,7 +11,7 @@ module Avm
       enable_console_speaker
       common_constructor :source_paths, :options
 
-      FORMATS = %w[generic_plain].freeze
+      FORMATS = %w[php generic_plain].freeze
 
       def run
         clear
