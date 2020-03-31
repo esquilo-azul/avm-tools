@@ -10,7 +10,7 @@ module Avm
           VALID_EXTENSIONS = %w[.bat .css.coffee .java .js .json .rb .scss .sql .tex .url .yml
                                 .yaml].freeze
 
-          VALID_TYPES = ['Bourne-Again shell script', 'ASCII text', 'UTF-8 Unicode text'].freeze
+          VALID_TYPES = %w[plain x-shellscript].freeze
 
           def internal_apply(files)
             files.each { |file| file_apply(file) }

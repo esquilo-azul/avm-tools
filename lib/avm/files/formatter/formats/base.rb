@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'avm/executables'
+require 'avm/files/info'
 require 'ostruct'
 
 module Avm
@@ -50,8 +50,10 @@ module Avm
           end
 
           def match_by_type?(file)
-            file_type = ::Avm::Executables.filecommand.append(['-b', file]).execute!
-            valid_types.find { |t| file_type.include?(t) }
+            info = ::Avm::Files::Info.new(file)
+            return unless info.content_type.type == 'text'
+
+            valid_types.include?(info.content_type.subtype)
           end
         end
       end

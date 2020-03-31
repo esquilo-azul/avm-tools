@@ -9,7 +9,7 @@ module Avm
       module Formats
         class Php < ::Avm::Files::Formatter::Formats::PerFileBase
           VALID_EXTENSIONS = %w[.php].freeze
-          VALID_TYPES = ['PHP script'].freeze
+          VALID_TYPES = ['x-php'].freeze
 
           def file_apply(file)
             ::Avm::Executables.php_cs_fixer.command.append(['fix', file]).system!
