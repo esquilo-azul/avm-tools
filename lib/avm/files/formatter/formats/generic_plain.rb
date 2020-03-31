@@ -7,7 +7,7 @@ module Avm
     class Formatter
       module Formats
         class GenericPlain < ::Avm::Files::Formatter::Formats::PerFileBase
-          VALID_EXTENSIONS = %w[.bat .css.coffee .java .js .json .php .rb .scss .sql .tex .url .yml
+          VALID_EXTENSIONS = %w[.bat .css.coffee .java .js .json .rb .scss .sql .tex .url .yml
                                 .yaml].freeze
 
           VALID_TYPES = ['Bourne-Again shell script', 'ASCII text', 'UTF-8 Unicode text'].freeze
