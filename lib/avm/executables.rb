@@ -9,6 +9,10 @@ module Avm
         ::EacRubyUtils::Envs.local
       end
 
+      def file
+        @file ||= env.executable('file', '--version')
+      end
+
       def git
         @git ||= env.executable('git', '--version')
       end
