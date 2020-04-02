@@ -15,7 +15,7 @@ module Avm
             Closes a issue in a Git repository.
 
             Usage:
-              __PROGRAM__ [options]
+              __PROGRAM__ [options] [complete]
               __PROGRAM__ -h | --help
 
             Options:
@@ -32,7 +32,7 @@ module Avm
             complete = ::Avm::Git::Issue::Complete.new(git_complete_issue_options)
             complete.start_banner
             fatal_error('Some validation did not pass') unless complete.valid?
-            complete.run if confirm?
+            complete.run if options.fetch('complete') && confirm?
           end
 
           def doc
