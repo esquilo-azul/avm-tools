@@ -1,0 +1,8 @@
+<html>
+  <body>
+    <p>Unformatted code</p>
+    <% array.each do |item| %>
+      <%= '<b>' + item + '</br>' %>
+    <% end %>
+  </body>
+</html>
