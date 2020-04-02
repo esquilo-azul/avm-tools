@@ -21,6 +21,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'eac_ruby_gems_utils', '~> 0.2'
   s.add_dependency 'eac_ruby_utils', '~> 0.22'
   s.add_dependency 'filesize'
+  s.add_dependency 'htmlbeautifier', '~> 1.3', '>= 1.3.1'
   s.add_dependency 'minitar'
   s.add_development_dependency 'rspec', '3.8'
   s.add_development_dependency 'rubocop', '0.80.1'
