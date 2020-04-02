@@ -1,0 +1,30 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# PYTHON_ARGCOMPLETE_OK
+ 
+import argcomplete
+import argparse
+import os
+import subproces
+import sys
+import pprint
+
+class Ehb:
+
+    PATH_SEP = '.'
+
+    def __init__(self, args):
+      self.__args = args
+
+    def run(self):
+      print "It is a stub"          
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description='Coleção de scripts EHB.')
+    parser.add_argument('-c','--categories', action='store_true', help='Mostra as categorias de programas')
+    parser.add_argument('-s','--settings', action='store_true', help='Mostra os valores para as configurações')
+    parser.add_argument('program', nargs="?", default='').completer = Ehb.programArgumentCompleter
+    parser.add_argument('arg', nargs=argparse.REMAINDER)
+    argcomplete.autocomplete(parser)
+    args = parser.parse_args()
+    Ehb(args).run()
