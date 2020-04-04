@@ -10,14 +10,20 @@ module Avm
 
       class << self
         def find_by_path(path)
-          path = ::Pathname.new(path.to_s).expand_path unless path.is_a?(::Pathname)
-          if path.directory?
+          path = ::Pathname.new(path.to_s) unless path.is_a?(::Pathname)
+          internal_find_path(path.expand_path)
+        end
+
+        private
+
+        def internal_find_path(absolute_pathname)
+          if absolute_pathname.directory?
             FILENAMES.each do |filename|
-              file = path.join(filename)
+              file = absolute_pathname.join(filename)
               return new(file) if file.exist?
             end
           end
-          find_by_path(path.dirname) unless path.root?
+          internal_find_path(absolute_pathname.dirname) unless absolute_pathname.root?
         end
       end
 
