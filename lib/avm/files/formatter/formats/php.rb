@@ -7,7 +7,7 @@ module Avm
     class Formatter
       module Formats
         class Php < ::Avm::Files::Formatter::Formats::GenericPlain
-          VALID_EXTENSIONS = %w[.php].freeze
+          VALID_BASENAMES = %w[*.php].freeze
           VALID_TYPES = ['x-php'].freeze
 
           def file_apply(file)

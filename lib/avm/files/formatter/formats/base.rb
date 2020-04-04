@@ -19,11 +19,11 @@ module Avm
           end
 
           def match?(file)
-            match_by_extension?(file) || match_by_type?(file)
+            match_by_filename?(file) || match_by_type?(file)
           end
 
-          def valid_extensions
-            constant_or_array('VALID_EXTENSIONS')
+          def valid_basenames
+            constant_or_array('VALID_BASENAMES')
           end
 
           def valid_types
@@ -43,9 +43,9 @@ module Avm
                              changed: (old_content != File.read(file)))
           end
 
-          def match_by_extension?(file)
-            valid_extensions.any? do |valid_extension|
-              file.extname.ends_with?(valid_extension)
+          def match_by_filename?(file)
+            valid_basenames.any? do |valid_basename|
+              file.basename.fnmatch?(valid_basename)
             end
           end
 

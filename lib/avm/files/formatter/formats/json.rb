@@ -7,7 +7,7 @@ module Avm
     class Formatter
       module Formats
         class Json < ::Avm::Files::Formatter::Formats::GenericPlain
-          VALID_EXTENSIONS = %w[.json].freeze
+          VALID_BASENAMES = %w[*.json].freeze
           VALID_TYPES = [].freeze
 
           def match?(file)

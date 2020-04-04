@@ -8,7 +8,7 @@ module Avm
     class Formatter
       module Formats
         class Html < ::Avm::Files::Formatter::Formats::GenericPlain
-          VALID_EXTENSIONS = %w[.html .html.erb].freeze
+          VALID_BASENAMES = %w[*.html *.html.erb].freeze
           VALID_TYPES = ['html'].freeze
 
           def file_apply(path)

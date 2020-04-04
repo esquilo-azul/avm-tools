@@ -7,7 +7,7 @@ module Avm
     class Formatter
       module Formats
         class Python < ::Avm::Files::Formatter::Formats::GenericPlain
-          VALID_EXTENSIONS = %w[.py].freeze
+          VALID_BASENAMES = %w[*.py].freeze
           VALID_TYPES = ['x-python'].freeze
 
           def internal_apply(files)
