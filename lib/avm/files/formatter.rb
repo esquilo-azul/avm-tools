@@ -11,7 +11,7 @@ module Avm
       enable_console_speaker
       common_constructor :source_paths, :options
 
-      FORMATS = %w[ruby html php python json generic_plain].freeze
+      FORMATS = %w[ruby html php python xml json generic_plain].freeze
 
       def run
         clear
