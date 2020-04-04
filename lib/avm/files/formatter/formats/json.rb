@@ -10,10 +10,6 @@ module Avm
           VALID_BASENAMES = %w[*.json].freeze
           VALID_TYPES = [].freeze
 
-          def match?(file)
-            super || json_file?(file)
-          end
-
           def file_apply(file)
             ::File.write(file, ::JSON.pretty_generate(::JSON.parse(::File.read(file))))
           end
