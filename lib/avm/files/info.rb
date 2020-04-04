@@ -16,6 +16,8 @@ module Avm
         ::ContentType.parse(
           ::Avm::Executables.file.command.append(['-ib', path]).execute!.strip
         )
+      rescue Parslet::ParseFailed
+        ::ContentType.parse('application/unknown')
       end
     end
   end
