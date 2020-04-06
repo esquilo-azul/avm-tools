@@ -29,6 +29,16 @@ module Avm
         end
       end
 
+      def root_path
+        r = ::Pathname.new(to_s).expand_path
+        loop do
+          return r if r.join('.git').exist?
+          raise "\".git\" not found for \"#{self}\"" if r.dirname.root?
+
+          r = r.dirname
+        end
+      end
+
       private
 
       def parse_status_line(line)
