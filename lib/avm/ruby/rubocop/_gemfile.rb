@@ -27,7 +27,7 @@ module Avm
       private
 
       def mygem_uncached
-        find_gem(base_path)
+        find_gem(::Pathname.new(base_path).expand_path)
       end
 
       def find_gem(path)
