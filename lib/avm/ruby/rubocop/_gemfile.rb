@@ -10,11 +10,11 @@ module Avm
       def gemfile_rubocop_command
         return nil unless rubocop_gemfile?
 
-        rubocop_command_by_gemfile_path(mygem.gemfile_path)
+        rubocop_command_by_gemfile_path(mygem.root)
       end
 
       def rubocop_command_by_gemfile_path(path)
-        mygem.bundle('exec', 'rubocop').envvar('BUNDLE_GEMFILE', path.to_s)
+        ::EacRubyGemsUtils::Gem.new(path).bundle('exec', 'rubocop')
       end
 
       def rubocop_gemfile?
