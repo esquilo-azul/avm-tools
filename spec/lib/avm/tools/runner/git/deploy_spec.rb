@@ -87,11 +87,19 @@ require 'tmpdir'
     it { expect(::File.read(target_stub_file4)).to eq("MyValue: %%MY_VALUE%%\n") }
   end
 
-  context 'with ssh target', ssh: true do
-    let(:env) { ::EacRubyUtils::Rspec::StubbedSsh.default.build_env }
+  context 'with ssh target', docker: true do
+    let(:env) { ::StubbedDockerServer.env }
     let(:tmpdir) { env.command('mktemp', '-d').execute! }
     let(:target_dir) { ::File.join(tmpdir, 'target') }
-    let(:target_url) { "#{env.uri}#{target_dir}" }
+    let(:target_url) do
+      r = env.uri.dup
+      r.path = target_dir
+      r.to_s
+    end
+
+    around do |example|
+      ::StubbedDockerServer.on_run(&example)
+    end
 
     before do
       commit_sha1
