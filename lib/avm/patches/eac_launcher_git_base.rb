@@ -9,10 +9,25 @@ require 'eac_ruby_utils/require_sub'
 module Avm
   module Patches
     module EacLauncherGitBase
-      extends ::ActiveSupport::Concern
+      extend ::ActiveSupport::Concern
 
       included do
+        extend ClassMethods
         include InstanceMethods
+      end
+
+      module ClassMethods
+        # Searches the root path for the Git repository which includes +search_base_path+.
+        # @return [Pathname]
+        def find_root(search_base_path)
+          path = search_base_path.to_pathname.expand_path
+          loop do
+            return path if path.join('.git').exist?
+            raise "\".git\" not found for \"#{search_base_path}\"" if path.parent.root?
+
+            path = path.parent
+          end
+        end
       end
 
       module InstanceMethods
@@ -36,14 +51,9 @@ module Avm
           end
         end
 
+        # @return [Pathname]
         def root_path
-          r = ::Pathname.new(to_s).expand_path
-          loop do
-            return r if r.join('.git').exist?
-            raise "\".git\" not found for \"#{self}\"" if r.dirname.root?
-
-            r = r.dirname
-          end
+          @root_path ||= self.class.find_root(to_s)
         end
 
         private
