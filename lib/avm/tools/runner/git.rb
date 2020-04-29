@@ -30,7 +30,7 @@ module Avm
         end
 
         def git
-          @git ||= ::EacLauncher::Git::Base.new(repository_path)
+          @git ||= ::EacLauncher::Git::Base.by_root(repository_path)
         end
       end
     end
