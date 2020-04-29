@@ -17,6 +17,11 @@ module Avm
       end
 
       module ClassMethods
+        # @return [EacLauncher::Git::Base]
+        def by_root(search_base_path)
+          new(find_root(search_base_path).to_path)
+        end
+
         # Searches the root path for the Git repository which includes +search_base_path+.
         # @return [Pathname]
         def find_root(search_base_path)
