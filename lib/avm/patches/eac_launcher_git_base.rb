@@ -9,43 +9,51 @@ require 'eac_ruby_utils/require_sub'
 module Avm
   module Patches
     module EacLauncherGitBase
-      def execute(*args)
-        args, options = build_args(args)
-        ::EacRubyUtils::Envs.local.command(*args).execute(options)
+      extends ::ActiveSupport::Concern
+
+      included do
+        include InstanceMethods
       end
 
-      def command(*args)
-        args, _options = build_args(args)
-        ::EacRubyUtils::Envs.local.command(*args)
-      end
-
-      def dirty?
-        dirty_files.any?
-      end
-
-      def dirty_files
-        execute!('status', '--porcelain', '--untracked-files').each_line.map do |line|
-          parse_status_line(line.gsub(/\n\z/, ''))
+      module InstanceMethods
+        def execute(*args)
+          args, options = build_args(args)
+          ::EacRubyUtils::Envs.local.command(*args).execute(options)
         end
-      end
 
-      def root_path
-        r = ::Pathname.new(to_s).expand_path
-        loop do
-          return r if r.join('.git').exist?
-          raise "\".git\" not found for \"#{self}\"" if r.dirname.root?
-
-          r = r.dirname
+        def command(*args)
+          args, _options = build_args(args)
+          ::EacRubyUtils::Envs.local.command(*args)
         end
-      end
 
-      private
+        def dirty?
+          dirty_files.any?
+        end
 
-      def parse_status_line(line)
-        m = /\A(.)(.)\s(.+)\z/.match(line)
-        ::Kernel.raise "Status pattern does not match \"#{line}\"" unless m
-        ::OpenStruct.new(index: m[1], worktree: m[2], path: m[3],
-                         absolute_path: ::File.expand_path(m[3], self))
+        def dirty_files
+          execute!('status', '--porcelain', '--untracked-files').each_line.map do |line|
+            parse_status_line(line.gsub(/\n\z/, ''))
+          end
+        end
+
+        def root_path
+          r = ::Pathname.new(to_s).expand_path
+          loop do
+            return r if r.join('.git').exist?
+            raise "\".git\" not found for \"#{self}\"" if r.dirname.root?
+
+            r = r.dirname
+          end
+        end
+
+        private
+
+        def parse_status_line(line)
+          m = /\A(.)(.)\s(.+)\z/.match(line)
+          ::Kernel.raise "Status pattern does not match \"#{line}\"" unless m
+          ::OpenStruct.new(index: m[1], worktree: m[2], path: m[3],
+                           absolute_path: ::File.expand_path(m[3], self))
+        end
       end
     end
   end
