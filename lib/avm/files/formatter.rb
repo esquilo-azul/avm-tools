@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 require 'eac_ruby_utils/core_ext'
-require 'eac_ruby_utils/filesystem_traverser'
+require 'eac_ruby_utils/fs/traversable'
 
 module Avm
   module Files
     class Formatter
+      include ::EacRubyUtils::Fs::Traversable
       require_sub __FILE__
       enable_simple_cache
       enable_console_speaker
@@ -32,7 +33,7 @@ module Avm
         end
       end
 
-      def check_file(file)
+      def traverser_check_file(file)
         format = find_format(file)
         infov file, format ? format.class : '-' if options.fetch(:verbose)
         return unless format
@@ -59,18 +60,11 @@ module Avm
         end
       end
 
-      def fs_traverser_uncached
-        r = ::EacRubyUtils::FilesystemTraverser.new
-        r.check_file = method(:check_file)
-        r.recursive = options.fetch(:recursive)
-        r
-      end
-
       def search_files
         infov 'Directories to search', source_paths.count
         source_paths.each do |source_path|
           infom "Searching files on \"#{source_path}\"..."
-          fs_traverser.check_path(source_path)
+          traverser_check_path(source_path)
         end
       end
 
@@ -82,6 +76,10 @@ module Avm
           puts ' changed'.green
         end
         infov('Files changed', "#{changed.count}/#{@result.count}")
+      end
+
+      def traverser_recursive
+        options.fetch(:recursive)
       end
     end
   end
