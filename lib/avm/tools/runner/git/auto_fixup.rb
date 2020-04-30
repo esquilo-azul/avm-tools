@@ -33,7 +33,7 @@ module Avm
 
           def files_from_option
             r = options.fetch('<files>')
-            r.any? ? r : nil
+            r.any? ? r.map { |p| p.to_pathname.expand_path } : nil
           end
 
           def dirty_files
