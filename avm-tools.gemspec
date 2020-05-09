@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'aranha-parsers', '~> 0.4'
   s.add_dependency 'clipboard', '~> 1.3', '>= 1.3.3'
   s.add_dependency 'content-type', '~> 0.0.1'
-  s.add_dependency 'eac_launcher', '~> 0.6', '>= 0.6.1'
+  s.add_dependency 'eac_launcher', '~> 0.8'
   s.add_dependency 'eac_ruby_gems_utils', '~> 0.3'
   s.add_dependency 'eac_ruby_utils', '~> 0.30'
   s.add_dependency 'filesize'
