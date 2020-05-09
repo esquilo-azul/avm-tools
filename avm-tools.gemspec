@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'content-type', '~> 0.0.1'
   s.add_dependency 'eac_launcher', '~> 0.8'
   s.add_dependency 'eac_ruby_gems_utils', '~> 0.4'
-  s.add_dependency 'eac_ruby_utils', '~> 0.30'
+  s.add_dependency 'eac_ruby_utils', '~> 0.32'
   s.add_dependency 'filesize'
   s.add_dependency 'htmlbeautifier', '~> 1.3', '>= 1.3.1'
   s.add_dependency 'minitar'
