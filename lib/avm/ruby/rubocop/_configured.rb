@@ -10,15 +10,7 @@ module Avm
       end
 
       def configured_rubocop_command_by_command
-        rubocop_command = configuration.if_present { |v| v.read_entry('ruby.rubocop.command') }
-        return nil unless rubocop_command.present?
-
-        args = if rubocop_command.is_a?(::Enumerable)
-                 rubocop_command.map(&:to_s)
-               else
-                 ::Shellwords.split(rubocop_command)
-               end
-        cmd(args).chdir(::File.dirname(configuration.storage_path))
+        configuration.if_present(&:rubocop_command)
       end
 
       def configured_rubocop_command_by_gemfile

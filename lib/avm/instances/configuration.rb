@@ -1,11 +1,14 @@
 # frozen_string_literal: true
 
 require 'eac_ruby_utils/configs'
+require 'eac_ruby_utils/core_ext'
 require 'yaml'
 
 module Avm
   module Instances
     class Configuration < ::EacRubyUtils::Configs
+      require_sub __FILE__
+
       FILENAMES = %w[.avm.yml .avm.yaml].freeze
 
       class << self
@@ -29,6 +32,15 @@ module Avm
 
       def initialize(path)
         super(nil, storage_path: path)
+      end
+
+      # Utility to read a configuration as a [EacRubyUtils::Envs::Command].
+      # @return [EacRubyUtils::Envs::Command]
+      def read_command(key)
+        read_entry(key).if_present do |v|
+          args = v.is_a?(::Enumerable) ? v.map(&:to_s) : ::Shellwords.split(v)
+          ::EacRubyUtils::Envs.local.command(args).chdir(::File.dirname(storage_path))
+        end
       end
     end
   end
