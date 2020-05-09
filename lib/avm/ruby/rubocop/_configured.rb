@@ -14,13 +14,9 @@ module Avm
       end
 
       def configured_rubocop_command_by_gemfile
-        gemfile_path = configuration.if_present { |v| v.read_entry('ruby.rubocop.gemfile') }
-        return nil unless gemfile_path.present?
-
-        gemfile_path = ::Pathname.new(gemfile_path).expand_path(configuration.storage_path.parent)
-        raise "Gemfile path \"#{gemfile_path}\" does not exist" unless gemfile_path.exist?
-
-        rubocop_command_by_gemfile_path(gemfile_path.parent)
+        configuration.if_present(&:rubocop_gemfile).if_present do |v|
+          rubocop_command_by_gemfile_path(v.parent)
+        end
       end
 
       private
