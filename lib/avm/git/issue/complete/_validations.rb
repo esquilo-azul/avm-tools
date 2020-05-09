@@ -14,7 +14,8 @@ module Avm
           follow_master: 'Follow master?',
           commits: 'Commits?',
           bifurcations: 'Bifurcations?',
-          dry_push: 'Dry push?'
+          dry_push: 'Dry push?',
+          test: 'Test ok?'
         }.with_indifferent_access.freeze
 
         def valid?
