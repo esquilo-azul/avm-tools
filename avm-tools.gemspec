@@ -25,4 +25,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'git', '~> 1.7'
   s.add_dependency 'htmlbeautifier', '~> 1.3', '>= 1.3.1'
   s.add_dependency 'minitar'
+  s.add_dependency 'ruby-progressbar', '~> 1.10', '>= 1.10.1'
 end
