@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+$LOAD_PATH.unshift("#{__dir__}/../lib")
+
+require 'eac_launcher/runner'
+
+::EacLauncher::Runner.run(program_name: ::File.basename(__FILE__))
