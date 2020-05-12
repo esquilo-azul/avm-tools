@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'clipboard', '~> 1.3', '>= 1.3.3'
   s.add_dependency 'content-type', '~> 0.0.1'
   s.add_dependency 'eac_launcher', '~> 0.8'
-  s.add_dependency 'eac_ruby_gem_support', '~> 0.1', '>= 0.1.1'
+  s.add_development_dependency 'eac_ruby_gem_support', '~> 0.1', '>= 0.1.1'
   s.add_dependency 'eac_ruby_gems_utils', '~> 0.4'
   s.add_dependency 'eac_ruby_utils', '~> 0.32', '>= 0.32.1'
   s.add_dependency 'filesize'
