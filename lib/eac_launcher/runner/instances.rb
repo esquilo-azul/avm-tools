@@ -5,19 +5,19 @@ require 'eac_launcher/instances/runner_helper'
 module EacLauncher
   class Runner < ::EacRubyUtils::Console::DocoptRunner
     class Instances < ::EacLauncher::Instances::RunnerHelper
-      DOC = <<DOCOPT
-Mostra informações sobre instâncias.
+      DOC = <<~DOCOPT
+        Mostra informações sobre instâncias.
 
-Usage:
-  __PROGRAM__ [options] [<instance_path>...]
-  __PROGRAM__ -h | --help
+        Usage:
+          __PROGRAM__ [options] [<instance_path>...]
+          __PROGRAM__ -h | --help
 
-Options:
-  -h --help             Show this screen.
-  --all            Get all instances.
-  --recache        Rewrite instances cache.
+        Options:
+          -h --help             Show this screen.
+          --all            Get all instances.
+          --recache        Rewrite instances cache.
 
-DOCOPT
+      DOCOPT
 
       def run
         ::EacLauncher::Context.current.recache = options['--recache']

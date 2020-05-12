@@ -6,19 +6,19 @@ require 'eac_launcher/instances/runner_helper'
 module EacLauncher
   class Runner < ::EacRubyUtils::Console::DocoptRunner
     class Projects < ::EacLauncher::Instances::RunnerHelper
-      DOC = <<DOCOPT
-Shows available projects.
+      DOC = <<~DOCOPT
+        Shows available projects.
 
-Usage:
-  __PROGRAM__ [options]
-  __PROGRAM__ -h | --help
+        Usage:
+          __PROGRAM__ [options]
+          __PROGRAM__ -h | --help
 
-Options:
-  -h --help        Show this screen.
-  -i --instances   Show instances.
-  --recache        Rewrite instances cache.
+        Options:
+          -h --help        Show this screen.
+          -i --instances   Show instances.
+          --recache        Rewrite instances cache.
 
-DOCOPT
+      DOCOPT
 
       def run
         ::EacLauncher::Context.current.recache = options['--recache']

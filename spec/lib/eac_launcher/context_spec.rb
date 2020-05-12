@@ -4,20 +4,20 @@ require 'eac_launcher/context'
 
 RSpec.describe ::EacLauncher::Context do
   describe '#instances' do
-    it 'should return all stub instances' do
+    it 'returns all stub instances' do
       is = described_class.current.instances.map(&:name)
       expect(is).to contain_exactly('/eac_launcher_stub', '/ruby_gem_stub')
     end
   end
 
   describe '#instance' do
-    it 'should return with slash on begin' do
+    it 'returns with slash on begin' do
       expect(described_class.current.instance('/eac_launcher_stub'))
         .to be_a(::EacLauncher::Instances::Base)
     end
 
     context 'subinstance mylib' do
-      before(:each) do
+      before do
         temp_context(::File.join(__dir__, 'context_spec.yml'))
 
         @repos = init_remote('mylib_repos')
@@ -28,7 +28,7 @@ RSpec.describe ::EacLauncher::Context do
         wc.execute!('push', 'origin', 'master')
       end
 
-      it 'should recover recursive subinstance GitSubrepo' do
+      it 'recovers recursive subinstance GitSubrepo' do
         app = init_git('app')
         touch_commit(app, 'sub1/init.rb')
         app.execute!('subrepo', 'clone', @repos, 'sub1/mylib')
@@ -42,7 +42,7 @@ RSpec.describe ::EacLauncher::Context do
         expect(instance.stereotypes).to include(::EacLauncher::Stereotypes::GitSubrepo)
       end
 
-      it 'should recover recursive subinstance GitSubtree' do
+      it 'recovers recursive subinstance GitSubtree' do
         app = init_git('app')
         touch_commit(app, 'sub1/init.rb')
         app.execute!('subtree', 'add', '-P', 'sub1/mylib', @repos, 'master')
@@ -58,22 +58,22 @@ RSpec.describe ::EacLauncher::Context do
       end
 
       context 'subtree present' do
-        before(:each) do
+        before do
           @app = init_git('subtree_main_app')
           touch_commit(@app, 'file1')
           @app.execute!('subtree', 'add', '-P', 'mylib', @repos, 'master')
           @app.execute!('remote', 'add', 'mylib', @repos)
         end
 
-        it 'should recognize subtree instance' do
-          i = ::EacLauncher::Context.current.instance('/subtree_main_app/mylib')
+        it 'recognizes subtree instance' do
+          i = described_class.current.instance('/subtree_main_app/mylib')
           expect(i).to be_a(::EacLauncher::Instances::Base)
           expect(i.stereotypes).to include(::EacLauncher::Stereotypes::GitSubtree)
         end
       end
 
       context 'subinstance in HEAD and not in git_current_revision' do
-        it 'should not return subinstance' do
+        it 'does not return subinstance' do
           app = init_git('app') # HEAD: master
           touch_commit(app, 'file2')
           app.execute!('checkout', '-b', 'not_master') # HEAD: not_master
@@ -84,7 +84,7 @@ RSpec.describe ::EacLauncher::Context do
 
       context 'subinstances in/not in HEAD and not in/in git_current_revision' do
         context 'subinstance in HEAD and not in git_current_revision' do
-          it 'should not return subinstance' do
+          it 'does not return subinstance' do
             app = init_git('app') # HEAD: master
             touch_commit(app, 'file2')
             app.execute!('checkout', '-b', 'not_master') # HEAD: not_master
@@ -94,7 +94,7 @@ RSpec.describe ::EacLauncher::Context do
         end
 
         context 'subinstance not in HEAD and in git_current_revision' do
-          it 'should return subinstance' do
+          it 'returns subinstance' do
             app = init_git('app') # HEAD: master
             touch_commit(app, 'file3')
             app.execute!('branch', '-f', 'not_master')

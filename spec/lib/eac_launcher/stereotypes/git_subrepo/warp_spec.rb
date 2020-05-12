@@ -4,7 +4,7 @@ require 'eac_launcher/stereotypes/git_subrepo/warp'
 
 RSpec.describe EacLauncher::Stereotypes::GitSubrepo::Warp do
   describe '#unknown' do
-    before(:each) do
+    before do
       temp_context(::File.join(__dir__, 'warp_spec_settings.yml'))
 
       @repos = init_remote('mylib_repos')

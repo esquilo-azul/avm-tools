@@ -8,7 +8,7 @@ RSpec.describe EacLauncher::Stereotypes::RubyGem do
     let(:stub_gemspec) { ::File.join(DUMMY_DIR, 'eac_launcher_stub', 'eac_launcher.gemspec') }
     let(:stub_expected_version) { '1.0.0.pre.stub' }
 
-    it 'should not return same version for different gemspecs with same name' do
+    it 'does not return same version for different gemspecs with same name' do
       stub_spec = ::EacLauncher::Stereotypes::RubyGem.load_gemspec(stub_gemspec)
       expect(stub_spec.version).to eq(stub_expected_version)
       expect(stub_spec.name).to eq('eac_launcher')

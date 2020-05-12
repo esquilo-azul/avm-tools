@@ -3,24 +3,24 @@
 module EacLauncher
   class Runner < ::EacRubyUtils::Console::DocoptRunner
     class Publish < ::EacLauncher::Instances::RunnerHelper
-      DOC = <<DOCOPT
-Publica projetos ou instâncias.
+      DOC = <<~DOCOPT
+        Publica projetos ou instâncias.
 
-Usage:
-  __PROGRAM__ [options] [<instance_path>...]
-  __PROGRAM__ -h | --help
+        Usage:
+          __PROGRAM__ [options] [<instance_path>...]
+          __PROGRAM__ -h | --help
 
-Options:
-  -h --help             Show this screen.
-  --new                 Publish projects not published before.
-  -s --stereotype=<st>  Publish only for stereotype <stereotype>.
-  --all            Publish all instances.
-  -d --dry-run          "Dry run" publishing.
-  --pending             Publish only pending.
-  --recache             Rewrite instances cache.
-  --run                 Confirm publishing.
+        Options:
+          -h --help             Show this screen.
+          --new                 Publish projects not published before.
+          -s --stereotype=<st>  Publish only for stereotype <stereotype>.
+          --all            Publish all instances.
+          -d --dry-run          "Dry run" publishing.
+          --pending             Publish only pending.
+          --recache             Rewrite instances cache.
+          --run                 Confirm publishing.
 
-DOCOPT
+      DOCOPT
 
       def run
         ::EacLauncher::Context.current.recache = options['--recache']

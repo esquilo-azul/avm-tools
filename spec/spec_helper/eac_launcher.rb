@@ -4,7 +4,7 @@ DUMMY_DIR = ::File.expand_path('../dummy', __dir__)
 ROOT_DIR = ::File.expand_path('../..', __dir__)
 
 RSpec.configure do |config|
-  config.before(:each) do
+  config.before do
     require 'eac_launcher/context'
     ::EacLauncher::Context.current = ::EacLauncher::Context.new(
       projects_root: DUMMY_DIR,

@@ -7,9 +7,9 @@ RSpec.describe ::EacLauncher::Ruby::Gem::Build do
   describe '#output_file' do
     let(:gem_dir) { ::File.join(DUMMY_DIR, 'ruby_gem_stub') }
 
-    it 'should build .gem file' do
+    it 'builds .gem file' do
       expect(::File.directory?(gem_dir)).to eq true
-      build = ::EacLauncher::Ruby::Gem::Build.new(gem_dir)
+      build = described_class.new(gem_dir)
 
       # Open/close
       assert_closed(build)

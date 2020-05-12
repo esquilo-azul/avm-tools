@@ -6,14 +6,15 @@ RSpec.describe EacLauncher::Stereotypes::GitSubrepo::Publish do
   describe '#check' do
     context 'on clean context' do
       let(:settings_path) { ::File.join(__dir__, 'publish_spec_settings.yml') }
-      before(:each) do
+
+      before do
         temp_context(settings_path)
       end
 
       context 'on app with subrepo' do
         let(:remote_repos) { init_remote('mylib') }
 
-        before(:each) do
+        before do
           wc = init_git('mylib')
           touch_commit(wc, 'file1')
           wc.execute!('remote', 'add', 'publish', remote_repos)
@@ -30,7 +31,7 @@ RSpec.describe EacLauncher::Stereotypes::GitSubrepo::Publish do
         it { check_publish_status(:updated) }
 
         context 'after subrepo updated and before publishing' do
-          before(:each) do
+          before do
             ::EacLauncher::Context.current.publish_options[:confirm] = true
             touch_commit(app, 'mylib/file3')
           end
@@ -39,11 +40,12 @@ RSpec.describe EacLauncher::Stereotypes::GitSubrepo::Publish do
           it { check_publish_status(:pending) }
 
           context 'after publishing' do
-            before(:each) { described_class.new(app_mylib_instance).run }
+            before { described_class.new(app_mylib_instance).run }
+
             it { check_publish_status(:updated) }
 
             context 'after reset context' do
-              before(:each) do
+              before do
                 sleep 2
                 ::EacLauncher::Context.current = ::EacLauncher::Context.new(
                   projects_root: ::EacLauncher::Context.current.root.real,

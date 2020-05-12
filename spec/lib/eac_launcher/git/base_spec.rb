@@ -12,13 +12,15 @@ RSpec.describe ::EacLauncher::Git::Base do
 
     describe '#remote_exist?' do
       it { expect(repo.remote_exist?('origin')).to eq(false) }
+
       context 'after remote added' do
-        before(:each) { repo.execute!('remote', 'add', 'origin', 'file:///path/to/remote') }
+        before { repo.execute!('remote', 'add', 'origin', 'file:///path/to/remote') }
 
         it { expect(repo.remote_exist?('origin')).to eq(true) }
 
         context 'after remote removed' do
-          before(:each) {  repo.execute!('remote', 'remove', 'origin') }
+          before { repo.execute!('remote', 'remove', 'origin') }
+
           it { expect(repo.remote_exist?('origin')).to eq(false) }
         end
       end
@@ -26,12 +28,15 @@ RSpec.describe ::EacLauncher::Git::Base do
 
     describe '#assert_remote_url' do
       it { expect(repo.remote_exist?('origin')).to eq(false) }
+
       context 'after asserted remote URL "/remote1"' do
-        before(:each) { repo.assert_remote_url('origin', '/remote1') }
+        before { repo.assert_remote_url('origin', '/remote1') }
+
         it { expect(repo.git.remote('origin').url).to eq('/remote1') }
 
         context 'after asserted remote URL "/remote2"' do
-          before(:each) { repo.assert_remote_url('origin', '/remote2') }
+          before { repo.assert_remote_url('origin', '/remote2') }
+
           it { expect(repo.git.remote('origin').url).to eq('/remote2') }
         end
       end

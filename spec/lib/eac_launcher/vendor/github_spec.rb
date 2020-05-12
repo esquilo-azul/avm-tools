@@ -15,7 +15,7 @@ RSpec.describe ::EacLauncher::Vendor::Github do
       SSH_URL => SSH_URL,
       NO_SSH_URL => NO_SSH_URL
     }.each do |input, expected|
-      it "should convert \"#{input}\" to \"#{expected}\"" do
+      it "converts \"#{input}\" to \"#{expected}\"" do
         expect(described_class.to_ssh_url(input)).to eq(expected)
       end
     end

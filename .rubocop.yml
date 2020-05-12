@@ -1,15 +1,22 @@
 require:
   - rubocop-rspec
 
-AllCops:
-  TargetRubyVersion: 2.4
-
 Layout/LineLength:
   Max: 100
+
+Metrics/AbcSize:
+  Exclude:
+    - spec/lib/eac_launcher/ruby/gem/build_spec.rb
+    - spec/lib/eac_launcher/stereotypes/git_subrepo/publish_spec.rb
 
 Metrics/BlockLength:
   Exclude:
     - spec/**/*_spec.rb
+    - spec/spec_helper/eac_launcher.rb
+
+RSpec:
+  Exclude:
+    - spec/lib/eac_launcher/**/*
 
 Style/Documentation:
   Enabled: false
