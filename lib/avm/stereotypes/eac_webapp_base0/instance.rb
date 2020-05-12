@@ -42,9 +42,9 @@ module Avm
         private
 
         def files_units
-          self.class.const_get('FILES_UNITS').map do |data_key, fs_path_subpath|
-            [data_key, ::Avm::Data::Instance::FilesUnit.new(self, fs_path_subpath)]
-          end.to_h
+          self.class.const_get('FILES_UNITS').transform_values do |fs_path_subpath|
+            ::Avm::Data::Instance::FilesUnit.new(self, fs_path_subpath)
+          end
         end
       end
     end
