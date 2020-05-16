@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'avm/ruby'
 require 'avm/stereotypes/eac_webapp_base0/deploy'
+require 'eac_ruby_utils/ruby'
 
 module Avm
   module Stereotypes
@@ -11,7 +11,7 @@ module Avm
 
         def run_installer
           infom 'Running installer'
-          ::Avm::Ruby.on_clean_environment do
+          ::EacRubyUtils::Ruby.on_clean_environment do
             installer_command.system!
           end
         end

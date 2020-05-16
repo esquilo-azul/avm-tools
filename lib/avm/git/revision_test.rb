@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 require 'avm/fs_cache'
-require 'avm/ruby'
 require 'eac_ruby_utils/core_ext'
+require 'eac_ruby_utils/ruby'
 
 module Avm
   module Git
@@ -57,7 +57,7 @@ module Avm
       def run_test
         infom "Running test command \"#{::Shellwords.join(test_command_args)}\"" \
           " on \"#{git_absolute_path}\"..."
-        result = ::Avm::Ruby.on_clean_environment { test_command.execute }
+        result = ::EacRubyUtils::Ruby.on_clean_environment { test_command.execute }
         infom 'Test done'
         write_result_cache(result)
       end
