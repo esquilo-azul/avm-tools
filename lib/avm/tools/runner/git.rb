@@ -2,7 +2,7 @@
 
 require 'eac_ruby_utils/console/docopt_runner'
 require 'eac_ruby_utils/require_sub'
-require 'avm/patches/eac_launcher_git_base'
+require 'eac_launcher/git/base'
 ::EacRubyUtils.require_sub(__FILE__)
 
 module Avm

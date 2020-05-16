@@ -1,0 +1,26 @@
+# frozen_string_literal: true
+
+module EacLauncher
+  module Git
+    class Base < ::EacLauncher::Paths::Real
+      module ClassMethods
+        # @return [EacLauncher::Git::Base]
+        def by_root(search_base_path)
+          new(find_root(search_base_path).to_path)
+        end
+
+        # Searches the root path for the Git repository which includes +search_base_path+.
+        # @return [Pathname]
+        def find_root(search_base_path)
+          path = search_base_path.to_pathname.expand_path
+          loop do
+            return path if path.join('.git').exist?
+            raise "\".git\" not found for \"#{search_base_path}\"" if path.parent.root?
+
+            path = path.parent
+          end
+        end
+      end
+    end
+  end
+end

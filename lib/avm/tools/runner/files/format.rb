@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'avm/files/formatter'
-require 'avm/patches/eac_launcher_git_base'
+require 'eac_launcher/git/base'
 require 'eac_ruby_utils/console/docopt_runner'
 require 'eac_ruby_utils/core_ext'
 

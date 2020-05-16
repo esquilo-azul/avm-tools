@@ -10,6 +10,8 @@ module EacLauncher
     class Base < ::EacLauncher::Paths::Real
       require_sub __FILE__
       enable_simple_cache
+      extend ::EacLauncher::Git::Base::ClassMethods
+      include ::EacLauncher::Git::Base::DirtyFiles
       include ::EacLauncher::Git::Base::Remotes
       include ::EacLauncher::Git::Base::Subrepo
       include ::EacLauncher::Git::Base::Underlying
@@ -27,6 +29,11 @@ module EacLauncher
         return nil unless required
 
         raise "Reference \"#{ref}\" not found"
+      end
+
+      # @return [Pathname]
+      def root_path
+        @root_path ||= self.class.find_root(to_s)
       end
 
       def descendant?(descendant, ancestor)

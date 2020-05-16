@@ -8,6 +8,16 @@ module EacLauncher
   module Git
     class Base < ::EacLauncher::Paths::Real
       module Underlying
+        def command(*args)
+          args, _options = build_args(args)
+          ::EacRubyUtils::Envs.local.command(*args)
+        end
+
+        def execute(*args)
+          args, options = build_args(args)
+          ::EacRubyUtils::Envs.local.command(*args).execute(options)
+        end
+
         def execute!(*args)
           args, options = build_args(args)
           ::EacRubyUtils::Envs.local.command(*args).execute!(options)
