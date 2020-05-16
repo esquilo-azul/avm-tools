@@ -1,19 +1,18 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/simple_cache'
+require 'eac_ruby_utils/core_ext'
 require 'eac_ruby_utils/envs'
 require 'eac_launcher/paths/real'
-require 'eac_launcher/git/base/underlying'
-require 'eac_launcher/git/base/subrepo'
 require 'eac_launcher/git/error'
 
 module EacLauncher
   module Git
     class Base < ::EacLauncher::Paths::Real
-      include ::EacRubyUtils::SimpleCache
+      require_sub __FILE__
+      enable_simple_cache
+      include ::EacLauncher::Git::Base::Remotes
       include ::EacLauncher::Git::Base::Subrepo
       include ::EacLauncher::Git::Base::Underlying
-      require_relative ::File.join(__dir__, 'base', '_remotes')
 
       def init_bare
         FileUtils.mkdir_p(self)
