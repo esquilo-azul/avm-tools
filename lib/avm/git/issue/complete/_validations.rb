@@ -29,17 +29,19 @@ module Avm
           end
         end
 
-        def validations
-          VALIDATIONS.map do |key, label|
-            ::Avm::Git::Issue::Complete::Validation.new(self, key, label)
-          end
-        end
-
         def validate_skip_validations
           skip_validations.each do |validation|
             next if VALIDATIONS.keys.include?(validation)
 
             raise "\"#{validation}\" is not a registered validation"
+          end
+        end
+
+        private
+
+        def validations_uncached
+          VALIDATIONS.map do |key, label|
+            ::Avm::Git::Issue::Complete::Validation.new(self, key, label)
           end
         end
       end
