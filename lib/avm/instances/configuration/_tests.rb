@@ -8,6 +8,10 @@ module Avm
       BUNDLE_TEST_COMMAND_KEY = 'test.bundle_command'
       TEST_COMMAND_KEY = 'test.command'
 
+      def any_test_command
+        bundle_test_command || test_command
+      end
+
       def test_command
         read_command(TEST_COMMAND_KEY)
       end
