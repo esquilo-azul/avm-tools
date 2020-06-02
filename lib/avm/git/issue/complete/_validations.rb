@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'avm/git/issue/complete/validation'
 require 'avm/result'
 require 'ostruct'
 
@@ -30,15 +31,7 @@ module Avm
 
         def validations
           VALIDATIONS.map do |key, label|
-            ::OpenStruct.new(key: key, label: label, result: validation_result(key))
-          end
-        end
-
-        def validation_result(key)
-          if skip_validations.include?(key)
-            ::Avm::Result.neutral('skipped')
-          else
-            send("#{key}_result")
+            ::Avm::Git::Issue::Complete::Validation.new(self, key, label)
           end
         end
 
