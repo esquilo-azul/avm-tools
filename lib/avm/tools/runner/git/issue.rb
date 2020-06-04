@@ -21,6 +21,8 @@ module Avm
 
             Options:
               -h --help                             Show this screen.
+              -f --uncomplete-unfail                Do not exit with error if issue is not completed
+                                                    or is invalid.
               -s --skip-validations=<validations>   Does not validate conditions on <validations>
                                                     (Comma separated value).
               -y --yes                              Does not ask for user confirmation.
@@ -29,24 +31,30 @@ module Avm
             %%VALIDATIONS%%
           DOCOPT
 
-          def run
-            banner
-            validate
-            run_complete if options.fetch('complete')
-          end
+          UNCOMPLETE_MESSAGE =
+
+            def run
+              banner
+              return unless validate
+
+              run_complete if options.fetch('complete')
+              success('Done!')
+            end
 
           def banner
             complete.start_banner
           end
 
           def validate
-            fatal_error('Some validation did not pass') unless complete.valid?
+            return true if complete.valid?
+
+            uncomplete_message('Some validation did not pass')
           end
 
           def run_complete
-            return unless confirm?
+            return complete.run if confirm?
 
-            complete.run
+            uncomplete_message('Issue was not completed')
           end
 
           def doc
@@ -73,6 +81,19 @@ module Avm
 
           def doc_validations_list
             ::Avm::Git::Issue::Complete::VALIDATIONS.keys.map { |k| "  * #{k}" }.join("\n")
+          end
+
+          def uncomplete_unfail?
+            options.fetch('--uncomplete-unfail')
+          end
+
+          def uncomplete_message(message)
+            if uncomplete_unfail?
+              warn(message)
+            else
+              fatal_error(message)
+            end
+            false
           end
         end
       end
