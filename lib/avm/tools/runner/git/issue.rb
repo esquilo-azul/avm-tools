@@ -9,6 +9,7 @@ module Avm
     class Runner < ::EacRubyUtils::Console::DocoptRunner
       class Git < ::EacRubyUtils::Console::DocoptRunner
         class Issue < ::EacRubyUtils::Console::DocoptRunner
+          enable_simple_cache
           include ::EacRubyUtils::Console::Speaker
 
           DOC = <<~DOCOPT
@@ -29,10 +30,23 @@ module Avm
           DOCOPT
 
           def run
-            complete = ::Avm::Git::Issue::Complete.new(git_complete_issue_options)
+            banner
+            validate
+            run_complete if options.fetch('complete')
+          end
+
+          def banner
             complete.start_banner
+          end
+
+          def validate
             fatal_error('Some validation did not pass') unless complete.valid?
-            complete.run if options.fetch('complete') && confirm?
+          end
+
+          def run_complete
+            return unless confirm?
+
+            complete.run
           end
 
           def doc
@@ -40,6 +54,10 @@ module Avm
           end
 
           private
+
+          def complete_uncached
+            ::Avm::Git::Issue::Complete.new(git_complete_issue_options)
+          end
 
           def confirm?
             options.fetch('--yes') || request_input('Confirm issue completion?', bool: true)
