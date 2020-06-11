@@ -1,21 +1,28 @@
 # frozen_string_literal: true
 
 require 'eac_ruby_utils/console/docopt_runner'
-require 'eac_cli/default_runner'
+require 'eac_ruby_utils/core_ext'
 
 module Avm
   module Rails
     module Runners
       class Runner < ::EacRubyUtils::Console::DocoptRunner
-        include ::EacCli::DefaultRunner
+        enable_console_speaker
+        enable_simple_cache
 
-        runner_definition do
-          desc 'Runs a Ruby code with "rails runner".'
-          arg_opt '-e', '--environment', 'Specifies the environment for the runner to operate' \
-            " under (test/development/production).\n" \
-            'Default: development'
-          pos_arg 'code'
-        end
+        DOC = <<~DOC
+          Runs a Ruby code with "rails runner".
+
+          Usage:
+            __PROGRAM__ [options] <code>
+            __PROGRAM__ --version
+            __PROGRAM__ -h | --help
+
+          Options:
+            -h --help         Show this screen.
+            -e --environment  Specifies the environment for the runner to
+                              operate (test/development/production). Default: "development".
+        DOC
 
         def run
           infov 'Runner arguments', runner_args
