@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    avm-tools (0.50.0)
+    avm-tools (0.51.0)
       aranha-parsers (~> 0.4)
       clipboard (~> 1.3, >= 1.3.3)
       content-type (~> 0.0.1)
