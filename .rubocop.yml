@@ -1,6 +1,10 @@
 require:
   - rubocop-rspec
 
+AllCops:
+  Exclude:
+    - vendor/**/*
+
 Layout/LineLength:
   Max: 100
 
