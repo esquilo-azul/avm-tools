@@ -1,12 +1,7 @@
 # frozen_string_literal: true
 
-require 'rubocop'
+require 'eac_ruby_gem_support/spec/examples/rubocop_check'
 
-RSpec.describe ::RuboCop, slow: true do
-  let(:root_path) { ::File.dirname(__dir__) }
-  let(:runner) { ::RuboCop::Runner.new({}, RuboCop::ConfigStore.new) }
-
-  it 'rubocop return ok' do
-    expect(runner.run([root_path])).to eq(true)
-  end
+RSpec.describe ::RuboCop do
+  include_examples 'rubocop_check', ::File.expand_path('..', __dir__)
 end
