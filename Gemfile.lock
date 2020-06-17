@@ -120,7 +120,7 @@ PLATFORMS
 
 DEPENDENCIES
   avm-tools!
-  eac_ruby_gem_support (~> 0.1, >= 0.1.1)
+  eac_ruby_gem_support (~> 0.1, >= 0.1.2)
   eac_ruby_utils!
 
 BUNDLED WITH
