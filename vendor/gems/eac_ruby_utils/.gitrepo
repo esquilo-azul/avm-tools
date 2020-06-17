@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/esquilo-azul/eac_ruby_utils.git
+	branch = master
+	commit = faa7dfd602df6a38b17163e29fd30e0f6da1147c
+	parent = fcd6cb9abbd94595040e6159d5a4b1172cac2dc2
+	method = rebase
+	cmdver = 0.4.0
