@@ -18,7 +18,7 @@ module Avm
       end
 
       def rubocop_gemfile?
-        return false unless mygem.present?
+        return false if mygem.blank?
 
         mygem.bundle('install').execute!
         mygem.gemfile_lock_gem_version('rubocop').present?

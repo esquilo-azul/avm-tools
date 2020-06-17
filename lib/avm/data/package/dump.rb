@@ -10,7 +10,7 @@ module Avm
         enable_console_speaker
         enable_listable
 
-        DEFAULT_EXPIRE_TIME = 1.days
+        DEFAULT_EXPIRE_TIME = 1.day
         DEFAULT_FILE_EXTENSION = '.tar'
 
         attr_reader :package, :data_file_path, :existing

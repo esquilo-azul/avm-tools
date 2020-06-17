@@ -14,7 +14,7 @@ module Avm
             include ::EacRubyUtils::SimpleCache
             include ::EacRubyUtils::Console::Speaker
 
-            DUMP_EXPIRE_TIME = 1.days
+            DUMP_EXPIRE_TIME = 1.day
             DEFAULT_DUMP_PATH_ENTRY_SUFFIX = 'data.default_dump_path'
             NO_DUMP_MESSAGE = 'Dump "%s" already exist and rewrite options was no setted nor ' \
               'dump was expired.'

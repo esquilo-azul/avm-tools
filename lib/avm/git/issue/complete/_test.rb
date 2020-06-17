@@ -10,7 +10,7 @@ module Avm
       class Complete
         def test_result
           test_command = configuration.if_present(&:any_test_command)
-          return ::Avm::Result.success('unconfigured') unless test_command.present?
+          return ::Avm::Result.success('unconfigured') if test_command.blank?
 
           infom "Running test command \"#{test_command}\"..."
           result = test_command.execute

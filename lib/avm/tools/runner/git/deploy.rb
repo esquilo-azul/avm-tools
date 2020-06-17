@@ -47,10 +47,10 @@ module Avm
           end
 
           def validate
-            unless reference_sha1.present?
+            if reference_sha1.blank?
               fatal_error "Object ID not found for reference \"#{reference}\""
             end
-            fatal_error 'Nor <target-url> nor --instance was setted' unless target_url.present?
+            fatal_error 'Nor <target-url> nor --instance was setted' if target_url.blank?
           end
 
           def main_info_banner

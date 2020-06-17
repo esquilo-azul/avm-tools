@@ -12,7 +12,7 @@ module Avm
 
       def rubocop_gemfile
         gemfile_path = read_entry(RUBOCOP_GEMFILE_KEY)
-        return nil unless gemfile_path.present?
+        return nil if gemfile_path.blank?
 
         gemfile_path = gemfile_path.to_pathname.expand_path(storage_path.parent)
         return gemfile_path if gemfile_path.file?

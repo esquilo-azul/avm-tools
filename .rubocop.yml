@@ -1,4 +1,5 @@
 require:
+  - rubocop-rails
   - rubocop-rspec
 
 AllCops:
@@ -17,6 +18,18 @@ Metrics/BlockLength:
   Exclude:
     - spec/**/*_spec.rb
     - spec/spec_helper/eac_launcher.rb
+
+Rails/DynamicFindBy:
+  Enabled: false
+
+Rails/Output:
+  Enabled: false
+
+Rails/SkipsModelValidations:
+  Enabled: false
+
+Rails/TimeZone:
+  Enabled: false
 
 RSpec:
   Exclude:
