@@ -5,6 +5,7 @@ require:
 AllCops:
   Exclude:
     - vendor/**/*
+    - spec/lib/avm/tools/runner/ruby/gems/generate_spec_files/**/*
 
 Layout/LineLength:
   Max: 100
