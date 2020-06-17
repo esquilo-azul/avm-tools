@@ -36,7 +36,7 @@ RSpec.describe ::EacLauncher::Ruby::Gem::Build do
       expect(build.output_file.present?).to eq true
       expect(build.builded?).to eq true
       expect(::File.exist?(build.output_file)).to eq true
-      expect(::File.size(build.output_file)).to be > 0
+      expect(::File.size(build.output_file)).to be_positive
       expect(::File.basename(build.output_file)).to eq('ruby_gem_stub-1.0.0.pre.stub.gem')
     end
   end
