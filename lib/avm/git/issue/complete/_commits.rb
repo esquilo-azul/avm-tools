@@ -7,10 +7,7 @@ module Avm
     module Issue
       class Complete
         def commits_result
-          ::Avm::Result.success_or_error(
-            commits.any? ? 'yes' : 'none',
-            commits.any?
-          )
+          ::Avm::Result.success_or_error(commits.any?, 'yes', 'none')
         end
 
         def commits_uncached

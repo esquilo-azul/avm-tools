@@ -19,13 +19,13 @@ module Avm
         end
 
         def branch_name_result
-          ::Avm::Result.success_or_error(branch_name, issue_id.present?)
+          ::Avm::Result.success_or_error(issue_id.present?, branch_name)
         end
 
         def branch_hash_result
           ::Avm::Result.success_or_error(
-            branch_hash,
-            branch_hash.present?
+            branch_hash.present?,
+            branch_hash
           )
         end
 
@@ -33,10 +33,7 @@ module Avm
           return ::Avm::Result.neutral('No branch hash') unless branch_hash
 
           r = follow_master?
-          ::Avm::Result.success_or_error(
-            r ? 'yes' : 'no',
-            r
-          )
+          ::Avm::Result.success_or_error(r, 'yes', 'no')
         end
 
         def follow_master?

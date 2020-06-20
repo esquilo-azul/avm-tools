@@ -2,6 +2,7 @@
 
 require 'colorized_string'
 require 'eac_ruby_utils/listable'
+require 'eac_ruby_utils/core_ext'
 
 module Avm
   class Result < ::SimpleDelegator
@@ -24,8 +25,15 @@ module Avm
     TYPE_OUTDATED_COLOR = 'blue'
 
     class << self
-      def success_or_error(value, success)
-        new(value, success ? ::Avm::Result::TYPE_SUCCESS : ::Avm::Result::TYPE_ERROR)
+      # Return Avm::Result.success(success_value) if +success+ is truthy.
+      # Return Avm::Result.error(error_value || success_value) if +success+ is falsely.
+      # @return [Avm::Result]
+      def success_or_error(success, success_value, error_value = nil)
+        if success
+          self.success(success_value)
+        else
+          error(error_value.presence || success_value)
+        end
       end
     end
 
