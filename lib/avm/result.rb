@@ -7,7 +7,7 @@ module Avm
   class Result < ::SimpleDelegator
     include ::EacRubyUtils::Listable
 
-    lists.add_string :type, :success, :error, :neutral, :pending
+    lists.add_string :type, :success, :error, :neutral, :pending, :outdated
 
     lists.type.values.each do |type| # rubocop:disable Style/HashEachMethods
       class_eval <<-RUBY_EVAL, __FILE__, __LINE__ + 1
@@ -21,6 +21,7 @@ module Avm
     TYPE_ERROR_COLOR = 'red'
     TYPE_NEUTRAL_COLOR = 'light_black'
     TYPE_PENDING_COLOR = 'yellow'
+    TYPE_OUTDATED_COLOR = 'blue'
 
     class << self
       def success_or_error(value, success)
