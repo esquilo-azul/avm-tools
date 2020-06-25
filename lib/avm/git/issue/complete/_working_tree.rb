@@ -5,8 +5,11 @@ module Avm
     module Issue
       class Complete
         def clean_workspace_result
-          r = @git.dirty_files.none?
-          ::Avm::Result.success_or_error(r, 'yes', 'no')
+          ::Avm::Result.success_or_error(clean_workspace?, 'yes', 'no')
+        end
+
+        def clean_workspace?
+          @git.dirty_files.none?
         end
       end
     end
