@@ -16,6 +16,7 @@ module Avm
           commits: 'Commits?',
           bifurcations: 'Bifurcations?',
           dry_push: 'Dry push?',
+          git_subrepos: 'Git subrepos ok?',
           test: 'Test ok?'
         }.with_indifferent_access.freeze
 
