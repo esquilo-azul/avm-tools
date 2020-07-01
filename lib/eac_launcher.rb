@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-GIT_SUBREPO_LIB = ::File.join(::File.dirname(__dir__), 'vendor', 'git-subrepo', 'lib')
-ENV['PATH'] = "#{GIT_SUBREPO_LIB}#{::File::PATH_SEPARATOR}#{ENV['PATH']}"
-
 module EacLauncher
   require 'eac_launcher/context'
   require 'eac_launcher/paths'
