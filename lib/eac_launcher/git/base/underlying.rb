@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'eac_git/executables'
 require 'eac_ruby_utils/envs'
 require 'git'
 require 'eac_launcher/paths/real'
@@ -9,23 +10,24 @@ module EacLauncher
     class Base < ::EacLauncher::Paths::Real
       module Underlying
         def command(*args)
-          args, _options = build_args(args)
-          ::EacRubyUtils::Envs.local.command(*args)
+          args, options = build_args(args)
+          r = ::EacGit::Executables.git.command(*args)
+          (options[:exit_outputs] || {}).each do |status_code, result|
+            r = r.status_result(status_code, result)
+          end
+          r
         end
 
         def execute(*args)
-          args, options = build_args(args)
-          ::EacRubyUtils::Envs.local.command(*args).execute(options)
+          command(*args).execute
         end
 
         def execute!(*args)
-          args, options = build_args(args)
-          ::EacRubyUtils::Envs.local.command(*args).execute!(options)
+          command(*args).execute!
         end
 
         def system!(*args)
-          args, options = build_args(args)
-          ::EacRubyUtils::Envs.local.command(*args).system!(options)
+          command(*args).system!
         end
 
         def init
@@ -42,7 +44,7 @@ module EacLauncher
             args.pop
           end
           args = args.first if args.first.is_a?(Array)
-          [['git', '-C', self, '--no-pager'] + args, options]
+          [['-C', self, '--no-pager'] + args, options]
         end
 
         def git_uncached
