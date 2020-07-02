@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/esquilo-azul/git-subrepo.git
+	branch = master
+	commit = 90c91af5fe3ba5269779bf06eaeadb965874254e
+	parent = a110470fec3d177d09dd13b832e834102adc981b
+	method = rebase
+	cmdver = 0.4.0
