@@ -16,13 +16,17 @@ module Avm
               desc 'Check status of subrepos.'
               bool_opt '-a', '--all', 'Select all subrepos.'
               bool_opt '-f', '--fix-parent', 'Fix parent SHA1.'
+              bool_opt '-n', '--no-error', 'Do not exit with error if check fails.'
               bool_opt '-r', '--remote', 'Check subrepos remote.'
               pos_arg :subrepos, repeat: true, optional: true
             end
 
             def run
               subrepo_checks.show_result
-              fatal_error 'Failed' if subrepo_checks.result.error?
+              return if options.fetch('--no-error')
+              return unless subrepo_checks.result.error?
+
+              fatal_error 'Failed'
             end
 
             private
