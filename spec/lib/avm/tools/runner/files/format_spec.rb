@@ -2,7 +2,7 @@
 
 require 'avm/tools/runner'
 require 'aranha/parsers/source_target_fixtures'
-require 'tmpdir'
+require 'eac_ruby_utils/fs/temp'
 require 'fileutils'
 
 ::RSpec.describe ::Avm::Tools::Runner::Files::Format do
@@ -14,6 +14,10 @@ require 'fileutils'
     source_files.each { |source_file| ::FileUtils.mv(source_file, source_file + '.source') }
   end
 
+  after(:all) do # rubocop:disable RSpec/BeforeAfterAll
+    target_dir.remove
+  end
+
   include_examples 'source_target_fixtures', __FILE__
 
   def source_stf
@@ -22,8 +26,12 @@ require 'fileutils'
     )
   end
 
+  def target_dir
+    @target_dir ||= ::EacRubyUtils::Fs::Temp.directory
+  end
+
   def fixtures_dir
-    @fixtures_dir ||= ::Dir.mktmpdir
+    target_dir.to_path
   end
 
   def source_data(source_file)
