@@ -1,0 +1,64 @@
+<div style="padding-bottom: 20px;">
+  <h3 style="display: inline-block;">Total de Registros</h3>
+  <h5 class="pull-right hidden-xs">
+    <?php echo "Ambiente: " . $_SERVER['SERVER_NAME']; ?>
+  </h5>
+</div>
+<div id="content" class="row">
+  <?php if (isset($_GET['edit']) && $_GET['edit'] == 0): ?>
+    <div class="col-md-12 alert alert-danger">
+      Ocorreu algum problema, tente novamente!
+    </div>
+  <?php endif; ?>
+  <?php if (isset($_GET['edit']) && $_GET['edit'] == 1): ?>
+    <div class="col-md-12 alert alert-success">
+      Indisponibilidade editada com sucesso!
+    </div>
+  <?php endif; ?>
+  <div class="col-md-12">
+    <table class="table table-striped" id="datatable">
+      <thead>
+        <tr>
+          <td><b>Local</b></td>
+          <td><b>Sistema</b></td>
+          <td><b>Inicio</b></td>
+          <td><b>Fim</b></td>
+          <td><b>Duracao</b></td>
+          <td><b>Motivo</b></td>
+          <td><b>Editar / Excluir</b></td>
+        </tr>
+      </thead>
+      <tbody>
+        <?php if ($quantidadeRegistros > 0): ?>
+          <?php foreach ($dados as $linha): ?>
+            <tr>
+              <td><?php echo $linha["SIGLA_LOCALIDADE"] ?></td>
+              <td><?php echo $linha["SIGLA_SISTEMA"] ?></td>
+              <td><?php echo date('d/m/Y H:i', $linha['TIMESTAMP_INICIO']) ?></td>
+              <td><?php echo ($linha['TIMESTAMP_FIM'] ? date('d/m/Y H:i', $linha['TIMESTAMP_FIM']) : '') ?></td>
+              <td align='center'><?php echo $linha["QUANTIDADE_MINUTOS"] ?></td>
+              <td align='right'>
+                <div class='btn-group' role='group'>
+                  <?php if ($linha['TIMESTAMP_FIM'] == null || $linha['TIMESTAMP_FIM'] == 0): ?>
+                    <button type='button' data-id='" <?php echo $linha['SIND_ID'] ?>"'
+                            class='btn btn-xs btn-warning editar'>Editar</button>
+                          <?php endif; ?>
+                  <button type='button' class='btn btn-xs btn-danger'
+                          onclick=\"confirmacao('" <?php echo $linha['SIND_ID'] ?>"')\">Excluir</button>
+                </div>
+              </td>
+            </tr>
+          <?php endforeach; ?>
+        <?php else: ?>
+          <tr>
+            <td colspan="7">0 resultados</td>
+          </tr>
+        <?php endif; ?>
+      </tbody>
+    </table>
+  </div>
+</div>
+<link rel="stylesheet" type="text/css" href="assets/css/dataTables.bootstrap.css"/>
+<script type="text/javascript" src="assets/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="assets/js/dataTables.bootstrap.js"></script>
+<script type="text/javascript" src="index.js"></script>
