@@ -6,13 +6,7 @@ require 'tmpdir'
 require 'fileutils'
 
 ::RSpec.describe ::Avm::Tools::Runner::Files::Format do
-  let(:source_stf) do
-    ::Aranha::Parsers::SourceTargetFixtures.new(
-      ::File.join(__dir__, 'format_spec_files')
-    )
-  end
-
-  before do
+  before(:all) do # rubocop:disable RSpec/BeforeAfterAll
     source_files = copy_to_target_dir(source_stf.source_files) { |b| b.gsub(/\.source\Z/, '') }
     ::Avm::Tools::Runner.new(argv: ['files', 'format', '--apply',
                                     source_target_fixtures.fixtures_directory]).run
@@ -21,6 +15,12 @@ require 'fileutils'
   end
 
   include_examples 'source_target_fixtures', __FILE__
+
+  def source_stf
+    @source_stf ||= ::Aranha::Parsers::SourceTargetFixtures.new(
+      ::File.join(__dir__, 'format_spec_files')
+    )
+  end
 
   def fixtures_dir
     @fixtures_dir ||= ::Dir.mktmpdir
