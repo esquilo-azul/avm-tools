@@ -72,7 +72,7 @@ module Avm
 
         def setup_files_units
           instance.class.const_get('FILES_UNITS').each do |data_key, fs_path_subpath|
-            FilesUnit.new(self, data_key, fs_path_subpath).run
+            FileUnit.new(self, data_key, fs_path_subpath).run
           end
         end
 

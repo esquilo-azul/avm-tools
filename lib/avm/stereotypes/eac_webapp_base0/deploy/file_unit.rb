@@ -4,7 +4,7 @@ module Avm
   module Stereotypes
     module EacWebappBase0
       class Deploy
-        class FilesUnit < ::SimpleDelegator
+        class FileUnit < ::SimpleDelegator
           attr_reader :data_key, :fs_path_subpath
 
           def initialize(deploy, data_key, fs_path_subpath)
