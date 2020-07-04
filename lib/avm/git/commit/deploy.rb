@@ -11,7 +11,7 @@ module Avm
         require_sub __FILE__, include_modules: true
         enable_simple_cache
 
-        attr_reader :commit, :target_env, :target_path, :variables_source
+        attr_reader :build_dir, :commit, :target_env, :target_path, :variables_source
 
         def initialize(commit, target_env, target_path)
           @commit = commit
@@ -28,7 +28,7 @@ module Avm
         def run
           on_build_dir do
             copy_git_content
-            appended_directories.each { |directory| copy_appended_directory(directory) }
+            copy_appended_content
             mkdir_target
             clear_content
             send_untar_package
@@ -37,8 +37,6 @@ module Avm
         end
 
         private
-
-        attr_reader :build_dir
 
         def on_build_dir
           @build_dir = ::Dir.mktmpdir
