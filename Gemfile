@@ -6,8 +6,7 @@ gemspec
 
 gems_subdir = ::File.join(__dir__, 'vendor', 'gems')
 Dir["#{gems_subdir}/*"].each do |dir|
-  next unless ::File.directory?(dir)
+  next unless ::File.file?(::File.join(dir, 'Gemfile'))
 
-  basename = ::File.basename(dir)
-  gem basename, path: "#{gems_subdir}/#{basename}"
+  gem ::File.basename(dir), path: dir
 end
