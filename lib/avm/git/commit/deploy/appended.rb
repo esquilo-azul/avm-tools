@@ -21,10 +21,10 @@ module Avm
             self
           end
 
-          def copy_appended_directory(directory)
-            raise 'Variables source not set' if variables_source.blank?
-
-            ::EacRubyUtils::Templates::Directory.new(directory).apply(variables_source, build_dir)
+          def append_file_content(target_path, content)
+            appended << ::Avm::Git::Commit::Deploy::Appended::FileContent
+                        .new(self, target_path, content)
+            self
           end
 
           def copy_appended_content
