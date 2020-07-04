@@ -1,13 +1,12 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/simple_cache'
-require 'eac_ruby_utils/require_sub'
-::EacRubyUtils.require_sub(__FILE__)
+require 'eac_ruby_utils/core_ext'
 
 module Avm
   module Git
     class Commit
-      include ::EacRubyUtils::SimpleCache
+      require_sub __FILE__, include_modules: true
+      enable_simple_cache
 
       FIELDS = {
         author_name: '%an', author_email: '%ae', author_date: '%ai',
