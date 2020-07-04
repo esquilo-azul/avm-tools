@@ -11,24 +11,13 @@ module Avm
         require_sub __FILE__, include_modules: true
         enable_simple_cache
 
-        attr_reader :commit, :target_env, :target_path, :appended_directories, :variables_source
+        attr_reader :commit, :target_env, :target_path, :variables_source
 
         def initialize(commit, target_env, target_path)
           @commit = commit
           @target_env = target_env
           @target_path = target_path
-          @appended_directories = []
           @variables_source = nil
-        end
-
-        def append_directory(directory)
-          @appended_directories << directory
-          self
-        end
-
-        def append_directories(directories)
-          directories.each { |directory| append_directory(directory) }
-          self
         end
 
         def variables_source_set(source)
@@ -60,12 +49,6 @@ module Avm
 
         def copy_git_content
           git_archive_command.pipe(untar_git_archive_command).execute!
-        end
-
-        def copy_appended_directory(directory)
-          raise 'Variables source not set' if variables_source.blank?
-
-          ::EacRubyUtils::Templates::Directory.new(directory).apply(variables_source, build_dir)
         end
 
         def mkdir_target
