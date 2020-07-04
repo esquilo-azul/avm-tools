@@ -65,10 +65,6 @@ module Avm
           ).run
         end
 
-        def git_reference
-          options[:reference] || DEFAULT_REFERENCE
-        end
-
         def setup_files_units
           instance.class.const_get('FILES_UNITS').each do |data_key, fs_path_subpath|
             FileUnit.new(self, data_key, fs_path_subpath).run
@@ -88,40 +84,8 @@ module Avm
           fatal_error "Request to #{uri} failed" unless response.code.to_i == 200
         end
 
-        def commit_sha1_uncached
-          git_fetch
-          r = git.rev_parse(git_reference_found)
-          return r if r
-
-          raise ::Avm::Result::Error, "No commit SHA1 found for \"#{git_reference_found}\""
-        end
-
-        def git_reference_found_uncached
-          %w[git_reference instance_branch master_branch].map { |b| send(b) }.find(&:present?) ||
-            raise(
-              ::Avm::Result::Error,
-              'No git reference found (Searched for option, instance and master)'
-            )
-        end
-
         def git_uncached
           ::EacLauncher::Git::Base.new(git_repository_path)
-        end
-
-        def instance_branch
-          remote_branch(instance.id)
-        end
-
-        def master_branch
-          remote_branch('master')
-        end
-
-        def git_remote_name
-          ::Avm::Git::DEFAULT_REMOTE_NAME
-        end
-
-        def git_remote_hashs_uncached
-          git.remote_hashs(git_remote_name)
         end
 
         def git_fetch_uncached
@@ -131,10 +95,6 @@ module Avm
 
         def git_repository_path
           instance.source_instance.read_entry(:fs_path)
-        end
-
-        def remote_branch(name)
-          git_remote_hashs.key?("refs/heads/#{name}") ? "#{git_remote_name}/#{name}" : nil
         end
       end
     end
