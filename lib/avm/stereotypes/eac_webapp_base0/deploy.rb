@@ -12,9 +12,8 @@ module Avm
   module Stereotypes
     module EacWebappBase0
       class Deploy
+        require_sub __FILE__, include_modules: true
         include ::ActiveSupport::Callbacks
-
-        require_relative 'deploy/_appended_directories'
 
         DEFAULT_REFERENCE = 'HEAD'
 
