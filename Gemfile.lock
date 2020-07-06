@@ -17,14 +17,14 @@ PATH
       ruby-progressbar (~> 1.10, >= 1.10.1)
 
 PATH
-  remote: vendor/gems/eac_git
+  remote: vendor/eac_git
   specs:
     eac_git (0.2.0)
       eac_ruby_utils (~> 0.37)
       parseconfig (~> 1.0, >= 1.0.8)
 
 PATH
-  remote: vendor/gems/eac_ruby_utils
+  remote: vendor/eac_ruby_utils
   specs:
     eac_ruby_utils (0.39.0)
       activesupport (>= 4.0)
