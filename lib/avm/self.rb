@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'eac_ruby_base0/application'
 require 'eac_ruby_utils/require_sub'
 require 'avm/instances/base'
 
@@ -8,6 +9,10 @@ module Avm
     ::EacRubyUtils.require_sub(__FILE__)
 
     class << self
+      def application
+        @application ||= ::EacRubyBase0::Application.new(::File.expand_path('../..', __dir__))
+      end
+
       def instance
         @instance ||= ::Avm::Self::Instance.by_id('avm-tools_self')
       end
