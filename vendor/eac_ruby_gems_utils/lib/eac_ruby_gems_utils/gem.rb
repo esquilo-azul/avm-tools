@@ -42,10 +42,18 @@ module EacRubyGemsUtils
       root.basename.to_s
     end
 
+    def namespace_parts
+      name.split('-')
+    end
+
     def rake(*args)
       raise "File \"#{rakefile_path}\" does not exist" unless rakefile_path.exist?
 
       bundle('exec', 'rake', '--rakefile', rakefile_path, *args)
+    end
+
+    def version
+      /VERSION\s*=\s*[\'\"]([^\'\"]+)[\'\"]/.if_match(version_file.read) { |m| m[1] }
     end
 
     private
@@ -64,6 +72,10 @@ module EacRubyGemsUtils
 
     def rakefile_path_uncached
       root.join('Rakefile')
+    end
+
+    def version_file_uncached
+      root.join('lib', *namespace_parts, 'version.rb')
     end
   end
 end
