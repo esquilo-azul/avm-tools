@@ -28,6 +28,7 @@ PATH
   specs:
     eac_ruby_base0 (0.0.0)
       eac_cli (~> 0.3)
+      eac_ruby_gems_utils (~> 0.6)
       eac_ruby_utils (~> 0.39)
 
 PATH
