@@ -1,0 +1,3 @@
+= E.A.C.'s Ruby Gems Utils.
+
+Utilities for Ruby\'s gems development.

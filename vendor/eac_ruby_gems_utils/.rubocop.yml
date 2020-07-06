@@ -1,0 +1,25 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+
+AllCops:
+  TargetRubyVersion: 2.4
+
+Layout/LineLength:
+  Max: 100
+
+Rails/RakeEnvironment:
+  Exclude:
+    - spec/support/mygem/Rakefile
+
+Style/Documentation:
+  Enabled: false
+
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true

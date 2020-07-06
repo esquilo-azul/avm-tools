@@ -17,6 +17,12 @@ PATH
       ruby-progressbar (~> 1.10, >= 1.10.1)
 
 PATH
+  remote: vendor/eac_ruby_gems_utils
+  specs:
+    eac_ruby_gems_utils (0.5.0)
+      eac_ruby_utils (~> 0.29)
+
+PATH
   remote: vendor/eac_git
   specs:
     eac_git (0.2.0)
@@ -66,8 +72,6 @@ GEM
       rubocop (~> 0.80.1)
       rubocop-rails (~> 2.4.2)
       rubocop-rspec (~> 1.38.1)
-    eac_ruby_gems_utils (0.5.0)
-      eac_ruby_utils (~> 0.29)
     filesize (0.2.0)
     git (1.7.0)
       rchardet (~> 1.8)
@@ -131,6 +135,7 @@ DEPENDENCIES
   avm-tools!
   eac_git!
   eac_ruby_gem_support (~> 0.1, >= 0.1.2)
+  eac_ruby_gems_utils!
   eac_ruby_utils!
 
 BUNDLED WITH
