@@ -17,6 +17,12 @@ PATH
       ruby-progressbar (~> 1.10, >= 1.10.1)
 
 PATH
+  remote: vendor/eac_ruby_base0
+  specs:
+    eac_ruby_base0 (0.0.0)
+      eac_ruby_utils (~> 0.39)
+
+PATH
   remote: vendor/eac_git
   specs:
     eac_git (0.2.0)
@@ -134,6 +140,7 @@ PLATFORMS
 DEPENDENCIES
   avm-tools!
   eac_git!
+  eac_ruby_base0!
   eac_ruby_gem_support (~> 0.1, >= 0.1.2)
   eac_ruby_gems_utils!
   eac_ruby_utils!
