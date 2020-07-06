@@ -7,14 +7,6 @@ require 'avm/patches/object/template'
 module Avm
   module Git
     class Commit
-      def deploy_to_env_path(target_env, target_path)
-        Deploy.new(self, target_env, target_path)
-      end
-
-      def deploy_to_url(target_url)
-        Deploy.new(self, *self.class.target_url_to_env_path(target_url))
-      end
-
       class Deploy
         require_sub __FILE__, include_modules: true
         enable_simple_cache
