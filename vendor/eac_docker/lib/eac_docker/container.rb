@@ -8,6 +8,7 @@ module EacDocker
     immutable_accessor :interactive, :temporary, :tty, type: :boolean
     immutable_accessor :env, type: :hash
     immutable_accessor :command_arg, :volume, type: :array
+    attr_reader :id
     common_constructor :image
 
     def immutable_constructor_args
@@ -15,6 +16,23 @@ module EacDocker
     end
 
     alias immutable_volume volume
+
+    def hostname
+      ::EacDocker::Executables.docker.command(
+        'inspect', '--format={{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}',
+        id
+      ).execute!.strip
+    end
+
+    def on_detached
+      command = ::EacDocker::Executables.docker.command(*(%w[run --detach] + run_command_args))
+      self.id = command.execute!.strip
+      begin
+        yield(self)
+      ensure
+        stop
+      end
+    end
 
     def volume(left_part, right_part = null)
       immutable_volume(right_part.if_present(left_part) { |v| "#{left_part}:#{v}" })
@@ -29,7 +47,13 @@ module EacDocker
         command_args
     end
 
+    def stop
+      ::EacDocker::Executables.docker.command('stop', id).execute!
+    end
+
     private
+
+    attr_writer :id
 
     def run_command_boolean_args
       r = []
