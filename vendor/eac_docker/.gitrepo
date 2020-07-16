@@ -1,0 +1,7 @@
+[subrepo]
+  cmdver = 0.4.1
+  commit = f988aa76daceeb80a8a2011454f980dcd476e190
+  method = rebase
+  parent = 5798bf25fec50f1adde9c02f1aecfd373ec4c7ae
+  branch = master
+  remote = https://github.com/esquilo-azul/eac_docker.git
