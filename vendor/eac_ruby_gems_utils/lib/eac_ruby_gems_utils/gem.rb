@@ -39,7 +39,8 @@ module EacRubyGemsUtils
     end
 
     def name_by_path
-      root.basename.to_s
+      fullname = root.basename.to_s
+      /\A(.+)(?:-\d+(?:\.\d+)*)\z/.if_match(fullname, false) { |m| m[1] }.if_present(fullname)
     end
 
     def namespace_parts
