@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'eac_docker', '~> 0.2'
   s.add_dependency 'eac_git', '~> 0.2'
   s.add_dependency 'eac_ruby_base0', '~> 0.1'
-  s.add_dependency 'eac_ruby_gems_utils', '~> 0.6'
+  s.add_dependency 'eac_ruby_gems_utils', '~> 0.6', '>= 0.6.1'
   s.add_dependency 'eac_ruby_utils', '~> 0.42'
   s.add_dependency 'filesize'
   s.add_dependency 'git', '~> 1.7'
