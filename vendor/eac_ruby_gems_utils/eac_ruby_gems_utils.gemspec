@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.version     = ::EacRubyGemsUtils::VERSION
   s.authors     = ['Esquilo Azul Company']
   s.summary     = 'Utilities for Ruby gems development.'
-  s.license     = 'GPL3'
+  s.license     = 'MIT'
 
   s.files = Dir['{lib}/**/*', 'LICENSE', 'README.rdoc']
 
