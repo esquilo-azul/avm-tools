@@ -35,6 +35,7 @@ module Avm
 
         {
           publish: ::Class,
+          update: ::Class,
           warp: ::Class
         }.each do |name, is_a|
           define_method "#{name}_#{is_a.name.underscore}" do
