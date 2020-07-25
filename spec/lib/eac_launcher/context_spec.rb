@@ -39,7 +39,7 @@ RSpec.describe ::EacLauncher::Context do
         end
         instance = described_class.current.instance('/app/sub1/mylib')
         expect(instance).to be_a(::EacLauncher::Instances::Base)
-        expect(instance.stereotypes).to include(::EacLauncher::Stereotypes::GitSubrepo)
+        expect(instance.stereotypes).to include(::Avm::Projects::Stereotypes::GitSubrepo)
       end
 
       it 'recovers recursive subinstance GitSubtree' do

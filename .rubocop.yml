@@ -13,7 +13,7 @@ Layout/LineLength:
 Metrics/AbcSize:
   Exclude:
     - spec/lib/eac_launcher/ruby/gem/build_spec.rb
-    - spec/lib/eac_launcher/stereotypes/git_subrepo/publish_spec.rb
+    - spec/lib/avm/projects/stereotypes/git_subrepo/publish_spec.rb
 
 Metrics/BlockLength:
   Exclude:
@@ -34,6 +34,8 @@ Rails/TimeZone:
 
 RSpec:
   Exclude:
+    - spec/lib/avm/projects/stereotypes/git_subrepo/publish_spec.rb
+    - spec/lib/avm/projects/stereotypes/git_subrepo/warp_spec.rb
     - spec/lib/eac_launcher/**/*
 
 Style/Documentation:

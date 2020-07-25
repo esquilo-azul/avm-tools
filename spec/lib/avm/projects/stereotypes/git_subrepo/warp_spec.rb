@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'eac_launcher/stereotypes/git_subrepo/warp'
+require 'avm/projects/stereotypes/git_subrepo/warp'
 
-RSpec.describe EacLauncher::Stereotypes::GitSubrepo::Warp do
+RSpec.describe Avm::Projects::Stereotypes::GitSubrepo::Warp do
   describe '#unknown' do
     before do
       temp_context(::File.join(__dir__, 'warp_spec_settings.yml'))
@@ -41,7 +41,7 @@ RSpec.describe EacLauncher::Stereotypes::GitSubrepo::Warp do
       instance = ::EacLauncher::Context.current.instance('/app1/mylib')
       expect(instance).to be_a ::EacLauncher::Instances::Base
       warp = instance.warped
-      expect(warp).to be_a ::EacLauncher::Stereotypes::GitSubrepo::Warp
+      expect(warp).to be_a ::Avm::Projects::Stereotypes::GitSubrepo::Warp
       wgit = ::EacLauncher::Git::Base.new(warp)
       expect(wgit.rev_parse('HEAD')).to eq master_ref_previous
     end

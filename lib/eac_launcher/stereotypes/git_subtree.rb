@@ -37,7 +37,7 @@ module EacLauncher
 
         def other_git_stereotype?(path)
           ::Avm::Projects::Stereotypes::Git.match?(path) ||
-            ::EacLauncher::Stereotypes::GitSubrepo.match?(path)
+            ::Avm::Projects::Stereotypes::GitSubrepo.match?(path)
         end
 
         def other_nogit_stereotype?(path)
