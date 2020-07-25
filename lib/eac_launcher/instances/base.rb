@@ -48,7 +48,7 @@ module EacLauncher
         stereotypes.each do |s|
           next unless publish?(s)
 
-          infov(name, "publishing #{s.stereotype_name_in_color}")
+          infov(name, "publishing #{s.label}")
           s.publish_class.new(self).run
         end
       end
@@ -57,7 +57,7 @@ module EacLauncher
         stereotypes.each do |s|
           next unless publish?(s)
 
-          puts "#{name.to_s.cyan}|#{s.stereotype_name_in_color}|" \
+          puts "#{name.to_s.cyan}|#{s.label}|" \
             "#{s.publish_class.new(self).check}"
         end
       end

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'active_support/core_ext/string/inflections'
+require 'colorized_string'
 
 module Avm
   module Projects
@@ -24,12 +25,12 @@ module Avm
       end
 
       module ClassMethods
-        def stereotype_name
-          name.gsub(/^.*::/, '')
+        def label
+          ::ColorizedString.new(stereotype_name).send(color)
         end
 
-        def stereotype_name_in_color
-          stereotype_name.send(color)
+        def stereotype_name
+          name.gsub(/^.*::/, '')
         end
 
         def publish_class

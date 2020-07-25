@@ -31,7 +31,7 @@ module EacLauncher
       end
 
       def instance_stereotypes(instance)
-        instance.stereotypes.map(&:stereotype_name_in_color).join(', ')
+        instance.stereotypes.map(&:label).join(', ')
       end
 
       def instance_label(instance)
