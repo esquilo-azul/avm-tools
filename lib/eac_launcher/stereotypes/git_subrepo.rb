@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
 require 'eac_launcher/git/error'
+require 'eac_ruby_utils/core_ext'
 require 'avm/projects/stereotype'
 
 module EacLauncher
   module Stereotypes
     class GitSubrepo
+      require_sub __FILE__
       include Avm::Projects::Stereotype
 
       class << self

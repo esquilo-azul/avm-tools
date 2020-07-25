@@ -2,11 +2,12 @@
 
 require 'avm/projects/stereotype'
 require 'eac_launcher/ruby/gem/specification'
-require 'eac_launcher/stereotypes/ruby_gem/publish'
+require 'eac_ruby_utils/core_ext'
 
 module EacLauncher
   module Stereotypes
     class RubyGem
+      require_sub __FILE__
       include Avm::Projects::Stereotype
 
       class << self
