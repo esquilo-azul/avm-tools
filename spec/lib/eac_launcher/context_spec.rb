@@ -54,7 +54,7 @@ RSpec.describe ::EacLauncher::Context do
         end
         instance = described_class.current.instance('/app/sub1/mylib')
         expect(instance).to be_a(::EacLauncher::Instances::Base)
-        expect(instance.stereotypes).to include(::EacLauncher::Stereotypes::GitSubtree)
+        expect(instance.stereotypes).to include(::Avm::Projects::Stereotypes::GitSubtree)
       end
 
       context 'subtree present' do
@@ -68,7 +68,7 @@ RSpec.describe ::EacLauncher::Context do
         it 'recognizes subtree instance' do
           i = described_class.current.instance('/subtree_main_app/mylib')
           expect(i).to be_a(::EacLauncher::Instances::Base)
-          expect(i.stereotypes).to include(::EacLauncher::Stereotypes::GitSubtree)
+          expect(i.stereotypes).to include(::Avm::Projects::Stereotypes::GitSubtree)
         end
       end
 
