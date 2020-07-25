@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
+require 'avm/stereotypes'
 require 'eac_launcher/paths/real'
-require 'eac_launcher/stereotypes'
 
 module EacLauncher
   module Paths

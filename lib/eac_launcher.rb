@@ -9,6 +9,5 @@ module EacLauncher
   require 'eac_launcher/instances'
   require 'eac_launcher/publish'
   require 'eac_launcher/ruby'
-  require 'eac_launcher/stereotypes'
   require 'eac_launcher/vendor'
 end
