@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'eac_launcher/publish/check_result'
 require('yaml')
 
 module EacLauncher
