@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
+require 'avm/projects/stereotype'
 require 'eac_launcher/ruby/gem/specification'
-require 'eac_launcher/stereotype'
 require 'eac_launcher/stereotypes/ruby_gem/publish'
 
 module EacLauncher
   module Stereotypes
     class RubyGem
-      include EacLauncher::Stereotype
+      include Avm::Projects::Stereotype
 
       class << self
         def match?(path)

@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require 'eac_launcher/stereotype'
+require 'avm/projects/stereotype'
 require 'eac_launcher/stereotypes/git'
 
 module EacLauncher
   module Stereotypes
     class GitSubtree
-      include EacLauncher::Stereotype
+      include Avm::Projects::Stereotype
 
       class << self
         def match?(path)
@@ -39,7 +39,7 @@ module EacLauncher
         end
 
         def other_nogit_stereotype?(path)
-          EacLauncher::Stereotype.nogit_stereotypes.any? { |s| s.match?(path) }
+          Avm::Projects::Stereotype.nogit_stereotypes.any? { |s| s.match?(path) }
         end
       end
     end

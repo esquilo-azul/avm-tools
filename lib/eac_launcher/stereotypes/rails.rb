@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require 'eac_launcher/stereotype'
+require 'avm/projects/stereotype'
 
 module EacLauncher
   module Stereotypes
     class Rails
-      include EacLauncher::Stereotype
+      include Avm::Projects::Stereotype
 
       class << self
         def match?(path)

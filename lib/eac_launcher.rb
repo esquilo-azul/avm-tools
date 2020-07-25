@@ -4,7 +4,7 @@ module EacLauncher
   require 'eac_launcher/context'
   require 'eac_launcher/paths'
   require 'eac_launcher/project'
-  require 'eac_launcher/stereotype'
+  require 'avm/projects/stereotype'
   require 'eac_launcher/git'
   require 'eac_launcher/instances'
   require 'eac_launcher/publish'

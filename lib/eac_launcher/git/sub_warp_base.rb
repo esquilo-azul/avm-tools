@@ -15,7 +15,7 @@ module EacLauncher
       end
 
       def find_parent_instance(current)
-        if ::EacLauncher::Stereotype.git_stereotypes.any? { |s| current.stereotype?(s) }
+        if ::Avm::Projects::Stereotype.git_stereotypes.any? { |s| current.stereotype?(s) }
           return current
         end
 

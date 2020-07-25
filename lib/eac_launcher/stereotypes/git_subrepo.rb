@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 require 'eac_launcher/git/error'
-require 'eac_launcher/stereotype'
+require 'avm/projects/stereotype'
 
 module EacLauncher
   module Stereotypes
     class GitSubrepo
-      include EacLauncher::Stereotype
+      include Avm::Projects::Stereotype
 
       class << self
         def match?(path)

@@ -34,7 +34,7 @@ RSpec.describe ::EacLauncher::Context do
         app.execute!('subrepo', 'clone', @repos, 'sub1/mylib')
         sub = described_class.current.instance('/app/sub1')
         expect(sub).to be_a(::EacLauncher::Instances::Base)
-        ::EacLauncher::Stereotype.git_stereotypes.each do |s|
+        ::Avm::Projects::Stereotype.git_stereotypes.each do |s|
           expect(sub.stereotypes).not_to include(s)
         end
         instance = described_class.current.instance('/app/sub1/mylib')
@@ -49,7 +49,7 @@ RSpec.describe ::EacLauncher::Context do
         app.execute!('remote', 'add', 'mylib', @repos)
         sub = described_class.current.instance('/app/sub1')
         expect(sub).to be_a(::EacLauncher::Instances::Base)
-        ::EacLauncher::Stereotype.git_stereotypes.each do |s|
+        ::Avm::Projects::Stereotype.git_stereotypes.each do |s|
           expect(sub.stereotypes).not_to include(s)
         end
         instance = described_class.current.instance('/app/sub1/mylib')

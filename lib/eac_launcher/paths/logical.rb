@@ -55,7 +55,7 @@ module EacLauncher
       private
 
       def stereotypes_uncached
-        ::EacLauncher::Stereotype.stereotypes.select { |s| s.match?(self) }
+        ::Avm::Projects::Stereotype.stereotypes.select { |s| s.match?(self) }
       end
 
       def build_child(name)
