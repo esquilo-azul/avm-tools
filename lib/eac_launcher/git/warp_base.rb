@@ -2,7 +2,7 @@
 
 require 'eac_launcher/git/mirror_update'
 require 'eac_launcher/vendor/github'
-require 'eac_launcher/stereotypes/git/publish'
+require 'avm/projects/stereotypes/git/publish'
 
 module EacLauncher
   module Git
@@ -13,7 +13,7 @@ module EacLauncher
     class WarpBase < ::EacLauncher::Paths::Real
       include ::EacRubyUtils::SimpleCache
 
-      TARGET_REMOTE = ::EacLauncher::Stereotypes::Git::Publish::PUBLISH_GIT_REMOTE_NAME
+      TARGET_REMOTE = ::Avm::Projects::Stereotypes::Git::Publish::PUBLISH_GIT_REMOTE_NAME
 
       def initialize(instance)
         @instance = instance
