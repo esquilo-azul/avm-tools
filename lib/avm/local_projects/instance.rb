@@ -5,7 +5,7 @@ require 'eac_ruby_utils/core_ext'
 require 'avm/projects/stereotypes'
 
 module Avm
-  module LocalProject
+  module LocalProjects
     class Instance
       enable_simple_cache
       common_constructor :path do

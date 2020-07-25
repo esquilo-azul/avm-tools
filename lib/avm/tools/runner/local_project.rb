@@ -20,7 +20,7 @@ module Avm
         private
 
         def instance_uncached
-          ::Avm::LocalProject::Instance.new(instance_path)
+          ::Avm::LocalProjects::Instance.new(instance_path)
         end
 
         def instance_path_uncached
