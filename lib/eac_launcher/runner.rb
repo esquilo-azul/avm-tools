@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'eac_ruby_utils/console/docopt_runner'
-require 'eac_launcher/runner/publish'
 
 module EacLauncher
   class Runner < ::EacRubyUtils::Console::DocoptRunner
