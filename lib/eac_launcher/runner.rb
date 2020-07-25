@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'eac_ruby_utils/console/docopt_runner'
-require 'eac_launcher/runner/instances'
 require 'eac_launcher/runner/projects'
 require 'eac_launcher/runner/publish'
 
