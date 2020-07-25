@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
+require 'avm/projects/stereotypes'
 require 'eac_launcher/context'
 
-RSpec.describe EacLauncher::Stereotypes::RubyGem::Publish do
+RSpec.describe ::Avm::Projects::Stereotypes::RubyGem::Publish do
   describe '#publish' do
     let(:instance) { ::EacLauncher::Context.current.instance('/ruby_gem_stub') }
 
@@ -12,7 +13,7 @@ RSpec.describe EacLauncher::Stereotypes::RubyGem::Publish do
       ::EacLauncher::Context.current.publish_options = {
         confirm: false, new: true, stereotype: 'RubyGem'
       }
-      ::EacLauncher::Stereotypes::RubyGem::Publish.new(instance).run
+      ::Avm::Projects::Stereotypes::RubyGem::Publish.new(instance).run
     end
   end
 end
