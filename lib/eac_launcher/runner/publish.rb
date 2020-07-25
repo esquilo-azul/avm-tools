@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'eac_launcher/instances/runner_helper'
+
 module EacLauncher
   class Runner < ::EacRubyUtils::Console::DocoptRunner
     class Publish < ::EacLauncher::Instances::RunnerHelper
