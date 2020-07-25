@@ -3,6 +3,7 @@
 require 'eac_ruby_utils/simple_cache'
 require 'eac_ruby_utils/simple_cache'
 require 'eac_launcher/publish/base'
+require 'eac_launcher/publish/check_result'
 
 module EacLauncher
   module Git
