@@ -30,7 +30,7 @@ module Avm
         end
 
         def stereotype_name
-          name.gsub(/^.*::/, '')
+          name.demodulize
         end
 
         def publish_class
