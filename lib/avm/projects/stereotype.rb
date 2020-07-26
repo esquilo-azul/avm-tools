@@ -34,6 +34,7 @@ module Avm
         end
 
         {
+          local_project_mixin: ::Module,
           publish: ::Class,
           update: ::Class,
           warp: ::Class
