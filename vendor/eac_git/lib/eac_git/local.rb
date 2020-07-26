@@ -6,7 +6,7 @@ require 'eac_ruby_utils/core_ext'
 module EacGit
   # A Git repository in local filesystem.
   class Local
-    require_sub __FILE__
+    require_sub __FILE__, include_modules: true
 
     common_constructor :root_path do
       self.root_path = root_path.to_pathname
