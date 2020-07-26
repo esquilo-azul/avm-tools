@@ -33,19 +33,24 @@ module Avm
           name.demodulize
         end
 
-        def publish_class
-          sub_class('Publish')
-        end
-
-        def warp_class
-          sub_class('Warp')
+        {
+          publish: ::Class,
+          warp: ::Class
+        }.each do |name, is_a|
+          define_method "#{name}_#{is_a.name.underscore}" do
+            sub_constant(name.to_s.camelcase, is_a)
+          end
         end
 
         private
 
-        def sub_class(sub_class_name)
-          klass = const_get(sub_class_name)
-          klass.is_a?(Class) ? klass : nil
+        def sub_constant(constant_name, is_a)
+          constant = const_get(constant_name)
+          unless is_a.if_present(true) { |v| constant.is_a?(v) }
+            raise("#{constant} is not a #{is_a}")
+          end
+
+          constant
         rescue NameError
           nil
         end
