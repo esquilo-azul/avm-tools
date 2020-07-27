@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'avm/stereotypes/eac_redmine_base0/data_unit'
+require 'avm/eac_redmine_base0/data_unit'
 require 'avm/stereotypes/eac_ubuntu_base0/docker_image'
 require 'avm/stereotypes/eac_webapp_base0/instance'
 require 'avm/stereotypes/rails/instance'
@@ -30,7 +30,7 @@ module Avm
           @data_package ||= ::Avm::Data::Instance::Package.new(
             self,
             units: {
-              all: ::Avm::Stereotypes::EacRedmineBase0::DataUnit.new(self)
+              all: ::Avm::EacRedmineBase0::DataUnit.new(self)
             }
           )
         end
