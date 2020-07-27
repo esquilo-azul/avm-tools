@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'avm/stereotypes/eac_redmine_base0/deploy'
+require 'avm/eac_redmine_base0/deploy'
 require 'avm/stereotypes/eac_webapp_base0/runner/deploy'
 
 module Avm
