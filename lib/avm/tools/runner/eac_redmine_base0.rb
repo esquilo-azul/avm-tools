@@ -2,7 +2,7 @@
 
 require 'eac_ruby_utils/console/docopt_runner'
 require 'eac_ruby_utils/simple_cache'
-require 'avm/stereotypes/eac_redmine_base0/instance'
+require 'avm/eac_redmine_base0/instance'
 require 'eac_ruby_utils/require_sub'
 ::EacRubyUtils.require_sub(__FILE__)
 
@@ -26,7 +26,7 @@ module Avm
         private
 
         def instance_uncached
-          ::Avm::Stereotypes::EacRedmineBase0::Instance.by_id(options['<instance_id>'])
+          ::Avm::EacRedmineBase0::Instance.by_id(options['<instance_id>'])
         end
       end
     end
