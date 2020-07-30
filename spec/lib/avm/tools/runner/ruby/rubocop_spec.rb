@@ -16,11 +16,20 @@ require 'eac_ruby_gems_utils/gem'
     dir3: '0.48.1',
     dir4: '33.33.33'
   }.each do |dir_name, rubocop_version|
-    it "return #{rubocop_version} as Rubocop version for directory #{dir_name}" do
-      argv = ['--quiet', 'ruby', 'rubocop', '-C', send(dir_name).to_s, '--', '--version']
-      expect { ::Avm::Tools::Runner.new(argv: argv).run }.to(
-        output("#{rubocop_version}\n").to_stdout_from_any_process
-      )
+    context "when dir is #{dir_name}" do
+      let(:dir) { send(dir_name) }
+      let(:thegem) { ::EacRubyGemsUtils::Gem.new(dir) }
+
+      before do
+        thegem.bundle.system! if thegem.gemfile_path.exist?
+      end
+
+      it "return #{rubocop_version} as Rubocop version" do
+        argv = ['--quiet', 'ruby', 'rubocop', '-C', dir.to_s, '--', '--version']
+        expect { ::Avm::Tools::Runner.new(argv: argv).run }.to(
+          output("#{rubocop_version}\n").to_stdout_from_any_process
+        )
+      end
     end
   end
 end
