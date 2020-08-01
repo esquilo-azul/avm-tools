@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'avm/launcher/instances/base'
+require 'avm/launcher/context/instance_manager/cached_instance'
 require 'eac_ruby_utils/core_ext'
 
 module Avm
@@ -12,12 +12,14 @@ module Avm
           common_constructor :context, :content
 
           def instances
-            content.keys.map { |k| by_logical_path(k) }
+            content.keys.map { |k| by_logical_path(k).instance }
           end
 
           def by_logical_path(key)
             cached_instances[key].if_blank do
-              cached_instances[key] = build_by_logical_path(content.fetch(key))
+              cached_instances[key] = ::Avm::Launcher::Context::InstanceManager::CachedInstance.new(
+                self, content.fetch(key)
+              )
             end
           end
 
@@ -25,12 +27,6 @@ module Avm
 
           def cached_instances_uncached
             {}
-          end
-
-          def build_by_logical_path(instance_data)
-            parent_instance = instance_data[:parent] ? by_logical_path(instance_data[:parent]) : nil
-            path = ::EacLauncher::Paths::Logical.from_h(context, instance_data)
-            ::Avm::Launcher::Instances::Base.instanciate(path, parent_instance)
           end
         end
       end
