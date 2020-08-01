@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'avm/projects/stereotype'
-require 'eac_launcher/instances/error'
+require 'avm/launcher/errors/base'
 
 module EacLauncher
   module Git
@@ -12,7 +12,7 @@ module EacLauncher
         r = find_parent_instance(instance.parent)
         return r if r
 
-        ::EacLauncher::Instances::Error.new('Git parent not found')
+        ::EacLauncher::Instances::Errors::Base.new('Git parent not found')
       end
 
       def find_parent_instance(current)

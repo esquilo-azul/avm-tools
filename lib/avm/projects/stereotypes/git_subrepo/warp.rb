@@ -2,7 +2,7 @@
 
 require 'eac_ruby_utils/simple_cache'
 require 'eac_launcher/git/sub_warp_base'
-require 'eac_launcher/instances/error'
+require 'avm/launcher/errors/base'
 require 'eac_launcher/paths/real'
 require 'eac_launcher/vendor/github'
 
@@ -32,8 +32,9 @@ module Avm
             return if parent_git_warped.rev_parse(subrepo_parent_hash) &&
                       parent_git_warped.descendant?('HEAD', subrepo_parent_hash)
 
-            raise EacLauncher::Instances::Error, "Subrepo parent hash \"#{subrepo_parent_hash}\""\
-              " not found in \"#{parent_git_warped}\""
+            raise EacLauncher::Instances::Errors::Base,
+                  "Subrepo parent hash \"#{subrepo_parent_hash}\"" \
+                  " not found in \"#{parent_git_warped}\""
           end
 
           def subrepo_parent_hash
@@ -41,7 +42,7 @@ module Avm
             h = data['Pull Parent']
             return h if h.present?
 
-            raise EacLauncher::Instances::Error, "Subrepo parent hash is blank: #{data}"
+            raise EacLauncher::Instances::Errors::Base, "Subrepo parent hash is blank: #{data}"
           end
 
           def init_aux

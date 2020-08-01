@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'eac_launcher/instances/error'
+require 'avm/launcher/errors/base'
 
 module EacLauncher
   module Publish
@@ -35,7 +35,7 @@ module EacLauncher
 
       def check_with_rescue
         internal_check
-      rescue ::EacLauncher::Instances::Error => e
+      rescue ::EacLauncher::Instances::Errors::Base => e
         ::EacLauncher::Publish::CheckResult.blocked("Error: #{e}")
       rescue ::EacLauncher::Git::Error => e
         ::EacLauncher::Publish::CheckResult.blocked("Git error: #{e}")

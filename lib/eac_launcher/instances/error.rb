@@ -1,8 +1,12 @@
 # frozen_string_literal: true
 
-module EacLauncher
-  module Instances
-    class Error < StandardError
+module Avm
+  module Launcher
+    module Instances
+      module Errors
+        class Error < StandardError
+        end
+      end
     end
   end
 end
