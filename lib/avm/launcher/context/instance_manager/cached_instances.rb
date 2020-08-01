@@ -1,29 +1,36 @@
 # frozen_string_literal: true
 
 require 'avm/launcher/instances/base'
+require 'eac_ruby_utils/core_ext'
 
 module Avm
   module Launcher
     class Context
       class InstanceManager
         class CachedInstances
-          def initialize(context, content)
-            @context = context
-            @content = content
-            @instances = {}
-          end
+          enable_simple_cache
+          common_constructor :context, :content
 
           def instances
-            @content.keys.map { |k| by_logical_path(k) }
+            content.keys.map { |k| by_logical_path(k) }
           end
 
           def by_logical_path(key)
-            return @instances[key] if @instances.key?(key)
+            cached_instances[key].if_blank do
+              cached_instances[key] = build_by_logical_path(content.fetch(key))
+            end
+          end
 
-            h = @content[key]
-            parent_instance = h[:parent] ? by_logical_path(h[:parent]) : nil
-            path = ::EacLauncher::Paths::Logical.from_h(@context, h)
-            @instances[key] = ::Avm::Launcher::Instances::Base.instanciate(path, parent_instance)
+          private
+
+          def cached_instances_uncached
+            {}
+          end
+
+          def build_by_logical_path(instance_data)
+            parent_instance = instance_data[:parent] ? by_logical_path(instance_data[:parent]) : nil
+            path = ::EacLauncher::Paths::Logical.from_h(context, instance_data)
+            ::Avm::Launcher::Instances::Base.instanciate(path, parent_instance)
           end
         end
       end
