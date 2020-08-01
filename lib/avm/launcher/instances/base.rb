@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'base/cache'
+require 'avm/launcher/errors/non_project'
 
 module Avm
   module Launcher
@@ -16,7 +17,7 @@ module Avm
 
           def instanciate(path, parent)
             unless path.is_a?(::Avm::Launcher::Instances::Base)
-              raise "#{path} is not a project" unless path.project?
+              raise ::Avm::Launcher::Errors::NonProject, path unless path.project?
 
               path.extend(::Avm::Launcher::Instances::Base)
               path.parent = parent
