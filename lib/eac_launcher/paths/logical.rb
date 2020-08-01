@@ -68,7 +68,7 @@ module EacLauncher
       end
 
       def warped_uncached
-        if is_a?(::EacLauncher::Instances::Base)
+        if is_a?(::Avm::Launcher::Instances::Base)
           stereotypes.each do |s|
             return s.warp_class.new(self) if s.warp_class
           end

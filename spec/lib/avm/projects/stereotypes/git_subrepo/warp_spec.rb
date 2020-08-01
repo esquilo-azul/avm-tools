@@ -39,7 +39,7 @@ RSpec.describe Avm::Projects::Stereotypes::GitSubrepo::Warp do
       expect(@app1.rev_parse('subrepo/mylib')).to eq master_ref_previous
 
       instance = ::EacLauncher::Context.current.instance('/app1/mylib')
-      expect(instance).to be_a ::EacLauncher::Instances::Base
+      expect(instance).to be_a ::Avm::Launcher::Instances::Base
       warp = instance.warped
       expect(warp).to be_a ::Avm::Projects::Stereotypes::GitSubrepo::Warp
       wgit = ::EacLauncher::Git::Base.new(warp)

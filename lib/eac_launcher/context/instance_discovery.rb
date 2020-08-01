@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'ruby-progressbar'
-require 'eac_launcher/instances/base'
+require 'avm/launcher/instances/base'
 
 module EacLauncher
   class Context
@@ -22,7 +22,7 @@ module EacLauncher
         update_progress_format(path)
         on_rescued_path_instances(path) do |r|
           if path.project?
-            parent_instance = ::EacLauncher::Instances::Base.instanciate(path, parent_instance)
+            parent_instance = ::Avm::Launcher::Instances::Base.instanciate(path, parent_instance)
             r << path
           end
           children = path.children

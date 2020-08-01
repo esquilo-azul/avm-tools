@@ -13,7 +13,7 @@ RSpec.describe ::EacLauncher::Context do
   describe '#instance' do
     it 'returns with slash on begin' do
       expect(described_class.current.instance('/eac_launcher_stub'))
-        .to be_a(::EacLauncher::Instances::Base)
+        .to be_a(::Avm::Launcher::Instances::Base)
     end
 
     context 'subinstance mylib' do
@@ -33,12 +33,12 @@ RSpec.describe ::EacLauncher::Context do
         touch_commit(app, 'sub1/init.rb')
         app.execute!('subrepo', 'clone', @repos, 'sub1/mylib')
         sub = described_class.current.instance('/app/sub1')
-        expect(sub).to be_a(::EacLauncher::Instances::Base)
+        expect(sub).to be_a(::Avm::Launcher::Instances::Base)
         ::Avm::Projects::Stereotype.git_stereotypes.each do |s|
           expect(sub.stereotypes).not_to include(s)
         end
         instance = described_class.current.instance('/app/sub1/mylib')
-        expect(instance).to be_a(::EacLauncher::Instances::Base)
+        expect(instance).to be_a(::Avm::Launcher::Instances::Base)
         expect(instance.stereotypes).to include(::Avm::Projects::Stereotypes::GitSubrepo)
       end
 
@@ -48,12 +48,12 @@ RSpec.describe ::EacLauncher::Context do
         app.execute!('subtree', 'add', '-P', 'sub1/mylib', @repos, 'master')
         app.execute!('remote', 'add', 'mylib', @repos)
         sub = described_class.current.instance('/app/sub1')
-        expect(sub).to be_a(::EacLauncher::Instances::Base)
+        expect(sub).to be_a(::Avm::Launcher::Instances::Base)
         ::Avm::Projects::Stereotype.git_stereotypes.each do |s|
           expect(sub.stereotypes).not_to include(s)
         end
         instance = described_class.current.instance('/app/sub1/mylib')
-        expect(instance).to be_a(::EacLauncher::Instances::Base)
+        expect(instance).to be_a(::Avm::Launcher::Instances::Base)
         expect(instance.stereotypes).to include(::Avm::Projects::Stereotypes::GitSubtree)
       end
 
@@ -67,7 +67,7 @@ RSpec.describe ::EacLauncher::Context do
 
         it 'recognizes subtree instance' do
           i = described_class.current.instance('/subtree_main_app/mylib')
-          expect(i).to be_a(::EacLauncher::Instances::Base)
+          expect(i).to be_a(::Avm::Launcher::Instances::Base)
           expect(i.stereotypes).to include(::Avm::Projects::Stereotypes::GitSubtree)
         end
       end
@@ -101,7 +101,7 @@ RSpec.describe ::EacLauncher::Context do
             app.execute!('subrepo', 'clone', @repos, 'mylib')
             app.execute!('checkout', 'not_master') # HEAD: not_master
             expect(described_class.current.instance('/app/mylib'))
-              .to be_a(::EacLauncher::Instances::Base)
+              .to be_a(::Avm::Launcher::Instances::Base)
           end
         end
       end

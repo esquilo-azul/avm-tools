@@ -9,7 +9,7 @@ RSpec.describe ::Avm::Projects::Stereotypes::RubyGem::Publish do
 
     it 'dries run publish for Ruby Gems' do
       allow_any_instance_of(described_class).to receive(:gem_versions_uncached).and_return([])
-      expect(instance).to be_a ::EacLauncher::Instances::Base
+      expect(instance).to be_a ::Avm::Launcher::Instances::Base
       ::EacLauncher::Context.current.publish_options = {
         confirm: false, new: true, stereotype: 'RubyGem'
       }

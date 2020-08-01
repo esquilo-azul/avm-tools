@@ -62,7 +62,7 @@ RSpec.describe Avm::Projects::Stereotypes::GitSubrepo::Publish do
 
         def check_publish_status(status_key)
           instance = app_mylib_instance
-          expect(instance).to be_a(::EacLauncher::Instances::Base)
+          expect(instance).to be_a(::Avm::Launcher::Instances::Base)
           expect(instance.stereotypes).to include(::Avm::Projects::Stereotypes::GitSubrepo)
 
           status = ::EacLauncher::Publish::CheckResult.const_get("STATUS_#{status_key}".upcase)

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'eac_launcher/instances/base'
+require 'avm/launcher/instances/base'
 
-RSpec.describe ::EacLauncher::Instances::Base do
+RSpec.describe ::Avm::Launcher::Instances::Base do
   describe '#options' do
     context 'when instance is "eac_launcher_stub"' do
       let(:instance) { ::EacLauncher::Context.current.instance('/eac_launcher_stub') }

@@ -87,7 +87,7 @@ module EacLauncher
           h = @content[key]
           parent_instance = h[:parent] ? by_logical_path(h[:parent]) : nil
           path = ::EacLauncher::Paths::Logical.from_h(@context, h)
-          @instances[key] = ::EacLauncher::Instances::Base.instanciate(path, parent_instance)
+          @instances[key] = ::Avm::Launcher::Instances::Base.instanciate(path, parent_instance)
         end
       end
     end
