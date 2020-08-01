@@ -12,7 +12,7 @@ module Avm
           common_constructor :context, :content
 
           def instances
-            content.keys.map { |k| by_logical_path(k).instance }
+            content.keys.map { |k| by_logical_path(k).instance }.reject(&:blank?)
           end
 
           def by_logical_path(key)
