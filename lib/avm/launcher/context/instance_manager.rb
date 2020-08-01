@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'eac_ruby_utils/core_ext'
 require 'eac_launcher/publish/check_result'
 require('yaml')
 
@@ -7,11 +8,8 @@ module Avm
   module Launcher
     class Context
       class InstanceManager
-        include ::EacRubyUtils::SimpleCache
-
-        def initialize(context)
-          @context = context
-        end
+        enable_simple_cache
+        common_constructor :context
 
         def publish_state_set(instance, stereotype_name, check_status)
           data = cached_instances_file_content_uncached
@@ -32,11 +30,11 @@ module Avm
         end
 
         def search_instances
-          cache_instances(::EacLauncher::Context::InstanceDiscovery.new(@context).instances)
+          cache_instances(::EacLauncher::Context::InstanceDiscovery.new(context).instances)
         end
 
         def cached_instances
-          return nil if @context.recache
+          return nil if context.recache
           return nil unless cached_instances_file_content
 
           CachedInstances.new(cached_instances_file_content).instances
@@ -59,7 +57,7 @@ module Avm
         end
 
         def cache_file_path
-          ::File.join(@context.cache_root, 'instances.yml')
+          ::File.join(context.cache_root, 'instances.yml')
         end
 
         def pending_instance?(instance)
