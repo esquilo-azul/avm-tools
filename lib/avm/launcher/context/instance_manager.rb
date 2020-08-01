@@ -8,6 +8,7 @@ module Avm
   module Launcher
     class Context
       class InstanceManager
+        require_sub __FILE__
         enable_simple_cache
         common_constructor :context
 
@@ -67,26 +68,6 @@ module Avm
 
           data[instance.logical][:publish_state].any? do |_k, v|
             ::EacLauncher::Publish::CheckResult.pending_status?(v)
-          end
-        end
-
-        class CachedInstances
-          def initialize(content)
-            @content = content
-            @instances = {}
-          end
-
-          def instances
-            @content.keys.map { |k| by_logical_path(k) }
-          end
-
-          def by_logical_path(key)
-            return @instances[key] if @instances.key?(key)
-
-            h = @content[key]
-            parent_instance = h[:parent] ? by_logical_path(h[:parent]) : nil
-            path = ::EacLauncher::Paths::Logical.from_h(@context, h)
-            @instances[key] = ::Avm::Launcher::Instances::Base.instanciate(path, parent_instance)
           end
         end
       end
