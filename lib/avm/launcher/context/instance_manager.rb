@@ -38,7 +38,7 @@ module Avm
           return nil if context.recache
           return nil unless cached_instances_file_content
 
-          CachedInstances.new(cached_instances_file_content).instances
+          CachedInstances.new(self, cached_instances_file_content).instances
         end
 
         def cached_instances_file_content_uncached

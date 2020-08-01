@@ -7,7 +7,8 @@ module Avm
     class Context
       class InstanceManager
         class CachedInstances
-          def initialize(content)
+          def initialize(context, content)
+            @context = context
             @content = content
             @instances = {}
           end
