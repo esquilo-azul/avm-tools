@@ -32,7 +32,9 @@ module Avm
           end
 
           def stereotype_module
-            "Avm::Stereotypes::#{stereotype_name}".constantize
+            ::Avm::Stereotypes.const_get(stereotype_name)
+          rescue ::NameError
+            ::Avm.const_get(stereotype_name)
           end
 
           def stereotype_name
