@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 require 'active_support/core_ext/hash/indifferent_access'
+require 'avm/launcher/context/instance_manager'
 require 'eac_ruby_utils/simple_cache'
 require 'eac_ruby_utils/console/speaker'
 require 'eac_launcher/context/instance_discovery'
-require 'eac_launcher/context/instance_manager'
 require 'eac_launcher/context/settings'
 require 'eac_launcher/paths/logical'
 require 'eac_launcher/project'
@@ -39,7 +39,7 @@ module EacLauncher
       @settings = ::EacLauncher::Context::Settings.new(build_option(:settings_file))
       @cache_root = build_option(:cache_root)
       @publish_options = { new: false, confirm: false, stereotype: nil }
-      @instance_manager = ::EacLauncher::Context::InstanceManager.new(self)
+      @instance_manager = ::Avm::Launcher::Context::InstanceManager.new(self)
       @recache = false
     end
 
