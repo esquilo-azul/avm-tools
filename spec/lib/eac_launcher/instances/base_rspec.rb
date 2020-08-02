@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'eac_launcher/instances/base'
+
 RSpec.describe ::EacLauncher::Instances::Base do
   describe '#options' do
     it 'default options' do
