@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'avm/projects/stereotype'
 require 'eac_launcher/instances/error'
 
 module EacLauncher
