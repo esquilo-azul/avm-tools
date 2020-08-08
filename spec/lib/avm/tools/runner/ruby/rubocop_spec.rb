@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'avm/tools/runner'
-require 'eac_ruby_gems_utils/gem'
+require 'avm/patches/eac_ruby_gems_utils/gem'
 
 ::RSpec.describe ::Avm::Tools::Runner::Ruby::Rubocop do
   let(:fixtures_root) { ::Pathname.new(__dir__).expand_path.join('rubocop_spec_files') }
