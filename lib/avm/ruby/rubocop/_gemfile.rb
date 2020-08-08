@@ -14,7 +14,7 @@ module Avm
       end
 
       def rubocop_command_by_gemfile_path(path)
-        ::EacRubyGemsUtils::Gem.new(path).bundle('exec', 'rubocop')
+        ::EacRubyGemsUtils::Gem.new(path).bundle('exec', 'rubocop').chdir_root
       end
 
       def rubocop_gemfile?
