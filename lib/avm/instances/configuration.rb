@@ -17,15 +17,23 @@ module Avm
           internal_find_path(path.expand_path)
         end
 
-        private
-
-        def internal_find_path(absolute_pathname)
+        def find_in_path(path)
+          absolute_pathname = path.to_pathname.expand_path
           if absolute_pathname.directory?
             FILENAMES.each do |filename|
               file = absolute_pathname.join(filename)
               return new(file) if file.exist?
             end
           end
+          nil
+        end
+
+        private
+
+        def internal_find_path(absolute_pathname)
+          r = find_in_path(absolute_pathname)
+          return r if r.present?
+
           internal_find_path(absolute_pathname.dirname) unless absolute_pathname.root?
         end
       end
