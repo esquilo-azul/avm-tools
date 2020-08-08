@@ -64,7 +64,7 @@ module EacRubyGemsUtils
     end
 
     def gemfile_lock_path_uncached
-      root.join('Gemfile.lock')
+      gemfile_path.basename_sub { |b| "#{b}.lock" }
     end
 
     def gemspec_path_uncached
