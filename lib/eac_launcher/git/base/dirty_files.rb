@@ -6,7 +6,7 @@ module EacLauncher
   module Git
     class Base < ::EacLauncher::Paths::Real
       module DirtyFiles
-        delegate :dirty, to: :eac_git
+        delegate :dirty?, to: :eac_git
 
         def dirty_files
           eac_git.dirty_files.map do |df|
