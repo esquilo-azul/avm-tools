@@ -48,6 +48,10 @@ module EacGit
       ::EacGit::Local::Subrepo.new(self, subpath)
     end
 
+    def to_s
+      "#{self.class}[#{root_path}]"
+    end
+
     private
 
     def merge_base_pair(commit1, commit2)
