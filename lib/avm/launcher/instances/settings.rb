@@ -23,7 +23,27 @@ module Avm
         end
 
         def publishable?
-          data.key?[PUBLISHABLE_KEY] ? data[PUBLISHABLE_KEY] : true
+          !!publishable_value
+        end
+
+        def stereotype_publishable?(stereotype)
+          return publishable? unless publishable_value.is_a?(::Hash)
+
+          parse_publishable_value(publishable_value[stereotype.stereotype_name], true)
+        end
+
+        private
+
+        def publishable_value
+          parse_publishable_value(data[PUBLISHABLE_KEY], false)
+        end
+
+        def parse_publishable_value(value, hash_to_true)
+          return value.with_indifferent_access if !hash_to_true && value.is_a?(::Hash)
+          return true if value.nil? || value == true
+          return false if value == false
+
+          !!value
         end
       end
     end
