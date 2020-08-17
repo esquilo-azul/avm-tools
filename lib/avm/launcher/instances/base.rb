@@ -80,6 +80,7 @@ module Avm
 
         def publish?(stereotype)
           return false unless stereotype.publish_class
+          return false unless options.stereotype_publishable?(stereotype)
 
           filter = ::EacLauncher::Context.current.publish_options[:stereotype]
           filter.blank? ? true : filter == stereotype.name.demodulize
