@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
+require 'avm/launcher/instances/settings'
 require 'eac_ruby_utils/simple_cache'
 require 'yaml'
-require 'eac_launcher/instances/settings'
 
 module EacLauncher
   class Context
@@ -18,7 +18,7 @@ module EacLauncher
       end
 
       def instance_settings(instance)
-        ::EacLauncher::Instances::Settings.new(value(['Instances', instance.name]))
+        ::Avm::Launcher::Instances::Settings.new(value(['Instances', instance.name]))
       end
 
       private
