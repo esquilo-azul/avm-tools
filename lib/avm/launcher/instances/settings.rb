@@ -1,23 +1,29 @@
 # frozen_string_literal: true
 
+require 'eac_ruby_utils/core_ext'
+
 module Avm
   module Launcher
     module Instances
       class Settings
-        def initialize(data)
-          @data = ActiveSupport::HashWithIndifferentAccess.new(data.is_a?(Hash) ? data : {})
+        DEFAULT_CURRENT_REVISION = 'origin/master'
+        DEFAULT_PUBLISH_REMOTE = 'publish'
+        PUBLISHABLE_KEY = :publishable
+
+        common_constructor :data do
+          self.data = (data.is_a?(Hash) ? data : {}).with_indifferent_access
         end
 
         def git_current_revision
-          @data[__method__] || 'origin/master'
+          data[__method__] || DEFAULT_CURRENT_REVISION
         end
 
         def git_publish_remote
-          @data[__method__] || 'publish'
+          data[__method__] || DEFAULT_PUBLISH_REMOTE
         end
 
         def publishable?
-          @data.key?(:publishable) ? @data[:publishable] : true
+          data.key?[PUBLISHABLE_KEY] ? data[PUBLISHABLE_KEY] : true
         end
       end
     end
