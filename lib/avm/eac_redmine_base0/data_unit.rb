@@ -21,6 +21,10 @@ module Avm
         url('/backup/export')
       end
 
+      def import_url
+        url('/backup/import.json')
+      end
+
       def url(path)
         uri = ::Addressable::URI.parse(instance.read_entry('web.url')) + path
         uri.query_values = { key: instance.read_entry('admin.api_key') }
