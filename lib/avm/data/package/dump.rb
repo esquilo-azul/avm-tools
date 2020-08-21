@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'avm/files/rotate'
 require 'eac_ruby_utils/core_ext'
 require 'minitar'
 
