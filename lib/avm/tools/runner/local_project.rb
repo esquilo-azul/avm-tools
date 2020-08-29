@@ -17,6 +17,11 @@ module Avm
           subcommands
         end
 
+        def instance_banner
+          infov 'Instance', instance
+          infov 'Stereotypes', instance.stereotypes.map(&:label).join(', ')
+        end
+
         private
 
         def instance_uncached
