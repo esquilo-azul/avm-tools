@@ -13,6 +13,8 @@ module Avm
         source_stereotypes_mixins
       end
 
+      delegate :to_s, to: :path
+
       # Backward compatibility with [EacLauncher::Paths::Logical].
       # @return [EacLauncher::Paths::Real].
       def real
