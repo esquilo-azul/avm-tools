@@ -37,6 +37,7 @@ module Avm
           local_project_mixin: ::Module,
           publish: ::Class,
           update: ::Class,
+          version_bump: ::Class,
           warp: ::Class
         }.each do |name, is_a|
           define_method "#{name}_#{is_a.name.underscore}" do
