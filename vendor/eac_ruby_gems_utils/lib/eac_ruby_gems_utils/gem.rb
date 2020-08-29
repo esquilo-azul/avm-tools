@@ -54,7 +54,7 @@ module EacRubyGemsUtils
     end
 
     def version
-      /VERSION\s*=\s*[\'\"]([^\'\"]+)[\'\"]/.if_match(version_file.read) { |m| m[1] }
+      version_file.value
     end
 
     private
@@ -76,6 +76,10 @@ module EacRubyGemsUtils
     end
 
     def version_file_uncached
+      ::EacRubyGemsUtils::Gem::VersionFile.new(version_file_path)
+    end
+
+    def version_file_path_uncached
       root.join('lib', *namespace_parts, 'version.rb')
     end
   end
