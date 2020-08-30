@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'avm/instances/configuration'
 require 'eac_launcher/paths/real'
 require 'eac_ruby_utils/core_ext'
 require 'avm/projects/stereotypes'
@@ -22,6 +23,11 @@ module Avm
       end
 
       private
+
+      # @return [Avm::Instances::Configuration]
+      def configuration_uncached
+        ::Avm::Instances::Configuration.find_in_path(path)
+      end
 
       def stereotypes_uncached
         ::Avm::Projects::Stereotypes.list.select { |s| s.match?(self) }
