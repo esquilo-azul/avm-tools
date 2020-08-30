@@ -47,14 +47,14 @@ module Avm
         private
 
         def sub_constant(constant_name, is_a)
+          return nil unless const_defined?(constant_name)
+
           constant = const_get(constant_name)
           unless is_a.if_present(true) { |v| constant.is_a?(v) }
             raise("#{constant} is not a #{is_a}")
           end
 
           constant
-        rescue NameError
-          nil
         end
       end
     end
