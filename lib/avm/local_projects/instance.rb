@@ -4,6 +4,7 @@ require 'avm/instances/configuration'
 require 'eac_launcher/paths/real'
 require 'eac_ruby_utils/core_ext'
 require 'avm/projects/stereotypes'
+require 'i18n'
 
 module Avm
   module LocalProjects
@@ -15,6 +16,10 @@ module Avm
       end
 
       delegate :to_s, to: :path
+
+      def locale
+        configuration.if_present(&:locale) || ::I18n.default_locale
+      end
 
       # Backward compatibility with [EacLauncher::Paths::Logical].
       # @return [EacLauncher::Paths::Real].
