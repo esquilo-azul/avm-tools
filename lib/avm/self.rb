@@ -10,11 +10,15 @@ module Avm
 
     class << self
       def application
-        @application ||= ::EacRubyBase0::Application.new(::File.expand_path('../..', __dir__))
+        @application ||= ::EacRubyBase0::Application.new(root.to_path)
       end
 
       def instance
         @instance ||= ::Avm::Self::Instance.by_id('avm-tools_self')
+      end
+
+      def root
+        ::Pathname.new('../..').expand_path(__dir__)
       end
     end
   end
