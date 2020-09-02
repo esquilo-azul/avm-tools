@@ -32,7 +32,7 @@ module Avm
             return if parent_git_warped.rev_parse(subrepo_parent_hash) &&
                       parent_git_warped.descendant?('HEAD', subrepo_parent_hash)
 
-            raise EacLauncher::Instances::Errors::Base,
+            raise Avm::Launcher::Errors::Base,
                   "Subrepo parent hash \"#{subrepo_parent_hash}\"" \
                   " not found in \"#{parent_git_warped}\""
           end
@@ -42,7 +42,7 @@ module Avm
             h = data['Pull Parent']
             return h if h.present?
 
-            raise EacLauncher::Instances::Errors::Base, "Subrepo parent hash is blank: #{data}"
+            raise Avm::Launcher::Errors::Base, "Subrepo parent hash is blank: #{data}"
           end
 
           def init_aux
