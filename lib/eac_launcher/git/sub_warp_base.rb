@@ -12,7 +12,7 @@ module EacLauncher
         r = find_parent_instance(instance.parent)
         return r if r
 
-        ::EacLauncher::Instances::Errors::Base.new('Git parent not found')
+        ::Avm::Launcher::Errors::Base.new('Git parent not found')
       end
 
       def find_parent_instance(current)
