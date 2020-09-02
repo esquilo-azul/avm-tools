@@ -54,7 +54,7 @@ module Avm
 
       def source_stereotypes_mixins
         stereotypes.each do |s|
-          s.local_project_mixin_module.if_present { |v| extend(v) }
+          s.local_project_mixin_module.if_present { |v| singleton_class.include(v) }
         end
       end
     end
