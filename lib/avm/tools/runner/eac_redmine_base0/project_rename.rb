@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'avm/rails/runners/runner'
 require 'eac_cli/default_runner'
 
 module Avm
