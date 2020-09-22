@@ -19,6 +19,12 @@ PATH
       ruby-progressbar (~> 1.10, >= 1.10.1)
 
 PATH
+  remote: vendor/eac_cli
+  specs:
+    eac_cli (0.6.0)
+      eac_ruby_utils (~> 0.45)
+
+PATH
   remote: vendor/eac_docker
   specs:
     eac_docker (0.2.0)
@@ -82,8 +88,6 @@ GEM
     curb (0.9.10)
     diff-lcs (1.4.4)
     docopt (0.6.1)
-    eac_cli (0.4.0)
-      eac_ruby_utils (~> 0.23)
     eac_ruby_gem_support (0.1.2)
       rspec (~> 3.9)
       rubocop (~> 0.80.1)
@@ -151,6 +155,7 @@ PLATFORMS
 
 DEPENDENCIES
   avm-tools!
+  eac_cli!
   eac_docker!
   eac_git!
   eac_ruby_base0!
