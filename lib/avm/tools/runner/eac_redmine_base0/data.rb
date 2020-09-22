@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'avm/stereotypes/eac_webapp_base0/runner/data'
+require 'avm/eac_webapp_base0/runner/data'
 require 'eac_ruby_utils/console/docopt_runner'
 
 module Avm

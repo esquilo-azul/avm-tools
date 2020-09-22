@@ -2,12 +2,12 @@
 
 require 'avm/eac_redmine_base0/data_unit'
 require 'avm/stereotypes/eac_ubuntu_base0/docker_image'
-require 'avm/stereotypes/eac_webapp_base0/instance'
+require 'avm/eac_webapp_base0/instance'
 require 'avm/stereotypes/rails/instance'
 
 module Avm
   module EacRedmineBase0
-    class Instance < ::Avm::Stereotypes::EacWebappBase0::Instance
+    class Instance < ::Avm::EacWebappBase0::Instance
       include ::Avm::Stereotypes::Rails::Instance
 
       FILES_UNITS = { files: 'files' }.freeze

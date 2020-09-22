@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 require 'avm/instances/entry_keys'
-require 'avm/stereotypes/eac_webapp_base0/instance'
+require 'avm/eac_webapp_base0/instance'
 
 module Avm
   module Stereotypes
     module EacWordpressBase0
-      class Instance < ::Avm::Stereotypes::EacWebappBase0::Instance
+      class Instance < ::Avm::EacWebappBase0::Instance
         FILES_UNITS = { uploads: 'wp-content/uploads', themes: 'wp-content/themes' }.freeze
 
         def database_unit

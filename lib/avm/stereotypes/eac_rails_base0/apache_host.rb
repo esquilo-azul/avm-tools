@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require 'avm/stereotypes/eac_webapp_base0/apache_host'
+require 'avm/eac_webapp_base0/apache_host'
 
 module Avm
   module Stereotypes
     module EacRailsBase0
-      class ApacheHost < ::Avm::Stereotypes::EacWebappBase0::ApacheHost
+      class ApacheHost < ::Avm::EacWebappBase0::ApacheHost
         def document_root
           "#{instance.read_entry(:fs_path)}/public"
         end
