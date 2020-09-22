@@ -12,7 +12,7 @@ module Avm
           include ::EacRubyUtils::Console::Speaker
 
           DOC = <<~DOCOPT
-            Deploy for EacRailsBase0 instance.
+            Configure Apache virtual host for EacRailsBase0 instance.
 
             Usage:
               __PROGRAM__ [options]
