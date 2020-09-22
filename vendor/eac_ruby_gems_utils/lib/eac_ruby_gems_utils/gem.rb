@@ -2,6 +2,7 @@
 
 require 'eac_ruby_utils/core_ext'
 require 'eac_ruby_utils/envs'
+require 'rubygems'
 
 module EacRubyGemsUtils
   class Gem
@@ -20,6 +21,11 @@ module EacRubyGemsUtils
 
     def bundle(*args)
       ::EacRubyGemsUtils::Gem::Command.new(self, %w[bundle] + args).envvar_gemfile
+    end
+
+    # @return A [Pathname] array with relative paths from root listed in gemspec's .file directive.
+    def files
+      gemspec.files.map(&:to_pathname)
     end
 
     def gemfile_lock_gem_version(gem_name)
@@ -65,6 +71,10 @@ module EacRubyGemsUtils
 
     def gemfile_lock_path_uncached
       gemfile_path.basename_sub { |b| "#{b}.lock" }
+    end
+
+    def gemspec_uncached
+      ::Gem::Specification.load(gemspec_path.to_path)
     end
 
     def gemspec_path_uncached

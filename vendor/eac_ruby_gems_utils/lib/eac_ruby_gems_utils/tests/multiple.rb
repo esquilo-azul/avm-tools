@@ -7,6 +7,7 @@ require 'eac_ruby_utils/core_ext'
 module EacRubyGemsUtils
   module Tests
     class Multiple
+      require_sub __FILE__
       enable_console_speaker
       enable_simple_cache
       common_constructor :gems, :options, default: [{}]
@@ -26,14 +27,9 @@ module EacRubyGemsUtils
         decorated_gems.flat_map(&:tests)
       end
 
-      def bundle_all_gems
-        infom 'Bundling all gems...'
-        decorated_gems.each do |gem|
-          next unless gem.gemfile_path.exist?
-
-          infov 'Bundle install', gem
-          gem.bundle.execute!
-        end
+      def prepare_all_gems
+        infom 'Preparing all gems...'
+        decorated_gems.each(&:prepare)
       end
 
       def decorated_gems_uncached
@@ -61,7 +57,7 @@ module EacRubyGemsUtils
 
       def run
         start_banner
-        bundle_all_gems
+        prepare_all_gems
         test_all_gems
         final_results_banner
       end
@@ -74,31 +70,6 @@ module EacRubyGemsUtils
         infom 'Running tests...'
         all_tests.each do |test|
           infov test, Result.new(test.result).tag
-        end
-      end
-
-      class DecoratedGem < ::SimpleDelegator
-        def tests
-          [::EacRubyGemsUtils::Tests::Minitest.new(__getobj__),
-           ::EacRubyGemsUtils::Tests::Rspec.new(__getobj__)]
-        end
-      end
-
-      class Result
-        common_constructor :result
-
-        COLORS = {
-          ::EacRubyGemsUtils::Tests::Base::RESULT_FAILED => :red,
-          ::EacRubyGemsUtils::Tests::Base::RESULT_NONEXISTENT => :white,
-          ::EacRubyGemsUtils::Tests::Base::RESULT_SUCCESSFUL => :green
-        }.freeze
-
-        def tag
-          result.to_s.send(color)
-        end
-
-        def color
-          COLORS.fetch(result)
         end
       end
     end
