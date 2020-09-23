@@ -12,11 +12,13 @@ module Avm
         stereotype_name = name.deconstantize.demodulize
         runner_definition do
           desc "Configure Apache virtual host for #{stereotype_name} instance."
+          bool_opt '-c', '--certbot', 'Install certbot.'
         end
 
         def run
           options
-          result = stereotype_apache_host_class.new(context(:instance)).run
+          result = stereotype_apache_host_class.new(context(:instance),
+                                                    stereotype_apache_host_options).run
           if result.error?
             fatal_error result.to_s
           else
@@ -26,6 +28,10 @@ module Avm
 
         def stereotype_apache_host_class
           "#{context(:instance).class.name.deconstantize}::ApacheHost".constantize
+        end
+
+        def stereotype_apache_host_options
+          { certbot: options.fetch('--certbot') }
         end
       end
     end
