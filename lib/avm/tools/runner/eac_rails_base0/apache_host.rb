@@ -2,7 +2,7 @@
 
 require 'eac_ruby_utils/console/docopt_runner'
 require 'eac_ruby_utils/console/speaker'
-require 'avm/stereotypes/eac_rails_base0/apache_host'
+require 'avm/eac_rails_base0/apache_host'
 
 module Avm
   module Tools
@@ -23,7 +23,7 @@ module Avm
           DOCOPT
 
           def run
-            result = ::Avm::Stereotypes::EacRailsBase0::ApacheHost.new(
+            result = ::Avm::EacRailsBase0::ApacheHost.new(
               context(:instance)
             ).run
             if result.error?
