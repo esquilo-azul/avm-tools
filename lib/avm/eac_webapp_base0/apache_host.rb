@@ -10,7 +10,7 @@ module Avm
     class ApacheHost
       enable_console_speaker
       enable_simple_cache
-      common_constructor :instance
+      common_constructor :instance, :options, default: [{}]
 
       def run
         write_available_no_ssl_site
@@ -28,6 +28,10 @@ module Avm
                                          .apply(EntriesReader.new(self, instance))
       end
 
+      def ssl?
+        options[:certbot]
+      end
+
       private
 
       def apache_uncached
@@ -40,6 +44,8 @@ module Avm
       end
 
       def enable_ssl_site
+        return unless ssl?
+
         infom 'Enabling SSL site...'
         ssl_site.enable
       end
@@ -59,6 +65,8 @@ module Avm
       end
 
       def run_certbot
+        return unless ssl?
+
         infom 'Running Certbot...'
         instance.host_env.command(
           'sudo', 'certbot', '--apache', '--domain', instance.read_entry('web.hostname'),
