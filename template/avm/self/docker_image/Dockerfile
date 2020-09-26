@@ -1,4 +1,4 @@
-FROM ruby:2.4
+FROM ruby:2.5
 RUN gem install avm-tools
 
 RUN apt-get update && apt-get -y --no-install-recommends install \
