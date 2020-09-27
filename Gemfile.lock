@@ -43,7 +43,7 @@ PATH
     eac_ruby_base0 (0.1.0)
       eac_cli (~> 0.7)
       eac_ruby_gems_utils (~> 0.7, >= 0.7.2)
-      eac_ruby_utils (~> 0.39)
+      eac_ruby_utils (~> 0.46)
 
 PATH
   remote: vendor/eac_ruby_gems_utils
