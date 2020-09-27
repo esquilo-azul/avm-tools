@@ -10,11 +10,7 @@ module EacRubyGemsUtils
       VERSION_LINE_PATTERN = /\A(\s*)VERSION\s*=\s*[\'\"]([^\'\"]+)[\'\"](\s*)\z/.freeze
 
       def value
-        path.read.each_line do |line|
-          VERSION_LINE_PATTERN.if_match(line.rstrip, false) do |m|
-            ::Gem::Version.new(m[2])
-          end
-        end
+        path.read.each_line.lazy.map { |line| line_value(line) }.find { |v| v }
       end
 
       def value=(new_value)
@@ -22,6 +18,11 @@ module EacRubyGemsUtils
       end
 
       private
+
+      # @return Version found in line, nil otherwise.
+      def line_value(line)
+        VERSION_LINE_PATTERN.if_match(line.rstrip, false) { |m| ::Gem::Version.new(m[2]) }
+      end
 
       def new_value_content(new_value)
         path.read.each_line
