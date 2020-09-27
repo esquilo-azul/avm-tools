@@ -10,6 +10,7 @@ module Avm
         def git_subrepos_result
           return ::Avm::Result.error('Unclean workspace') unless clean_workspace?
 
+          infom 'Checking Git subrepos...'
           r = ::Avm::Git::SubrepoChecks.new(::EacGit::Local.new(@git)).add_all_subrepos
           r.check_remote = true
           r.result
