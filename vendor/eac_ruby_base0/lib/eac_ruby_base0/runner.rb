@@ -28,8 +28,12 @@ module EacRubyBase0
       end
     end
 
+    def application_version
+      context(:application).version.to_s
+    end
+
     def show_version
-      out(context(:application).version + "\n")
+      out("#{application_version}\n")
     end
   end
 end
