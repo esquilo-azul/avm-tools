@@ -8,6 +8,8 @@
 # Exit on any errors:
 set -e
 
+export FILTER_BRANCH_SQUELCH_WARNING=1
+
 # Import Bash+ helper functions:
 SOURCE="$BASH_SOURCE"
 while [[ -h $SOURCE ]]; do
@@ -549,7 +551,7 @@ subrepo:pull() {
     fi
   else
     o "Merge in changes from $refs_subrepo_fetch"
-    FAIL=false OUT=true RUN git merge "$refs_subrepo_fetch"
+    FAIL=false RUN git merge "$refs_subrepo_fetch"
     if ! OK; then
       say "The \"git merge\" command failed:"
       say
@@ -765,8 +767,8 @@ subrepo:branch() {
         o "Create with content"
         local PREVIOUS_IFS=$IFS
         IFS=$'\n'
-        local author_info=( $(git log -1 --format=%ad%n%ae%n%an "$commit") )
-        local commiter_info=( $(git log -1 --format=%cd%n%ce%n%cn "$commit") )
+        local author_info=( $(git log -1 --date=default --format=%ad%n%ae%n%an "$commit") )
+        local commiter_info=( $(git log -1 --date=default --format=%cd%n%ce%n%cn "$commit") )
         IFS=$PREVIOUS_IFS
 
         # When we create new commits we leave the author information unchanged
@@ -774,7 +776,7 @@ subrepo:branch() {
         # This should be analog how cherrypicking is handled allowing git
         # to store both the original author but also the responsible committer
         # that created the local version of the commit and pushed it.
-        prev_commit=$(git log -n 1 --format=%B "$commit" |
+        prev_commit=$(git log -n 1 --date=default --format=%B "$commit" |
           GIT_AUTHOR_DATE="${author_info[0]}" \
           GIT_AUTHOR_EMAIL="${author_info[1]}" \
           GIT_AUTHOR_NAME="${author_info[2]}" \
@@ -959,7 +961,7 @@ subrepo:clean() {
 
   o "Clean $subdir"
   git:remove-worktree
-  if [[ -e .git/$ref ]]; then
+  if git:branch-exists "$branch"; then
     o "Remove branch '$branch'."
     RUN git update-ref -d "$ref"
     clean_list+=("branch '$branch'")
@@ -1505,7 +1507,7 @@ assert-subdir-ready-for-init() {
     error "The subdir '$subdir' is already a subrepo."
   fi
   # Check that subdir is part of the repo
-  if [[ -z $(git log -1 -- $subdir) ]]; then
+  if [[ -z $(git log -1 --date=default -- $subdir) ]]; then
     error "The subdir '$subdir' is not part of this repo."
   fi
 }
@@ -1535,7 +1537,7 @@ get-all-subrepos() {
 add-subrepo() {
   if ! $ALL_wanted; then
     for path in "${subrepos[@]}"; do
-      [[ $1 =~ ^$path ]] && return
+      [[ $1/ =~ ^$path/ ]] && return
     done
   fi
   subrepos+=("$1")
