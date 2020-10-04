@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 require 'eac_ruby_utils/core_ext'
-require 'eac_ruby_utils/require_sub'
 require 'avm/configs'
-::EacRubyUtils.require_sub(__FILE__)
+require 'avm/instances/entry'
 
 module Avm
   module Instances
@@ -40,7 +39,7 @@ module Avm
       private
 
       def entry(suffix, options)
-        ::Avm::Instances::Entries::EntryReader.new(self, suffix, options)
+        ::Avm::Instances::Entry.new(self, suffix, options)
       end
     end
   end
