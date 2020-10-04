@@ -7,6 +7,10 @@ require 'avm/instances/entry'
 module Avm
   module Instances
     module Entries
+      def entry(suffix, options)
+        ::Avm::Instances::Entry.new(self, suffix, options)
+      end
+
       def path_prefix
         @path_prefix ||= [id].freeze
       end
@@ -34,12 +38,6 @@ module Avm
 
       def other_entry_value(instance_id, entry_suffix)
         ::Avm::Instances::Base.by_id(instance_id).read_entry_optional(entry_suffix)
-      end
-
-      private
-
-      def entry(suffix, options)
-        ::Avm::Instances::Entry.new(self, suffix, options)
       end
     end
   end
