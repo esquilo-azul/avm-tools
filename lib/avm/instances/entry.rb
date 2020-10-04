@@ -38,6 +38,10 @@ module Avm
       def value
         optional_value || read
       end
+
+      def write(value)
+        ::Avm.configs.configs.write_entry(full_path, value)
+      end
     end
   end
 end
