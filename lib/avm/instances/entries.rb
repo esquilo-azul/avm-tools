@@ -7,7 +7,7 @@ require 'avm/instances/entry'
 module Avm
   module Instances
     module Entries
-      def entry(suffix, options)
+      def entry(suffix, options = {})
         ::Avm::Instances::Entry.new(self, suffix, options)
       end
 
