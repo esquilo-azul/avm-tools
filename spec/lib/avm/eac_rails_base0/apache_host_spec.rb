@@ -7,13 +7,12 @@ RSpec.describe ::Avm::EacRailsBase0::ApacheHost do
   describe '#no_ssl_site_content' do
     let(:instance) { ::Avm::EacRailsBase0::Instance.by_id('stub-app_0') }
     let(:apache_host) { described_class.new(instance) }
-    let(:expected_content) do
-      ::File.read(::File.join(__dir__, 'apache_host_spec_no_ssl_content.conf'))
-    end
+    let(:fixtures_dir) { ::Pathname.new('apache_host_spec_files').expand_path(__dir__) }
+    let(:expected_content) { fixtures_dir.join('apache_host_spec_no_ssl_content.conf').read }
 
     before do
-      ENV['STUBAPP_0_FS_PATH'] = '/path/to/stub-app_0'
-      ENV['STUBAPP_0_WEB_URL'] = 'http://stubapp.net'
+      instance.entry('fs_path').write('/path/to/stub-app_0')
+      instance.entry('web.url').write('http://stubapp.net')
     end
 
     it do
