@@ -42,7 +42,8 @@ module Avm
       def touch_restart_file
         infom 'Touching restart file...'
         instance.host_env.command(
-          'touch', ::File.join(instance.read_entry(:fs_path), 'tmp', 'restart.txt')
+          'touch', ::File.join(instance.read_entry(::Avm::Instances::EntryKeys::FS_PATH),
+                               'tmp', 'restart.txt')
         ).system!
       end
     end

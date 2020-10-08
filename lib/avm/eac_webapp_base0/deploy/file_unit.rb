@@ -27,7 +27,8 @@ module Avm
         end
 
         def target_path
-          ::File.join(instance.read_entry(:fs_path), fs_path_subpath.to_s)
+          ::File.join(instance.read_entry(::Avm::Instances::EntryKeys::FS_PATH),
+                      fs_path_subpath.to_s)
         end
 
         def link_source_target

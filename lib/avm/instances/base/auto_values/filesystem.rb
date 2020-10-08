@@ -5,8 +5,10 @@ module Avm
     class Base
       module AutoValues
         module Filesystem
+          FS_PATH_KEY = :fs_path
+
           def auto_fs_path
-            inherited_entry_value(:host_id, :fs_path) { |v| v + '/' + id }
+            inherited_entry_value(:host_id, FS_PATH_KEY) { |v| v + '/' + id }
           end
 
           def auto_data_fs_path

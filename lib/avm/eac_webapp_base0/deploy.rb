@@ -32,7 +32,7 @@ module Avm
       def build_git_commit
         ::Avm::Git::Commit.new(git, commit_sha1).deploy_to_env_path(
           instance.host_env,
-          instance.read_entry(:fs_path)
+          instance.read_entry(::Avm::Instances::EntryKeys::FS_PATH)
         ).variables_source_set(instance)
       end
 
@@ -95,7 +95,7 @@ module Avm
       end
 
       def git_repository_path
-        instance.source_instance.read_entry(:fs_path)
+        instance.source_instance.read_entry(::Avm::Instances::EntryKeys::FS_PATH)
       end
     end
   end

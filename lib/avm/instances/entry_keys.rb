@@ -12,6 +12,8 @@ module Avm
           const_set(key.gsub('.', '_').upcase, key)
         end
       end
+
+      FS_PATH = 'fs_path'
     end
   end
 end
