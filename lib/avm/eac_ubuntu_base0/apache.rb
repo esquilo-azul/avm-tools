@@ -17,7 +17,7 @@ module Avm
       end
 
       def site(name)
-        ::Avm::EacUbuntuBase0::Apache::Resource.new(self, name)
+        ::Avm::EacUbuntuBase0::Apache::Resource.new(self, :site, :sites, name)
       end
     end
   end

@@ -6,10 +6,10 @@ module Avm
   module EacUbuntuBase0
     class Apache
       class Resource
-        common_constructor :apache, :name
+        common_constructor :apache, :type, :directory_prefix, :name
 
         def available_path
-          ::File.join(apache.etc_root, 'sites-available', "#{name}.conf")
+          ::File.join(apache.etc_root, "#{directory_prefix}-available", "#{name}.conf")
         end
 
         def available?
@@ -17,15 +17,15 @@ module Avm
         end
 
         def disable
-          apache.host_env.command('sudo', 'a2dissite', name).execute!
+          apache.host_env.command('sudo', "a2dis#{type}", name).execute!
         end
 
         def enable
-          apache.host_env.command('sudo', 'a2ensite', name).execute!
+          apache.host_env.command('sudo', "a2en#{type}", name).execute!
         end
 
         def enabled_path
-          ::File.join(apache.etc_root, 'sites-enabled', "#{name}.conf")
+          ::File.join(apache.etc_root, "#{directory_prefix}-enabled", "#{name}.conf")
         end
 
         def enabled?
