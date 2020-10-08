@@ -5,7 +5,7 @@ require 'eac_ruby_utils/core_ext'
 module Avm
   module EacUbuntuBase0
     class Apache
-      class Site
+      class Resource
         common_constructor :apache, :name
 
         def available_path
