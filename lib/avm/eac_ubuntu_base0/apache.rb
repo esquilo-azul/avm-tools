@@ -16,8 +16,10 @@ module Avm
         host_env.command('sudo', 'service', 'apache2', command)
       end
 
-      def site(name)
-        ::Avm::EacUbuntuBase0::Apache::Resource.new(self, :site, :sites, name)
+      { conf: :conf, site: :sites }.each do |type, directory_prefix|
+        define_method type do |name|
+          ::Avm::EacUbuntuBase0::Apache::Resource.new(self, type, directory_prefix, name)
+        end
       end
     end
   end
