@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 
 require 'eac_ruby_utils/core_ext'
-require 'eac_ruby_utils/require_sub'
-::EacRubyUtils.require_sub(__FILE__)
 
 module Avm
   module EacUbuntuBase0
     class Apache
+      require_sub __FILE__
       common_constructor :host_env
 
       def etc_root
