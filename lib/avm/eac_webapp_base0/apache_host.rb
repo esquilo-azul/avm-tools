@@ -2,7 +2,7 @@
 
 require 'eac_ruby_utils/core_ext'
 require 'avm/patches/object/template'
-require 'avm/stereotypes/eac_ubuntu_base0/apache'
+require 'avm/eac_ubuntu_base0/apache'
 require 'avm/patches/object/template'
 
 module Avm
@@ -35,7 +35,7 @@ module Avm
       private
 
       def apache_uncached
-        ::Avm::Stereotypes::EacUbuntuBase0::Apache.new(instance.host_env)
+        ::Avm::EacUbuntuBase0::Apache.new(instance.host_env)
       end
 
       def enable_no_ssl_site
