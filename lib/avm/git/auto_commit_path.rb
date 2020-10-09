@@ -10,7 +10,7 @@ module Avm
         self.path = path.to_pathname
       end
 
-      CLASS_NAME_PATTERNS = [%r{lib/(.+)\.rb\z}, %r{app/[^/]+/(.+)\.rb\z}].freeze
+      CLASS_NAME_PATTERNS = [%r{lib/((?!.*/lib/).+)\.rb\z}, %r{app/[^/]+/(.+)\.rb\z}].freeze
 
       def run
         banner

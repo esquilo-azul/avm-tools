@@ -10,8 +10,7 @@ RSpec.describe ::Avm::Git::AutoCommitPath, git: true do
   describe '#class_name' do
     {
       'app/models/mynamespace/the_class.rb' => 'Mynamespace::TheClass',
-      'lib/ruby/lib/cliutils/eac_redmine_base0/activity.rb' =>
-        'Ruby::Lib::Cliutils::EacRedmineBase0::Activity'
+      'lib/ruby/lib/cliutils/eac_redmine_base0/activity.rb' => 'Cliutils::EacRedmineBase0::Activity'
     }.each do |path, expected_class_name|
       context "when path is \"#{path}\"" do
         let(:instance) { described_class.new(git, "#{git}/#{path}") }
