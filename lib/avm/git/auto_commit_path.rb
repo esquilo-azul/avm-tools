@@ -6,7 +6,9 @@ module Avm
   module Git
     class AutoCommitPath
       enable_console_speaker
-      common_constructor :git, :path
+      common_constructor :git, :path do
+        self.path = path.to_pathname
+      end
 
       CLASS_NAME_PATTERNS = [%r{lib/(.+)\.rb\z}, %r{app/[^/]+/(.+)\.rb\z}].freeze
 
