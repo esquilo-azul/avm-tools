@@ -16,10 +16,6 @@ module Avm
       def instance
         @instance ||= ::Avm::Self::Instance.by_id('avm-tools_self')
       end
-
-      def root
-        ::Pathname.new('../..').expand_path(__dir__)
-      end
     end
   end
 end

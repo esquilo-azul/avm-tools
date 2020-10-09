@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'avm/self'
+require 'avm/self/root'
 require 'eac_ruby_utils/patches/object/template'
 
 ::EacRubyUtils::Templates::Searcher.default.included_paths <<

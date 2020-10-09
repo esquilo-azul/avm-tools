@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'avm/self'
+require 'avm/self/root'
 require 'i18n'
 
 module Avm
