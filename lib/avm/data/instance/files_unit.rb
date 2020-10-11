@@ -31,6 +31,7 @@ module Avm
 
         def clear_files
           infom "Removing all files under #{files_path}..."
+          instance.host_env.command('mkdir', '-p', files_path).execute!
           instance.host_env.command('find', files_path, '-mindepth', 1, '-delete').execute!
         end
       end
