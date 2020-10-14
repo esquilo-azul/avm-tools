@@ -11,8 +11,9 @@ module EacRubyGemsUtils
 
     GEMSPEC_EXTNAME = '.gemspec'
 
-    common_constructor :root do
+    common_constructor :root, :host_env, default: [nil] do
       @root = ::Pathname.new(root).expand_path
+      self.host_env ||= ::EacRubyUtils::Envs.local
     end
 
     def to_s

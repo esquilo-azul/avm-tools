@@ -11,7 +11,7 @@ module EacRubyGemsUtils
 
       def initialize(gem, command_args, extra_options = {})
         @gem = gem
-        super(command_args, extra_options)
+        super(command_args, extra_options.merge(host_env: gem.host_env))
       end
 
       # Changes current directory to the gem's directory.
