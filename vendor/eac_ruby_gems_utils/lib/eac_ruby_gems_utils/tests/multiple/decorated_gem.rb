@@ -12,14 +12,12 @@ module EacRubyGemsUtils
           log('running "bundle install"...')
           return if bundle('install').execute.fetch(:exit_code).zero?
 
-          if can_remove_gemfile_lock?
-            log('"bundle install" failed, removing Gemfile.lock and trying again...')
-            gemfile_lock_path.unlink if gemfile_lock_path.exist?
-            bundle('install').execute!
-          else
+          unless can_remove_gemfile_lock?
             raise '"bundle install" failed and the Gemfile.lock is part of gem' \
-              '(Should be changed by developer)'
+                '(Should be changed by developer)'
           end
+
+          prepare_with_removable_gemfile_lock
         end
 
         def tests
@@ -31,6 +29,12 @@ module EacRubyGemsUtils
 
         def log(message)
           infov self, message
+        end
+
+        def prepare_with_removable_gemfile_lock
+          log('"bundle install" failed, removing Gemfile.lock and trying again...')
+          gemfile_lock_path.unlink if gemfile_lock_path.exist?
+          bundle('install').execute!
         end
 
         def can_remove_gemfile_lock?
