@@ -5,6 +5,12 @@ require 'eac_ruby_utils/core_ext'
 module Avm
   module Instances
     class Entry
+      class << self
+        def auto_value_method_name(suffix)
+          "auto_#{suffix.to_s.gsub('.', '_')}"
+        end
+      end
+
       common_constructor :parent, :suffix, :options
 
       def auto_value
@@ -12,7 +18,7 @@ module Avm
       end
 
       def auto_value_method
-        "auto_#{suffix.to_s.gsub('.', '_')}"
+        self.class.auto_value_method_name(suffix)
       end
 
       def full_path
