@@ -4,6 +4,10 @@ module Avm
   module Instances
     module EntryKeys
       class << self
+        def all
+          all_keys.to_a
+        end
+
         def keys_consts_set(prefix, suffixes)
           if suffixes.is_a?(::Hash)
             keys_consts_set_from_hash(prefix, suffixes)
@@ -17,9 +21,14 @@ module Avm
         def key_const_set(prefix, suffix)
           key = [prefix, suffix].reject(&:blank?).join('.')
           const_set(key.gsub('.', '_').upcase, key)
+          all_keys << key
         end
 
         private
+
+        def all_keys
+          @all_keys ||= ::Set.new
+        end
 
         def keys_consts_set_from_enum(prefix, suffixes)
           suffixes.each { |suffix| key_const_set(prefix, suffix) }
