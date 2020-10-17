@@ -38,6 +38,17 @@ RSpec.describe ::Avm::Instances::Base do
           ::Avm::Instances::EntryKeys::DATABASE_PASSWORD => 'pass1',
           ::Avm::Instances::EntryKeys::DATABASE_HOSTNAME => 'database.net',
           ::Avm::Instances::EntryKeys::DATABASE_PORT => 5432
+        },
+        'mailer_0' => {
+          ::Avm::Instances::EntryKeys::MAILER_FROM => 'noreply@example.net',
+          ::Avm::Instances::EntryKeys::MAILER_REPLY_TO => '',
+          ::Avm::Instances::EntryKeys::MAILER_SMTP_ADDRESS => 'smtp.example.net',
+          ::Avm::Instances::EntryKeys::MAILER_SMTP_PORT => '587',
+          ::Avm::Instances::EntryKeys::MAILER_SMTP_DOMAIN => 'example.net',
+          ::Avm::Instances::EntryKeys::MAILER_SMTP_USERNAME => 'a_user',
+          ::Avm::Instances::EntryKeys::MAILER_SMTP_PASSWORD => 'a_secret',
+          ::Avm::Instances::EntryKeys::MAILER_SMTP_AUTHENTICATION => 'plain',
+          ::Avm::Instances::EntryKeys::MAILER_SMTP_STARTTLS_AUTO => 'true'
         }
       }.each do |instance_id, values|
         values.each do |input, expected|

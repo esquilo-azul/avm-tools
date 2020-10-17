@@ -42,6 +42,10 @@ module Avm
       {
         '' => %w[fs_path host_id source_instance_id],
         database: %w[id hostname name password port system username],
+        mailer: {
+          '' => %w[id from reply_to],
+          smtp: %w[address port domain username password authentication starttls_auto]
+        },
         ssh: %w[hostname port url username],
         web: %w[authority hostname path port scheme url userinfo]
       }.each { |prefix, suffixes| keys_consts_set(prefix, suffixes) }

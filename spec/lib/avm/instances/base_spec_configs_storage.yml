@@ -18,3 +18,15 @@ app_2:
 app_3:
   database:
     id: app_1
+mailer_0:
+  mailer:
+    from: 'noreply@example.net'
+    reply_to: ''
+    smtp:
+      address: 'smtp.example.net'
+      port: '587'
+      domain: 'example.net'
+      username: 'a_user'
+      password: 'a_secret'
+      authentication: plain
+      starttls_auto: 'true'
