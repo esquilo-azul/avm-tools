@@ -29,7 +29,7 @@ RSpec.describe ::Avm::Instances::Base do
         },
         'app_2' => {
           ::Avm::Instances::EntryKeys::DATABASE_HOSTNAME => '127.0.0.1',
-          'source_instance_id' => 'app_dev'
+          ::Avm::Instances::EntryKeys::SOURCE_INSTANCE_ID => 'app_dev'
         },
         'app_3' => {
           ::Avm::Instances::EntryKeys::DATABASE_SYSTEM => 'postgresql',

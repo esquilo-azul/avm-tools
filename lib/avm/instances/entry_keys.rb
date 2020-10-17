@@ -40,7 +40,7 @@ module Avm
       end
 
       {
-        '' => %w[fs_path],
+        '' => %w[fs_path source_instance_id],
         database: %w[id hostname name password port system username],
         ssh: %w[hostname port url username],
         web: %w[authority hostname path port scheme url userinfo]

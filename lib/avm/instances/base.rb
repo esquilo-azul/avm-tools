@@ -3,6 +3,7 @@
 require 'eac_ruby_utils/require_sub'
 require 'eac_ruby_utils/simple_cache'
 require 'avm/instances/entries'
+require 'avm/instances/entry_keys'
 ::EacRubyUtils.require_sub(__FILE__)
 
 module Avm
@@ -62,7 +63,7 @@ module Avm
       private
 
       def source_instance_uncached
-        ::Avm::Instances::Base.by_id(read_entry(:source_instance_id))
+        ::Avm::Instances::Base.by_id(read_entry(::Avm::Instances::EntryKeys::SOURCE_INSTANCE_ID))
       end
     end
   end
