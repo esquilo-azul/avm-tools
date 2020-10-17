@@ -18,6 +18,8 @@ app_2:
 app_3:
   database:
     id: app_1
+  mailer:
+    id: mailer_0
 mailer_0:
   mailer:
     from: 'noreply@example.net'
