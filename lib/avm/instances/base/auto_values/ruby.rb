@@ -6,7 +6,7 @@ module Avm
       module AutoValues
         module Ruby
           def auto_ruby_version
-            inherited_entry_value(:host_id, 'ruby.version')
+            inherited_entry_value(::Avm::Instances::EntryKeys::HOST_ID, 'ruby.version')
           end
         end
       end

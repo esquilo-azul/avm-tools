@@ -6,11 +6,11 @@ module Avm
       module AutoValues
         module Admin
           def auto_admin_email
-            inherited_entry_value(:host_id, 'admin.email')
+            inherited_entry_value(::Avm::Instances::EntryKeys::HOST_ID, 'admin.email')
           end
 
           def auto_admin_name
-            inherited_entry_value(:host_id, 'admin.name')
+            inherited_entry_value(::Avm::Instances::EntryKeys::HOST_ID, 'admin.name')
           end
         end
       end

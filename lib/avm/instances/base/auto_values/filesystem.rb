@@ -8,11 +8,15 @@ module Avm
           FS_PATH_KEY = :fs_path
 
           def auto_fs_path
-            inherited_entry_value(:host_id, FS_PATH_KEY) { |v| v + '/' + id }
+            inherited_entry_value(::Avm::Instances::EntryKeys::HOST_ID, FS_PATH_KEY) do |v|
+              v + '/' + id
+            end
           end
 
           def auto_data_fs_path
-            inherited_entry_value(:host_id, :data_fs_path) { |v| v + '/' + id }
+            inherited_entry_value(::Avm::Instances::EntryKeys::HOST_ID, :data_fs_path) do |v|
+              v + '/' + id
+            end
           end
 
           def auto_fs_url

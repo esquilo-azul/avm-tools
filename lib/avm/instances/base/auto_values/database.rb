@@ -46,7 +46,7 @@ module Avm
           def database_auto_common(suffix)
             database_key = ::Avm::Instances::EntryKeys.const_get("database_#{suffix}".upcase)
             inherited_entry_value(::Avm::Instances::EntryKeys::DATABASE_ID, database_key) ||
-              inherited_entry_value(:host_id, database_key)
+              inherited_entry_value(::Avm::Instances::EntryKeys::HOST_ID, database_key)
           end
 
           def database_port_by_system

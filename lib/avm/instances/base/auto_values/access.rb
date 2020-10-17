@@ -10,19 +10,20 @@ module Avm
           end
 
           def auto_ssh_hostname
-            inherited_entry_value(:host_id, 'ssh.hostname')
+            inherited_entry_value(::Avm::Instances::EntryKeys::HOST_ID, 'ssh.hostname')
           end
 
           def auto_ssh_port
-            inherited_entry_value(:host_id, 'ssh.port') || 22
+            inherited_entry_value(::Avm::Instances::EntryKeys::HOST_ID, 'ssh.port') || 22
           end
 
           def auto_ssh_username
-            inherited_entry_value(:host_id, 'ssh.username')
+            inherited_entry_value(::Avm::Instances::EntryKeys::HOST_ID, 'ssh.username')
           end
 
           def auto_ssh_url
-            inherited_entry_value(:host_id, 'ssh.url') || auto_ssh_url_by_parts
+            inherited_entry_value(::Avm::Instances::EntryKeys::HOST_ID, 'ssh.url') ||
+              auto_ssh_url_by_parts
           end
 
           def auto_ssh_url_by_parts
