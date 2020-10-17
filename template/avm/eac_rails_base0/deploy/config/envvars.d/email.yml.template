@@ -1,0 +1,11 @@
+---
+action_mailer_smtp_address: '%%MAILER.SMTP.ADDRESS%%'
+action_mailer_smtp_port: '%%MAILER.SMTP.PORT%%'
+action_mailer_smtp_domain: '%%MAILER.SMTP.DOMAIN%%'
+action_mailer_smtp_username: '%%MAILER.SMTP.USERNAME%%'
+action_mailer_smtp_password: '%%MAILER.SMTP.PASSWORD%%'
+action_mailer_smtp_authentication: '%%MAILER.SMTP.AUTHENTICATION%%'
+action_mailer_smtp_enable_starttls_auto: '%%MAILER.SMTP.STARTTLS_AUTO%%'
+action_mailer_default_options_from: '%%MAILER.FROM%%'
+action_mailer_default_options_reply_to: '%%MAILER.REPLY_TO%%'
+action_mailer_default_url_host: '%%WEB.URL%%'
