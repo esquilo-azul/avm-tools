@@ -23,9 +23,9 @@ RSpec.describe ::Avm::Instances::Base do
           ::Avm::Instances::EntryKeys::DATABASE_PASSWORD => 'pass1',
           ::Avm::Instances::EntryKeys::DATABASE_HOSTNAME => 'database.net',
           ::Avm::Instances::EntryKeys::DATABASE_PORT => 5432,
-          'ssh.hostname' => 'myhost.com',
-          'ssh.username' => 'myuser',
-          'ssh.url' => 'ssh://otheruser@otherhost.com'
+          ::Avm::Instances::EntryKeys::SSH_HOSTNAME => 'myhost.com',
+          ::Avm::Instances::EntryKeys::SSH_USERNAME => 'myuser',
+          ::Avm::Instances::EntryKeys::SSH_URL => 'ssh://otheruser@otherhost.com'
         },
         'app_2' => {
           ::Avm::Instances::EntryKeys::DATABASE_HOSTNAME => '127.0.0.1',

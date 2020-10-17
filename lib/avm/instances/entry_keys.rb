@@ -42,6 +42,7 @@ module Avm
       {
         '' => %w[fs_path],
         database: %w[id hostname name password port system username],
+        ssh: %w[hostname port url username],
         web: %w[authority hostname path port scheme url userinfo]
       }.each { |prefix, suffixes| keys_consts_set(prefix, suffixes) }
     end
