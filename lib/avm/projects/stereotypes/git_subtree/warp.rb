@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require 'eac_launcher/git/warp_base'
+require 'eac_launcher/git/sub_warp_base'
+
 module Avm
   module Projects
     module Stereotypes
