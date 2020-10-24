@@ -1,0 +1,15 @@
+\lstloadlanguages{Java}
+\newcommand{\java}[1] {
+  \lstinline[language=Java]{#1}
+}
+\newcommand{\javafile}[1] {
+  \begin{minipage}{\linewidth}
+    \lstinputlisting[language=Java,caption=$#1$]{#1}
+  \end{minipage}
+}
+\lstnewenvironment{javaenv} {
+  \lstset{language=Java}
+  \minipage\linewidth
+} {
+  \endminipage
+}

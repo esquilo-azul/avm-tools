@@ -1,0 +1,11 @@
+\documentclass[a4paper,twoside,final,12pt,openany]{memoir}
+\input{commons/all}
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+\setlrmarginsandblock{1cm}{1cm}{*}
+\setulmarginsandblock{2cm}{2cm}{*}
+\checkandfixthelayout
+
+\newcommand{\chapref}[1] {
+  Cap. \ref{chap:#1} - \nameref{chap:#1}
+}
