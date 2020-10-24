@@ -4,8 +4,6 @@ require 'eac_ruby_utils/require_sub'
 ::EacRubyUtils.require_sub(__FILE__)
 
 module Avm
-  module Stereotypes
-    module EacWebappBase0
-    end
+  module EacWebappBase0
   end
 end
