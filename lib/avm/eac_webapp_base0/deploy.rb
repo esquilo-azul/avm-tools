@@ -61,6 +61,10 @@ module Avm
         fatal_error "Request to #{uri} failed" unless response.code.to_i == 200
       end
 
+      def variables_source
+        instance
+      end
+
       private
 
       def run_jobs
