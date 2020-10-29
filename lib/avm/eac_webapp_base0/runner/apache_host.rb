@@ -5,13 +5,12 @@ require 'eac_ruby_utils/core_ext'
 
 module Avm
   module EacWebappBase0
-    module Runner
+    class Runner < ::Avm::Instances::Runner
       class ApacheHost < ::EacRubyUtils::Console::DocoptRunner
         include ::EacCli::DefaultRunner
 
-        stereotype_name = name.deconstantize.demodulize
         runner_definition do
-          desc "Configure Apache virtual host for #{stereotype_name} instance."
+          desc 'Configure Apache virtual host for instance.'
           bool_opt '-c', '--certbot', 'Install certbot.'
         end
 

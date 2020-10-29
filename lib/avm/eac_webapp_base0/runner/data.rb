@@ -5,7 +5,7 @@ require 'eac_ruby_utils/require_sub'
 
 module Avm
   module EacWebappBase0
-    module Runner
+    class Runner < ::Avm::Instances::Runner
       class Data < ::EacRubyUtils::Console::DocoptRunner
         ::EacRubyUtils.require_sub(__FILE__)
 
