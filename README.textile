@@ -33,5 +33,5 @@ h2. Instances' types hierarchy
 ** eac_webapp_base0
 *** eac_rails_base1
 **** eac_rails_base0
-*** eac_redmine_base0
+**** eac_redmine_base0
 *** eac_wordpress_base0

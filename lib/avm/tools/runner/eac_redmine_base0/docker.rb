@@ -5,7 +5,7 @@ require 'avm/docker/runner'
 module Avm
   module Tools
     class Runner < ::EacRubyUtils::Console::DocoptRunner
-      class EacRedmineBase0 < ::EacRubyUtils::Console::DocoptRunner
+      class EacRedmineBase0 < ::Avm::EacRailsBase1::Runner
         class Docker < ::Avm::Docker::Runner
         end
       end
