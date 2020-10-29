@@ -8,7 +8,7 @@ require 'avm/eac_rails_base0/apache_path'
 module Avm
   module Tools
     class Runner < ::EacRubyUtils::Console::DocoptRunner
-      class EacRailsBase0 < ::EacRubyUtils::Console::DocoptRunner
+      class EacRailsBase0 < ::Avm::EacRailsBase1::Runner
         class ApachePath < ::EacRubyUtils::Console::DocoptRunner
           runner_with
 

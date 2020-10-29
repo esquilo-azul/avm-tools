@@ -8,7 +8,7 @@ require 'shellwords'
 module Avm
   module Tools
     class Runner < ::EacRubyUtils::Console::DocoptRunner
-      class EacRailsBase0 < ::EacRubyUtils::Console::DocoptRunner
+      class EacRailsBase0 < ::Avm::EacRailsBase1::Runner
         class RailsServer
           runner_with
 
