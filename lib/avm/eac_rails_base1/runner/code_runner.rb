@@ -15,7 +15,6 @@ module Avm
 
           Usage:
             __PROGRAM__ [options] <code>
-            __PROGRAM__ --version
             __PROGRAM__ -h | --help
 
           Options:
