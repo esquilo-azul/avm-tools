@@ -5,8 +5,8 @@ require 'eac_ruby_utils/console/docopt_runner'
 require 'shellwords'
 
 module Avm
-  module Rails
-    module Runners
+  module EacRailsBase1
+    class Runner < ::Avm::EacWebappBase0::Runner
       class Bundle < ::EacRubyUtils::Console::DocoptRunner
         enable_console_speaker
 
