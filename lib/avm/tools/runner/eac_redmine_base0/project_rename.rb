@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require 'avm/rails/runners/runner'
+require 'avm/eac_rails_base1/runner/code_runner'
 require 'eac_cli/default_runner'
 
 module Avm
   module Tools
     class Runner < ::EacRubyUtils::Console::DocoptRunner
       class EacRedmineBase0 < ::EacRubyUtils::Console::DocoptRunner
-        class ProjectRename < ::Avm::Rails::Runners::Runner
+        class ProjectRename < ::Avm::EacRailsBase1::Runner::CodeRunner
           include ::EacCli::DefaultRunner
 
           runner_definition do

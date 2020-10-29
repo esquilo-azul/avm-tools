@@ -4,9 +4,9 @@ require 'eac_ruby_utils/console/docopt_runner'
 require 'eac_ruby_utils/core_ext'
 
 module Avm
-  module Rails
-    module Runners
-      class Runner < ::EacRubyUtils::Console::DocoptRunner
+  module EacRailsBase1
+    class Runner < ::Avm::EacWebappBase0::Runner
+      class CodeRunner < ::EacRubyUtils::Console::DocoptRunner
         enable_console_speaker
         enable_simple_cache
 
