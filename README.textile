@@ -24,3 +24,13 @@ h2. Instance's entries suffixes
 | system.username | Name of user that runs instance | @host_id->system.username or self->ssh.username@ |
 | web.url | Root URL to web interface | @nil@ |
 | web.hostname | Hostname of web interface | @web.url->hostname@ |
+
+h2. Instances' types hierarchy
+
+* base
+** eac_ruby_base0
+** eac_ubuntu_base0
+** eac_webapp_base0
+*** eac_rails_base0
+*** eac_redmine_base0
+*** eac_wordpress_base0
