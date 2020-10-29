@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
+require 'avm/eac_webapp_base0/instance'
+require 'eac_ruby_gems_utils/gem'
+
 module Avm
-  module Rails
-    module Instance
+  module EacRailsBase1
+    class Instance < ::Avm::EacWebappBase0::Instance
       def bundle(*args)
         the_gem.bundle(*args).chdir_root.envvar('RAILS_ENV', 'production')
       end
