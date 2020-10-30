@@ -31,8 +31,6 @@ module Avm
         end
 
         def stereotype_module
-          ::Avm::Stereotypes.const_get(stereotype_name)
-        rescue ::NameError
           ::Avm.const_get(stereotype_name)
         end
 
