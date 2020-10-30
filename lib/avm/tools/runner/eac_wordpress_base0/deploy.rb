@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'avm/eac_webapp_base0/runner/deploy'
-require 'avm/stereotypes/eac_wordpress_base0/deploy'
+require 'avm/eac_wordpress_base0/deploy'
 
 module Avm
   module Tools

@@ -2,7 +2,7 @@
 
 require 'eac_ruby_utils/console/docopt_runner'
 require 'eac_ruby_utils/simple_cache'
-require 'avm/stereotypes/eac_wordpress_base0/instance'
+require 'avm/eac_wordpress_base0/instance'
 require 'avm/tools/runner/eac_wordpress_base0/apache_host'
 require 'avm/tools/runner/eac_wordpress_base0/data'
 require 'avm/tools/runner/eac_wordpress_base0/deploy'
@@ -27,7 +27,7 @@ module Avm
         private
 
         def instance_uncached
-          ::Avm::Stereotypes::EacWordpressBase0::Instance.by_id(options['<instance_id>'])
+          ::Avm::EacWordpressBase0::Instance.by_id(options['<instance_id>'])
         end
       end
     end
