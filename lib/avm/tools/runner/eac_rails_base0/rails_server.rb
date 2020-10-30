@@ -10,29 +10,23 @@ module Avm
     class Runner < ::EacRubyUtils::Console::DocoptRunner
       class EacRailsBase0 < ::Avm::EacRailsBase1::Runner
         class RailsServer
-          runner_with
-
+          DEFAULT_RAILS_ENVIRONMENT = 'development'
+          runner_with ::Avm::EacRailsBase1::RunnerWith::Bundle
           runner_definition do
             desc 'Run the embbeded Rails web server.'
-            arg_opt '-e', '--environment', 'Specifies the environment to run this server under' \
-              ' (development/test/production).'
           end
 
           def run
+            infov 'Environment', rails_environment
             infov 'Bundle args', ::Shellwords.join(bundle_args)
-            infov 'Result', command.system
+            infov 'Result', bundle_command.system
           end
 
           protected
 
           def bundle_args
             ['exec', 'rails', 'server', '--port',
-             runner_context.call(:instance).read_entry(::Avm::Instances::EntryKeys::WEB_PORT)] +
-              parsed.environment.if_present([]) { |v| ['--environment', v] }
-          end
-
-          def command
-            runner_context.call(:instance).bundle(*bundle_args).chdir_root
+             runner_context.call(:instance).read_entry(::Avm::Instances::EntryKeys::WEB_PORT)]
           end
         end
       end
