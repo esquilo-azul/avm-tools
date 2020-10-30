@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'avm/instances/base'
-require 'avm/stereotypes/postgresql/instance_with'
+require 'avm/postgresql/instance_with'
 require 'avm/data/instance/files_unit'
 require 'avm/data/instance/package'
 require 'avm/eac_webapp_base0/deploy/file_unit'
@@ -9,7 +9,7 @@ require 'avm/eac_webapp_base0/deploy/file_unit'
 module Avm
   module EacWebappBase0
     class Instance < ::Avm::Instances::Base
-      include ::Avm::Stereotypes::Postgresql::InstanceWith
+      include ::Avm::Postgresql::InstanceWith
 
       def stereotype_name
         self.class.name.desconstantize.demodulize
