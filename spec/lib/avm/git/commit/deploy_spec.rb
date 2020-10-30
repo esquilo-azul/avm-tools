@@ -70,7 +70,7 @@ RSpec.describe ::Avm::Git::Commit::Deploy, git: true do
   let(:variables_source) { variables_source_class.new('Any value') }
   let(:target_env) { ::EacRubyUtils::Envs.local }
   let(:instance) do
-    described_class.new(commit, target_env, target_dir).append_directory(appended_dir)
+    described_class.new(commit, target_env, target_dir).append_templatized_directory(appended_dir)
                    .append_file_content('c.txt', 'Any content')
                    .variables_source_set(variables_source)
   end

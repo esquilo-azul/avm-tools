@@ -60,8 +60,8 @@ module Avm
       def git_deploy
         infom 'Deploying source code and appended content...'
         build_git_commit
-          .append_directory(template.path)
-          .append_directories(appended_directories)
+          .append_templatized_directory(template.path)
+          .append_templatized_directories(appended_directories)
           .append_file_content(VERSION_TARGET_PATH, version)
           .run
       end

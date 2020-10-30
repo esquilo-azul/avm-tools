@@ -2,33 +2,28 @@
 
 require 'addressable'
 require 'eac_ruby_utils/core_ext'
+require 'avm/files/appendable'
 require 'avm/patches/object/template'
 
 module Avm
   module Git
     class Commit
       class Deploy
-        require_sub __FILE__, include_modules: true
+        include ::Avm::Files::Appendable
         enable_simple_cache
 
-        attr_reader :build_dir, :commit, :target_env, :target_path, :variables_source
+        attr_reader :build_dir, :commit, :target_env, :target_path
 
         def initialize(commit, target_env, target_path)
           @commit = commit
           @target_env = target_env
           @target_path = target_path
-          @variables_source = nil
-        end
-
-        def variables_source_set(source)
-          @variables_source = source
-          self
         end
 
         def run
           on_build_dir do
             copy_git_content
-            copy_appended_content
+            write_appended_on(build_dir)
             mkdir_target
             clear_content
             send_untar_package

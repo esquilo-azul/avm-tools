@@ -88,7 +88,7 @@ module Avm
           def deploy
             ::Avm::Git::Commit.new(git, reference_sha1)
                               .deploy_to_url(target_url)
-                              .append_directories(appended_directories)
+                              .append_templatized_directories(appended_directories)
                               .variables_source_set(variables_source)
                               .run
           end
