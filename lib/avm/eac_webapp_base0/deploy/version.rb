@@ -14,6 +14,10 @@ module Avm
           git_remote_hashs.select { |_name, sha1| sha1 == commit_sha1 }.keys
                           .map { |ref| ref.gsub(%r{\Arefs/}, '') }.reject { |ref| ref == 'HEAD' }
         end
+
+        def version_target_path
+          VERSION_TARGET_PATH
+        end
       end
     end
   end

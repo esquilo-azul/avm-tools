@@ -19,19 +19,18 @@ module Avm
       enable_simple_cache
       common_constructor :instance, :options, default: [{}]
 
-      JOBS = %w[write_on_target setup_files_units assert_instance_branch request_test].freeze
+      JOBS = %w[create_build_dir build_content append_instance_content write_on_target
+                setup_files_units assert_instance_branch request_test].freeze
       define_callbacks(*JOBS)
 
       def run
         start_banner
-        JOBS.each do |job|
-          run_callbacks job do
-            send(job)
-          end
-        end
+        run_jobs
         ::Avm::Result.success('Deployed')
       rescue ::Avm::Result::Error => e
         e.to_result
+      ensure
+        remove_build_dir
       end
 
       def start_banner
@@ -60,6 +59,16 @@ module Avm
         response = ::Net::HTTP.get_response(uri)
         infov 'Response status', response.code
         fatal_error "Request to #{uri} failed" unless response.code.to_i == 200
+      end
+
+      private
+
+      def run_jobs
+        JOBS.each do |job|
+          run_callbacks job do
+            send(job)
+          end
+        end
       end
     end
   end
