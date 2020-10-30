@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/core_ext'
+require 'eac_cli/core_ext'
 require 'eac_ruby_utils/console/docopt_runner'
 require 'shellwords'
 
@@ -8,18 +8,11 @@ module Avm
   module EacRailsBase1
     class Runner < ::Avm::EacWebappBase0::Runner
       class Bundle < ::EacRubyUtils::Console::DocoptRunner
-        enable_console_speaker
-
-        DOC = <<~DOCOPT
-          Runs "bundle ...".
-
-          Usage:
-            __PROGRAM__ [<bundle-args>...]
-            __PROGRAM__ -h | --help
-
-          Options:
-            -h --help                 Show this screen.
-        DOCOPT
+        runner_with
+        runner_definition do
+          desc 'Runs "bundle ...".'
+          pos_arg :'bundle-args', repeat: true, optional: true
+        end
 
         def run
           infov 'Bundle arguments', ::Shellwords.join(bundle_args)
