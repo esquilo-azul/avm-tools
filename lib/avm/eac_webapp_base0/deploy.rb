@@ -84,19 +84,6 @@ module Avm
         infov 'Response status', response.code
         fatal_error "Request to #{uri} failed" unless response.code.to_i == 200
       end
-
-      def git_uncached
-        ::EacLauncher::Git::Base.new(git_repository_path)
-      end
-
-      def git_fetch_uncached
-        infom "Fetching remote \"#{git_remote_name}\" from \"#{git_repository_path}\"..."
-        git.fetch(git_remote_name)
-      end
-
-      def git_repository_path
-        instance.source_instance.read_entry(::Avm::Instances::EntryKeys::FS_PATH)
-      end
     end
   end
 end

@@ -12,6 +12,11 @@ module Avm
           raise ::Avm::Result::Error, "No commit SHA1 found for \"#{git_reference_found}\""
         end
 
+        def git_fetch_uncached
+          infom "Fetching remote \"#{git_remote_name}\" from \"#{git_repository_path}\"..."
+          git.fetch(git_remote_name)
+        end
+
         def git_reference
           options[:reference] || DEFAULT_REFERENCE
         end
@@ -30,6 +35,14 @@ module Avm
 
         def git_remote_name
           ::Avm::Git::DEFAULT_REMOTE_NAME
+        end
+
+        def git_repository_path
+          instance.source_instance.read_entry(::Avm::Instances::EntryKeys::FS_PATH)
+        end
+
+        def git_uncached
+          ::EacLauncher::Git::Base.new(git_repository_path)
         end
 
         def instance_branch
