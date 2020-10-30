@@ -23,6 +23,11 @@ module Avm
         self
       end
 
+      def append_tar_output_command(tar_command)
+        appended << ::Avm::Files::Appendable::TarOutputCommand.new(self, tar_command)
+        self
+      end
+
       def append_templatized_directory(directory)
         appended << ::Avm::Files::Appendable::TemplatizedDirectory.new(self, directory)
         self
