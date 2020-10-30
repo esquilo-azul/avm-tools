@@ -19,7 +19,7 @@ module Avm
       enable_console_speaker
       enable_simple_cache
 
-      JOBS = %w[git_deploy setup_files_units assert_instance_branch request_test].freeze
+      JOBS = %w[write_on_target setup_files_units assert_instance_branch request_test].freeze
       define_callbacks(*JOBS)
 
       attr_reader :instance, :options
@@ -27,13 +27,6 @@ module Avm
       def initialize(instance, options = {})
         @instance = instance
         @options = options
-      end
-
-      def build_git_commit
-        ::Avm::Git::Commit.new(git, commit_sha1).deploy_to_env_path(
-          instance.host_env,
-          instance.read_entry(::Avm::Instances::EntryKeys::FS_PATH)
-        ).variables_source_set(instance)
       end
 
       def run
@@ -55,15 +48,6 @@ module Avm
         infov 'Git reference (Found)', git_reference_found
         infov 'Git commit SHA1', commit_sha1
         infov 'Appended directories', appended_directories
-      end
-
-      def git_deploy
-        infom 'Deploying source code and appended content...'
-        build_git_commit
-          .append_templatized_directory(template.path)
-          .append_templatized_directories(appended_directories)
-          .append_file_content(VERSION_TARGET_PATH, version)
-          .run
       end
 
       def setup_files_units
