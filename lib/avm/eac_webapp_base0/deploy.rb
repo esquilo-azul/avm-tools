@@ -1,11 +1,10 @@
 # frozen_string_literal: true
 
 require 'active_support/callbacks'
-require 'delegate'
-require 'eac_ruby_utils/core_ext'
-require 'eac_launcher/git/base'
 require 'avm/git'
 require 'avm/patches/object/template'
+require 'eac_ruby_utils/core_ext'
+require 'eac_launcher/git/base'
 require 'net/http'
 
 module Avm
@@ -18,16 +17,10 @@ module Avm
 
       enable_console_speaker
       enable_simple_cache
+      common_constructor :instance, :options, default: [{}]
 
       JOBS = %w[write_on_target setup_files_units assert_instance_branch request_test].freeze
       define_callbacks(*JOBS)
-
-      attr_reader :instance, :options
-
-      def initialize(instance, options = {})
-        @instance = instance
-        @options = options
-      end
 
       def run
         start_banner
