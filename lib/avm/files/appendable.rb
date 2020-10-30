@@ -18,6 +18,11 @@ module Avm
         self
       end
 
+      def append_plain_directory(directory)
+        appended << ::Avm::Files::Appendable::PlainDirectory.new(self, directory)
+        self
+      end
+
       def append_templatized_directory(directory)
         appended << ::Avm::Files::Appendable::TemplatizedDirectory.new(self, directory)
         self
