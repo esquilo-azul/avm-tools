@@ -17,7 +17,7 @@ module Avm
           ::Avm::Files::Appender
             .new
             .variables_source_set(variables_source)
-            .append_directory(template.path)
+            .append_templatized_directory(template.path)
             .append_templatized_directories(appended_directories)
             .append_file_content(version_target_path, version)
             .write_appended_on(build_dir)
