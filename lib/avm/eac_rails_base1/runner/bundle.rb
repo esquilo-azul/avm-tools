@@ -8,7 +8,7 @@ require 'shellwords'
 module Avm
   module EacRailsBase1
     class Runner < ::Avm::EacWebappBase0::Runner
-      class Bundle < ::EacRubyUtils::Console::DocoptRunner
+      class Bundle
         runner_with ::Avm::EacRailsBase1::RunnerWith::Bundle
         runner_definition do
           desc 'Runs "bundle ...".'
@@ -20,7 +20,7 @@ module Avm
         end
 
         def bundle_args
-          options.fetch('<bundle-args>').reject { |arg| arg == '--' }
+          parsed.bundle_args.reject { |arg| arg == '--' }
         end
       end
     end
