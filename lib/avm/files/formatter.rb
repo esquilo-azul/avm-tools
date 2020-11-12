@@ -12,7 +12,7 @@ module Avm
       enable_console_speaker
       enable_listable
       lists.add_symbol :option, :apply, :recursive, :verbose
-      common_constructor :source_paths, :options do
+      common_constructor :source_paths, :options, default: [{}] do
         options.assert_valid_keys(self.class.lists.option.values)
       end
 
@@ -31,7 +31,7 @@ module Avm
         infom "Applying #{@formats_files.count} format(s)... "
         @formats_files.each do |format, files|
           infom "Applying format #{format.name} (Files matched: #{files.count})..."
-          next unless options.fetch(OPTION_APPLY)
+          next unless options[OPTION_APPLY]
 
           @result += format.apply(files)
         end
@@ -39,7 +39,7 @@ module Avm
 
       def traverser_check_file(file)
         format = find_format(file)
-        infov file, format ? format.class : '-' if options.fetch(OPTION_VERBOSE)
+        infov file, format ? format.class : '-' if options[OPTION_VERBOSE]
         return unless format
 
         @formats_files[format] ||= []
@@ -83,7 +83,7 @@ module Avm
       end
 
       def traverser_recursive
-        options.fetch(OPTION_RECURSIVE)
+        options[OPTION_RECURSIVE]
       end
     end
   end
