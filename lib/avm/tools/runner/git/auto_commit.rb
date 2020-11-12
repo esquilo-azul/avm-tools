@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'avm/git/auto_commit_path'
+require 'avm/files/formatter'
 require 'eac_cli/default_runner'
 
 module Avm
@@ -13,12 +14,14 @@ module Avm
           runner_definition do
             desc 'Commit with message based in content commited.'
             bool_opt '-d', '--dirty', 'Select dirty files.'
+            bool_opt '-f', '--format', 'Format files before commit.'
             pos_arg 'paths', repeat: true, optional: true
           end
 
           def run
             clear_stage
             banner
+            format_files
             run_paths
           end
 
@@ -37,6 +40,14 @@ module Avm
             return [] unless options.fetch('--dirty')
 
             context(:git).dirty_files.map { |d| context(:git).root_path.join / d.path }
+          end
+
+          def format_files
+            return unless options.fetch('--format')
+
+            infom 'Formating files...'
+            ::Avm::Files::Formatter.new(paths.map(&:path),
+                                        ::Avm::Files::Formatter::OPTION_APPLY => true).run
           end
 
           def paths_uncached
