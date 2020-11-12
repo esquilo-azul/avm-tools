@@ -32,8 +32,9 @@ module Avm
           end
 
           def formatter_options
-            { apply: options.fetch('--apply'), recursive: !options.fetch('--no-recursive'),
-              verbose: options.fetch('--verbose') }
+            { ::Avm::Files::Formatter::OPTION_APPLY => options.fetch('--apply'),
+              ::Avm::Files::Formatter::OPTION_RECURSIVE => !options.fetch('--no-recursive'),
+              ::Avm::Files::Formatter::OPTION_VERBOSE => options.fetch('--verbose') }
           end
 
           def git
