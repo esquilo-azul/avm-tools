@@ -5,6 +5,7 @@ require 'eac_ruby_utils/core_ext'
 module Avm
   module Git
     class AutoCommitPath
+      require_sub __FILE__, include_modules: true
       enable_console_speaker
       common_constructor :git, :path do
         self.path = path.to_pathname
@@ -31,10 +32,7 @@ module Avm
       end
 
       def class_name
-        CLASS_NAME_PATTERNS.each do |pattern|
-          pattern.if_match(relative_path.to_path, false) { |m| return m[1].camelize }
-        end
-        relative_path.to_path
+        ruby_class_name || relative_path.to_path
       end
 
       def commit_message
