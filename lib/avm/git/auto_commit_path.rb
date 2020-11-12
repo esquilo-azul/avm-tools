@@ -34,7 +34,7 @@ module Avm
         CLASS_NAME_PATTERNS.each do |pattern|
           pattern.if_match(relative_path.to_path, false) { |m| return m[1].camelize }
         end
-        raise "No pattern matched \"#{relative_path}\""
+        relative_path.to_path
       end
 
       def commit_message
