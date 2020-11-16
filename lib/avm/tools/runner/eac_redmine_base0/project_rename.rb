@@ -1,23 +1,20 @@
 # frozen_string_literal: true
 
+require 'eac_cli/core_ext'
 require 'avm/eac_rails_base1/runner/code_runner'
-require 'eac_cli/default_runner'
 
 module Avm
   module Tools
     class Runner < ::EacRubyUtils::Console::DocoptRunner
       class EacRedmineBase0 < ::Avm::EacRailsBase1::Runner
-        class ProjectRename < ::Avm::EacRailsBase1::Runner::CodeRunner
-          include ::EacCli::DefaultRunner
-
-          runner_definition do
+        class ProjectRename
+          runner_with ::Avm::EacRailsBase1::RunnerWith::Bundle do
             pos_arg :from
             pos_arg :to
           end
 
           def run
-            start_banner
-            command.system!
+            bundle_run
           end
 
           def start_banner
@@ -25,16 +22,10 @@ module Avm
             infov 'To', to
           end
 
-          def from
-            options.fetch('<from>')
-          end
+          delegate :from, :to, to: :parsed
 
-          def to
-            options.fetch('<to>')
-          end
-
-          def command
-            context(:instance).bundle('exec', 'rails', 'runner', code)
+          def bundle_args
+            %w[exec rails runner] + [code]
           end
 
           def code
