@@ -21,8 +21,8 @@ PATH
 PATH
   remote: vendor/eac_cli
   specs:
-    eac_cli (0.9.0)
-      eac_ruby_utils (~> 0.45)
+    eac_cli (0.11.0)
+      eac_ruby_utils (~> 0.50)
 
 PATH
   remote: vendor/eac_docker

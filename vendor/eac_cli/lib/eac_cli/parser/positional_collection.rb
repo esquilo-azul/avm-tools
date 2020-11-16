@@ -10,39 +10,67 @@ module EacCli
 
       private
 
+      def argv_enum
+        @argv_enum ||= argv.each
+      end
+
+      def argv_pending?
+        argv_enum.ongoing?
+      end
+
+      def argv_pending_check
+        return unless argv_pending?
+        return unless positional_enum.stopped?
+
+        raise ::EacCli::Parser::Error.new(
+          definition, argv, "No positional left for argv \"#{argv_enum.current}\""
+        )
+      end
+
       def collected
         @collected ||= ::Set.new
       end
 
       def collect
-        argv.each { |argv_value| colect_argv_value(argv_value) }
-        return unless pending_required_positional?
+        loop do
+          break unless enums('pending?').any?
+
+          enums('pending_check')
+          collect_argv_value
+        end
+      end
+
+      def collect_argv_value
+        collector.collect(*enums('enum', &:peek))
+        collected << positional_enum.peek
+        positional_enum.next unless positional_enum.peek.repeat?
+        argv_enum.next
+      end
+
+      def enums(method_suffix, &block)
+        %w[positional argv].map do |method_prefix|
+          v = send("#{method_prefix}_#{method_suffix}")
+          block ? block.call(v) : v
+        end
+      end
+
+      def positional_enum
+        @positional_enum ||= definition.positional.each
+      end
+
+      def positional_pending?
+        !(positional_enum.stopped? || positional_enum.current.optional? ||
+            collected.include?(positional_enum.current))
+      end
+
+      def positional_pending_check
+        return unless positional_pending?
+        return unless argv_enum.stopped?
 
         raise ::EacCli::Parser::Error.new(
           definition, argv, 'No value for required positional ' \
-            "\"#{current_positional.identifier}\""
+            "\"#{positional_enum.current.identifier}\""
         )
-      end
-
-      def colect_argv_value(argv_value)
-        collector.collect(current_positional, argv_value)
-        collected << current_positional
-        positional_enumerator.next unless current_positional.repeat?
-      end
-
-      def pending_required_positional?
-        !(current_positional.blank? || current_positional.optional? ||
-            collected.include?(current_positional))
-      end
-
-      def positional_enumerator
-        @positional_enumerator ||= definition.positional.each
-      end
-
-      def current_positional
-        positional_enumerator.peek
-      rescue ::StopIteration
-        nil
       end
     end
   end
