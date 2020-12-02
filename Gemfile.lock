@@ -72,7 +72,7 @@ GEM
       zeitwerk (~> 2.2, >= 2.2.2)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
-    aranha-parsers (0.6.0)
+    aranha-parsers (0.6.1)
       activesupport (>= 4.0.0)
       addressable (~> 2.7)
       curb (~> 0.9.10)
@@ -107,7 +107,7 @@ GEM
     net-ssh (4.2.0)
     ofx-parser (1.1.0)
       hpricot (>= 0.6)
-    parallel (1.20.0)
+    parallel (1.20.1)
     parseconfig (1.0.8)
     parser (2.7.2.0)
       ast (~> 2.4.1)
@@ -148,7 +148,7 @@ GEM
     tzinfo (1.2.8)
       thread_safe (~> 0.1)
     unicode-display_width (1.6.1)
-    zeitwerk (2.4.1)
+    zeitwerk (2.4.2)
 
 PLATFORMS
   ruby
