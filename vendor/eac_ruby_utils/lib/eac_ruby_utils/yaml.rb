@@ -1,13 +1,14 @@
 # frozen_string_literal: true
 
+require 'date'
 require 'yaml'
 
 module EacRubyUtils
   # A safe YAML loader/dumper with common types included.
   class Yaml
     class << self
-      DEFAULT_PERMITTED_CLASSES = [::Array, ::Date, ::FalseClass, ::Hash, ::NilClass, ::Numeric,
-                                   ::String, ::Symbol, ::Time, ::TrueClass].freeze
+      DEFAULT_PERMITTED_CLASSES = [::Array, ::Date, ::DateTime, ::FalseClass, ::Hash, ::NilClass,
+                                   ::Numeric, ::String, ::Symbol, ::Time, ::TrueClass].freeze
 
       def dump(object)
         ::YAML.dump(sanitize(object))
