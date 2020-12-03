@@ -13,7 +13,7 @@ module EacRubyBase0
         bool_opt '-I', '--no-input', 'Fail if a input is requested.'
         subcommands
         alt do
-          bool_opt '-V', '--version', 'Show version.'
+          bool_opt '-V', '--version', 'Show version.', usage: true, required: true
         end
       end
     end
