@@ -21,7 +21,7 @@ PATH
 PATH
   remote: vendor/eac_cli
   specs:
-    eac_cli (0.12.0)
+    eac_cli (0.12.1)
       eac_ruby_utils (~> 0.50)
 
 PATH
