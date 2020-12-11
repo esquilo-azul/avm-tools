@@ -2,12 +2,16 @@
 
 require 'eac_cli/runner'
 require 'eac_ruby_utils/core_ext'
+require 'eac_ruby_utils/abstract_methods'
 
 module EacCli
   module RunnerWith
     module OutputFile
       common_concern do
         include ::EacCli::Runner
+        include ::EacRubyUtils::AbstractMethods
+
+        abstract_methods :output_content
 
         runner_definition do
           arg_opt '-o', '--output-file', 'Output to file.'
@@ -18,7 +22,7 @@ module EacCli
         if parsed.output_file.present?
           ::File.write(parsed.output_file, output_content)
         else
-          out output_content
+          $stdout.write(output_content)
         end
       end
     end
