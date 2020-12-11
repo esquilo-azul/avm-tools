@@ -1,12 +1,15 @@
 # frozen_string_literal: true
 
 require 'eac_ruby_utils/core_ext'
+require 'avm/patches/class/i18n'
 
 module Avm
   module Projects
     module Stereotypes
       class RubyGem
         class Update
+          TRANSLATE_CLASS = self
+
           enable_console_speaker
           common_constructor :instance
 
@@ -46,7 +49,7 @@ module Avm
           end
 
           def gemfile_lock_commit_message
-            'Todas as gems: atualiza.'
+            TRANSLATE_CLASS.translate(__method__, __locale: instance.locale)
           end
 
           def gemfile_lock_changed?
