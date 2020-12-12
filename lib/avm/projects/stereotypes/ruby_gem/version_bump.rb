@@ -47,8 +47,7 @@ module Avm
           end
 
           def git_commit_message
-            ::I18n.default_locale = instance.locale
-            translate(__method__, version: target_version)
+            translate(__method__, version: target_version, __locale: instance.locale)
           end
 
           def changing_files
