@@ -11,8 +11,7 @@ module Avm
     class Runner < ::Avm::EacWebappBase0::Runner
       class RailsServer
         DEFAULT_RAILS_ENVIRONMENT = 'development'
-        runner_with ::Avm::EacRailsBase1::RunnerWith::Bundle
-        runner_definition do
+        runner_with :help, ::Avm::EacRailsBase1::RunnerWith::Bundle do
           desc 'Run the embbeded Rails web server.'
         end
 
