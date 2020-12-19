@@ -44,6 +44,8 @@ module EacCli
       extend AfterClassMethods
       include InstanceMethods
       ::EacCli::Docopt::RunnerExtension.check(self)
+      include ActiveSupport::Callbacks
+      define_callbacks :run
     end
 
     module AfterClassMethods
@@ -55,8 +57,7 @@ module EacCli
 
       def run(*runner_context_args)
         r = create(*runner_context_args)
-        r.parsed
-        r.run
+        r.run_run
         r
       end
 
@@ -72,6 +73,13 @@ module EacCli
     end
 
     module InstanceMethods
+      def run_run
+        parsed
+        run_callbacks(:run) { run }
+      rescue ::EacCli::Runner::Exit # rubocop:disable Lint/SuppressedException
+        # Do nothing
+      end
+
       def runner_context
         return @runner_context if @runner_context
 
