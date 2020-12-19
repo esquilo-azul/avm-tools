@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
 require 'active_support/hash_with_indifferent_access'
+require 'active_support/core_ext/module/delegation'
 require 'active_support/core_ext/object/blank'
 
 module EacRubyUtils
   class Struct
     def initialize(initial_data = {})
-      self.data = ::ActiveSupport::HashWithIndifferentAccess.new(initial_data)
+      self.data = initial_data.symbolize_keys
     end
 
     def [](key)
@@ -17,6 +18,11 @@ module EacRubyUtils
     def fetch(key)
       key, bool = parse_key(key)
       bool ? fetch(key).present? : data.fetch(key)
+    end
+
+    def merge(other)
+      other = self.class.new(other) unless other.is_a?(self.class)
+      self.class.new(to_h.merge(other.to_h))
     end
 
     def method_missing(method_name, *arguments, &block)
