@@ -8,8 +8,7 @@ module Avm
   module EacRailsBase1
     class Runner < ::Avm::EacWebappBase0::Runner
       class CodeRunner
-        runner_with ::Avm::EacRailsBase1::RunnerWith::Bundle
-        runner_definition do
+        runner_with :help, ::Avm::EacRailsBase1::RunnerWith::Bundle do
           desc 'Runs a Ruby code with "rails runner".'
           pos_arg :code
         end
