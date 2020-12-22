@@ -1,3 +1,4 @@
 ---
+locale: en
 test:
   bundle_command: exec avm test-all
