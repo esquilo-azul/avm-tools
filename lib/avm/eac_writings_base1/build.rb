@@ -12,7 +12,7 @@ module Avm
       enable_listable
       lists.add_symbol :option, :target_directory
       common_constructor :project, :options, default: [{}] do
-        self.options = options.symbolize_keys
+        self.options = self.class.lists.option.hash_keys_validate!(options.symbolize_keys)
       end
 
       def run
