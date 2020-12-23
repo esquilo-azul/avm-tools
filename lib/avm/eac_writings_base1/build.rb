@@ -27,7 +27,7 @@ module Avm
 
       def target_directory
         ::EacRubyUtils::Fs::ClearableDirectory.new(
-          options[OPTION_TARGET_DIRECTORY].if_present(default_target_directory)
+          options[OPTION_TARGET_DIRECTORY] || default_target_directory
         )
       end
 
