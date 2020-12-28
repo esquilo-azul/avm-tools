@@ -17,14 +17,24 @@ module EacRubyUtils
       end
 
       def run
-        setup = self
         a_module.extend(::ActiveSupport::Concern)
-        a_module.included do
-          ::EacRubyUtils::CommonConcern::ClassSetup.new(setup, self, :include).run
+        include_or_prepend(:included, :include)
+        include_or_prepend(:prepended, :prepend)
+      end
+
+      private
+
+      def include_or_prepend(module_method, class_setup_method)
+        setup = self
+        a_module.send(module_method, *a_module_method_args(module_method)) do
+          ::EacRubyUtils::CommonConcern::ClassSetup.new(setup, self, class_setup_method).run
         end
-        a_module.prepended do
-          ::EacRubyUtils::CommonConcern::ClassSetup.new(setup, self, :prepend).run
-        end
+      end
+
+      def a_module_method_args(module_method)
+        method_arity = a_module.method(module_method).arity
+        method_arity = -method_arity - 1 if method_arity.negative?
+        method_arity.times.map { |_n| a_module }
       end
     end
   end
