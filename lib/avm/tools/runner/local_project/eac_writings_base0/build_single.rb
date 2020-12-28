@@ -10,8 +10,7 @@ module Avm
       class LocalProject < ::EacRubyUtils::Console::DocoptRunner
         class EacWritingsBase0 < ::EacRubyUtils::Console::DocoptRunner
           class BuildSingle
-            runner_with
-            runner_definition do
+            runner_with :help do
               arg_opt '-s', '--source-dir', 'Write .tex source code in specific directory.'
               arg_opt '-f', '--output-file', 'Output to specific file.'
               arg_opt '-c', '--chapter', 'Write only the chapter <chapter>.'
