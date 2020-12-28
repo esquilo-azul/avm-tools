@@ -7,6 +7,7 @@ default: &default
   password: %%DATABASE.PASSWORD%%
   host: %%DATABASE.HOSTNAME%%
   port: %%DATABASE.PORT%%
+  reconnect: true
 
 development: &development
   <<: *default
