@@ -8,6 +8,7 @@ module Avm
       module AutoValues
         module Database
           DEFAULT_HOSTNAME = '127.0.0.1'
+          DEFAULT_LIMIT = 5
           DEFAULT_PORTS = {
             'postgresql' => 5432,
             'mysql' => 3306,
@@ -23,6 +24,10 @@ module Avm
 
           def auto_database_hostname
             database_auto_common('hostname') || DEFAULT_HOSTNAME
+          end
+
+          def auto_database_limit
+            database_auto_common('limit') || DEFAULT_LIMIT
           end
 
           def auto_database_password

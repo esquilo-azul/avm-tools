@@ -8,6 +8,7 @@ h2. Instance's entries suffixes
 | access | *@local@* or *@ssh@* | @self->ssh.url ? 'ssh' : 'local'@ |
 | data_fs_path | path to instance's data root directory | @host_id->data_fs_path + '/' + self->id@ |
 | database.id | ID of instance to fetch database parameters | @nil@ |
+| database.limit | Limit of open database connections | @database.id->database.limit or 5 |
 | database.system | *@postgres@* or *@mysql@* or *@oracle@* | @nil@ |
 | database.hostname | hostname of database server | @database.id->database.hostname or host_id->database.hostname or '127.0.0.1'@ |
 | database.name | name of database | @database.id->database.name or self->id@ |
