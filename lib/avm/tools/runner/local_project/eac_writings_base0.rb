@@ -8,12 +8,11 @@ module Avm
   module Tools
     class Runner < ::EacRubyUtils::Console::DocoptRunner
       class LocalProject < ::EacRubyUtils::Console::DocoptRunner
-        class EacWritingsBase0 < ::EacRubyUtils::Console::DocoptRunner
+        class EacWritingsBase0
           require_sub __FILE__
-          runner_with
           enable_simple_cache
 
-          runner_definition do
+          runner_with :help, :subcommands do
             desc 'EacWritingsBase0 utitilies for local projects.'
             subcommands
           end
@@ -26,7 +25,7 @@ module Avm
           private
 
           def project_uncached
-            ::Avm::EacWritingsBase0::Project.new(context(:instance_path))
+            ::Avm::EacWritingsBase0::Project.new(runner_context.call(:instance_path))
           end
         end
       end

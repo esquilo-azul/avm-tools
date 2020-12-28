@@ -8,7 +8,7 @@ module Avm
   module Tools
     class Runner < ::EacRubyUtils::Console::DocoptRunner
       class LocalProject < ::EacRubyUtils::Console::DocoptRunner
-        class EacWritingsBase0 < ::EacRubyUtils::Console::DocoptRunner
+        class EacWritingsBase0
           class BuildSingle
             runner_with :help do
               arg_opt '-s', '--source-dir', 'Write .tex source code in specific directory.'
