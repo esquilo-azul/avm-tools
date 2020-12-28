@@ -10,9 +10,7 @@ module Avm
       class LocalProject < ::EacRubyUtils::Console::DocoptRunner
         class EacWritingsBase0 < ::EacRubyUtils::Console::DocoptRunner
           class BuildChapters
-            runner_with
-
-            runner_definition do
+            runner_with :help do
               arg_opt '-o', '--output-dir', 'Output chapters to specific directory.'
             end
 
