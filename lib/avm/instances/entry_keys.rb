@@ -41,7 +41,7 @@ module Avm
 
       {
         '' => %w[fs_path host_id source_instance_id],
-        database: %w[id hostname limit name password port system username],
+        database: %w[id hostname limit name password port system timeout username],
         mailer: {
           '' => %w[id from reply_to],
           smtp: %w[address port domain username password authentication starttls_auto]

@@ -16,6 +16,7 @@ module Avm
             'sqlserver' => 1433
           }.freeze
           DEFAULT_SYSTEM = 'postgresql'
+          DEFAULT_TIMEOUT = 5000
 
           def auto_database_name
             inherited_entry_value(::Avm::Instances::EntryKeys::DATABASE_ID,
@@ -44,6 +45,10 @@ module Avm
 
           def auto_database_system
             database_auto_common('system') || DEFAULT_SYSTEM
+          end
+
+          def auto_database_timeout
+            database_auto_common('timeout') || DEFAULT_TIMEOUT
           end
 
           private

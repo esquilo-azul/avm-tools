@@ -1,7 +1,7 @@
 default: &default
   adapter: %%DATABASE.SYSTEM%%
   pool: %%DATABASE.LIMIT%%
-  timeout: 5000
+  timeout: %%DATABASE.TIMEOUT%%
   encoding: unicode
   username: %%DATABASE.USERNAME%%
   password: %%DATABASE.PASSWORD%%

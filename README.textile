@@ -14,6 +14,7 @@ h2. Instance's entries suffixes
 | database.name | name of database | @database.id->database.name or self->id@ |
 | database.password | password to login in database | @database.id->database.password or host_id->database.password@ |
 | database.port | port of database server | @database.system->default_port@ |
+| database.timeout | Database connection timeout (In miliseconds) | @database.id->database.timeout or 5000 |
 | database.username | username to login in database | @database.id->database.username or host_id->database.username@ |
 | fs_path | path to instance's installation  | @host_id->fs_path + '/' + self->id@ |
 | host_id | ID of instace to fetch host parameters | @nil@ |
