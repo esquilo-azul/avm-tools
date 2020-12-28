@@ -10,8 +10,7 @@ module Avm
       class LocalProject < ::EacRubyUtils::Console::DocoptRunner
         class EacWritingsBase0 < ::EacRubyUtils::Console::DocoptRunner
           class Info
-            runner_with
-            runner_definition do
+            runner_with :help do
               desc 'Information about a loca EacRailsBase0 local project.'
             end
 
