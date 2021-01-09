@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/console/docopt_runner'
-require 'eac_ruby_utils/console/speaker'
-require 'eac_ruby_utils/simple_cache'
 require 'eac_launcher/git/base'
 require 'avm/git/commit'
 
@@ -10,23 +7,16 @@ module Avm
   module Tools
     class Runner
       class Git
-        class Deploy < ::EacRubyUtils::Console::DocoptRunner
-          include ::EacRubyUtils::SimpleCache
-          include ::EacRubyUtils::Console::Speaker
+        class Deploy
+          DEFAULT_REFERENCE = 'HEAD'
 
-          DOC = <<~DOCOPT
-            Deploy a Git revision to a location (Local or remote).
-
-            Usage:
-              __PROGRAM__ [options] [<target-url>]
-              __PROGRAM__ -h | --help
-
-            Options:
-              -h --help                     Mostra esta ajuda.
-              -r --reference=<reference>    Reference [default: HEAD].
-              -i --instance=<instance-id>   Read entries from instance with id=<instance-id>.
-              -a --append-dirs=<append-dirs>  Append directories to deploy (List separated by ":").
-          DOCOPT
+          runner_with :help do
+            desc 'Deploy a Git revision to a location (Local or remote).'
+            arg_opt '-a', '--append-dirs', 'Append directories to deploy (List separated by ":").'
+            arg_opt '-i', '--instance', 'Read entries from instance with id=<instance-id>.'
+            arg_opt '-r', '--reference', "Reference (default: #{DEFAULT_REFERENCE})."
+            pos_arg :target_url
+          end
 
           def run
             input_banner
@@ -62,7 +52,7 @@ module Avm
           end
 
           def reference
-            options.fetch('--reference')
+            parsed.reference || DEFAULT_REFERENCE
           end
 
           def git_uncached
@@ -70,8 +60,8 @@ module Avm
           end
 
           def git_repository_path
-            if context('repository_path?') || dev_instance_fs_path.blank?
-              return context(:repository_path)
+            if runner_context.call(:repository_path) || dev_instance_fs_path.blank?
+              return runner_context.call(:repository_path)
             end
 
             dev_instance_fs_path
@@ -94,7 +84,7 @@ module Avm
           end
 
           def target_url
-            options['<target-url>'].if_present { |v| return v }
+            parsed.target_url.if_present { |v| return v }
             instance.if_present { |v| return v.read_entry('fs.url') }
             nil
           end
@@ -108,11 +98,11 @@ module Avm
           end
 
           def instance_id
-            options.fetch('--instance')
+            parsed.instance
           end
 
           def appended_directories
-            options.fetch('--append-dirs').to_s.split(':')
+            parsed.append_dirs.to_s.split(':')
           end
         end
       end
