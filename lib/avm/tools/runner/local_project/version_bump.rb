@@ -1,17 +1,14 @@
 # frozen_string_literal: true
 
 require 'avm/version'
-require 'eac_ruby_utils/console/docopt_runner'
-require 'eac_ruby_utils/core_ext'
+require 'eac_cli/core_ext'
 
 module Avm
   module Tools
     class Runner
       class LocalProject
-        class VersionBump < ::EacRubyUtils::Console::DocoptRunner
-          include ::EacCli::DefaultRunner
-
-          runner_definition do
+        class VersionBump
+          runner_with :help do
             desc 'Bump version of a local project.'
             arg_opt '-n', '--new', 'Set new version.'
             arg_opt '-s', '--segment', 'Increment de <segment>-th segment (Left-most is 0)'
@@ -29,7 +26,7 @@ module Avm
           def run_version_changed
             infom 'Version changed'
             if confirm?
-              context(:instance).run_job(:version_bump, target_version)
+              runner_context.call(:instance).run_job(:version_bump, target_version)
               success 'Bumped'
             else
               fatal_error 'Bump unconfirmed'
@@ -41,23 +38,23 @@ module Avm
           end
 
           def start_banner
-            context(:instance_banner)
+            runner_context.call(:instance_banner)
             infov 'Current version', current_version.if_present('-')
             infov 'Target version', target_version.if_present('-')
           end
 
           def confirm?
-            options.fetch('--yes') || request_input('Confirm version bump?', bool: true)
+            parsed.yes? || request_input('Confirm version bump?', bool: true)
           end
 
           def current_version_uncached
-            context(:instance).if_respond('version')
+            runner_context.call(:instance).if_respond('version')
           end
 
           def target_version_uncached
             r = current_version
             %w[new segment major minor patch].each do |option|
-              option_value = options.fetch("--#{option}")
+              option_value = parsed[option]
               next if option_value.blank?
 
               r = send("target_version_from_#{option}", r, option_value)
