@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'eac_cli/core_ext'
 require 'eac_ruby_utils/console/docopt_runner'
 require 'avm/git/file_auto_fixup'
 
@@ -7,21 +8,15 @@ module Avm
   module Tools
     class Runner
       class Git
-        class AutoFixup < ::EacRubyUtils::Console::DocoptRunner
-          DOC = <<~DOCOPT
-            Auto fixup files.
-
-              Usage:
-              __PROGRAM__ [options] [<files>...]
-            __PROGRAM__ -h | --help
-
-            Options:
-              -h --help                     Mostra esta ajuda.
-          DOCOPT
+        class AutoFixup
+          runner_with :help do
+            desc 'Auto fixup files.'
+            pos_arg :files, repeat: true, optional: true
+          end
 
           def run
             files.each do |file|
-              ::Avm::Git::FileAutoFixup.new(context(:git), file).run
+              ::Avm::Git::FileAutoFixup.new(runner_context.call(:git), file).run
             end
           end
 
@@ -32,12 +27,12 @@ module Avm
           end
 
           def files_from_option
-            r = options.fetch('<files>')
+            r = parsed.files
             r.any? ? r.map { |p| p.to_pathname.expand_path } : nil
           end
 
           def dirty_files
-            context(:git).dirty_files.map(&:path)
+            runner_context.call(:git).dirty_files.map(&:path)
           end
         end
       end
