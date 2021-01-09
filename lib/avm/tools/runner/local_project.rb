@@ -1,17 +1,14 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/console/docopt_runner'
-require 'eac_ruby_utils/core_ext'
 require 'avm/local_projects/instance'
+require 'eac_cli/core_ext'
 
 module Avm
   module Tools
     class Runner
-      class LocalProject < ::EacRubyUtils::Console::DocoptRunner
+      class LocalProject
         require_sub __FILE__
-        include ::EacCli::DefaultRunner
-
-        runner_definition do
+        runner_with :help, :subcommands do
           desc 'Utilities for local projects.'
           arg_opt '-C', '--path', 'Path to local project instance.'
           subcommands
@@ -29,7 +26,7 @@ module Avm
         end
 
         def instance_path_uncached
-          (options.fetch('--path') || '.').to_pathname.expand_path
+          (parsed.path || '.').to_pathname.expand_path
         end
       end
     end

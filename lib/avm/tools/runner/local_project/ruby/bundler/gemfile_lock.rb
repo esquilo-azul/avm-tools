@@ -6,7 +6,7 @@ require 'eac_ruby_utils/console/docopt_runner'
 module Avm
   module Tools
     class Runner
-      class LocalProject < ::EacRubyUtils::Console::DocoptRunner
+      class LocalProject
         class Ruby < ::EacRubyUtils::Console::DocoptRunner
           class Bundler < ::EacRubyUtils::Console::DocoptRunner
             class GemfileLock < ::EacRubyUtils::Console::DocoptRunner
