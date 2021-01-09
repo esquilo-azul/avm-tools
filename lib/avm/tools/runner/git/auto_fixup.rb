@@ -11,6 +11,7 @@ module Avm
         class AutoFixup
           runner_with :help do
             desc 'Auto fixup files.'
+            arg_opt '-s', '--select', 'Automatically select de <value>-th commit.'
             bool_opt '-u', '--unique', 'Automatically select the first commit if it is unique.'
             pos_arg :files, repeat: true, optional: true
           end
@@ -24,7 +25,8 @@ module Avm
           private
 
           def file_options
-            { Avm::Git::FileAutoFixup::OPTION_UNIQUE => parsed.unique? }
+            { Avm::Git::FileAutoFixup::OPTION_SELECT => parsed.select,
+              Avm::Git::FileAutoFixup::OPTION_UNIQUE => parsed.unique? }
           end
 
           def files
