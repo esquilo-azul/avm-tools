@@ -16,11 +16,15 @@ module Avm
 
           def run
             files.each do |file|
-              ::Avm::Git::FileAutoFixup.new(runner_context.call(:git), file).run
+              ::Avm::Git::FileAutoFixup.new(runner_context.call(:git), file, file_options).run
             end
           end
 
           private
+
+          def file_options
+            {}
+          end
 
           def files
             files_from_option || dirty_files

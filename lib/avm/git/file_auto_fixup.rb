@@ -7,8 +7,12 @@ module Avm
     class FileAutoFixup
       enable_console_speaker
       enable_simple_cache
+      enable_listable
+      lists.add_symbol :option
 
-      common_constructor :git, :path
+      common_constructor :git, :path, :options, default: [{}] do
+        self.options = self.class.lists.option.hash_keys_validate!(options.symbolize_keys)
+      end
 
       COMMIT_FORMAT = '%h - %s (%cr)'
       COMMITS_SEARCH_INTERVAL = 'origin/master..HEAD'
