@@ -10,7 +10,7 @@ require 'avm/git/commit'
 module Avm
   module Tools
     class Runner
-      class Git < ::EacRubyUtils::Console::DocoptRunner
+      class Git
         class Commit < ::EacRubyUtils::Console::DocoptRunner
           include ::EacRubyUtils::SimpleCache
           include ::EacRubyUtils::Console::Speaker

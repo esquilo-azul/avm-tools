@@ -7,7 +7,7 @@ require 'eac_cli/default_runner'
 module Avm
   module Tools
     class Runner
-      class Git < ::EacRubyUtils::Console::DocoptRunner
+      class Git
         class AutoCommit < ::EacRubyUtils::Console::DocoptRunner
           include ::EacCli::DefaultRunner
 

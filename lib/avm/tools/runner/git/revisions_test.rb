@@ -7,7 +7,7 @@ require 'avm/git/revision_test'
 module Avm
   module Tools
     class Runner
-      class Git < ::EacRubyUtils::Console::DocoptRunner
+      class Git
         class RevisionsTest < ::EacRubyUtils::Console::DocoptRunner
           enable_simple_cache
           enable_console_speaker

@@ -7,7 +7,7 @@ require 'avm/git/issue/complete'
 module Avm
   module Tools
     class Runner
-      class Git < ::EacRubyUtils::Console::DocoptRunner
+      class Git
         class Issue < ::EacRubyUtils::Console::DocoptRunner
           enable_simple_cache
           include ::EacRubyUtils::Console::Speaker

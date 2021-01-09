@@ -8,25 +8,20 @@ require 'eac_launcher/git/base'
 module Avm
   module Tools
     class Runner
-      class Git < ::EacRubyUtils::Console::DocoptRunner
-        DOC = <<~DOCOPT
-          Git utilities for AVM.
-
-          Usage:
-            __PROGRAM__ [options] __SUBCOMMANDS__
-            __PROGRAM__ -h | --help
-
-          Options:
-            -h --help             Show this screen.
-            -C <path>             Path to Git repository.
-        DOCOPT
+      class Git
+        require_sub __FILE__
+        runner_with :help, :subcommands do
+          desc 'Git utilities for AVM.'
+          arg_opt '-C', '--path', 'Path to Git repository.'
+          subcommands
+        end
 
         def repository_path
-          repository_path? ? options.fetch('-C') : '.'
+          repository_path? ? parsed.path : '.'
         end
 
         def repository_path?
-          options.fetch('-C').present?
+          parsed.path.present?
         end
 
         def git
