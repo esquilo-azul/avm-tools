@@ -8,7 +8,7 @@ require 'eac_ruby_utils/core_ext'
 module Avm
   module Tools
     class Runner
-      class Files < ::EacRubyUtils::Console::DocoptRunner
+      class Files
         class Format < ::EacRubyUtils::Console::DocoptRunner
           include ::EacRubyUtils::Console::Speaker
 
