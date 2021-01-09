@@ -6,7 +6,7 @@ require 'avm/self'
 
 module Avm
   module Tools
-    class Runner < ::EacRubyUtils::Console::DocoptRunner
+    class Runner
       class Self < ::EacRubyUtils::Console::DocoptRunner
         ::EacRubyUtils.require_sub(__FILE__)
 

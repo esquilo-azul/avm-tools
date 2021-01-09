@@ -7,7 +7,7 @@ require 'eac_cli/default_runner'
 
 module Avm
   module Tools
-    class Runner < ::EacRubyUtils::Console::DocoptRunner
+    class Runner
       class Ruby < ::EacRubyUtils::Console::DocoptRunner
         class Gems < ::EacRubyUtils::Console::DocoptRunner
           class Generate < ::EacRubyUtils::Console::DocoptRunner

@@ -36,7 +36,7 @@ require 'tmpdir'
   context 'with local target' do
     before do
       commit_sha1
-      ::Avm::Tools::Runner.new(argv: ['git', '-C', git] + %w[deploy] + [target_dir]).run
+      ::Avm::Tools::Runner.run(argv: ['git', '-C', git] + %w[deploy] + [target_dir])
     end
 
     it { expect(::File.read(target_stub_file1)).to eq(stub_content1) }
@@ -45,7 +45,7 @@ require 'tmpdir'
     context 'with second commit' do
       before do
         commit_sha2
-        ::Avm::Tools::Runner.new(argv: ['git', '-C', git] + %w[deploy] + [target_dir]).run
+        ::Avm::Tools::Runner.run(argv: ['git', '-C', git] + %w[deploy] + [target_dir])
       end
 
       it { expect(::File.exist?(target_stub_file1)).to eq(false) }
@@ -60,8 +60,8 @@ require 'tmpdir'
     before do
       ENV['MY_VALUE'] = '123'
       commit_sha1
-      ::Avm::Tools::Runner.new(argv: ['git', '-C', git] + %w[deploy --append-dirs] +
-          [append_dirs, target_dir]).run
+      ::Avm::Tools::Runner.run(argv: ['git', '-C', git] + %w[deploy --append-dirs] +
+          [append_dirs, target_dir])
     end
 
     it { expect(::File.read(target_stub_file1)).to eq(stub_content1) }
@@ -77,7 +77,7 @@ require 'tmpdir'
     before do
       ENV['MYINSTANCE_DEV_MY_VALUE'] = '123'
       commit_sha1
-      ::Avm::Tools::Runner.new(argv: ['git', '-C', git] +
+      ::Avm::Tools::Runner.run(argv: ['git', '-C', git] +
           %w[deploy -i my-instance_dev --append-dirs] + [append_dirs, target_dir]).run
     end
 
@@ -103,7 +103,7 @@ require 'tmpdir'
 
     before do
       commit_sha1
-      ::Avm::Tools::Runner.new(argv: ['git', '-C', git] + %w[deploy] + [target_url]).run
+      ::Avm::Tools::Runner.run(argv: ['git', '-C', git] + %w[deploy] + [target_url])
     end
 
     it { expect(env.file(target_stub_file1).read).to eq(stub_content1) }
@@ -112,7 +112,7 @@ require 'tmpdir'
     context 'with second commit' do
       before do
         commit_sha2
-        ::Avm::Tools::Runner.new(argv: ['git', '-C', git] + %w[deploy] + [target_url]).run
+        ::Avm::Tools::Runner.run(argv: ['git', '-C', git] + %w[deploy] + [target_url])
       end
 
       it { expect(env.file(target_stub_file1).exist?).to eq(false) }

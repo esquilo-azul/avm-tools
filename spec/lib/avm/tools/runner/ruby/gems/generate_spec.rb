@@ -16,7 +16,7 @@ RSpec.describe ::Avm::Tools::Runner::Ruby::Gems::Generate do
       end
 
       before do
-        ::Avm::Tools::Runner.new(argv: argv).run
+        ::Avm::Tools::Runner.run(argv: argv)
       end
 
       after do

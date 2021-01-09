@@ -5,7 +5,7 @@ require 'eac_ruby_utils/console/docopt_runner'
 
 module Avm
   module Tools
-    class Runner < ::EacRubyUtils::Console::DocoptRunner
+    class Runner
       class Git < ::EacRubyUtils::Console::DocoptRunner
         class Subrepo < ::EacRubyUtils::Console::DocoptRunner
           require_sub __FILE__

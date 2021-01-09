@@ -8,8 +8,8 @@ require 'fileutils'
 ::RSpec.describe ::Avm::Tools::Runner::Files::Format do
   before(:all) do # rubocop:disable RSpec/BeforeAfterAll
     source_files = copy_to_target_dir(source_stf.source_files) { |b| b.gsub(/\.source\Z/, '') }
-    ::Avm::Tools::Runner.new(argv: ['files', 'format', '--apply',
-                                    source_target_fixtures.fixtures_directory]).run
+    ::Avm::Tools::Runner.run(argv: ['files', 'format', '--apply',
+                                    source_target_fixtures.fixtures_directory])
     copy_to_target_dir(source_stf.target_files)
     source_files.each { |source_file| ::FileUtils.mv(source_file, source_file + '.source') }
   end

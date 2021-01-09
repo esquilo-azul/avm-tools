@@ -6,7 +6,7 @@ require 'avm/files/rotate'
 
 module Avm
   module Tools
-    class Runner < ::EacRubyUtils::Console::DocoptRunner
+    class Runner
       class Files < ::EacRubyUtils::Console::DocoptRunner
         class Rotate < ::EacRubyUtils::Console::DocoptRunner
           include ::EacRubyUtils::Console::Speaker

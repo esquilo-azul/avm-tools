@@ -32,7 +32,7 @@ end
     let(:files_with_prefix) { ::Dir["#{workdir}/myfile_*.tar.gz"] }
 
     before do
-      ::Avm::Tools::Runner.new(argv: ['files', 'rotate', source_path]).run
+      ::Avm::Tools::Runner.run(argv: ['files', 'rotate', source_path])
     end
 
     it { expect(::File.exist?(source_path)).to eq(false) }
@@ -51,7 +51,7 @@ end
     end
 
     def create_and_rotate_stub_file(expect_exist, expect_not_exist)
-      rotate_runner = described_class.new(argv: [create_stub_file, '--space-limit=32'])
+      rotate_runner = described_class.create(argv: [create_stub_file, '--space-limit=32'])
       rotate_runner.run
       test_files(rotate_runner.rotate, expect_exist, expect_not_exist)
       rotate_runner.rotate.target_path

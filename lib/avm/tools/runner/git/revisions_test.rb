@@ -6,7 +6,7 @@ require 'avm/git/revision_test'
 
 module Avm
   module Tools
-    class Runner < ::EacRubyUtils::Console::DocoptRunner
+    class Runner
       class Git < ::EacRubyUtils::Console::DocoptRunner
         class RevisionsTest < ::EacRubyUtils::Console::DocoptRunner
           enable_simple_cache

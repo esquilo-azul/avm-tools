@@ -6,7 +6,7 @@ require 'eac_ruby_utils/console/docopt_runner'
 
 module Avm
   module Tools
-    class Runner < ::EacRubyUtils::Console::DocoptRunner
+    class Runner
       class Git < ::EacRubyUtils::Console::DocoptRunner
         class Organize < ::EacRubyUtils::Console::DocoptRunner
           include ::EacCli::DefaultRunner

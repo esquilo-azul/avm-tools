@@ -7,7 +7,7 @@ require 'eac_ruby_utils/core_ext'
 
 module Avm
   module Tools
-    class Runner < ::EacRubyUtils::Console::DocoptRunner
+    class Runner
       class EacRedmineBase0 < ::Avm::EacRailsBase1::Runner
         class CoreUpdate < ::EacRubyUtils::Console::DocoptRunner
           include ::EacCli::DefaultRunner

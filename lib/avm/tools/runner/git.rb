@@ -7,7 +7,7 @@ require 'eac_launcher/git/base'
 
 module Avm
   module Tools
-    class Runner < ::EacRubyUtils::Console::DocoptRunner
+    class Runner
       class Git < ::EacRubyUtils::Console::DocoptRunner
         DOC = <<~DOCOPT
           Git utilities for AVM.

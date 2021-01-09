@@ -6,7 +6,7 @@ require 'eac_ruby_utils/console/docopt_runner'
 
 module Avm
   module Tools
-    class Runner < ::EacRubyUtils::Console::DocoptRunner
+    class Runner
       class EacWritingsBase1 < ::Avm::EacWebappBase0::Runner
         require_sub __FILE__
       end

@@ -26,7 +26,7 @@ require 'avm/patches/eac_ruby_gems_utils/gem'
 
       it "return #{rubocop_version} as Rubocop version" do
         argv = ['--quiet', 'ruby', 'rubocop', '-C', dir.to_s, '--', '--version']
-        expect { ::Avm::Tools::Runner.new(argv: argv).run }.to(
+        expect { ::Avm::Tools::Runner.run(argv: argv) }.to(
           output("#{rubocop_version}\n").to_stdout_from_any_process
         )
       end

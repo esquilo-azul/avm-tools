@@ -6,7 +6,7 @@ require 'avm/local_projects/instance'
 
 module Avm
   module Tools
-    class Runner < ::EacRubyUtils::Console::DocoptRunner
+    class Runner
       class LocalProject < ::EacRubyUtils::Console::DocoptRunner
         require_sub __FILE__
         include ::EacCli::DefaultRunner

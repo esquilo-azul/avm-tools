@@ -6,7 +6,7 @@ require 'eac_ruby_utils/core_ext'
 
 module Avm
   module Tools
-    class Runner < ::EacRubyUtils::Console::DocoptRunner
+    class Runner
       class Ruby < ::EacRubyUtils::Console::DocoptRunner
         class Rubocop < ::EacRubyUtils::Console::DocoptRunner
           include ::EacRubyUtils::Console::Speaker

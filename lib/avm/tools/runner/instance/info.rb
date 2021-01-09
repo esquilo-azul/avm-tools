@@ -6,7 +6,7 @@ require 'eac_ruby_utils/console/docopt_runner'
 
 module Avm
   module Tools
-    class Runner < ::EacRubyUtils::Console::DocoptRunner
+    class Runner
       class Instance < ::EacRubyUtils::Console::DocoptRunner
         class Info < ::EacRubyUtils::Console::DocoptRunner
           runner_with

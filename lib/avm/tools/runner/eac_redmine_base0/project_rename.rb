@@ -5,7 +5,7 @@ require 'avm/eac_rails_base1/runner/code_runner'
 
 module Avm
   module Tools
-    class Runner < ::EacRubyUtils::Console::DocoptRunner
+    class Runner
       class EacRedmineBase0 < ::Avm::EacRailsBase1::Runner
         class ProjectRename
           runner_with ::Avm::EacRailsBase1::RunnerWith::Bundle do

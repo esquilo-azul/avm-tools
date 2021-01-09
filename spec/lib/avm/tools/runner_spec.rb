@@ -5,7 +5,7 @@ require 'avm/tools/version'
 
 ::RSpec.describe ::Avm::Tools::Runner do
   let(:argv) { %w[--version] }
-  let(:instance) { described_class.new(argv: argv) }
+  let(:instance) { described_class.create(argv: argv) }
 
   it 'runs' do
     expect { instance.run }.to(

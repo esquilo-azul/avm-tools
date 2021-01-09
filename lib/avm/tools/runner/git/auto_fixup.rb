@@ -5,7 +5,7 @@ require 'avm/git/file_auto_fixup'
 
 module Avm
   module Tools
-    class Runner < ::EacRubyUtils::Console::DocoptRunner
+    class Runner
       class Git < ::EacRubyUtils::Console::DocoptRunner
         class AutoFixup < ::EacRubyUtils::Console::DocoptRunner
           DOC = <<~DOCOPT
