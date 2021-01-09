@@ -1,13 +1,16 @@
 # frozen_string_literal: true
 
-require 'eac_cli/default_runner'
+require 'eac_cli/runner_with/help'
+require 'eac_cli/runner_with/subcommands'
 require 'eac_ruby_utils/core_ext'
 
 module EacRubyBase0
   module Runner
     require_sub __FILE__
+    enable_console_speaker
     common_concern do
-      include ::EacCli::DefaultRunner
+      include ::EacCli::RunnerWith::Help
+      include ::EacCli::RunnerWith::Subcommands
       runner_definition do
         bool_opt '-q', '--quiet', 'Quiet mode.'
         bool_opt '-I', '--no-input', 'Fail if a input is requested.'
@@ -20,9 +23,9 @@ module EacRubyBase0
 
     def run
       on_speaker_node do |node|
-        node.stderr = ::StringIO.new if options.fetch('--quiet')
-        node.stdin = FailIfRequestInput.new if options.fetch('--no-input')
-        if options.fetch('--version')
+        node.stderr = ::StringIO.new if parsed.quiet?
+        node.stdin = FailIfRequestInput.new if parsed.no_input?
+        if parsed.version?
           show_version
         else
           run_with_subcommand
@@ -31,7 +34,7 @@ module EacRubyBase0
     end
 
     def application_version
-      context(:application).version.to_s
+      runner_context.call(:application).version.to_s
     end
 
     def show_version

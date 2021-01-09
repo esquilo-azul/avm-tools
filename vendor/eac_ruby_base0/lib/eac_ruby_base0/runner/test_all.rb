@@ -1,17 +1,12 @@
 # frozen_string_literal: true
 
-require 'eac_cli/default_runner'
-require 'eac_ruby_utils/console/docopt_runner'
-require 'eac_ruby_utils/core_ext'
+require 'eac_cli/core_ext'
 require 'eac_ruby_gems_utils/tests/multiple'
 
 module EacRubyBase0
   module Runner
-    class TestAll < ::EacRubyUtils::Console::DocoptRunner
-      require_sub __FILE__
-      include ::EacCli::DefaultRunner
-
-      runner_definition do
+    class TestAll
+      runner_with :help do
         desc 'Test core and local gems.'
       end
 
@@ -20,7 +15,7 @@ module EacRubyBase0
       end
 
       def tests_uncached
-        ::EacRubyGemsUtils::Tests::Multiple.new(context(:application).all_gems)
+        ::EacRubyGemsUtils::Tests::Multiple.new(runner_context.call(:application).all_gems)
       end
     end
   end
