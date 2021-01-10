@@ -22,14 +22,18 @@ module Avm
         start_banner
         if commits.count.zero?
           run_no_commits_found
-        elsif commits.count == 1
-          fixup_commit(commits.first)
+        elsif auto_selected_commit.present?
+          fixup_commit(auto_selected_commit)
         else
           run_commits_selection
         end
       end
 
       private
+
+      def auto_selected_commit_uncached
+        return commits.first if commits.first
+      end
 
       def start_banner
         infov 'Path', path
