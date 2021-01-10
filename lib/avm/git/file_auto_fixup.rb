@@ -8,7 +8,7 @@ module Avm
       enable_console_speaker
       enable_simple_cache
       enable_listable
-      lists.add_symbol :option
+      lists.add_symbol :option, :unique
 
       common_constructor :git, :path, :options, default: [{}] do
         self.options = self.class.lists.option.hash_keys_validate!(options.symbolize_keys)
@@ -32,7 +32,7 @@ module Avm
       private
 
       def auto_selected_commit_uncached
-        return commits.first if commits.first
+        selected_commit_by_unique
       end
 
       def start_banner
@@ -62,6 +62,11 @@ module Avm
       def select_commit
         commits_banner
         request_input('Which commit?', list: commits_by_position)
+      end
+
+      def selected_commit_by_unique
+        return unless options[OPTION_UNIQUE]
+        return commits.first if commits.first
       end
 
       def commits_banner

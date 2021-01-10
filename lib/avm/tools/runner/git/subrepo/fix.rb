@@ -29,7 +29,8 @@ module Avm
               infov 'Dirty files', local_repos.dirty_files.count
               local_repos.dirty_files.each do |file|
                 infov '  * Ammending', file.path
-                ::Avm::Git::FileAutoFixup.new(runner_context.call(:git), file.path).run
+                ::Avm::Git::FileAutoFixup.new(runner_context.call(:git), file.path,
+                                              ::Avm::Git::FileAutoFixup::OPTION_UNIQUE => true).run
               end
             end
 

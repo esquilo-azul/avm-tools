@@ -23,7 +23,7 @@ module Avm
           private
 
           def file_options
-            {}
+            { Avm::Git::FileAutoFixup::OPTION_UNIQUE => true }
           end
 
           def files
