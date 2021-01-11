@@ -2,16 +2,14 @@
 
 require 'avm/git/auto_commit_path'
 require 'avm/files/formatter'
-require 'eac_cli/default_runner'
+require 'eac_cli/core_ext'
 
 module Avm
   module Tools
     class Runner
       class Git
-        class AutoCommit < ::EacRubyUtils::Console::DocoptRunner
-          include ::EacCli::DefaultRunner
-
-          runner_definition do
+        class AutoCommit
+          runner_with :help do
             desc 'Commit with message based in content commited.'
             bool_opt '-d', '--dirty', 'Select dirty files.'
             bool_opt '-f', '--format', 'Format files before commit.'
@@ -33,17 +31,19 @@ module Avm
 
           def clear_stage
             infom 'Clearing stage...'
-            context(:git).system!('reset', 'HEAD')
+            runner_context.call(:git).system!('reset', 'HEAD')
           end
 
           def dirty_paths
-            return [] unless options.fetch('--dirty')
+            return [] unless parsed.dirty?
 
-            context(:git).dirty_files.map { |d| context(:git).root_path.join / d.path }
+            runner_context.call(:git).dirty_files.map do |d|
+              runner_context.call(:git).root_path.join / d.path
+            end
           end
 
           def format_files
-            return unless options.fetch('--format')
+            return unless parsed.format?
 
             infom 'Formating files...'
             ::Avm::Files::Formatter.new(paths.map(&:path),
@@ -51,10 +51,9 @@ module Avm
           end
 
           def paths_uncached
-            (options.fetch('<paths>')
-              .map { |p| p.to_pathname.expand_path } + dirty_paths)
-              .reject(&:directory?)
-              .sort.uniq.map { |path| ::Avm::Git::AutoCommitPath.new(context(:git), path) }
+            (parsed.paths.map { |p| p.to_pathname.expand_path } + dirty_paths)
+              .reject(&:directory?).sort.uniq
+              .map { |path| ::Avm::Git::AutoCommitPath.new(runner_context.call(:git), path) }
           end
 
           def run_paths
