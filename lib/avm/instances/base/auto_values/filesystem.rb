@@ -20,10 +20,22 @@ module Avm
           end
 
           def auto_fs_url
+            auto_fs_url_with_ssh || auto_fs_url_without_ssh
+          end
+
+          def auto_fs_url_with_ssh
             read_entry_optional('ssh.url').if_present do |ssh_url|
               read_entry_optional('fs_path').if_present do |fs_path|
                 "#{ssh_url}#{fs_path}"
               end
+            end
+          end
+
+          def auto_fs_url_without_ssh
+            return nil if read_entry_optional('ssh.url').present?
+
+            read_entry_optional('fs_path').if_present do |fs_path|
+              "file://#{fs_path}"
             end
           end
         end
