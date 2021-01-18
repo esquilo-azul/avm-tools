@@ -15,7 +15,7 @@ module Avm
             arg_opt '-a', '--append-dirs', 'Append directories to deploy (List separated by ":").'
             arg_opt '-i', '--instance', 'Read entries from instance with id=<instance-id>.'
             arg_opt '-r', '--reference', "Reference (default: #{DEFAULT_REFERENCE})."
-            pos_arg :target_url
+            pos_arg :target_url, optional: true
           end
 
           def run
