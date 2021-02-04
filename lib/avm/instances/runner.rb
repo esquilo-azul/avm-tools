@@ -1,11 +1,10 @@
 # frozen_string_literal: true
 
 require 'eac_cli/core_ext'
-require 'eac_ruby_utils/console/docopt_runner'
 
 module Avm
   module Instances
-    class Runner < ::EacRubyUtils::Console::DocoptRunner
+    class Runner
       class << self
         def instance_class
           ::Avm.const_get(stereotype_name).const_get('Instance')
@@ -20,9 +19,8 @@ module Avm
         end
       end
 
-      runner_with
       description = "Utilities for #{stereotype_name} instances."
-      runner_definition do
+      runner_with :help, :subcommands do
         desc description
         pos_arg 'instance-id'
         subcommands
