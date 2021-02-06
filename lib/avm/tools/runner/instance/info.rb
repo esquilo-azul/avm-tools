@@ -2,16 +2,13 @@
 
 require 'avm/instances/entry_keys'
 require 'eac_cli/core_ext'
-require 'eac_ruby_utils/console/docopt_runner'
 
 module Avm
   module Tools
     class Runner
       class Instance
-        class Info < ::EacRubyUtils::Console::DocoptRunner
-          runner_with
-
-          runner_definition do
+        class Info
+          runner_with :help do
             desc 'Show info about a instance.'
           end
 
@@ -35,7 +32,7 @@ module Avm
           end
 
           def instance
-            context(:instance)
+            runner_context.call(:instance)
           end
         end
       end
