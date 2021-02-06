@@ -11,6 +11,8 @@ module Avm
     class Instance < ::Avm::Instances::Base
       include ::Avm::Postgresql::InstanceWith
 
+      FILES_UNITS = [].freeze
+
       def stereotype_name
         self.class.name.desconstantize.demodulize
       end
