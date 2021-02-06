@@ -18,7 +18,7 @@ module Avm
         end
 
         def git_reference
-          options[:reference] || DEFAULT_REFERENCE
+          options[OPTION_REFERENCE] || DEFAULT_REFERENCE
         end
 
         def git_reference_found_uncached

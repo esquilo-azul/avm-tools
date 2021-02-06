@@ -17,7 +17,7 @@ module Avm
         end
 
         def appended_directories_from_options
-          options[:appended_directories] || []
+          options[OPTION_APPENDED_DIRECTORIES] || []
         end
       end
     end
