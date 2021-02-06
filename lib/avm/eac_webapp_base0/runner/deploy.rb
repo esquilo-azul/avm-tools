@@ -2,34 +2,24 @@
 
 require 'avm/instances/runner'
 require 'avm/path_string'
-require 'eac_ruby_utils/console/docopt_runner'
-require 'eac_ruby_utils/console/speaker'
+require 'eac_cli/core_ext'
 
 module Avm
   module EacWebappBase0
     class Runner < ::Avm::Instances::Runner
-      class Deploy < ::EacRubyUtils::Console::DocoptRunner
-        include ::EacRubyUtils::Console::Speaker
-
-        DOC = <<~DOCOPT
-          Deploy for instance.
-
-          Usage:
-            __PROGRAM__ [options]
-            __PROGRAM__ -h | --help
-
-          Options:
-            -h --help                       Show this screen.
-            -r --reference=<git-reference>  Git reference to deploy.
-            -a --append-dirs=<append-dirs>  Append directories to deploy (List separated by ":").
-        DOCOPT
+      class Deploy
+        runner_with :help do
+          desc 'Deploy for instance.'
+          arg_opt '-r', '--reference', 'Git reference to deploy.'
+          arg_opt '-a', '--append-dirs', 'Append directories to deploy (List separated by ":").'
+        end
 
         def deploy_class
-          context(:stereotype_module).const_get('Deploy')
+          runner_context.call(:stereotype_module).const_get('Deploy')
         end
 
         def run
-          result = deploy_class.new(context(:instance), deploy_options).run
+          result = deploy_class.new(runner_context.call(:instance), deploy_options).run
           if result.error?
             fatal_error result.to_s
           else
@@ -38,8 +28,8 @@ module Avm
         end
 
         def deploy_options
-          { reference: options.fetch('--reference'),
-            appended_directories: ::Avm::PathString.paths(options.fetch('--append-dirs')) }
+          { reference: parsed.reference,
+            appended_directories: ::Avm::PathString.paths(parsed.append_dirs) }
         end
       end
     end
