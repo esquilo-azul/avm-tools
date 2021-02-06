@@ -31,7 +31,7 @@ module Avm
       private
 
       def instance_uncached
-        self.class.instance_class.by_id(options.fetch('<instance-id>'))
+        self.class.instance_class.by_id(parsed.instance_id)
       end
     end
   end
