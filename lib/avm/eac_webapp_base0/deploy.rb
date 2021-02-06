@@ -18,14 +18,15 @@ module Avm
       enable_console_speaker
       enable_simple_cache
       enable_listable
-      lists.add_symbol :option, :appended_directories, :reference
+      lists.add_symbol :option, :appended_directories, :no_request_test, :reference
       common_constructor :instance, :options, default: [{}] do
         self.options = ::Avm::EacWebappBase0::Deploy.lists.option
                                                     .hash_keys_validate!(options.symbolize_keys)
       end
 
-      JOBS = %w[create_build_dir build_content append_instance_content write_on_target
-                setup_files_units assert_instance_branch request_test].freeze
+      REQUEST_TEST_JOB = 'request_test'
+      JOBS = (%w[create_build_dir build_content append_instance_content write_on_target
+                 setup_files_units assert_instance_branch] + [REQUEST_TEST_JOB]).freeze
       define_callbacks(*JOBS)
 
       def run
@@ -72,8 +73,14 @@ module Avm
 
       private
 
+      def jobs
+        r = JOBS.dup
+        r.delete(REQUEST_TEST_JOB) if options[OPTION_NO_REQUEST_TEST]
+        r
+      end
+
       def run_jobs
-        JOBS.each do |job|
+        jobs.each do |job|
           run_callbacks job do
             send(job)
           end
