@@ -2,16 +2,13 @@
 
 require 'avm/instances/base'
 require 'eac_cli/core_ext'
-require 'eac_ruby_utils/console/docopt_runner'
 
 module Avm
   module Tools
     class Runner
-      class Instance < ::EacRubyUtils::Console::DocoptRunner
+      class Instance
         require_sub __FILE__
-        runner_with
-
-        runner_definition do
+        runner_with :help, :subcommands do
           desc 'Utilities for generic instances.'
           pos_arg :instance_id
           subcommands
@@ -20,7 +17,7 @@ module Avm
         private
 
         def instance_uncached
-          ::Avm::Instances::Base.by_id(options['<instance_id>'])
+          ::Avm::Instances::Base.by_id(parsed.instance_id)
         end
       end
     end
