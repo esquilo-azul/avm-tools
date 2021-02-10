@@ -15,6 +15,7 @@ Gem::Specification.new do |s|
   s.executables = s.files.grep(%r{^exe/}) { |f| File.basename(f) }
 
   s.add_dependency 'aranha-parsers', '~> 0.4'
+  s.add_dependency 'asciidoctor', '~> 2.0', '>= 2.0.12'
   s.add_dependency 'clipboard', '~> 1.3', '>= 1.3.3'
   s.add_dependency 'content-type', '~> 0.0.1'
   s.add_dependency 'curb', '~> 0.9.10'
