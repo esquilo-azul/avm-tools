@@ -36,10 +36,6 @@ module Avm
               runner_context.call(:project_banner)
               infov 'Target directory', build.target_directory
             end
-            #
-            #            def target_directory_uncached
-            #              .if_present(default_target_directory).to_pathname
-            #            end
           end
         end
       end
