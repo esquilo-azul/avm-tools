@@ -7,11 +7,11 @@ module Avm
   module Tools
     class Runner
       class LocalProject
-        class EacWritingsBase1
+        class EacAsciidoctorBase0
           require_sub __FILE__
 
           runner_with :help, :subcommands do
-            desc 'EacWritingsBase0 utitilies for local projects.'
+            desc 'EacAsciidoctorBase0 utitilies for local projects.'
             subcommands
           end
 

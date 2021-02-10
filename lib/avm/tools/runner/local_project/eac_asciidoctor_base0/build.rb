@@ -9,7 +9,7 @@ module Avm
   module Tools
     class Runner
       class LocalProject
-        class EacWritingsBase1
+        class EacAsciidoctorBase0
           class Build
             runner_with :help do
               desc 'Build the project'
