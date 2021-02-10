@@ -4,7 +4,7 @@ require 'eac_ruby_utils/core_ext'
 require 'eac_ruby_utils/fs/clearable_directory'
 
 module Avm
-  module EacWritingsBase1
+  module EacAsciidoctorBase0
     class Build
       require_sub __FILE__
       enable_console_speaker
@@ -36,7 +36,7 @@ module Avm
         project.root.children.each do |child|
           next unless child.extname == '.asc'
 
-          r << ::Avm::EacWritingsBase1::Build::File.new(self, child.basename)
+          r << ::Avm::EacAsciidoctorBase0::Build::File.new(self, child.basename)
         end
         r
       end

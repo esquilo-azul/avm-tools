@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'avm/eac_writings_base1/build'
-require 'avm/eac_writings_base1/project'
+require 'avm/eac_asciidoctor_base0/build'
+require 'avm/eac_asciidoctor_base0/project'
 require 'eac_cli/core_ext'
 require 'eac_ruby_utils/console/docopt_runner'
 
@@ -24,8 +24,8 @@ module Avm
             private
 
             def build_uncached
-              ::Avm::EacWritingsBase1::Build.new(runner_context.call(:project),
-                                                 target_directory: parsed.target_dir)
+              ::Avm::EacAsciidoctorBase0::Build.new(runner_context.call(:project),
+                                                    target_directory: parsed.target_dir)
             end
 
             def default_target_directory

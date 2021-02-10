@@ -3,7 +3,7 @@
 require 'avm/executables'
 
 module Avm
-  module EacWritingsBase1
+  module EacAsciidoctorBase0
     class Build
       class File
         enable_console_speaker
