@@ -15,6 +15,8 @@ module Avm
         self.options = self.class.lists.option.hash_keys_validate!(options.symbolize_keys)
       end
 
+      SOURCE_EXTNAMES = %w[.asc].freeze
+
       def run
         infov 'Files to build', source_files.count
         target_directory.clear
@@ -34,7 +36,7 @@ module Avm
       def source_files_uncached
         r = []
         project.root.children.each do |child|
-          next unless child.extname == '.asc'
+          next unless SOURCE_EXTNAMES.include?(child.extname)
 
           r << ::Avm::EacAsciidoctorBase0::Build::File.new(self, child.basename)
         end
