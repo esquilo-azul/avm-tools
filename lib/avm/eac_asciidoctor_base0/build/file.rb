@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'avm/executables'
+require 'asciidoctor'
 
 module Avm
   module EacAsciidoctorBase0
@@ -11,8 +11,8 @@ module Avm
 
         def run
           infov 'Building', subpath
-          target_path.parent.mkpath
-          ::Avm::Executables.asciidoc.command('--out-file', target_path, source_path).system!
+          ::Asciidoctor.convert_file source_path.to_path,
+                                     to_file: target_path.to_path, safe: :unsafe, mkdirs: true
         end
 
         def source_path
