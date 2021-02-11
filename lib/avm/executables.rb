@@ -14,7 +14,7 @@ module Avm
 
       private
 
-      %w[asciidoc docker file git latex php-cs-fixer tidy yapf xdg-open].each do |program|
+      %w[docker file git latex php-cs-fixer tidy yapf xdg-open].each do |program|
         define_method(program.underscore + '_uncached') do
           env.executable(program, '--version')
         end
