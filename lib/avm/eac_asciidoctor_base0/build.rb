@@ -15,7 +15,7 @@ module Avm
         self.options = self.class.lists.option.hash_keys_validate!(options.symbolize_keys)
       end
 
-      SOURCE_EXTNAMES = %w[.asc].freeze
+      SOURCE_EXTNAMES = %w[.adoc .asc].freeze
 
       def run
         infov 'Files to build', source_files.count
