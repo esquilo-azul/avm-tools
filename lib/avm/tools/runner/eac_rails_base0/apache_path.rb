@@ -2,17 +2,14 @@
 
 require 'eac_cli/core_ext'
 require 'avm/eac_webapp_base0/runner/apache_host'
-require 'eac_ruby_utils/console/docopt_runner'
 require 'avm/eac_rails_base0/apache_path'
 
 module Avm
   module Tools
     class Runner
       class EacRailsBase0 < ::Avm::EacRailsBase1::Runner
-        class ApachePath < ::EacRubyUtils::Console::DocoptRunner
-          runner_with
-
-          runner_definition do
+        class ApachePath
+          runner_with :help do
             desc 'Configure Apache path configuration for instance.'
           end
 
@@ -25,7 +22,7 @@ module Avm
           end
 
           def apache_path_uncached
-            ::Avm::EacRailsBase0::ApachePath.new(context(:instance))
+            ::Avm::EacRailsBase0::ApachePath.new(runner_context.call(:instance))
           end
 
           def result_uncached
