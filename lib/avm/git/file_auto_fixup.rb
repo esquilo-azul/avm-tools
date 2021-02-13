@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'avm/git/auto_commit/commit_info'
 require 'eac_ruby_utils/core_ext'
 
 module Avm
@@ -20,19 +21,21 @@ module Avm
 
       def run
         start_banner
-        if commits.count.zero?
-          run_no_commits_found
-        elsif auto_selected_commit.present?
-          fixup_commit(auto_selected_commit)
-        else
-          run_commits_selection
-        end
+        run_commit || warn("No rule returned commit information for \"#{path}\"")
       end
 
       private
 
-      def auto_selected_commit_uncached
-        selected_commit_by_unique || select_commit_by_select
+      def commit_args
+        commit_info.if_present([], &:git_commit_args) + ['--', path]
+      end
+
+      def commit_info_uncached
+        return nil if commits.count.zero?
+
+        [selected_commit_by_unique, select_commit_by_select, select_commit].lazy.map do |v|
+          v.if_present { |w| ::Avm::Git::AutoCommit::CommitChoose.new.fixup(w) }
+        end.find
       end
 
       def start_banner
@@ -40,23 +43,13 @@ module Avm
         infov '  Commits found', commits.count
       end
 
-      def run_no_commits_found
-        infom '  No commits found'
-      end
+      def run_commit
+        return false if commit_info.blank?
 
-      def fixup_commit(commit)
-        infov '  Commit selected/found', format_commit(commit)
-        git.execute!('commit', '--fixup', commit.sha1, '--', path)
-        success "  Fixup with \"#{format_commit(commit)}\""
-      end
-
-      def run_commits_selection
-        selected_commit = select_commit
-        if selected_commit
-          fixup_commit(selected_commit)
-        else
-          infom '  Skipped'
-        end
+        infov '  Commit arguments', ::Shellwords.join(commit_args)
+        git.execute!('commit', *commit_args)
+        success '  Commited'
+        true
       end
 
       def select_commit
