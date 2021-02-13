@@ -3,6 +3,7 @@
 require 'eac_cli/core_ext'
 require 'eac_ruby_utils/console/docopt_runner'
 require 'avm/git/file_auto_fixup'
+require 'avm/git/auto_commit/rules'
 
 module Avm
   module Tools
@@ -11,9 +12,7 @@ module Avm
         class AutoFixup
           runner_with :help do
             desc 'Auto fixup files.'
-            bool_opt '-l', '--last', 'Equivalent to "--select=1".'
-            arg_opt '-s', '--select', 'Automatically select de <value>-th commit.'
-            bool_opt '-u', '--unique', 'Automatically select the first commit if it is unique.'
+            arg_opt '-r', '--rule', 'Apply a rule in the specified order.', repeat: true
             pos_arg :files, repeat: true, optional: true
           end
 
@@ -39,11 +38,9 @@ module Avm
           end
 
           def rules
-            r = []
-            r << ::Avm::Git::AutoCommit::Rules::Unique.new if parsed.unique?
-            r << ::Avm::Git::AutoCommit::Rules::Nth.new(select) if select.present?
-            r << ::Avm::Git::AutoCommit::Rules::Manual.new
-            r
+            parsed.rule.map do |rule_string|
+              ::Avm::Git::AutoCommit::Rules.parse(rule_string)
+            end
           end
 
           def select
