@@ -11,22 +11,13 @@ module Avm
   module Tools
     class Runner
       class Git
-        class Commit < ::EacRubyUtils::Console::DocoptRunner
-          include ::EacRubyUtils::SimpleCache
-          include ::EacRubyUtils::Console::Speaker
-
-          DOC = <<~DOCOPT
-            Mostra informações de um commit.
-
-            Usage:
-              __PROGRAM__ [options] <ref>
-              __PROGRAM__ -h | --help
-
-            Options:
-              -h --help        Mostra esta ajuda.
-              -f --files       Mostra os arquivos.
-              -s --size        Mostra o tamanho de arquivos.
-          DOCOPT
+        class Commit
+          runner_with :help do
+            desc 'Mostra informações de um commit.'
+            bool_opt '-f', '--files', 'Mostra os arquivos.'
+            bool_opt '-s', '--size', 'Mostra o tamanho de arquivos.'
+            pos_arg :ref
+          end
 
           def run
             input_banner
@@ -64,7 +55,7 @@ module Avm
           end
 
           def files_banner
-            return unless options.fetch('--files')
+            return unless parsed.files?
 
             commit.files.each do |file|
               infov "  #{file.path}", file_value(file)
@@ -82,11 +73,11 @@ module Avm
           end
 
           def reference
-            options.fetch('<ref>')
+            parsed.ref
           end
 
           def git_uncached
-            ::EacLauncher::Git::Base.new(context(:repository_path))
+            ::EacLauncher::Git::Base.new(runner_context.call(:repository_path))
           end
 
           def commit_uncached
@@ -103,7 +94,7 @@ module Avm
           end
 
           def show_size?
-            options.fetch('--size')
+            parsed.size?
           end
         end
       end
