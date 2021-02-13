@@ -19,16 +19,11 @@ module Avm
 
           def run
             files.each do |file|
-              ::Avm::Git::FileAutoFixup.new(runner_context.call(:git), file, file_options).run
+              ::Avm::Git::FileAutoFixup.new(runner_context.call(:git), file, rules).run
             end
           end
 
           private
-
-          def file_options
-            { Avm::Git::FileAutoFixup::OPTION_SELECT => select,
-              Avm::Git::FileAutoFixup::OPTION_UNIQUE => parsed.unique? }
-          end
 
           def files
             files_from_option || dirty_files
@@ -41,6 +36,14 @@ module Avm
 
           def dirty_files
             runner_context.call(:git).dirty_files.map(&:path)
+          end
+
+          def rules
+            r = []
+            r << ::Avm::Git::AutoCommit::Rules::Unique.new if parsed.unique?
+            r << ::Avm::Git::AutoCommit::Rules::Nth.new(select) if select.present?
+            r << ::Avm::Git::AutoCommit::Rules::Manual.new
+            r
           end
 
           def select

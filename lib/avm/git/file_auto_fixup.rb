@@ -9,15 +9,10 @@ module Avm
       enable_console_speaker
       enable_simple_cache
       enable_listable
-      lists.add_symbol :option, :select, :unique
 
-      common_constructor :git, :path, :options, default: [{}] do
-        self.options = self.class.lists.option.hash_keys_validate!(options.symbolize_keys)
-      end
+      common_constructor :git, :path, :rules
 
-      COMMIT_FORMAT = '%h - %s (%cr)'
       COMMITS_SEARCH_INTERVAL = 'origin/master..HEAD'
-      SKIP_OPTION = 's'
 
       def run
         start_banner
@@ -31,11 +26,7 @@ module Avm
       end
 
       def commit_info_uncached
-        return nil if commits.count.zero?
-
-        [selected_commit_by_unique, select_commit_by_select, select_commit].lazy.map do |v|
-          v.if_present { |w| ::Avm::Git::AutoCommit::CommitChoose.new.fixup(w) }
-        end.find
+        rules.lazy.map { |rule| rule.with_file(self).commit_info }.find(&:present?)
       end
 
       def start_banner
@@ -52,42 +43,11 @@ module Avm
         true
       end
 
-      def select_commit
-        commits_banner
-        request_input('Which commit?', list: commits_by_position)
-      end
-
-      def selected_commit_by_unique
-        return unless options[OPTION_UNIQUE]
-        return commits.first if commits.first
-      end
-
-      def select_commit_by_select
-        options[OPTION_SELECT].if_present(&:to_i).if_present do |v|
-          commits.find { |commit| commit.position == v }
-        end
-      end
-
-      def commits_banner
-        commits.each_with_index do |commit, _index|
-          infov "    #{commit.position}", format_commit(commit)
-        end
-        infov "    #{SKIP_OPTION}", 'skip'
-      end
-
-      def commits_by_position
-        (commits.map { |commit| [commit.position.to_s, commit] } + [[SKIP_OPTION, nil]]).to_h
-      end
-
       def commits_uncached
         git.execute!('log', '--pretty=format:%H', COMMITS_SEARCH_INTERVAL, '--', path)
            .each_line.map { |sha1| ::Avm::Git::Commit.new(git, sha1.strip) }
            .reject { |commit| commit.subject.start_with?('fixup!') }
            .each_with_index.map { |commit, index| CommitDelegator.new(commit, index) }
-      end
-
-      def format_commit(commit)
-        commit.format(COMMIT_FORMAT)
       end
 
       class CommitDelegator < ::SimpleDelegator
