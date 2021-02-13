@@ -7,7 +7,7 @@ require 'eac_ruby_utils/simple_cache'
 module Avm
   module EacWebappBase0
     class Runner < ::Avm::Instances::Runner
-      class Data < ::EacRubyUtils::Console::DocoptRunner
+      class Data
         class Load < ::EacRubyUtils::Console::DocoptRunner
           include ::EacRubyUtils::SimpleCache
           include ::EacRubyUtils::Console::Speaker

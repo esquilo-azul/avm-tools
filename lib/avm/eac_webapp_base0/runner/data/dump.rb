@@ -8,7 +8,7 @@ require 'avm/data/package/dump'
 module Avm
   module EacWebappBase0
     class Runner < ::Avm::Instances::Runner
-      class Data < ::EacRubyUtils::Console::DocoptRunner
+      class Data
         class Dump < ::EacRubyUtils::Console::DocoptRunner
           include ::EacRubyUtils::SimpleCache
           include ::EacRubyUtils::Console::Speaker
