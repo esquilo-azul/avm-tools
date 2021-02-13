@@ -8,21 +8,12 @@ module Avm
   module EacWebappBase0
     class Runner < ::Avm::Instances::Runner
       class Data
-        class Load < ::EacRubyUtils::Console::DocoptRunner
-          include ::EacRubyUtils::SimpleCache
-          include ::EacRubyUtils::Console::Speaker
-
-          DOC = <<~DOCUMENT
-            Load utility for EacRailsBase instance.
-
-            Usage:
-              __PROGRAM__ (<dump-path>|--source-instance=<source-instance>)
-              __PROGRAM__ -h | --help
-
-            Options:
-              -h --help                               Show this screen.
-              -S --source-instance=<source-instance>  Informa a instância a ser extraída o dump.
-          DOCUMENT
+        class Load
+          runner_with :ĥelp do
+            desc 'Load utility for EacRailsBase instance.'
+            arg_opt '-S', '--source-instance', 'Informa a instância a ser extraída o dump.'
+            pos_arg :dump_path, optional: true
+          end
 
           def run
             return ::Dev::Result.error("Dump \"#{dump_path}\" does not exist") unless
@@ -33,16 +24,14 @@ module Avm
           end
 
           def dump_path_uncached
-            return options.fetch('<dump-path>').to_s if options.fetch('<dump-path>').present?
-            return source_instance_dump_path if options.fetch('--source-instance').present?
+            return parsed.dump_path.to_s if parsed.dump_path.present?
+            return source_instance_dump_path if parsed.source_instance.present?
 
-            raise "Dump path unknown (Options: #{options})"
+            raise "Dump path unknown (Options: #{parsed})"
           end
 
           def source_instance_dump_path
-            context(:instance).class.by_id(
-              options.fetch('--source-instance')
-            ).data_dump
+            runner_context.call(:instance).class.by_id(parsed.source_instance).data_dump
           end
 
           def load_dump
@@ -57,7 +46,7 @@ module Avm
           private
 
           def package_load_uncached
-            context(:instance).data_package.load(dump_path)
+            runner_context.call(:instance).data_package.load(dump_path)
           end
         end
       end
