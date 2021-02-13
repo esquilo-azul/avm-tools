@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'active_support/callbacks'
+require 'avm/apps/jobs/base'
 require 'avm/git'
 require 'avm/patches/object/template'
 require 'eac_ruby_utils/core_ext'
@@ -11,30 +12,23 @@ module Avm
   module EacWebappBase0
     class Deploy
       require_sub __FILE__, include_modules: true
-      include ::ActiveSupport::Callbacks
 
       DEFAULT_REFERENCE = 'HEAD'
-
-      enable_console_speaker
-      enable_simple_cache
-      enable_listable
-      lists.add_symbol :option, :appended_directories, :no_request_test, :reference
-      common_constructor :instance, :options, default: [{}] do
-        self.options = ::Avm::EacWebappBase0::Deploy.lists.option
-                                                    .hash_keys_validate!(options.symbolize_keys)
-      end
 
       REQUEST_TEST_JOB = 'request_test'
       JOBS = (%w[create_build_dir build_content append_instance_content write_on_target
                  setup_files_units assert_instance_branch] + [REQUEST_TEST_JOB]).freeze
-      define_callbacks(*JOBS)
+
+      include ::Avm::Apps::Jobs::Base
+
+      lists.add_symbol :option, :appended_directories, :no_request_test, :reference
+
+      def option_list
+        ::Avm::EacWebappBase0::Deploy.lists.option
+      end
 
       def run
-        start_banner
-        run_jobs
-        ::Avm::Result.success('Deployed')
-      rescue ::Avm::Result::Error => e
-        e.to_result
+        super
       ensure
         remove_build_dir
       end
@@ -67,24 +61,12 @@ module Avm
         fatal_error "Request to #{uri} failed" unless response.code.to_i == 200
       end
 
-      def variables_source
-        instance
-      end
-
-      private
+      protected
 
       def jobs
-        r = JOBS.dup
+        r = super
         r.delete(REQUEST_TEST_JOB) if options[OPTION_NO_REQUEST_TEST]
         r
-      end
-
-      def run_jobs
-        jobs.each do |job|
-          run_callbacks job do
-            send(job)
-          end
-        end
       end
     end
   end
