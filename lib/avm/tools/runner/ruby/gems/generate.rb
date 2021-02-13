@@ -9,7 +9,7 @@ module Avm
   module Tools
     class Runner
       class Ruby
-        class Gems < ::EacRubyUtils::Console::DocoptRunner
+        class Gems
           class Generate < ::EacRubyUtils::Console::DocoptRunner
             enable_console_speaker
             enable_simple_cache

@@ -1,17 +1,14 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/console/docopt_runner'
-require 'eac_ruby_utils/core_ext'
+require 'eac_cli/core_ext'
 
 module Avm
   module Tools
     class Runner
       class Ruby
-        class Gems < ::EacRubyUtils::Console::DocoptRunner
+        class Gems
           require_sub __FILE__
-          include ::EacCli::DefaultRunner
-
-          runner_definition do
+          runner_with :help, :subcommands do
             desc 'Rubygems utilities for AVM.'
             subcommands
           end
