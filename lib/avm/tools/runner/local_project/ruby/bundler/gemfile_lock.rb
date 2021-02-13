@@ -7,7 +7,7 @@ module Avm
   module Tools
     class Runner
       class LocalProject
-        class Ruby < ::EacRubyUtils::Console::DocoptRunner
+        class Ruby
           class Bundler < ::EacRubyUtils::Console::DocoptRunner
             class GemfileLock < ::EacRubyUtils::Console::DocoptRunner
               include ::EacCli::DefaultRunner

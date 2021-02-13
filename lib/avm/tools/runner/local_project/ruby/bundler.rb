@@ -8,7 +8,7 @@ module Avm
   module Tools
     class Runner
       class LocalProject
-        class Ruby < ::EacRubyUtils::Console::DocoptRunner
+        class Ruby
           class Bundler < ::EacRubyUtils::Console::DocoptRunner
             require_sub __FILE__
             include ::EacCli::DefaultRunner

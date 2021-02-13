@@ -1,24 +1,16 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/console/docopt_runner'
-require 'eac_ruby_utils/core_ext'
+require 'eac_cli/core_ext'
 
 module Avm
   module Tools
     class Runner
-      class Ruby < ::EacRubyUtils::Console::DocoptRunner
+      class Ruby
         require_sub __FILE__
-
-        DOC = <<~DOCOPT
-          Ruby utilities for AVM.
-
-          Usage:
-            __PROGRAM__ [options] __SUBCOMMANDS__
-            __PROGRAM__ -h | --help
-
-          Options:
-            -h --help             Show this screen.
-        DOCOPT
+        runner_with :help, :subcommands do
+          desc 'Ruby utilities for AVM.'
+          subcommands
+        end
       end
     end
   end

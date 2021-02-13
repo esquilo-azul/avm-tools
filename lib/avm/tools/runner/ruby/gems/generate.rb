@@ -8,7 +8,7 @@ require 'eac_cli/default_runner'
 module Avm
   module Tools
     class Runner
-      class Ruby < ::EacRubyUtils::Console::DocoptRunner
+      class Ruby
         class Gems < ::EacRubyUtils::Console::DocoptRunner
           class Generate < ::EacRubyUtils::Console::DocoptRunner
             enable_console_speaker

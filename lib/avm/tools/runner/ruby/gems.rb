@@ -6,7 +6,7 @@ require 'eac_ruby_utils/core_ext'
 module Avm
   module Tools
     class Runner
-      class Ruby < ::EacRubyUtils::Console::DocoptRunner
+      class Ruby
         class Gems < ::EacRubyUtils::Console::DocoptRunner
           require_sub __FILE__
           include ::EacCli::DefaultRunner
