@@ -1,31 +1,20 @@
 # frozen_string_literal: true
 
 require 'avm/ruby/gems/generator'
-require 'eac_ruby_utils/console/docopt_runner'
-require 'eac_ruby_utils/core_ext'
-require 'eac_cli/default_runner'
+require 'eac_cli/core_ext'
 
 module Avm
   module Tools
     class Runner
       class Ruby
         class Gems
-          class Generate < ::EacRubyUtils::Console::DocoptRunner
-            enable_console_speaker
-            enable_simple_cache
-
-            DOC = <<~DOCUMENT
-              Create a gem.
-
-              Usage:
-                __PROGRAM__ [options] <path>
-                __PROGRAM__ -h --help
-
-              Options:
-                -h --help                                   Show this help.
-                --eac-ruby-utils-version=<version>          Version for "eac_ruby_utils" gem.
-                --eac-ruby-gem-support-version=<version>    Version for "eac_ruby_gem_support" gem.
-            DOCUMENT
+          class Generate
+            runner_with :help do
+              desc 'Create a gem.'
+              arg_opt '--eac-ruby-utils-version', 'Version for "eac_ruby_utils" gem.'
+              arg_opt '--eac-ruby-gem-support-version', 'Version for "eac_ruby_gem_support" gem.'
+              pos_arg :path
+            end
 
             def run
               success "Gem \"#{generator.name}\" created in \"#{generator.root_directory}\""
@@ -34,12 +23,12 @@ module Avm
             private
 
             def generator_uncached
-              ::Avm::Ruby::Gems::Generator.new(options.fetch('<path>'), generator_options)
+              ::Avm::Ruby::Gems::Generator.new(parsed.path, generator_options)
             end
 
             def generator_options
               %w[eac_ruby_utils eac_ruby_gem_support].map do |gem_name|
-                ["#{gem_name}_version".to_sym, options.fetch("--#{gem_name.dasherize}-version")]
+                ["#{gem_name}_version".to_sym, parsed.fetch("#{gem_name.variableize}_version")]
               end.to_h
             end
           end
