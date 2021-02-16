@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'eac_cli/core_ext'
+require 'avm/files/formatter'
 require 'avm/git/file_auto_fixup'
 require 'avm/git/auto_commit/rules'
 
@@ -12,11 +13,13 @@ module Avm
           runner_with :help do
             desc 'Auto fixup files.'
             bool_opt '-d', '--dirty', 'Select dirty files.'
+            bool_opt '-f', '--format', 'Format files before commit.'
             arg_opt '-r', '--rule', 'Apply a rule in the specified order.', repeat: true
             pos_arg :files, repeat: true, optional: true
           end
 
           def run
+            format_files
             files.each do |file|
               ::Avm::Git::FileAutoFixup.new(runner_context.call(:git), file, rules).run
             end
@@ -24,12 +27,19 @@ module Avm
 
           private
 
-          def files
+          def files_uncached
             (files_from_option + dirty_files).sort.uniq
           end
 
           def files_from_option
             parsed.files.map { |p| p.to_pathname.expand_path }
+          end
+
+          def format_files
+            return unless parsed.format?
+
+            infom 'Formating files...'
+            ::Avm::Files::Formatter.new(files, ::Avm::Files::Formatter::OPTION_APPLY => true).run
           end
 
           def dirty_files
