@@ -1,18 +1,14 @@
 # frozen_string_literal: true
 
 require 'avm/eac_redmine_base0/core_update'
-require 'eac_cli/default_runner'
-require 'eac_ruby_utils/console/docopt_runner'
-require 'eac_ruby_utils/core_ext'
+require 'eac_cli/core_ext'
 
 module Avm
   module Tools
     class Runner
       class EacRedmineBase0 < ::Avm::EacRailsBase1::Runner
-        class CoreUpdate < ::EacRubyUtils::Console::DocoptRunner
-          include ::EacCli::DefaultRunner
-
-          runner_definition do
+        class CoreUpdate
+          runner_with :help do
             arg_opt '-u', '--url', 'Core\'s package URL.'
             arg_opt '-v', '--version', 'Core\'s version.'
             desc 'Update instance\' core.'
@@ -32,7 +28,7 @@ module Avm
           end
 
           def update
-            ::Avm::EacRedmineBase0::CoreUpdate.new(context(:instance), version, url).run
+            ::Avm::EacRedmineBase0::CoreUpdate.new(runner_context.call(:instance), version, url).run
           end
 
           def url
@@ -40,7 +36,7 @@ module Avm
           end
 
           def url_by_version
-            options.fetch('--version').if_present do |v|
+            parsed.version.if_present do |v|
               "https://www.redmine.org/releases/redmine-#{v}.tar.gz"
             end
           end
@@ -52,11 +48,11 @@ module Avm
           end
 
           def version
-            options.fetch('--version') || version_by_url
+            parsed.version || version_by_url
           end
 
           def version_by_url
-            options.fetch('--url').if_present do |v|
+            parsed.url.if_present do |v|
               /(\d+.\d+.\d+)/.if_match(v, false) { |m| m[1] }
             end
           end
