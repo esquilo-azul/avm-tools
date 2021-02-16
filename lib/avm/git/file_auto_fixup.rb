@@ -10,9 +10,15 @@ module Avm
       enable_simple_cache
       enable_listable
 
-      common_constructor :git, :path, :rules
+      common_constructor :git, :path, :rules do
+        self.path = path.to_pathname
+      end
 
       COMMITS_SEARCH_INTERVAL = 'origin/master..HEAD'
+
+      def git_relative_path
+        path.to_pathname.relative_path_from(git.root_path)
+      end
 
       def run
         start_banner
@@ -22,7 +28,7 @@ module Avm
       private
 
       def commit_args
-        commit_info.if_present([], &:git_commit_args) + ['--', path]
+        commit_info.if_present([], &:git_commit_args) + ['--', git_relative_path]
       end
 
       def commit_info_uncached
