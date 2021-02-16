@@ -11,6 +11,7 @@ module Avm
         class AutoFixup
           runner_with :help do
             desc 'Auto fixup files.'
+            bool_opt '-d', '--dirty', 'Select dirty files.'
             arg_opt '-r', '--rule', 'Apply a rule in the specified order.', repeat: true
             pos_arg :files, repeat: true, optional: true
           end
@@ -24,16 +25,19 @@ module Avm
           private
 
           def files
-            files_from_option || dirty_files
+            (files_from_option + dirty_files).sort.uniq
           end
 
           def files_from_option
-            r = parsed.files
-            r.any? ? r.map { |p| p.to_pathname.expand_path } : nil
+            parsed.files.map { |p| p.to_pathname.expand_path }
           end
 
           def dirty_files
-            runner_context.call(:git).dirty_files.map(&:path)
+            return [] unless parsed.dirty?
+
+            runner_context.call(:git).dirty_files.map do |file|
+              file.path.to_pathname.expand_path(runner_context.call(:git).root_path)
+            end
           end
 
           def rules
