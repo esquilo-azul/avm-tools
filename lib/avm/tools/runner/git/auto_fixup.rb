@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'eac_cli/core_ext'
-require 'eac_ruby_utils/console/docopt_runner'
 require 'avm/git/file_auto_fixup'
 require 'avm/git/auto_commit/rules'
 
