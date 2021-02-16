@@ -8,10 +8,11 @@ module Avm
       class CommitInfo
         enable_immutable
 
-        immutable_accessor :fixup
+        immutable_accessor :fixup, :message
 
         def git_commit_args
           r = fixup.if_present([]) { |v| ['--fixup', v.sha1] }
+          r += message.if_present([]) { |v| ['--message', v] }
           return r if r.any?
 
           raise 'Argument list is empty'
