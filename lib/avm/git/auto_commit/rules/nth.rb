@@ -7,6 +7,14 @@ module Avm
     module AutoCommit
       module Rules
         class Nth < ::Avm::Git::AutoCommit::Rules::Base
+          SHORT_KEY = 't'
+
+          class << self
+            def short_key
+              SHORT_KEY
+            end
+          end
+
           common_constructor :number do
             self.number = number.to_i
           end
