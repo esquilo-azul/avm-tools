@@ -2,12 +2,12 @@
 
 require 'eac_ruby_utils/core_ext'
 
+::EacRubyUtils.require_sub __FILE__
+
 module Avm
   module Git
     module AutoCommit
       module Rules
-        require_sub __FILE__
-
         RULES_CLASSES = %w[last manual nth unique]
                         .map { |key| ::Avm::Git::AutoCommit::Rules.const_get(key.camelcase) }
 
