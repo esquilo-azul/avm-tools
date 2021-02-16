@@ -22,7 +22,7 @@ module Avm
           def rule_class_by_key(key)
             RULES_CLASSES.find { |klass| klass.keys.include?(key) } ||
               raise("Rule not find with key \"#{key}\" (Available: " +
-                RULES_CLASSES.flat_map(&:keys) + ')')
+                RULES_CLASSES.flat_map(&:keys).join(', ') + ')')
           end
         end
       end
