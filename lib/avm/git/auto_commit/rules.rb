@@ -8,7 +8,7 @@ module Avm
   module Git
     module AutoCommit
       module Rules
-        RULES_CLASSES = %w[last manual nth unique]
+        RULES_CLASSES = %w[last manual new nth unique]
                         .map { |key| ::Avm::Git::AutoCommit::Rules.const_get(key.camelcase) }
 
         class << self
