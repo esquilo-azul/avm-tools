@@ -9,7 +9,7 @@ module Avm
   module Tools
     class Runner
       class Git
-        class AutoFixup
+        class AutoCommit
           runner_with :help do
             desc 'Auto fixup files.'
             bool_opt '-d', '--dirty', 'Select dirty files.'
