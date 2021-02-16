@@ -6,29 +6,8 @@ module Avm
   module Git
     class AutoCommitPath
       require_sub __FILE__, include_modules: true
-      enable_console_speaker
       common_constructor :git, :path do
         self.path = path.to_pathname
-      end
-
-      CLASS_NAME_PATTERNS = [%r{lib/((?!.*/lib/).+)\.rb\z}, %r{app/[^/]+/(.+)\.rb\z}].freeze
-
-      def run
-        banner
-        commit
-      end
-
-      def banner
-        infom "Checking \"#{relative_path}\""
-        infov '  * Class name', class_name
-        infov '  * Commit message', commit_message
-      end
-
-      def commit
-        infom '  * Commiting...'
-        git.system!('reset', 'HEAD')
-        git.system!('add', '--', relative_path.to_path)
-        git.system!('commit', '-m', commit_message, '--', relative_path.to_path)
       end
 
       def class_name
