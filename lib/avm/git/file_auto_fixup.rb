@@ -44,9 +44,19 @@ module Avm
         return false if commit_info.blank?
 
         infov '  Commit arguments', ::Shellwords.join(commit_args)
-        git.execute!('commit', *commit_args)
+        run_git_add_and_commit
         success '  Commited'
         true
+      end
+
+      def run_git_add_and_commit
+        git.execute!('reset', '--soft', 'HEAD')
+        if path.exist?
+          git.execute!('add', git_relative_path)
+        else
+          git.execute!('rm', '-f', git_relative_path)
+        end
+        git.execute!('commit', *commit_args)
       end
 
       def commits_uncached
