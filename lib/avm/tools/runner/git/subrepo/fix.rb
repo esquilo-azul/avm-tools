@@ -30,7 +30,7 @@ module Avm
               local_repos.dirty_files.each do |file|
                 infov '  * Ammending', file.path
                 ::Avm::Git::FileAutoFixup.new(runner_context.call(:git), file.path,
-                                              ::Avm::Git::FileAutoFixup::OPTION_UNIQUE => true).run
+                                              [::Avm::Git::AutoCommit::Rules::Unique.new]).run
               end
             end
 
