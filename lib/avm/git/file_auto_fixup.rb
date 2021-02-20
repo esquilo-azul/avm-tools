@@ -11,7 +11,7 @@ module Avm
       enable_listable
 
       common_constructor :git, :path, :rules do
-        self.path = path.to_pathname
+        self.path = path.to_pathname.expand_path(git.root_path)
       end
 
       COMMITS_SEARCH_INTERVAL = 'origin/master..HEAD'
