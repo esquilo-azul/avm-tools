@@ -20,9 +20,8 @@ module EacGit
       end
 
       def dirty_files
-        command('status', '--porcelain', '--untracked-files').execute!.each_line.map do |line|
-          parse_status_line(line.gsub(/\n\z/, ''))
-        end
+        command('status', '--porcelain=v1', '--untracked-files', '--no-renames')
+          .execute!.each_line.map { |line| parse_status_line(line.gsub(/\n\z/, '')) }
       end
 
       private
