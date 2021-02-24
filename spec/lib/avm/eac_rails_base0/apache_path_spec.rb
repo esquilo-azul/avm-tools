@@ -17,7 +17,6 @@ RSpec.describe ::Avm::EacRailsBase0::ApachePath do
     end
 
     it do
-      expect_file.write(apache_path.content)
       expect(apache_path.content).to eq(expected_content)
     end
   end
