@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-require 'eac_cli/default_runner'
-require 'eac_ruby_utils/console/docopt_runner'
+require 'eac_ruby_base0/core_ext'
 
 module Avm
   module Tools
@@ -9,10 +8,8 @@ module Avm
       class LocalProject
         class Ruby
           class Bundler
-            class GemfileLock < ::EacRubyUtils::Console::DocoptRunner
-              include ::EacCli::DefaultRunner
-
-              runner_definition do
+            class GemfileLock
+              runner_with :help do
                 desc 'Manipulage a "Gemfile.lock" file.'
                 bool_opt '-c', '--continue', 'Continue Git rebase/cherry-pick.'
                 bool_opt '-i', '--install', 'Run "bundle install".'
@@ -34,7 +31,7 @@ module Avm
               private
 
               def complete?
-                !option_or_all?('--recursive') || !conflict?
+                !option_or_all?(:recursive) || !conflict?
               end
 
               def rebasing?
@@ -51,21 +48,21 @@ module Avm
               end
 
               def bundle_install
-                return unless check_capability(__method__, :ruby_gem, '--install')
+                return unless check_capability(__method__, :ruby_gem, :install)
 
                 infom '"bundle install"...'
                 bundle_run('install')
               end
 
               def bundle_update
-                return unless check_capability(__method__, :ruby_gem, '--update')
+                return unless check_capability(__method__, :ruby_gem, :update)
 
                 infom '"bundle update"...'
                 bundle_run('update')
               end
 
               def git_continue
-                return unless check_capability(__method__, :git_repo, '--continue')
+                return unless check_capability(__method__, :git_repo, :continue)
 
                 infom "Adding \"#{gemfile_lock}\"..."
                 instance.git_repo.command('add', gemfile_lock).execute!
@@ -115,11 +112,11 @@ module Avm
               end
 
               def option_or_all?(option)
-                options.fetch(option) || options.fetch('--all')
+                parsed[option] || parsed.all?
               end
 
               def instance
-                context(:instance)
+                runner_context.call(:instance)
               end
 
               def check_capability(caller, capability, option)
