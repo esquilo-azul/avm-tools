@@ -1,19 +1,15 @@
 # frozen_string_literal: true
 
-require 'eac_cli/default_runner'
-require 'eac_ruby_utils/console/docopt_runner'
-require 'eac_ruby_utils/core_ext'
+require 'eac_ruby_base0/core_ext'
 
 module Avm
   module Tools
     class Runner
       class LocalProject
         class Ruby
-          class Bundler < ::EacRubyUtils::Console::DocoptRunner
+          class Bundler
             require_sub __FILE__
-            include ::EacCli::DefaultRunner
-
-            runner_definition do
+            runner_with :help, :subcommands do
               desc 'Ruby\'s bundler utitilies for local projects.'
               subcommands
             end
