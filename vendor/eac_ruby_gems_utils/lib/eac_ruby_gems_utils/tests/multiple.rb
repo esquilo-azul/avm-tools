@@ -27,6 +27,12 @@ module EacRubyGemsUtils
         decorated_gems.flat_map(&:tests)
       end
 
+      def clear_logs
+        all_tests.each do |test|
+          test.logs.remove_all
+        end
+      end
+
       def prepare_all_gems
         infom 'Preparing all gems...'
         decorated_gems.each(&:prepare)
@@ -47,8 +53,7 @@ module EacRubyGemsUtils
           warn 'Some test did not pass:'
           failed_tests.each do |test|
             infov '  * Test', test
-            infov '    * STDOUT', test.stdout_cache.content_path
-            infov '    * STDERR', test.stderr_cache.content_path
+            info test.logs.truncate_all
           end
         else
           success 'All tests passed'
@@ -60,6 +65,8 @@ module EacRubyGemsUtils
         prepare_all_gems
         test_all_gems
         final_results_banner
+      ensure
+        clear_logs
       end
 
       def start_banner

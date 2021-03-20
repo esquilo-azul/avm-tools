@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'eac_ruby_utils/core_ext'
+require 'eac_ruby_utils/fs/logs'
 require 'eac_ruby_utils/fs_cache'
 require 'eac_ruby_utils/listable'
 require 'eac_ruby_utils/on_clean_ruby_environment'
@@ -27,19 +28,15 @@ module EacRubyGemsUtils
         self.class.name.demodulize.gsub(/Test\z/, '')
       end
 
-      def stdout_cache
-        root_cache.child('stdout')
-      end
-
-      def stderr_cache
-        root_cache.child('stderr')
-      end
-
       def to_s
         "#{gem}[#{name}]"
       end
 
       private
+
+      def logs_uncached
+        ::EacRubyUtils::Fs::Logs.new.add(:stdout).add(:stderr)
+      end
 
       def result_uncached
         return RESULT_NONEXISTENT unless elegible?
@@ -53,8 +50,8 @@ module EacRubyGemsUtils
 
       def exec_run_with_log
         r = exec_run
-        stdout_cache.write(r[:stdout])
-        stderr_cache.write(r[:stderr])
+        logs[:stdout].write(r[:stdout])
+        logs[:stderr].write(r[:stderr])
         r[:exit_code].zero?
       end
 
