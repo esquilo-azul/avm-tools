@@ -9,6 +9,7 @@ require 'avm/eac_webapp_base0/deploy/file_unit'
 module Avm
   module EacWebappBase0
     class Instance < ::Avm::Instances::Base
+      require_sub __FILE__
       include ::Avm::Postgresql::InstanceWith
 
       FILES_UNITS = [].freeze
@@ -26,8 +27,10 @@ module Avm
       end
 
       def run_subcommand(subcommand_class, argv)
-        parent = ::OpenStruct.new(instance: self)
-        subcommand_class.new(argv: argv, parent: parent).run
+        subcommand_class.create(
+          argv: argv,
+          parent: ::Avm::EacWebappBase0::Instance::SubcommandParent.new(self)
+        ).run
       end
 
       def data_package
