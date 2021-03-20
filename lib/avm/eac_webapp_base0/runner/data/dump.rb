@@ -15,7 +15,7 @@ module Avm
 
           runner_with :help do
             desc 'Dump utility for EacRailsBase instance.'
-            bool_opt '-w', 'rewrite', 'Forces dump overwrite.'
+            bool_opt '-w', '--rewrite', 'Forces dump overwrite.'
             arg_opt '-p', '--dump-path', 'Set DUMP_PATH variable.'
           end
 
