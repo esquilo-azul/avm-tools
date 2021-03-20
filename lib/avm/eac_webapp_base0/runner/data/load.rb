@@ -9,7 +9,7 @@ module Avm
     class Runner < ::Avm::Instances::Runner
       class Data
         class Load
-          runner_with :ĥelp do
+          runner_with :help do
             desc 'Load utility for EacRailsBase instance.'
             arg_opt '-S', '--source-instance', 'Informa a instância a ser extraída o dump.'
             pos_arg :dump_path, optional: true
