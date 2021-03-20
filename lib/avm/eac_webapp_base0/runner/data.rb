@@ -9,6 +9,7 @@ module Avm
         require_sub __FILE__
         runner_with :help, :subcommands do
           desc 'Data utilities for EacRailsBase0 instances.'
+          subcommands
         end
       end
     end
