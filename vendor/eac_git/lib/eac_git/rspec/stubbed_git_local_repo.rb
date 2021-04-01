@@ -44,7 +44,7 @@ module EacGit
         end
 
         def touch
-          path.touch
+          ::FileUtils.touch(path.to_path)
         end
 
         def delete
