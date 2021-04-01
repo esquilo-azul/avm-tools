@@ -5,13 +5,14 @@ require 'tmpdir'
 require 'avm/git/commit'
 
 RSpec.describe ::Avm::Git::Commit, git: true do
-  let(:git) { stubbed_git_repository }
+  let(:git) { stubbed_git_local_repo }
+  let(:eac_git) { ::EacLauncher::Git::Base.new(git.root_path.to_path) }
 
   let(:first_commit_sha1) do
     git.file('a.txt').write('AAA')
     git.file('b.txt').write('BBB')
-    git.execute!('add', '.')
-    git.execute!('commit', '-m', 'First commit.')
+    git.command('add', '.').execute!
+    git.command('commit', '-m', 'First commit.').execute!
     git.rev_parse('HEAD')
   end
 
@@ -20,13 +21,13 @@ RSpec.describe ::Avm::Git::Commit, git: true do
     git.file('a.txt').write('AAAAA')
     git.file('b.txt').delete
     git.file('ç.txt').write('CCC')
-    git.execute!('add', '.')
-    git.execute!('commit', '-m', 'Second commit.')
+    git.command('add', '.').execute!
+    git.command('commit', '-m', 'Second commit.').execute!
     git.rev_parse('HEAD')
   end
 
-  let(:first_commit) { described_class.new(git, first_commit_sha1) }
-  let(:second_commit) { described_class.new(git, second_commit_sha1) }
+  let(:first_commit) { described_class.new(eac_git, first_commit_sha1) }
+  let(:second_commit) { described_class.new(eac_git, second_commit_sha1) }
 
   describe '#files' do
     it { expect(first_commit.files.count).to eq(2) }

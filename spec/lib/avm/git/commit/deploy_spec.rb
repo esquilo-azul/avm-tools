@@ -35,13 +35,13 @@ RSpec.describe ::Avm::Git::Commit::Deploy, git: true do
     end
   end
 
-  let(:git) { stubbed_git_repository }
+  let(:git) { stubbed_git_local_repo }
 
   let(:commit_sha1) do
     git.file('a.txt').write('AAA')
     git.file('b.txt').write('BBB')
-    git.execute!('add', '.')
-    git.execute!('commit', '-m', 'First commit.')
+    git.command('add', '.').execute!
+    git.command('commit', '-m', 'First commit.').execute!
     git.rev_parse('HEAD')
   end
 

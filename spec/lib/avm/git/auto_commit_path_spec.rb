@@ -5,7 +5,7 @@ require 'tmpdir'
 require 'avm/git/auto_commit_path'
 
 RSpec.describe ::Avm::Git::AutoCommitPath, git: true do
-  let(:git) { stubbed_git_repository }
+  let(:git) { ::EacLauncher::Git::Base.new(stubbed_git_local_repo.root_path.to_path) }
 
   describe '#class_name' do
     {
