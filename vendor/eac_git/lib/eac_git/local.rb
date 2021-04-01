@@ -12,6 +12,10 @@ module EacGit
       self.root_path = root_path.to_pathname
     end
 
+    def commit(ref, required = false)
+      rev_parse(ref, required).if_present { |v| ::EacGit::Local::Commit.new(self, v) }
+    end
+
     def descendant?(descendant, ancestor)
       base = merge_base(descendant, ancestor)
       return false if base.blank?

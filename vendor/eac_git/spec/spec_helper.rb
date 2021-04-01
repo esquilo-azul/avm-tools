@@ -101,3 +101,4 @@ end
 
 require 'eac_git/rspec'
 ::EacGit::Rspec.configure
+require 'aranha/parsers/spec/source_target_fixtures_example'
