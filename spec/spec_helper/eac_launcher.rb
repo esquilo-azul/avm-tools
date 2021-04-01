@@ -34,6 +34,8 @@ RSpec.configure do |config|
     require 'eac_launcher/git/base'
     r = ::EacLauncher::Git::Base.new(::File.join(::EacLauncher::Context.current.root.real, subdir))
     r.git
+    r.execute!('config', 'user.email', 'theuser@example.net')
+    r.execute!('config', 'user.name', 'The User')
     r
   end
 
