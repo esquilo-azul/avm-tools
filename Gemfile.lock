@@ -19,56 +19,6 @@ PATH
       minitar
       ruby-progressbar (~> 1.10, >= 1.10.1)
 
-PATH
-  remote: vendor/avm-apps
-  specs:
-    avm-apps (0.1.0)
-      eac_ruby_utils (~> 0.58, >= 0.58.1)
-
-PATH
-  remote: vendor/eac_cli
-  specs:
-    eac_cli (0.16.1)
-      eac_ruby_utils (~> 0.55)
-
-PATH
-  remote: vendor/eac_docker
-  specs:
-    eac_docker (0.2.0)
-      eac_ruby_utils (~> 0.36)
-
-PATH
-  remote: vendor/eac_git
-  specs:
-    eac_git (0.4.1)
-      eac_ruby_utils (~> 0.37)
-      parseconfig (~> 1.0, >= 1.0.8)
-
-PATH
-  remote: vendor/eac_ruby_base0
-  specs:
-    eac_ruby_base0 (0.6.0)
-      eac_cli (~> 0.15, >= 0.15.1)
-      eac_ruby_gems_utils (~> 0.8)
-      eac_ruby_utils (~> 0.60)
-
-PATH
-  remote: vendor/eac_ruby_gems_utils
-  specs:
-    eac_ruby_gems_utils (0.9.0)
-      eac_ruby_utils (~> 0.29)
-
-PATH
-  remote: vendor/eac_ruby_utils
-  specs:
-    eac_ruby_utils (0.62.0)
-      activesupport (>= 4.0)
-      addressable (~> 2.6)
-      colorize (~> 0.8.1)
-      docopt (~> 0.6.1)
-      filesize
-      net-ssh (~> 4.2)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -97,11 +47,31 @@ GEM
     curb (0.9.11)
     diff-lcs (1.4.4)
     docopt (0.6.1)
+    eac_cli (0.16.2)
+      eac_ruby_utils (~> 0.55)
+    eac_docker (0.2.0)
+      eac_ruby_utils (~> 0.36)
+    eac_git (0.4.1)
+      eac_ruby_utils (~> 0.37)
+      parseconfig (~> 1.0, >= 1.0.8)
+    eac_ruby_base0 (0.7.0)
+      eac_cli (~> 0.15, >= 0.15.1)
+      eac_ruby_gems_utils (~> 0.8)
+      eac_ruby_utils (~> 0.60)
     eac_ruby_gem_support (0.1.2)
       rspec (~> 3.9)
       rubocop (~> 0.80.1)
       rubocop-rails (~> 2.4.2)
       rubocop-rspec (~> 1.38.1)
+    eac_ruby_gems_utils (0.9.0)
+      eac_ruby_utils (~> 0.29)
+    eac_ruby_utils (0.62.1)
+      activesupport (>= 4.0)
+      addressable (~> 2.6)
+      colorize (~> 0.8.1)
+      docopt (~> 0.6.1)
+      filesize
+      net-ssh (~> 4.2)
     filesize (0.2.0)
     git (1.8.1)
       rchardet (~> 1.8)
@@ -125,7 +95,7 @@ GEM
     rack (2.2.3)
     rainbow (3.0.0)
     rchardet (1.8.0)
-    rexml (3.2.4)
+    rexml (3.2.5)
     rspec (3.10.0)
       rspec-core (~> 3.10.0)
       rspec-expectations (~> 3.10.0)
@@ -162,15 +132,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  avm-apps!
   avm-tools!
-  eac_cli!
-  eac_docker!
-  eac_git!
-  eac_ruby_base0!
   eac_ruby_gem_support (~> 0.1, >= 0.1.2)
-  eac_ruby_gems_utils!
-  eac_ruby_utils!
 
 BUNDLED WITH
    1.17.3
