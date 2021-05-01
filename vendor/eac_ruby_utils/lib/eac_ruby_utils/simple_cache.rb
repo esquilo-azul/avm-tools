@@ -2,12 +2,18 @@
 
 module EacRubyUtils
   module SimpleCache
-    UNCACHED_METHOD_PATTERN = /\A(\s+)_uncached\z/.freeze
+    UNCACHED_METHOD_NAME_SUFFIX = '_uncached'
+    UNCACHED_METHOD_PATTERN = /\A(\s+)_#{::Regexp.quote(UNCACHED_METHOD_NAME_SUFFIX)}\z/.freeze
+
+    class << self
+      def uncached_method_name(method_name)
+        "#{method_name}#{UNCACHED_METHOD_NAME_SUFFIX}"
+      end
+    end
 
     def method_missing(method, *args, &block)
-      uncached_method = "#{method}_uncached"
-      if respond_to?(uncached_method, true)
-        call_method_with_cache(uncached_method, args, &block)
+      if respond_to?(::EacRubyUtils::SimpleCache.uncached_method_name(method), true)
+        call_method_with_cache(method, args, &block)
       else
         super
       end
@@ -35,8 +41,15 @@ module EacRubyUtils
       raise 'Não é possível realizar o cache de métodos com bloco' if block
 
       key = ([method] + args).join('@@@')
-      cache_keys[key] = send(method, *args) unless cache_keys.key?(key)
+      unless cache_keys.key?(key)
+        uncached_value = call_uncached_method(method, args)
+        cache_keys[key] = uncached_value
+      end
       cache_keys[key]
+    end
+
+    def call_uncached_method(method, args)
+      send(::EacRubyUtils::SimpleCache.uncached_method_name(method), *args)
     end
 
     def cache_keys
