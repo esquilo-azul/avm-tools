@@ -47,7 +47,7 @@ PATH
 PATH
   remote: vendor/eac_ruby_base0
   specs:
-    eac_ruby_base0 (0.6.0)
+    eac_ruby_base0 (0.7.0)
       eac_cli (~> 0.15, >= 0.15.1)
       eac_ruby_gems_utils (~> 0.8)
       eac_ruby_utils (~> 0.60)
