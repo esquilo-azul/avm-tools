@@ -1,0 +1,10 @@
+<VirtualHost _default_:80>
+  DocumentRoot "%%redmine_path%%/public"
+  PassengerEnabled On
+
+  <Directory "%%redmine_path%%/public" >
+    Allow from all
+    Options -MultiViews
+    Require all granted
+  </Directory>
+</VirtualHost>
