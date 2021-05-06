@@ -1,4 +1,4 @@
-FROM ubuntu:bionic
+FROM ubuntu:20.04
 RUN apt-get update -y
 RUN apt-get install -y sudo tzdata
 RUN /usr/sbin/useradd --shell /bin/bash --home-dir /home/myuser --create-home myuser
