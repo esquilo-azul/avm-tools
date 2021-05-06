@@ -12,7 +12,7 @@ RSpec.describe ::Avm::Tools::Runner::Ruby::Gems::Generate do
       let(:gem_path) { temp_dir.join(gem_name) }
       let(:argv) do
         %w[ruby gems generate --eac-ruby-utils-version=0.35.0
-           --eac-ruby-gem-support-version=0.1.1] + [gem_path.to_path]
+           --eac-ruby-gem-support-version=0.2.0] + [gem_path.to_path]
       end
 
       before do

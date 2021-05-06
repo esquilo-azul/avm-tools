@@ -8,7 +8,7 @@ module Avm
     module Gems
       class Generator
         IDENT = '  '
-        JOBS = %w[root_directory gemspec root_lib version_lib static gemfile_lock rspec].freeze
+        JOBS = %w[root_directory gemspec root_lib version_lib static gemfile_lock].freeze
         TEMPLATE_VARIABLES = %w[lib_path name root_module].freeze
 
         enable_console_speaker
@@ -90,10 +90,6 @@ module Avm
 
         def generate_root_lib
           template_apply('root_lib', "lib/#{lib_path}.rb")
-        end
-
-        def generate_rspec
-          self_gem.bundle('exec', 'rspec').chdir_root.execute!
         end
 
         def generate_static
