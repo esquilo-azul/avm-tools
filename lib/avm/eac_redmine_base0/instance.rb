@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'avm/eac_redmine_base0/data_unit'
-require 'avm/eac_ubuntu_base0/docker_image'
+require 'avm/eac_redmine_base0/docker_image'
 require 'avm/eac_webapp_base0/instance'
 require 'avm/eac_rails_base1/instance'
 
@@ -11,7 +11,7 @@ module Avm
       FILES_UNITS = { files: 'files' }.freeze
 
       def docker_image_class
-        ::Avm::EacUbuntuBase0::DockerImage
+        ::Avm::EacRedmineBase0::DockerImage
       end
 
       def docker_run_arguments
