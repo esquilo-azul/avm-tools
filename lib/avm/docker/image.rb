@@ -3,10 +3,11 @@
 require 'eac_ruby_utils/core_ext'
 require 'avm/executables'
 require 'avm/patches/object/template'
+require 'eac_docker/images/templatized'
 
 module Avm
   module Docker
-    class Image
+    class Image < ::EacDocker::Images::Templatized
       attr_reader :registry
       attr_accessor :snapshot
       attr_accessor :version
@@ -18,10 +19,9 @@ module Avm
       end
 
       def build(extra_args = [])
-        on_build_dir do
-          template.apply(self, build_dir)
-          run_docker_build(extra_args)
-        end
+        nyi "Extra args: #{extra_args}" if extra_args.any?
+
+        provide
       end
 
       def generator_version
@@ -32,9 +32,10 @@ module Avm
         ::Avm::Executables.docker.command.append(['push', tag]).system!
       end
 
-      def read_entry(path, _options = {})
+      def read_entry(path, options = {})
         method = path.gsub('.', '_')
         return send(method) if respond_to?(path, true)
+        return instance.read_entry(path, options) if respond_to?(:instance)
 
         raise "Method \"#{method}\" not found for entry \"#{path}\""
       end
@@ -65,23 +66,6 @@ module Avm
         r = generator_version
         r += '-snapshot' if snapshot
         r
-      end
-
-      private
-
-      attr_reader :build_dir
-
-      def run_docker_build(extra_args)
-        ::Avm::Executables.docker.command.append(
-          ['build', '-t', tag] + extra_args + [build_dir]
-        ).system!
-      end
-
-      def on_build_dir
-        @build_dir = ::Dir.mktmpdir
-        yield
-      ensure
-        ::FileUtils.rm_rf(@build_dir)
       end
     end
   end
