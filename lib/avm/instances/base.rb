@@ -3,7 +3,6 @@
 require 'eac_ruby_utils/require_sub'
 require 'eac_ruby_utils/simple_cache'
 require 'avm/instances/entries'
-require 'avm/instances/entry_keys'
 
 module Avm
   module Instances
@@ -58,7 +57,7 @@ module Avm
       private
 
       def source_instance_uncached
-        ::Avm::Instances::Base.by_id(read_entry(::Avm::Instances::EntryKeys::SOURCE_INSTANCE_ID))
+        ::Avm::Instances::Base.by_id(source_instance_id)
       end
     end
   end
