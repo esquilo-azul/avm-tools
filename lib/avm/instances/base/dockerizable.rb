@@ -33,6 +33,7 @@ module Avm
 
         def docker_image_uncached
           r = docker_image_class.new(docker_image_options.fetch(:registry))
+          r.instance = self if r.respond_to?(:instance)
           r.version = docker_image_options[:version] if docker_image_options.key?(:version)
           r.snapshot = docker_image_options[:snapshot] if docker_image_options.key?(:snapshot)
           r
