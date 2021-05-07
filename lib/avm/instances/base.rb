@@ -4,15 +4,13 @@ require 'eac_ruby_utils/require_sub'
 require 'eac_ruby_utils/simple_cache'
 require 'avm/instances/entries'
 require 'avm/instances/entry_keys'
-::EacRubyUtils.require_sub(__FILE__)
 
 module Avm
   module Instances
     class Base
-      include ::EacRubyUtils::Listable
-      include ::EacRubyUtils::SimpleCache
-      include ::Avm::Instances::Base::AutoValues
-      include ::Avm::Instances::Base::Dockerizable
+      enable_listable
+      enable_simple_cache
+      require_sub __FILE__, include_modules: true
       include ::Avm::Instances::Entries
 
       lists.add_string :access, :local, :ssh
@@ -36,11 +34,8 @@ module Avm
         end
       end
 
-      attr_reader :application, :suffix
-
-      def initialize(application, suffix)
-        @application = application
-        @suffix = suffix.to_s
+      common_constructor :application, :suffix do
+        self.suffix = suffix.to_s
       end
 
       def id
