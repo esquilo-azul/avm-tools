@@ -20,6 +20,10 @@ module EacGit
         r
       end
 
+      def tar_uncached
+        env.executable('tar', '--version')
+      end
+
       module GitCommandExtensions
         def command(*args)
           super(*args).envvar('PATH', path_with_git_subrepo)
