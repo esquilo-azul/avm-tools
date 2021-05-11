@@ -83,11 +83,15 @@ module Avm
       end
 
       def registry_uncached
-        registry_from_option || ::Avm::Docker::Registry.default
+        registry_from_option || registry_from_instance || ::Avm::Docker::Registry.default
       end
 
       def registry_from_option
         parsed.registry_name.if_present { |v| ::Avm::Docker::Registry.new(v) }
+      end
+
+      def registry_from_instance
+        nyi
       end
 
       def snapshot?
