@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
+require 'avm/core_ext'
 require 'avm/eac_asciidoctor_base0/build'
 require 'avm/eac_asciidoctor_base0/project'
-require 'eac_cli/core_ext'
-require 'eac_ruby_utils/console/docopt_runner'
 
 module Avm
   module Tools
