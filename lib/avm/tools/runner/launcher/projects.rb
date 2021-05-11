@@ -6,7 +6,7 @@ require 'eac_launcher/instances/runner_helper'
 module Avm
   module Tools
     class Runner
-      class Launcher < ::EacRubyUtils::Console::DocoptRunner
+      class Launcher
         class Projects < ::EacLauncher::Instances::RunnerHelper
           DOC = <<~DOCOPT
             Shows available projects.
