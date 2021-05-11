@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'avm/local_projects/instance'
+require 'avm/app_src'
 require 'eac_cli/core_ext'
 
 module Avm
@@ -22,7 +22,7 @@ module Avm
         private
 
         def instance_uncached
-          ::Avm::LocalProjects::Instance.new(instance_path)
+          ::Avm::AppSrc.new(instance_path)
         end
 
         def instance_path_uncached
