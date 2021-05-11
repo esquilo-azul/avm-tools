@@ -34,10 +34,6 @@ module Avm
             infov('  * Git current revision', instance.options.git_current_revision)
             infov('  * Git publish remote', instance.options.git_publish_remote)
           end
-
-          def instance_path
-            options['<instance_path>']
-          end
         end
       end
     end
