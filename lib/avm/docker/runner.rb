@@ -43,13 +43,13 @@ module Avm
         infov 'Registry name', registry
         infov 'Version?', version?
         infov 'Snapshot?', snapshot?
-        infov 'Image name', instance.docker_image.tag
+        infov 'Image name', docker_image.tag
         infov 'Build arguments', build_args
         infov 'Entrypoint arguments', entrypoint_args
       end
 
       def build
-        instance.docker_image.build(build_args)
+        docker_image.build(build_args)
         success 'Docker image builded'
       end
 
@@ -61,12 +61,16 @@ module Avm
         instance.docker_container
       end
 
+      def docker_image
+        instance.docker_image
+      end
+
       def entrypoint_args
         parsed.entrypoint_arg
       end
 
       def push
-        instance.docker_image.push if parsed.push?
+        docker_image.push if parsed.push?
       end
 
       def container_run
