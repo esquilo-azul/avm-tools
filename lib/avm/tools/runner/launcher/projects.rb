@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 require 'eac_launcher/context'
-require 'eac_launcher/instances/runner_helper'
+require 'avm/launcher/instances/runner_helper'
 
 module Avm
   module Tools
     class Runner
       class Launcher
-        class Projects < ::EacLauncher::Instances::RunnerHelper
+        class Projects < ::Avm::Launcher::Instances::RunnerHelper
           DOC = <<~DOCOPT
             Shows available projects.
 
