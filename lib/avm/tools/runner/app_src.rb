@@ -6,7 +6,7 @@ require 'eac_cli/core_ext'
 module Avm
   module Tools
     class Runner
-      class LocalProject
+      class AppSrc
         require_sub __FILE__
         runner_with :help, :subcommands do
           desc 'Utilities for local projects.'

@@ -7,7 +7,7 @@ require 'eac_ruby_base0/core_ext'
 module Avm
   module Tools
     class Runner
-      class LocalProject
+      class AppSrc
         class Ruby
           class Bundler
             class Incompatible

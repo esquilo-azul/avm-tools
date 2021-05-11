@@ -6,7 +6,7 @@ require 'eac_ruby_utils/core_ext'
 module Avm
   module Tools
     class Runner
-      class LocalProject
+      class AppSrc
         class Info < ::EacRubyUtils::Console::DocoptRunner
           include ::EacCli::DefaultRunner
 

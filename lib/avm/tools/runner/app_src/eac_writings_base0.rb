@@ -7,7 +7,7 @@ require 'eac_ruby_utils/console/docopt_runner'
 module Avm
   module Tools
     class Runner
-      class LocalProject
+      class AppSrc
         class EacWritingsBase0
           require_sub __FILE__
           enable_simple_cache

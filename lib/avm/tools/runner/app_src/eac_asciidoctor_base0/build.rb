@@ -8,7 +8,7 @@ require 'eac_ruby_utils/console/docopt_runner'
 module Avm
   module Tools
     class Runner
-      class LocalProject
+      class AppSrc
         class EacAsciidoctorBase0
           class Build
             runner_with :help do

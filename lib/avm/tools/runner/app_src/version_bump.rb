@@ -6,7 +6,7 @@ require 'eac_cli/core_ext'
 module Avm
   module Tools
     class Runner
-      class LocalProject
+      class AppSrc
         class VersionBump
           runner_with :help do
             desc 'Bump version of a local project.'
