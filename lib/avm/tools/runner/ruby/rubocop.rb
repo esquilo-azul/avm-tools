@@ -1,43 +1,27 @@
 # frozen_string_literal: true
 
+require 'avm/core_ext'
 require 'avm/ruby/rubocop'
-require 'eac_ruby_utils/console/docopt_runner'
-require 'eac_ruby_utils/core_ext'
 
 module Avm
   module Tools
     class Runner
       class Ruby
-        class Rubocop < ::EacRubyUtils::Console::DocoptRunner
-          include ::EacRubyUtils::Console::Speaker
-          include ::EacRubyUtils::SimpleCache
-
-          DOC = <<~DOCOPT
-            Runs Rubocop (https://rubygems.org/gems/rubocop).
-
-            Usage:
-              __PROGRAM__ [options] [<rubocop-args>...]
-              __PROGRAM__ -h | --help
-
-            Options:
-              -h --help               Show this screen.
-              -C=<path>               Caminho para executar o Rubocop [default: .].
-          DOCOPT
+        class Rubocop
+          runner_with :help do
+            desc 'Runs Rubocop (https://rubygems.org/gems/rubocop).'
+            arg_opt '-C', 'Caminho para executar o Rubocop [default: .].'
+            pos_arg :rubocop_args, repeat: true, optional: true
+          end
 
           def run
-            ::Avm::Ruby::Rubocop.new(path, rubocop_args).run
+            ::Avm::Ruby::Rubocop.new(path, parsed.rubocop_args).run
           end
 
           private
 
           def path
-            ::Pathname.new(options.fetch('-C')).expand_path
-          end
-
-          def rubocop_args
-            r = options.fetch('<rubocop-args>')
-            r.shift if r.first == '--'
-            r
+            ::Pathname.new(parsed.c || '.').expand_path
           end
         end
       end
