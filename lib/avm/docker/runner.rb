@@ -50,6 +50,7 @@ module Avm
 
       def build
         instance.docker_image.build(build_args)
+        success 'Docker image builded'
       end
 
       def build_args
