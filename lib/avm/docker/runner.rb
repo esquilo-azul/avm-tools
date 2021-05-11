@@ -57,6 +57,10 @@ module Avm
         parsed.build_arg
       end
 
+      def docker_container
+        instance.docker_container
+      end
+
       def entrypoint_args
         parsed.entrypoint_arg
       end
@@ -68,7 +72,7 @@ module Avm
       def container_run
         return unless parsed.run?
 
-        instance.docker_container.run(
+        docker_container.run(
           entrypoint_args: entrypoint_args,
           clear: parsed.clear?
         )
