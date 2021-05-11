@@ -8,22 +8,14 @@ module Avm
     class Runner
       class Launcher
         class Projects < ::Avm::Launcher::Instances::RunnerHelper
-          DOC = <<~DOCOPT
-            Shows available projects.
-
-            Usage:
-              __PROGRAM__ [options]
-              __PROGRAM__ -h | --help
-
-            Options:
-              -h --help        Show this screen.
-              -i --instances   Show instances.
-              --recache        Rewrite instances cache.
-
-          DOCOPT
+          runner_with :help do
+            desc 'Shows available projects.'
+            bool_opt '--recache', 'Rewrite instances cache.'
+            bool_opt '-i', '--instances', 'Show instances.'
+          end
 
           def run
-            ::EacLauncher::Context.current.recache = options['--recache']
+            ::EacLauncher::Context.current.recache = parsed.recache?
             ::EacLauncher::Context.current.projects.each do |p|
               show_project(p)
             end
@@ -33,7 +25,7 @@ module Avm
 
           def show_project(project)
             puts project_label(project)
-            return unless options['--instances']
+            return unless parsed.instances?
 
             project.instances.each do |i|
               puts "  * #{instance_label(i)}"

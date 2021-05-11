@@ -7,27 +7,20 @@ module Avm
     class Runner
       class Launcher
         class Publish < ::Avm::Launcher::Instances::RunnerHelper
-          DOC = <<~DOCOPT
-            Publica projetos ou instâncias.
-
-            Usage:
-              __PROGRAM__ [options] [<instance_path>...]
-              __PROGRAM__ -h | --help
-
-            Options:
-              -h --help             Show this screen.
-              --new                 Publish projects not published before.
-              -s --stereotype=<st>  Publish only for stereotype <stereotype>.
-              --all            Publish all instances.
-              -d --dry-run          "Dry run" publishing.
-              --pending             Publish only pending.
-              --recache             Rewrite instances cache.
-              --run                 Confirm publishing.
-
-          DOCOPT
+          runner_with :help do
+            desc 'Publica projetos ou instâncias.'
+            bool_opt '--all', 'Get all instances.'
+            bool_opt '-d', '--dry-run', '"Dry run" publishing.'
+            bool_opt '--new', 'Publish projects not published before.'
+            bool_opt '--pending', 'Publish only pending.'
+            bool_opt '--recache', 'Rewrite instances cache.'
+            bool_opt '--run', 'Confirm publishing.'
+            arg_opt '-s', '--stereotype', 'Publish only for stereotype <stereotype>.'
+            pos_arg :instance_path, repeat: true, optional: true
+          end
 
           def run
-            ::EacLauncher::Context.current.recache = options['--recache']
+            ::EacLauncher::Context.current.recache = parsed.run?
             build_publish_options
             instances.each do |i|
               next unless i.options.publishable?
@@ -39,7 +32,7 @@ module Avm
           private
 
           def dry_run?
-            options.fetch('--dry-run')
+            parsed.dry_run?
           end
 
           def instance_method
@@ -51,12 +44,11 @@ module Avm
           end
 
           def publish_options
-            { new: options.fetch('--new'), stereotype: options.fetch('--stereotype'),
-              confirm: run? }
+            { new: parsed.new?, stereotype: parsed.stereotype?, confirm: run? }
           end
 
           def run?
-            options.fetch('--run') && !dry_run?
+            parsed.run? && !dry_run?
           end
         end
       end

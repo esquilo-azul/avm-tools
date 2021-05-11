@@ -7,8 +7,6 @@ module Avm
   module Launcher
     module Instances
       class RunnerHelper < ::EacRubyUtils::Console::DocoptRunner
-        include ::EacRubyUtils::Console::Speaker
-
         def context
           @context ||= ::EacLauncher::Context.current
         end
@@ -22,12 +20,12 @@ module Avm
         end
 
         def instances
-          if options['--all']
+          if parsed.all?
             context.instances
-          elsif options['--pending']
+          elsif parsed.pending?
             context.pending_instances
           else
-            options['<instance_path>'].flat_map { |p| find_instances(p) }
+            parsed.instance_path.flat_map { |p| find_instances(p) }
           end
         end
 

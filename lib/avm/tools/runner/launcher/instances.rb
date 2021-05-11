@@ -7,22 +7,15 @@ module Avm
     class Runner
       class Launcher
         class Instances < ::Avm::Launcher::Instances::RunnerHelper
-          DOC = <<~DOCOPT
-            Mostra informações sobre instâncias.
-
-            Usage:
-              __PROGRAM__ [options] [<instance_path>...]
-              __PROGRAM__ -h | --help
-
-            Options:
-              -h --help             Show this screen.
-              --all            Get all instances.
-              --recache        Rewrite instances cache.
-
-          DOCOPT
+          runner_with :help do
+            desc 'Mostra informações sobre instâncias.'
+            bool_opt '--recache', 'Rewrite instances cache.'
+            bool_opt '--all', 'Get all instances.'
+            pos_arg :instance_path, repeat: true, optional: true
+          end
 
           def run
-            ::EacLauncher::Context.current.recache = options['--recache']
+            ::EacLauncher::Context.current.recache = parsed.recache?
             instances.each { |i| show_instance(i) }
           end
 
