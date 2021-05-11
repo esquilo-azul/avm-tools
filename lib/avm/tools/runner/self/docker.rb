@@ -5,7 +5,7 @@ require 'avm/docker/runner'
 module Avm
   module Tools
     class Runner
-      class Self < ::EacRubyUtils::Console::DocoptRunner
+      class Self
         class Docker < ::Avm::Docker::Runner
         end
       end

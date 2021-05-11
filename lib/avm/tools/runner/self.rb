@@ -1,25 +1,17 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/console/docopt_runner'
-require 'eac_ruby_utils/require_sub'
+require 'avm/core_ext'
 require 'avm/self'
 
 module Avm
   module Tools
     class Runner
-      class Self < ::EacRubyUtils::Console::DocoptRunner
-        ::EacRubyUtils.require_sub(__FILE__)
-
-        DOC = <<~DOCOPT
-          Utilities for self avm-tools.
-
-          Usage:
-            __PROGRAM__ [options] __SUBCOMMANDS__
-            __PROGRAM__ -h | --help
-
-          Options:
-            -h --help             Show this screen.
-        DOCOPT
+      class Self
+        require_sub __FILE__
+        runner_with :help, :subcommands do
+          desc 'Utilities for self avm-tools.'
+          subcommands
+        end
 
         def instance
           ::Avm::Self.instance
