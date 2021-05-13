@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'avm/eac_webapp_base0/deploy'
-require 'avm/eac_asciidoctor_base0/project'
+require 'avm/eac_asciidoctor_base0/sources/base'
 require 'avm/eac_asciidoctor_base0/build'
 
 module Avm
@@ -17,7 +17,7 @@ module Avm
       private
 
       def project_uncached
-        ::Avm::EacAsciidoctorBase0::Project.new(
+        ::Avm::EacAsciidoctorBase0::Sources::Base.new(
           instance.source_instance.read_entry(::Avm::Instances::EntryKeys::FS_PATH)
         )
       end

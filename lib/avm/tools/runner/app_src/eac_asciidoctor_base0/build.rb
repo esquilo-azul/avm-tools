@@ -2,7 +2,6 @@
 
 require 'avm/core_ext'
 require 'avm/eac_asciidoctor_base0/build'
-require 'avm/eac_asciidoctor_base0/project'
 
 module Avm
   module Tools
