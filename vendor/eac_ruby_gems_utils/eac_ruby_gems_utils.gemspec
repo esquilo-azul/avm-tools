@@ -19,8 +19,8 @@ Gem::Specification.new do |s|
   s.rdoc_options = ['--charset=UTF-8']
 
   s.require_paths = ['lib']
-  s.files = `git ls-files`.split("\n")
-  s.test_files = `git ls-files spec examples`.split("\n")
+  s.files = Dir['{lib}/**/*', 'Gemfile']
+  s.test_files = Dir['{spec}/**/*', '.rspec']
 
   s.add_dependency 'bundler', '~> 2.2', '>= 2.2.17'
   s.add_dependency 'eac_ruby_utils', '~> 0.29'
