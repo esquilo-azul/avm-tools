@@ -17,6 +17,7 @@ PATH
       git (~> 1.7)
       htmlbeautifier (~> 1.3, >= 1.3.1)
       minitar
+      os
       ruby-progressbar (~> 1.10, >= 1.10.1)
 
 PATH
@@ -124,6 +125,7 @@ GEM
     net-ssh (4.2.0)
     ofx-parser (1.1.0)
       hpricot (>= 0.6)
+    os (1.1.1)
     parallel (1.20.1)
     parseconfig (1.1.0)
     parser (3.0.1.1)
