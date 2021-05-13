@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'avm/core_ext'
-require 'avm/eac_asciidoctor_base0/build'
+require 'avm/eac_asciidoctor_base0/sources/build'
 
 module Avm
   module Tools
@@ -22,8 +22,8 @@ module Avm
             private
 
             def build_uncached
-              ::Avm::EacAsciidoctorBase0::Build.new(runner_context.call(:project),
-                                                    target_directory: parsed.target_dir)
+              ::Avm::EacAsciidoctorBase0::Sources::Build.new(runner_context.call(:project),
+                                                             target_directory: parsed.target_dir)
             end
 
             def default_target_directory
