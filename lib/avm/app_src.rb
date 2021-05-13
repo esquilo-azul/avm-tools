@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'avm/instances/configuration'
+require 'avm/apps/sources/configuration'
 require 'eac_launcher/paths/real'
 require 'eac_ruby_utils/core_ext'
 require 'avm/projects/stereotypes'
@@ -32,9 +32,9 @@ module Avm
 
     private
 
-    # @return [Avm::Instances::Configuration]
+    # @return [Avm::Apps::Sources::Configuration]
     def configuration_uncached
-      ::Avm::Instances::Configuration.find_in_path(path)
+      ::Avm::Apps::Sources::Configuration.find_in_path(path)
     end
 
     def run_stereotype_job(stereotype, job, job_args)
