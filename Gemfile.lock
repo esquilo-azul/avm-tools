@@ -26,6 +26,12 @@ PATH
       eac_ruby_utils (~> 0.58, >= 0.58.1)
 
 PATH
+  remote: vendor/avm-eac_asciidoctor_base0
+  specs:
+    avm-eac_asciidoctor_base0 (0.0.0)
+      eac_ruby_utils (~> 0.63)
+
+PATH
   remote: vendor/eac_cli
   specs:
     eac_cli (0.16.3)
@@ -163,6 +169,7 @@ PLATFORMS
 
 DEPENDENCIES
   avm-apps!
+  avm-eac_asciidoctor_base0!
   avm-tools!
   eac_cli!
   eac_docker!
