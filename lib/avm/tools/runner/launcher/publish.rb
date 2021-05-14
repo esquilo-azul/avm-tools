@@ -20,7 +20,7 @@ module Avm
           end
 
           def run
-            ::EacLauncher::Context.current.recache = parsed.run?
+            ::EacLauncher::Context.current.recache = parsed.recache?
             build_publish_options
             instances.each do |i|
               next unless i.options.publishable?
