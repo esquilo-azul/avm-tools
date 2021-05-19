@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'eac_cli/default_runner'
+require 'avm/core_ext'
 require 'eac_git/local'
 require 'eac_ruby_utils/console/docopt_runner'
 
@@ -9,10 +9,8 @@ module Avm
     class Runner
       class Git
         class Subrepo < ::EacRubyUtils::Console::DocoptRunner
-          class Check < ::EacRubyUtils::Console::DocoptRunner
-            include ::EacCli::DefaultRunner
-
-            runner_definition do
+          class Check
+            runner_with :help do
               desc 'Check status of subrepos.'
               bool_opt '-a', '--all', 'Select all subrepos.'
               bool_opt '-f', '--fix-parent', 'Fix parent SHA1.'
@@ -23,7 +21,7 @@ module Avm
 
             def run
               subrepo_checks.show_result
-              return if options.fetch('--no-error')
+              return if parsed.no_error?
               return unless subrepo_checks.result.error?
 
               fatal_error 'Failed'
@@ -33,15 +31,15 @@ module Avm
 
             def subrepo_checks_uncached
               r = ::Avm::Git::SubrepoChecks.new(local_repos)
-              r.check_remote = options.fetch('--remote')
-              r.fix_parent = options.fetch('--fix-parent')
-              r.add_all_subrepos if options.fetch('--all')
-              r.add_subrepos(*options.fetch('<subrepos>'))
+              r.check_remote = parsed.remote?
+              r.fix_parent = parsed.fix_parent?
+              r.add_all_subrepos if parsed.all?
+              r.add_subrepos(*parsed.subrepos)
               r
             end
 
             def local_repos_uncached
-              ::EacGit::Local.new(context(:git))
+              ::EacGit::Local.new(runner_context.call(:git))
             end
           end
         end
