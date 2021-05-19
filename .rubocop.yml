@@ -17,6 +17,7 @@ Metrics/AbcSize:
 
 Metrics/BlockLength:
   Exclude:
+    - '**/*.gemspec'
     - spec/**/*_spec.rb
     - spec/spec_helper/eac_launcher.rb
 
