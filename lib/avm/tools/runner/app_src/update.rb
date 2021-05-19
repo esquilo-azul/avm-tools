@@ -1,22 +1,19 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/console/docopt_runner'
-require 'eac_ruby_utils/core_ext'
+require 'avm/core_ext'
 
 module Avm
   module Tools
     class Runner
       class AppSrc
-        class Update < ::EacRubyUtils::Console::DocoptRunner
-          include ::EacCli::DefaultRunner
-
-          runner_definition do
+        class Update
+          runner_with :help do
             desc 'Update local project.'
           end
 
           def run
-            infov 'Path', context(:instance).path
-            context(:instance).run_job(:update)
+            infov 'Path', runner_context.call(:instance).path
+            runner_context.call(:instance).run_job(:update)
           end
         end
       end
