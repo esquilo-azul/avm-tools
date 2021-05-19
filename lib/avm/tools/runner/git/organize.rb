@@ -2,16 +2,13 @@
 
 require 'avm/git/organize/repository'
 require 'eac_cli/default_runner'
-require 'eac_ruby_utils/console/docopt_runner'
 
 module Avm
   module Tools
     class Runner
       class Git
-        class Organize < ::EacRubyUtils::Console::DocoptRunner
-          include ::EacCli::DefaultRunner
-
-          runner_definition do
+        class Organize
+          runner_with :help do
             desc 'Organize branches.'
             bool_opt '-a', '--all', 'Run all organizations.'
             bool_opt '-n', '--no', 'Do not run operations.'
@@ -37,7 +34,7 @@ module Avm
           end
 
           def collect?(type)
-            options.fetch("--#{type}") || options.fetch('--all')
+            parsed.fetch(type) || parsed.all?
           end
 
           def collect_references
@@ -58,14 +55,14 @@ module Avm
           end
 
           def run_operations?
-            return true if options.fetch('--yes')
-            return false if options.fetch('--no')
+            return true if parsed.yes?
+            return false if parsed.no?
 
             request_input('Confirm operations?', bool: true)
           end
 
           def repository_uncached
-            ::Avm::Git::Organize::Repository.new(context(:git).eac_git)
+            ::Avm::Git::Organize::Repository.new(runner_context.call(:git).eac_git)
           end
 
           def start_banner
