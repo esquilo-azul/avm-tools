@@ -1,21 +1,18 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/console/docopt_runner'
-require 'eac_ruby_utils/core_ext'
+require 'avm/core_ext'
 
 module Avm
   module Tools
     class Runner
       class AppSrc
-        class Test < ::EacRubyUtils::Console::DocoptRunner
-          include ::EacCli::DefaultRunner
-
-          runner_definition do
+        class Test
+          runner_with :help do
             desc 'Test local project.'
           end
 
           def run
-            context(:instance_banner)
+            runner_context.call(:instance_banner)
             infov 'Test command', test_command
             if test_command.present?
               test_command.system!
@@ -25,7 +22,7 @@ module Avm
           end
 
           def test_command
-            context(:instance).configuration.if_present(&:any_test_command)
+            runner_context.call(:instance).configuration.if_present(&:any_test_command)
           end
         end
       end
