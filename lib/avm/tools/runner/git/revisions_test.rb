@@ -1,32 +1,21 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/core_ext'
-require 'eac_ruby_utils/console/docopt_runner'
+require 'avm/core_ext'
 require 'avm/git/revision_test'
 
 module Avm
   module Tools
     class Runner
       class Git
-        class RevisionsTest < ::EacRubyUtils::Console::DocoptRunner
-          enable_simple_cache
-          enable_console_speaker
-
-          DOC = <<~DOCOPT
-            Test multiple revisions until a error is found.
-
-            Usage:
-              __PROGRAM__ [options]
-              __PROGRAM__ -h | --help
-
-            Options:
-              -h --help                     Mostra esta ajuda.
-              -c --command=<test-command>   Command to test instance.
-              -n --no-cache                 Does not use cache.
-          DOCOPT
+        class RevisionsTest
+          runner_with :help do
+            desc 'Test multiple revisions until a error is found.'
+            arg_opt '-c', '--command', 'Command to test instance.'
+            bool_opt '-n', '--no-cache', 'Does not use cache.'
+          end
 
           def run
-            fatal_error('Repository is dirty') if context(:git).dirty?
+            fatal_error('Repository is dirty') if runner_context.call(:git).dirty?
 
             return_to_branch_on_end do
               infov 'Revisions found', revisions.count
@@ -41,11 +30,11 @@ module Avm
           private
 
           def return_to_branch_on_end
-            current_branch = context(:git).current_branch
+            current_branch = runner_context.call(:git).current_branch
             yield
           ensure
             infom "Returning to original branch \"#{current_branch}\""
-            context(:git).execute!('checkout', current_branch)
+            runner_context.call(:git).execute!('checkout', current_branch)
           end
 
           def revision_with_error_uncached
@@ -61,14 +50,14 @@ module Avm
           end
 
           def revisions_uncached
-            context(:git).execute!('log', '--pretty=format:%H', 'origin/master..HEAD')
-                         .each_line.map(&:strip).reverse.map do |sha1|
-              ::Avm::Git::RevisionTest.new(context(:git), sha1, test_revision_options)
+            runner_context.call(:git).execute!('log', '--pretty=format:%H', 'origin/master..HEAD')
+                          .each_line.map(&:strip).reverse.map do |sha1|
+              ::Avm::Git::RevisionTest.new(runner_context.call(:git), sha1, test_revision_options)
             end
           end
 
           def test_revision_options
-            { test_command: options.fetch('--command'), no_cache: options.fetch('--no-cache') }
+            { test_command: parsed.command, no_cache: parsed.no_cache? }
           end
         end
       end
