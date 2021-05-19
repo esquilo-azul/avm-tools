@@ -2,13 +2,12 @@
 
 require 'avm/core_ext'
 require 'eac_git/local'
-require 'eac_ruby_utils/console/docopt_runner'
 
 module Avm
   module Tools
     class Runner
       class Git
-        class Subrepo < ::EacRubyUtils::Console::DocoptRunner
+        class Subrepo
           class Check
             runner_with :help do
               desc 'Check status of subrepos.'

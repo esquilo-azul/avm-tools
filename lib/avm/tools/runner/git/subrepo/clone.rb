@@ -1,14 +1,13 @@
 # frozen_string_literal: true
 
-require 'eac_cli/core_ext'
+require 'avm/core_ext'
 require 'eac_git/local'
-require 'eac_ruby_utils/console/docopt_runner'
 
 module Avm
   module Tools
     class Runner
       class Git
-        class Subrepo < ::EacRubyUtils::Console::DocoptRunner
+        class Subrepo
           class Clone
             runner_with :help do
               desc 'Clone git-subrepo repositories.'
