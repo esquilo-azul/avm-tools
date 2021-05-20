@@ -43,6 +43,13 @@ PATH
       eac_ruby_utils (~> 0.55)
 
 PATH
+  remote: vendor/eac_config
+  specs:
+    eac_config (0.2.0)
+      addressable
+      eac_ruby_utils (~> 0.62)
+
+PATH
   remote: vendor/eac_docker
   specs:
     eac_docker (0.2.1)
@@ -176,6 +183,7 @@ DEPENDENCIES
   avm-eac_asciidoctor_base0!
   avm-tools!
   eac_cli!
+  eac_config!
   eac_docker!
   eac_git!
   eac_ruby_base0!
