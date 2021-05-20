@@ -1,0 +1,7 @@
+[subrepo]
+  cmdver = 0.4.1
+  commit = f2a314d5044d123087f884d250d8493a98e794b3
+  method = merge
+  parent = 8ed8f8e4770e6ddddc8abe75bead06b7ad1488bc
+  branch = master
+  remote = https://github.com/esquilo-azul/avm-eac_asciidoctor_base0.git
