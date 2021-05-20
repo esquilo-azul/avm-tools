@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/console/docopt_runner'
-require 'eac_ruby_utils/console/speaker'
+require 'avm/core_ext'
 
 module Avm
   module Launcher
     module Instances
-      class RunnerHelper < ::EacRubyUtils::Console::DocoptRunner
+      class RunnerHelper
         def context
           @context ||= ::EacLauncher::Context.current
         end
