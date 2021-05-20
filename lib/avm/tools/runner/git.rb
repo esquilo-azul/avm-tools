@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/console/docopt_runner'
 require 'eac_ruby_utils/require_sub'
 require 'eac_launcher/git/base'
 ::EacRubyUtils.require_sub(__FILE__)

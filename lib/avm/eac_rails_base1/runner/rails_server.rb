@@ -3,7 +3,6 @@
 require 'avm/eac_rails_base1/runner_with/bundle'
 require 'avm/instances/entry_keys'
 require 'eac_cli/core_ext'
-require 'eac_ruby_utils/console/docopt_runner'
 require 'shellwords'
 
 module Avm

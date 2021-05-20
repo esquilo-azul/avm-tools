@@ -2,7 +2,6 @@
 
 require 'avm/eac_writings_base0/project'
 require 'eac_cli/core_ext'
-require 'eac_ruby_utils/console/docopt_runner'
 
 module Avm
   module Tools

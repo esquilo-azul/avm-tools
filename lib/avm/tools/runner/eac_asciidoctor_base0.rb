@@ -2,7 +2,6 @@
 
 require 'avm/eac_webapp_base0/runner'
 require 'avm/eac_asciidoctor_base0'
-require 'eac_ruby_utils/console/docopt_runner'
 
 module Avm
   module Tools
