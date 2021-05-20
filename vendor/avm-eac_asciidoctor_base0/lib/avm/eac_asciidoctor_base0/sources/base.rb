@@ -9,6 +9,10 @@ module Avm
         common_constructor :root do
           self.root = root.to_pathname
         end
+
+        def name
+          root.basename.to_s
+        end
       end
     end
   end
