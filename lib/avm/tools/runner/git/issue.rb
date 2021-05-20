@@ -31,15 +31,13 @@ module Avm
             %%VALIDATIONS%%
           DOCOPT
 
-          UNCOMPLETE_MESSAGE =
+          def run
+            banner
+            return unless validate
 
-            def run
-              banner
-              return unless validate
-
-              run_complete if options.fetch('complete')
-              success('Done!')
-            end
+            run_complete if options.fetch('complete')
+            success('Done!')
+          end
 
           def banner
             complete.start_banner
