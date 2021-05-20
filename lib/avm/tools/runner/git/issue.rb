@@ -1,41 +1,28 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/console/docopt_runner'
-require 'eac_ruby_utils/console/speaker'
+require 'avm/core_ext'
 require 'avm/git/issue/complete'
 
 module Avm
   module Tools
     class Runner
       class Git
-        class Issue < ::EacRubyUtils::Console::DocoptRunner
-          enable_simple_cache
-          include ::EacRubyUtils::Console::Speaker
-
-          DOC = <<~DOCOPT
-            Closes a issue in a Git repository.
-
-            Usage:
-              __PROGRAM__ [options] [complete]
-              __PROGRAM__ -h | --help
-
-            Options:
-              -h --help                             Show this screen.
-              -f --uncomplete-unfail                Do not exit with error if issue is not completed
-                                                    or is invalid.
-              -s --skip-validations=<validations>   Does not validate conditions on <validations>
-                                                    (Comma separated value).
-              -y --yes                              Does not ask for user confirmation.
-
-            Validations:
-            %%VALIDATIONS%%
-          DOCOPT
+        class Issue
+          runner_with :help do
+            desc 'Closes a issue in a Git repository.'
+            bool_opt '-f', '--uncomplete-unfail', 'Do not exit with error if issue is not' \
+              ' completed or is invalid.'
+            arg_opt '-s', '--skip-validations', 'Does not validate conditions on <validations>' \
+              ' (Comma separated value).'
+            bool_opt '-y', '--yes', 'Does not ask for user confirmation.'
+            bool_opt '--complete', 'Run complete task.'
+          end
 
           def run
             banner
             return unless validate
 
-            run_complete if options.fetch('complete')
+            run_complete if parsed.complete?
             success('Done!')
           end
 
@@ -66,15 +53,15 @@ module Avm
           end
 
           def confirm?
-            options.fetch('--yes') || request_input('Confirm issue completion?', bool: true)
+            parsed.yes? || request_input('Confirm issue completion?', bool: true)
           end
 
           def skip_validations
-            options.fetch('--skip-validations').to_s.split(',').map(&:strip).reject(&:blank?)
+            parsed.skip_validations.to_s.split(',').map(&:strip).reject(&:blank?)
           end
 
           def git_complete_issue_options
-            { dir: context(:repository_path), skip_validations: skip_validations }
+            { dir: runner_context.call(:repository_path), skip_validations: skip_validations }
           end
 
           def doc_validations_list
@@ -82,7 +69,7 @@ module Avm
           end
 
           def uncomplete_unfail?
-            options.fetch('--uncomplete-unfail')
+            parsed.uncomplete_unfail?
           end
 
           def uncomplete_message(message)
