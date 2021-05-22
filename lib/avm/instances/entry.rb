@@ -46,7 +46,7 @@ module Avm
       end
 
       def write(value)
-        ::Avm.configs.configs.write_entry(full_path, value)
+        ::Avm.configs.sub.entry(full_path).value = value
       end
     end
   end
