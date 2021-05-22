@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/configs'
+require 'eac_config/old_configs'
 require 'eac_ruby_utils/core_ext'
 require 'yaml'
 
 module Avm
   module Apps
     module Sources
-      class Configuration < ::EacRubyUtils::Configs
+      class Configuration < ::EacConfig::OldConfigs
         require_sub __FILE__
 
         FILENAMES = %w[.avm.yml .avm.yaml].freeze

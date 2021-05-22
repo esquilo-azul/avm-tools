@@ -3,7 +3,7 @@
 module Avm
   module Apps
     module Sources
-      class Configuration < ::EacRubyUtils::Configs
+      class Configuration < ::EacConfig::OldConfigs
         RUBOCOP_COMMAND_KEY = 'ruby.rubocop.command'
         RUBOCOP_GEMFILE_KEY = 'ruby.rubocop.gemfile'
 

@@ -6,7 +6,7 @@ require 'i18n'
 module Avm
   module Apps
     module Sources
-      class Configuration < ::EacRubyUtils::Configs
+      class Configuration < ::EacConfig::OldConfigs
         LOCALE_KEY = :locale
 
         def locale
