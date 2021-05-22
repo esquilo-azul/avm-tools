@@ -4,7 +4,7 @@ module EacRubyGemsUtils
   module Tests
     class Multiple
       class DecoratedGem < ::SimpleDelegator
-        enable_console_speaker
+        enable_speaker
 
         def prepare
           return unless gemfile_path.exist?

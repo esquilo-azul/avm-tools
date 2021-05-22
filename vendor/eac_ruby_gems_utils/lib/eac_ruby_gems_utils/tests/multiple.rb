@@ -8,7 +8,7 @@ module EacRubyGemsUtils
   module Tests
     class Multiple
       require_sub __FILE__
-      enable_console_speaker
+      enable_speaker
       enable_simple_cache
       common_constructor :gems, :options, default: [{}]
       set_callback :initialize, :after, :run
