@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/console/speaker'
+require 'eac_cli/speaker'
 require 'eac_ruby_utils/settings_provider'
 
 module EacRubyBase0
   module JobsRunner
     common_concern do
-      include ::EacRubyUtils::Console::Speaker
+      include ::EacCli::Speaker
       include ::EacRubyUtils::SettingsProvider
     end
 

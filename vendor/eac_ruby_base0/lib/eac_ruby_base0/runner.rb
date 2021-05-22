@@ -7,7 +7,7 @@ require 'eac_ruby_utils/core_ext'
 module EacRubyBase0
   module Runner
     require_sub __FILE__
-    enable_console_speaker
+    enable_speaker
     common_concern do
       include ::EacCli::RunnerWith::Help
       include ::EacCli::RunnerWith::Subcommands
@@ -42,7 +42,7 @@ module EacRubyBase0
     end
 
     class FailIfRequestInput
-      enable_console_speaker
+      enable_speaker
 
       %w[gets noecho].each do |method|
         define_method(method) do
