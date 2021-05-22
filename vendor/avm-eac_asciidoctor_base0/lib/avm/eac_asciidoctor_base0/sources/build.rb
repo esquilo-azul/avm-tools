@@ -8,7 +8,7 @@ module Avm
     module Sources
       class Build
         require_sub __FILE__
-        enable_console_speaker
+        enable_speaker
         enable_simple_cache
         enable_listable
         lists.add_symbol :option, :target_directory

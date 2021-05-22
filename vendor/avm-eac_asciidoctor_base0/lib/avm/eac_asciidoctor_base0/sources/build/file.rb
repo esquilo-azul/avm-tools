@@ -7,7 +7,7 @@ module Avm
     module Sources
       class Build
         class File
-          enable_console_speaker
+          enable_speaker
           common_constructor :build, :subpath
 
           def run
