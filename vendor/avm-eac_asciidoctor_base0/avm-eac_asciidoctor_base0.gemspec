@@ -12,6 +12,7 @@ Gem::Specification.new do |s|
 
   s.files = Dir['{lib}/**/*']
 
+  s.add_dependency 'asciidoctor', '~> 2.0', '>= 2.0.12'
   s.add_dependency 'eac_ruby_utils', '~> 0.63'
   s.add_dependency 'os'
   s.add_dependency 'rouge', '~> 3.26'
