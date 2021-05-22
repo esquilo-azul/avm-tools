@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'active_support/core_ext/numeric/time'
-require 'eac_ruby_utils/console/speaker'
+require 'eac_cli/speaker'
 require 'eac_ruby_utils/simple_cache'
 
 module Avm

@@ -9,7 +9,7 @@ module EacLauncher
   module Git
     class PublishBase < ::EacLauncher::Publish::Base
       include ::EacRubyUtils::SimpleCache
-      include ::EacRubyUtils::Console::Speaker
+      include ::EacCli::Speaker
 
       CHECKERS = %w[remote_url remote_fetch publish_remote_no_exist remote_equal remote_following
                     local_following].freeze

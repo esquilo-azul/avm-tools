@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'eac_launcher/git/base'
-require 'eac_ruby_utils/console/speaker'
+require 'eac_cli/speaker'
 require 'eac_ruby_utils/options_consumer'
 require 'eac_ruby_utils/require_sub'
 require 'eac_ruby_utils/simple_cache'
@@ -12,7 +12,7 @@ module Avm
     module Issue
       class Complete
         include ::EacRubyUtils::SimpleCache
-        include ::EacRubyUtils::Console::Speaker
+        include ::EacCli::Speaker
 
         attr_reader :skip_validations
 

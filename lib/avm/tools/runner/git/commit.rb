@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/console/speaker'
+require 'eac_cli/speaker'
 require 'eac_ruby_utils/simple_cache'
 require 'eac_launcher/git/base'
 require 'filesize'

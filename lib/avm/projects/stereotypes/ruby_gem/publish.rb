@@ -4,7 +4,7 @@ require 'curb'
 require 'json'
 require 'eac_ruby_utils/simple_cache'
 require 'rubygems'
-require 'eac_ruby_utils/console/speaker'
+require 'eac_cli/speaker'
 require 'eac_launcher/publish/base'
 require 'eac_launcher/publish/check_result'
 require 'eac_launcher/ruby/gem'
@@ -15,7 +15,7 @@ module Avm
       class RubyGem
         class Publish < ::EacLauncher::Publish::Base
           include ::EacRubyUtils::SimpleCache
-          include ::EacRubyUtils::Console::Speaker
+          include ::EacCli::Speaker
 
           protected
 

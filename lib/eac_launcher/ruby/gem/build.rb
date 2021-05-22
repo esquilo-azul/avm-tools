@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'tmpdir'
-require 'eac_ruby_utils/console/speaker'
+require 'eac_cli/speaker'
 require 'eac_ruby_utils/envs'
 require 'eac_launcher/ruby/gem/specification'
 
@@ -9,7 +9,7 @@ module EacLauncher
   module Ruby
     module Gem
       class Build
-        include ::EacRubyUtils::Console::Speaker
+        include ::EacCli::Speaker
 
         def initialize(original_gem_root)
           @original_gem_root = original_gem_root

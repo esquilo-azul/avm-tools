@@ -10,7 +10,7 @@ module Avm
         class << self
           def extend_object(object)
             object.extend ::EacRubyUtils::SimpleCache
-            object.extend ::EacRubyUtils::Console::Speaker
+            object.extend ::EacCli::Speaker
             object.extend ::Avm::Launcher::Instances::Base::Cache
             super
           end
