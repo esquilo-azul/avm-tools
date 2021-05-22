@@ -4,6 +4,7 @@ require 'eac_docker/images/base'
 require 'eac_docker/images/coded'
 require 'eac_ruby_utils/core_ext'
 require 'eac_ruby_utils/fs/temp'
+require 'eac_templates/patches/object/template'
 
 module EacDocker
   module Images
