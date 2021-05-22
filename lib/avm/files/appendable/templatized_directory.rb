@@ -17,7 +17,7 @@ module Avm
         def write_on(target_dir)
           raise 'Variables source not set' if appender.variables_source.blank?
 
-          ::EacRubyUtils::Templates::Directory.new(source_path).apply(
+          ::EacTemplates::Directory.new(source_path).apply(
             appender.variables_source,
             target_dir
           )

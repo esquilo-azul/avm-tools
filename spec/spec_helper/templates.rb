@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/patches/object/template'
+require 'eac_templates/patches/object/template'
 
-::EacRubyUtils::Templates::Searcher.default.included_paths << ::File.join(__dir__, 'stub_templates')
+::EacTemplates::Searcher.default.included_paths << ::File.join(__dir__, 'stub_templates')

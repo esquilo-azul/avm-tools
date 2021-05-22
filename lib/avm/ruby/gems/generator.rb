@@ -61,11 +61,11 @@ module Avm
         protected
 
         def apply_to_root_directory(template, subpath)
-          if template.is_a?(::EacRubyUtils::Templates::Directory)
+          if template.is_a?(::EacTemplates::Directory)
             template.children.each do |child|
               apply_to_root_directory(child, subpath.join(child.basename))
             end
-          elsif template.is_a?(::EacRubyUtils::Templates::File)
+          elsif template.is_a?(::EacTemplates::File)
             template.apply_to_file(template_variables, root_directory.join(subpath))
           else
             raise "Unknown template object: #{template}"

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'avm/self/root'
-require 'eac_ruby_utils/patches/object/template'
+require 'eac_templates/patches/object/template'
 
-::EacRubyUtils::Templates::Searcher.default.included_paths <<
+::EacTemplates::Searcher.default.included_paths <<
   ::Avm::Self.root.join('template').to_path
