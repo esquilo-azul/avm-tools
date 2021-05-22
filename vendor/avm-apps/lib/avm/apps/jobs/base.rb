@@ -10,7 +10,7 @@ module Avm
         common_concern do
           include ::ActiveSupport::Callbacks
 
-          enable_console_speaker
+          enable_speaker
           enable_simple_cache
           enable_listable
           common_constructor :instance, :options, default: [{}] do
