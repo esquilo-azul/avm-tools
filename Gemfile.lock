@@ -93,7 +93,7 @@ PATH
 PATH
   remote: vendor/eac_templates
   specs:
-    eac_templates (0.0.0)
+    eac_templates (0.1.0)
       eac_config (~> 0.3)
       eac_ruby_utils (~> 0.64)
 
