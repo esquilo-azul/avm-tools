@@ -8,7 +8,7 @@ module Avm
     class Context
       class InstanceManager
         class CachedInstance
-          enable_console_speaker
+          enable_speaker
           enable_simple_cache
           common_constructor :cached_instances, :data
 

@@ -9,7 +9,7 @@ module Avm
       include ::EacRubyUtils::Fs::Traversable
       require_sub __FILE__
       enable_simple_cache
-      enable_console_speaker
+      enable_speaker
       enable_listable
       lists.add_symbol :option, :apply, :recursive, :verbose
       common_constructor :source_paths, :options, default: [{}] do

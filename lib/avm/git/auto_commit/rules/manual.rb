@@ -8,7 +8,7 @@ module Avm
       module Rules
         class Manual < ::Avm::Git::AutoCommit::Rules::Base
           class WithFile < ::Avm::Git::AutoCommit::Rules::Base::WithFile
-            enable_console_speaker
+            enable_speaker
 
             COMMIT_FORMAT = '%h - %s (%cr)'
             SKIP_OPTION = 's'

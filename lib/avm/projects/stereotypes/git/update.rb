@@ -10,7 +10,7 @@ module Avm
         class Update
           require_sub __FILE__
           enable_simple_cache
-          enable_console_speaker
+          enable_speaker
           common_constructor :instance
 
           delegate :git_repo, to: :instance

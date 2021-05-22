@@ -8,7 +8,7 @@ module Avm
   module Git
     class RevisionTest
       enable_simple_cache
-      enable_console_speaker
+      enable_speaker
       common_constructor :git, :sha1, :options
 
       def banner

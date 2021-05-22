@@ -6,7 +6,7 @@ require 'avm/docker/registry'
 module Avm
   module Docker
     class Runner
-      enable_console_speaker
+      enable_speaker
       enable_simple_cache
 
       runner_with :help do

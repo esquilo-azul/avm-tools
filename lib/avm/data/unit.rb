@@ -9,7 +9,7 @@ module Avm
       include ::ActiveSupport::Callbacks
 
       define_callbacks :dump, :load
-      enable_console_speaker
+      enable_speaker
 
       %w[dump load].each do |action|
         method_name = "#{action}_command"

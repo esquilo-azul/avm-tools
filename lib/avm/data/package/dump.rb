@@ -8,7 +8,7 @@ module Avm
   module Data
     class Package
       class Dump
-        enable_console_speaker
+        enable_speaker
         enable_listable
 
         DEFAULT_EXPIRE_TIME = 1.day

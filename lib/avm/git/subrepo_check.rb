@@ -7,7 +7,7 @@ module Avm
   module Git
     class SubrepoCheck
       require_sub __FILE__, include_modules: true
-      enable_console_speaker
+      enable_speaker
       enable_simple_cache
 
       BLANK_TEXT = 'BLANK'

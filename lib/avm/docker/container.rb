@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/core_ext'
+require 'avm/core_ext'
 require 'avm/executables'
 
 module Avm
   module Docker
     class Container
-      enable_console_speaker
+      enable_speaker
       common_constructor :instance
 
       def remove

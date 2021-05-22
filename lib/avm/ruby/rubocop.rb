@@ -7,7 +7,7 @@ module Avm
   module Ruby
     class Rubocop
       require_sub __FILE__
-      enable_console_speaker
+      enable_speaker
       enable_simple_cache
       common_constructor :base_path, :rubocop_args
       set_callback :initialize, :after do

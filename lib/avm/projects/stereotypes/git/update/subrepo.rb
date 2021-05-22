@@ -13,7 +13,7 @@ module Avm
 
             require_sub __FILE__, include_modules: true
             enable_simple_cache
-            enable_console_speaker
+            enable_speaker
             common_constructor :parent_update, :subpath do
               self.subpath = subpath.to_pathname
             end

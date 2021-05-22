@@ -6,7 +6,7 @@ require 'eac_ruby_utils/core_ext'
 module Avm
   module Git
     class SubrepoChecks
-      enable_console_speaker
+      enable_speaker
       enable_simple_cache
       attr_accessor :check_remote, :fix_parent
       common_constructor :repository

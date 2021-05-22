@@ -10,7 +10,7 @@ module Avm
         class Update
           TRANSLATE_CLASS = self
 
-          enable_console_speaker
+          enable_speaker
           common_constructor :instance
 
           def run

@@ -9,7 +9,7 @@ module Avm
   module EacWritingsBase0
     class ProjectBuild
       require_sub __FILE__, include_modules: true
-      enable_console_speaker
+      enable_speaker
 
       CONTENT_VAR = '%%%CONTENT%%%'
 

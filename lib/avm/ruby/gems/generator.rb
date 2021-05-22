@@ -11,7 +11,7 @@ module Avm
         JOBS = %w[root_directory gemspec root_lib version_lib static gemfile_lock].freeze
         TEMPLATE_VARIABLES = %w[lib_path name root_module].freeze
 
-        enable_console_speaker
+        enable_speaker
         enable_simple_cache
         common_constructor :root_directory, :options, default: [{}] do
           self.root_directory = root_directory.to_pathname

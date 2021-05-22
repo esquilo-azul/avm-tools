@@ -8,7 +8,7 @@ require 'eac_ruby_utils/core_ext'
 module Avm
   module EacRedmineBase0
     class CoreUpdate
-      enable_console_speaker
+      enable_speaker
       enable_simple_cache
       common_constructor :instance, :version, :url
 

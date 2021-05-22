@@ -6,7 +6,7 @@ require 'eac_ruby_utils/core_ext'
 module Avm
   module Git
     class FileAutoFixup
-      enable_console_speaker
+      enable_speaker
       enable_simple_cache
       enable_listable
 

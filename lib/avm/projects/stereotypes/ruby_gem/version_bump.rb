@@ -8,7 +8,7 @@ module Avm
     module Stereotypes
       class RubyGem
         class VersionBump
-          enable_console_speaker
+          enable_speaker
           common_constructor :instance, :target_version
 
           def run

@@ -7,7 +7,7 @@ module Avm
   module Data
     class Package
       class Load
-        enable_console_speaker
+        enable_speaker
 
         attr_reader :package, :data_file_path
 
