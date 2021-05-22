@@ -58,6 +58,7 @@ PATH
   specs:
     eac_docker (0.2.1)
       eac_ruby_utils (~> 0.64)
+      eac_templates (~> 0.1)
 
 PATH
   remote: vendor/eac_git
