@@ -37,7 +37,7 @@ module Avm
         if suffix.is_a?(::Array)
           suffix.dup
         else
-          ::EacRubyUtils::PathsHash.parse_entry_key(suffix.to_s)
+          ::EacConfig::PathsHash.parse_entry_key(suffix.to_s)
         end
       end
 

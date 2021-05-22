@@ -25,7 +25,7 @@ module Avm
 
       def full_entry_path(entry_suffix)
         unless entry_suffix.is_a?(::Array)
-          entry_suffix = ::EacRubyUtils::PathsHash.parse_entry_key(entry_suffix.to_s)
+          entry_suffix = ::EacConfig::PathsHash.parse_entry_key(entry_suffix.to_s)
         end
         (path_prefix + entry_suffix).join('.')
       end
