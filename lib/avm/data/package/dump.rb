@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
+require 'avm/core_ext'
 require 'avm/files/rotate'
-require 'eac_ruby_utils/core_ext'
 require 'minitar'
 
 module Avm
