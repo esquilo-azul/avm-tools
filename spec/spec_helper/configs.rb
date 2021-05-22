@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/console/configs'
+require 'eac_cli/old_configs'
 require 'tempfile'
 require 'avm/configs'
 

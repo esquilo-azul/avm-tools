@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/console/configs'
+require 'eac_cli/old_configs'
 
 module Avm
   class << self
     attr_reader :configs_storage_path
 
     def configs
-      @configs ||= ::EacRubyUtils::Console::Configs.new('avm-tools', configs_options)
+      @configs ||= ::EacCli::OldConfigs.new('avm-tools', configs_options)
     end
 
     def configs_options
