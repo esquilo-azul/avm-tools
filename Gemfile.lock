@@ -76,7 +76,6 @@ PATH
     eac_ruby_utils (0.63.0)
       activesupport (>= 4.0)
       addressable (~> 2.6)
-      docopt (~> 0.6.1)
       filesize
       net-ssh (~> 4.2)
 
@@ -106,7 +105,6 @@ GEM
       parslet (~> 1.5)
     curb (0.9.11)
     diff-lcs (1.4.4)
-    docopt (0.6.1)
     eac_ruby_gem_support (0.2.0)
       rspec (~> 3.9)
       rubocop (~> 0.80.1)
