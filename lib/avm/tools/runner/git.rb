@@ -25,6 +25,11 @@ module Avm
         def git
           @git ||= ::EacLauncher::Git::Base.by_root(repository_path)
         end
+
+        # @return [[EacGit::Local]]
+        def git_repo
+          git.eac_git
+        end
       end
     end
   end
