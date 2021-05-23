@@ -15,11 +15,13 @@ module Avm
             arg_opt '-s', '--skip-validations', 'Does not validate conditions on <validations>' \
               ' (Comma separated value).'
             bool_opt '--complete', 'Run complete task.'
+            bool_opt '--deliver', 'Run "deliver" task.'
             bool_opt '--validate', 'Validate for "complete" task.'
           end
 
           def run
             run_validate if parsed.validate?
+            run_deliver if parsed.deliver?
             run_complete if parsed.complete?
             success('Done!')
           end
@@ -41,10 +43,21 @@ module Avm
             uncomplete_message('Issue was not completed')
           end
 
+          def run_deliver
+            deliver.start_banner
+            return deliver.run if confirm?('Confirm issue delivery?')
+
+            uncomplete_message('Issue was not delivered')
+          end
+
           private
 
           def complete_uncached
             ::Avm::Git::Issue::Complete.new(git_complete_issue_options)
+          end
+
+          def deliver_uncached
+            ::Avm::Git::Issue::Deliver.new(runner_context.call(:git_repo))
           end
 
           def skip_validations
