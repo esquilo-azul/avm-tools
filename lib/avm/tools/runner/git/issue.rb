@@ -15,25 +15,21 @@ module Avm
             arg_opt '-s', '--skip-validations', 'Does not validate conditions on <validations>' \
               ' (Comma separated value).'
             bool_opt '--complete', 'Run complete task.'
+            bool_opt '--validate', 'Validate for "complete" task.'
           end
 
           def run
-            banner
-            return unless validate
-
+            run_validate if parsed.validate?
             run_complete if parsed.complete?
             success('Done!')
-          end
-
-          def banner
-            complete.start_banner
           end
 
           def help_extra_text
             "Validations:\n#{doc_validations_list}"
           end
 
-          def validate
+          def run_validate
+            complete.start_banner
             return true if complete.valid?
 
             uncomplete_message('Some validation did not pass')
