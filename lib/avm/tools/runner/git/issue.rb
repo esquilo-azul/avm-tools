@@ -30,6 +30,10 @@ module Avm
             complete.start_banner
           end
 
+          def help_extra_text
+            "Validations:\n#{doc_validations_list}"
+          end
+
           def validate
             return true if complete.valid?
 
@@ -40,10 +44,6 @@ module Avm
             return complete.run if confirm?
 
             uncomplete_message('Issue was not completed')
-          end
-
-          def doc
-            DOC.gsub('%%VALIDATIONS%%', doc_validations_list)
           end
 
           private
