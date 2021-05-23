@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/require_sub'
+require 'avm/core_ext'
 require 'eac_launcher/git/base'
-::EacRubyUtils.require_sub(__FILE__)
 
 module Avm
   module Tools
