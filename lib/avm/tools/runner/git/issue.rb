@@ -8,13 +8,12 @@ module Avm
     class Runner
       class Git
         class Issue
-          runner_with :help do
+          runner_with :confirmation, :help do
             desc 'Closes a issue in a Git repository.'
             bool_opt '-f', '--uncomplete-unfail', 'Do not exit with error if issue is not' \
               ' completed or is invalid.'
             arg_opt '-s', '--skip-validations', 'Does not validate conditions on <validations>' \
               ' (Comma separated value).'
-            bool_opt '-y', '--yes', 'Does not ask for user confirmation.'
             bool_opt '--complete', 'Run complete task.'
           end
 
@@ -41,7 +40,7 @@ module Avm
           end
 
           def run_complete
-            return complete.run if confirm?
+            return complete.run if confirm?('Confirm issue completion?')
 
             uncomplete_message('Issue was not completed')
           end
@@ -50,10 +49,6 @@ module Avm
 
           def complete_uncached
             ::Avm::Git::Issue::Complete.new(git_complete_issue_options)
-          end
-
-          def confirm?
-            parsed.yes? || request_input('Confirm issue completion?', bool: true)
           end
 
           def skip_validations
