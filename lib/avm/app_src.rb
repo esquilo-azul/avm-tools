@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'avm/apps/sources/configuration'
-require 'eac_launcher/paths/real'
+require 'avm/launcher/paths/real'
 require 'eac_ruby_utils/core_ext'
 require 'avm/projects/stereotypes'
 require 'i18n'
@@ -20,10 +20,10 @@ module Avm
       configuration.if_present(&:locale) || ::I18n.default_locale
     end
 
-    # Backward compatibility with [EacLauncher::Paths::Logical].
-    # @return [EacLauncher::Paths::Real].
+    # Backward compatibility with [Avm::Launcher::Paths::Logical].
+    # @return [Avm::Launcher::Paths::Real].
     def real
-      ::EacLauncher::Paths::Real.new(path.to_path)
+      ::Avm::Launcher::Paths::Real.new(path.to_path)
     end
 
     def run_job(job, job_args = [])

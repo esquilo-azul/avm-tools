@@ -28,7 +28,7 @@ module Avm
           end
 
           def path_uncached
-            ::EacLauncher::Paths::Logical.from_h(cached_instances.context, data)
+            ::Avm::Launcher::Paths::Logical.from_h(cached_instances.context, data)
           end
         end
       end

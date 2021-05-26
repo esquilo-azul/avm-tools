@@ -5,7 +5,7 @@ require 'eac_launcher/git/remote'
 
 module EacLauncher
   module Git
-    class Base < ::EacLauncher::Paths::Real
+    class Base < ::Avm::Launcher::Paths::Real
       module Remotes
         # @return [EacLauncher::Git::Remote]
         def remote(name)

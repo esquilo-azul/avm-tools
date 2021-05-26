@@ -10,7 +10,7 @@ module EacLauncher
     #  * source_instance
     #  * source_remote_name
     #  * current_ref
-    class WarpBase < ::EacLauncher::Paths::Real
+    class WarpBase < ::Avm::Launcher::Paths::Real
       include ::EacRubyUtils::SimpleCache
 
       TARGET_REMOTE = ::Avm::Projects::Stereotypes::Git::Publish::PUBLISH_GIT_REMOTE_NAME

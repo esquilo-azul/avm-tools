@@ -2,7 +2,7 @@
 
 module EacLauncher
   module Git
-    class Base < ::EacLauncher::Paths::Real
+    class Base < ::Avm::Launcher::Paths::Real
       module ClassMethods
         # @return [EacLauncher::Git::Base]
         def by_root(search_base_path)

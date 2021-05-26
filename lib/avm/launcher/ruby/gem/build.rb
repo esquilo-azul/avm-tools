@@ -43,7 +43,7 @@ module Avm
           private
 
           def copy_gem_files
-            @gem_root = ::EacLauncher::Paths::Real.new(::Dir.mktmpdir)
+            @gem_root = ::Avm::Launcher::Paths::Real.new(::Dir.mktmpdir)
             FileUtils.cp_r "#{@original_gem_root}/.", @gem_root
           end
 

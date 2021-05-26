@@ -3,11 +3,11 @@
 require 'eac_git/executables'
 require 'eac_ruby_utils/envs'
 require 'git'
-require 'eac_launcher/paths/real'
+require 'avm/launcher/paths/real'
 
 module EacLauncher
   module Git
-    class Base < ::EacLauncher::Paths::Real
+    class Base < ::Avm::Launcher::Paths::Real
       module Underlying
         def command(*args)
           args, options = build_args(args)

@@ -4,7 +4,7 @@ require 'active_support/core_ext/object'
 
 module EacLauncher
   module Git
-    class Base < ::EacLauncher::Paths::Real
+    class Base < ::Avm::Launcher::Paths::Real
       module Subrepo
         def subrepo_status(subrepo_path)
           s = execute!('subrepo', 'status', subrepo_path.gsub(%r{\A/}, ''))

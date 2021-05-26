@@ -4,7 +4,7 @@ require 'eac_launcher/git/base'
 
 module EacLauncher
   module Git
-    class MirrorUpdate < ::EacLauncher::Paths::Real
+    class MirrorUpdate < ::Avm::Launcher::Paths::Real
       include ::EacRubyUtils::SimpleCache
 
       def initialize(target_path, source_path, source_rev)

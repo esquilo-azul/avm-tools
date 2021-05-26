@@ -3,14 +3,14 @@
 require 'eac_ruby_utils/simple_cache'
 require 'eac_launcher/git/sub_warp_base'
 require 'avm/launcher/errors/base'
-require 'eac_launcher/paths/real'
+require 'avm/launcher/paths/real'
 require 'avm/launcher/vendor/github'
 
 module Avm
   module Projects
     module Stereotypes
       class GitSubrepo
-        class Warp < ::EacLauncher::Paths::Real
+        class Warp < ::Avm::Launcher::Paths::Real
           include ::EacLauncher::Git::SubWarpBase
           include ::EacRubyUtils::SimpleCache
 

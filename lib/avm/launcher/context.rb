@@ -6,7 +6,7 @@ require 'eac_ruby_utils/simple_cache'
 require 'eac_cli/speaker'
 require 'avm/launcher/context/instance_discovery'
 require 'avm/launcher/context/settings'
-require 'eac_launcher/paths/logical'
+require 'avm/launcher/paths/logical'
 require 'avm/launcher/project'
 
 module Avm
@@ -36,7 +36,7 @@ module Avm
 
       def initialize(options = {})
         @options = options.with_indifferent_access
-        @root = ::EacLauncher::Paths::Logical.new(self, nil, build_option(:projects_root), '/')
+        @root = ::Avm::Launcher::Paths::Logical.new(self, nil, build_option(:projects_root), '/')
         @settings = ::Avm::Launcher::Context::Settings.new(build_option(:settings_file))
         @cache_root = build_option(:cache_root)
         @publish_options = { new: false, confirm: false, stereotype: nil }

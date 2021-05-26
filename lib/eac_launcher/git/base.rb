@@ -3,12 +3,12 @@
 require 'eac_git/local'
 require 'eac_ruby_utils/core_ext'
 require 'eac_ruby_utils/envs'
-require 'eac_launcher/paths/real'
+require 'avm/launcher/paths/real'
 require 'eac_launcher/git/error'
 
 module EacLauncher
   module Git
-    class Base < ::EacLauncher::Paths::Real
+    class Base < ::Avm::Launcher::Paths::Real
       require_sub __FILE__
       enable_simple_cache
       extend ::EacLauncher::Git::Base::ClassMethods
