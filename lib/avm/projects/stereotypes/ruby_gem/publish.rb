@@ -7,7 +7,7 @@ require 'rubygems'
 require 'eac_cli/speaker'
 require 'eac_launcher/publish/base'
 require 'eac_launcher/publish/check_result'
-require 'eac_launcher/ruby/gem'
+require 'avm/launcher/ruby/gem'
 
 module Avm
   module Projects
@@ -71,7 +71,7 @@ module Avm
           end
 
           def gem_build_uncached
-            ::EacLauncher::Ruby::Gem::Build.new(source)
+            ::Avm::Launcher::Ruby::Gem::Build.new(source)
           end
 
           def publish

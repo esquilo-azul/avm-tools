@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'avm/projects/stereotype'
-require 'eac_launcher/ruby/gem/specification'
+require 'avm/launcher/ruby/gem/specification'
 require 'eac_ruby_utils/core_ext'
 
 module Avm
@@ -21,7 +21,7 @@ module Avm
           end
 
           def load_gemspec(gemspec_file)
-            ::EacLauncher::Ruby::Gem::Specification.new(gemspec_file)
+            ::Avm::Launcher::Ruby::Gem::Specification.new(gemspec_file)
           end
         end
       end

@@ -8,6 +8,6 @@ module EacLauncher
   require 'eac_launcher/git'
   require 'avm/launcher/instances'
   require 'eac_launcher/publish'
-  require 'eac_launcher/ruby'
+  require 'avm/launcher/ruby'
   require 'eac_launcher/vendor'
 end
