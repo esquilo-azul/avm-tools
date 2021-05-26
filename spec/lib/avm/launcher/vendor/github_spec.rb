@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'eac_launcher/vendor/github'
+require 'avm/launcher/vendor/github'
 
-RSpec.describe ::EacLauncher::Vendor::Github do
+RSpec.describe ::Avm::Launcher::Vendor::Github do
   describe '#to_ssh_url' do
     SSH_URL = 'git@github.com:esquilo-azul/eac_launcher.git'
     NO_SSH_URL = 'https://otherhost.com/esquilo-azul/eac_launcher'

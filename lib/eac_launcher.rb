@@ -9,5 +9,5 @@ module EacLauncher
   require 'avm/launcher/instances'
   require 'eac_launcher/publish'
   require 'avm/launcher/ruby'
-  require 'eac_launcher/vendor'
+  require 'avm/launcher/vendor'
 end

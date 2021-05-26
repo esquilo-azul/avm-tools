@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'eac_launcher/git/mirror_update'
-require 'eac_launcher/vendor/github'
+require 'avm/launcher/vendor/github'
 require 'avm/projects/stereotypes/git/publish'
 
 module EacLauncher
@@ -47,7 +47,7 @@ module EacLauncher
       end
 
       def target_remote_url
-        ::EacLauncher::Vendor::Github.to_ssh_url(source_git.git.remote(source_remote_name).url)
+        ::Avm::Launcher::Vendor::Github.to_ssh_url(source_git.git.remote(source_remote_name).url)
       end
     end
   end
