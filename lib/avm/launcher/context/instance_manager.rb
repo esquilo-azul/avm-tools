@@ -31,7 +31,7 @@ module Avm
         end
 
         def search_instances
-          cache_instances(::EacLauncher::Context::InstanceDiscovery.new(context).instances)
+          cache_instances(::Avm::Launcher::Context::InstanceDiscovery.new(context).instances)
         end
 
         def cached_instances

@@ -15,7 +15,7 @@ module Avm
           end
 
           def run
-            ::EacLauncher::Context.current.recache = parsed.recache?
+            ::Avm::Launcher::Context.current.recache = parsed.recache?
             instances.each { |i| show_instance(i) }
           end
 

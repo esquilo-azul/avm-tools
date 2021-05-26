@@ -69,7 +69,7 @@ module Avm
         end
 
         def included?
-          !::EacLauncher::Context.current.settings.excluded_projects.include?(project_name)
+          !::Avm::Launcher::Context.current.settings.excluded_projects.include?(project_name)
         end
 
         def to_h
@@ -82,12 +82,12 @@ module Avm
           return false unless stereotype.publish_class
           return false unless options.stereotype_publishable?(stereotype)
 
-          filter = ::EacLauncher::Context.current.publish_options[:stereotype]
+          filter = ::Avm::Launcher::Context.current.publish_options[:stereotype]
           filter.blank? ? true : filter == stereotype.name.demodulize
         end
 
         def options_uncached
-          ::EacLauncher::Context.current.settings.instance_settings(self)
+          ::Avm::Launcher::Context.current.settings.instance_settings(self)
         end
       end
     end

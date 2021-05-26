@@ -21,7 +21,7 @@ module EacLauncher
 
       def check
         s = check_with_rescue
-        ::EacLauncher::Context.current.instance_manager.publish_state_set(
+        ::Avm::Launcher::Context.current.instance_manager.publish_state_set(
           instance, stereotype.stereotype_name, s.status
         )
         s

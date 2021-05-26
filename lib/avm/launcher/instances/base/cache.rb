@@ -34,7 +34,7 @@ module Avm
           end
 
           def cache_root
-            File.join(::EacLauncher::Context.current.cache_root, name.parameterize)
+            File.join(::Avm::Launcher::Context.current.cache_root, name.parameterize)
           end
         end
       end

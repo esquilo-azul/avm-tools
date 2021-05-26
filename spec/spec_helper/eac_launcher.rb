@@ -3,10 +3,12 @@
 DUMMY_DIR = ::File.expand_path('../dummy', __dir__)
 ROOT_DIR = ::File.expand_path('../..', __dir__)
 
+require 'avm/launcher/context'
+
 RSpec.configure do |config|
   config.before do
-    require 'eac_launcher/context'
-    ::EacLauncher::Context.current = ::EacLauncher::Context.new(
+    require 'avm/launcher/context'
+    ::Avm::Launcher::Context.current = ::Avm::Launcher::Context.new(
       projects_root: DUMMY_DIR,
       settings_file: ::File.join(__dir__, 'eac_launcher', 'settings.yml'),
       cache_root: ::Dir.mktmpdir
@@ -16,9 +18,9 @@ RSpec.configure do |config|
   end
 
   def temp_context(settings_path)
-    require 'eac_launcher/context'
+    require 'avm/launcher/context'
     require 'tmpdir'
-    ::EacLauncher::Context.current = ::EacLauncher::Context.new(
+    ::Avm::Launcher::Context.current = ::Avm::Launcher::Context.new(
       projects_root: ::Dir.mktmpdir, settings_file: settings_path, cache_root: ::Dir.mktmpdir
     )
   end
@@ -32,7 +34,8 @@ RSpec.configure do |config|
 
   def init_git(subdir)
     require 'eac_launcher/git/base'
-    r = ::EacLauncher::Git::Base.new(::File.join(::EacLauncher::Context.current.root.real, subdir))
+    r = ::EacLauncher::Git::Base.new(::File.join(::Avm::Launcher::Context.current.root.real,
+                                                 subdir))
     r.git
     r.execute!('config', 'user.email', 'theuser@example.net')
     r.execute!('config', 'user.name', 'The User')

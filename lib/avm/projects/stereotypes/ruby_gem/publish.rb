@@ -82,7 +82,7 @@ module Avm
           end
 
           def new_gem_allowed?
-            ::EacLauncher::Context.current.publish_options[:new]
+            ::Avm::Launcher::Context.current.publish_options[:new]
           end
 
           def gem_published?
@@ -112,7 +112,7 @@ module Avm
           def push_gem
             info("Pushing gem #{gem_spec}...")
             command = ['gem', 'push', gem_build.output_file]
-            unless ::EacLauncher::Context.current.publish_options[:confirm]
+            unless ::Avm::Launcher::Context.current.publish_options[:confirm]
               command = %w[echo] + command + %w[(Dry-run)]
             end
             EacRubyUtils::Envs.local.command(command).system

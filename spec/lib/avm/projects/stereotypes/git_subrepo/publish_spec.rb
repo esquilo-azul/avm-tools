@@ -33,11 +33,11 @@ RSpec.describe Avm::Projects::Stereotypes::GitSubrepo::Publish do
 
         context 'after subrepo updated and before publishing' do
           before do
-            ::EacLauncher::Context.current.publish_options[:confirm] = true
+            ::Avm::Launcher::Context.current.publish_options[:confirm] = true
             touch_commit(app, 'mylib/file3')
           end
 
-          it { expect(::EacLauncher::Context.current.publish_options[:confirm]).to eq(true) }
+          it { expect(::Avm::Launcher::Context.current.publish_options[:confirm]).to eq(true) }
           it { check_publish_status(:pending) }
 
           context 'after publishing' do
@@ -48,8 +48,8 @@ RSpec.describe Avm::Projects::Stereotypes::GitSubrepo::Publish do
             context 'after reset context' do
               before do
                 sleep 2
-                ::EacLauncher::Context.current = ::EacLauncher::Context.new(
-                  projects_root: ::EacLauncher::Context.current.root.real,
+                ::Avm::Launcher::Context.current = ::Avm::Launcher::Context.new(
+                  projects_root: ::Avm::Launcher::Context.current.root.real,
                   settings_file: settings_path,
                   cache_root: ::Dir.mktmpdir
                 )
@@ -72,7 +72,7 @@ RSpec.describe Avm::Projects::Stereotypes::GitSubrepo::Publish do
         end
 
         def app_mylib_instance
-          ::EacLauncher::Context.current.instance('/app/mylib')
+          ::Avm::Launcher::Context.current.instance('/app/mylib')
         end
       end
     end

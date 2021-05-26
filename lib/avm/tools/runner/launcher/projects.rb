@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'eac_launcher/context'
+require 'avm/launcher/context'
 require 'avm/launcher/instances/runner_helper'
 
 module Avm
@@ -15,8 +15,8 @@ module Avm
           end
 
           def run
-            ::EacLauncher::Context.current.recache = parsed.recache?
-            ::EacLauncher::Context.current.projects.each do |p|
+            ::Avm::Launcher::Context.current.recache = parsed.recache?
+            ::Avm::Launcher::Context.current.projects.each do |p|
               show_project(p)
             end
           end

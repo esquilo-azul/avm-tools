@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module EacLauncher
-  require 'eac_launcher/context'
+  require 'avm/launcher/context'
   require 'eac_launcher/paths'
   require 'eac_launcher/project'
   require 'avm/projects/stereotype'

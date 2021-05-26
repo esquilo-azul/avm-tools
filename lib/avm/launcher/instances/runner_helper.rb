@@ -7,7 +7,7 @@ module Avm
     module Instances
       class RunnerHelper
         def context
-          @context ||= ::EacLauncher::Context.current
+          @context ||= ::Avm::Launcher::Context.current
         end
 
         def find_instances(instance_name)

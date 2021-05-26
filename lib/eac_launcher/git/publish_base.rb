@@ -93,7 +93,7 @@ module EacLauncher
       def publish
         info 'Pushing...'
         sgit.push(remote_name, 'HEAD:master',
-                  dryrun: !::EacLauncher::Context.current.publish_options[:confirm])
+                  dryrun: !::Avm::Launcher::Context.current.publish_options[:confirm])
         info 'Pushed!'
       end
 

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'eac_launcher/context'
+require 'avm/launcher/context'
 
-RSpec.describe ::EacLauncher::Context do
+RSpec.describe ::Avm::Launcher::Context do
   describe '#instances' do
     it 'returns all stub instances' do
       is = described_class.current.instances.map(&:name)
