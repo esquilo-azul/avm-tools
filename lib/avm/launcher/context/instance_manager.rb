@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'eac_ruby_utils/core_ext'
-require 'eac_launcher/publish/check_result'
+require 'avm/launcher/publish/check_result'
 require('yaml')
 
 module Avm
@@ -67,7 +67,7 @@ module Avm
           return false unless data[instance.logical][:publish_state].is_a?(Hash)
 
           data[instance.logical][:publish_state].any? do |_k, v|
-            ::EacLauncher::Publish::CheckResult.pending_status?(v)
+            ::Avm::Launcher::Publish::CheckResult.pending_status?(v)
           end
         end
       end

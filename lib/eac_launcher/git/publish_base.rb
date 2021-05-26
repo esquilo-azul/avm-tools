@@ -2,12 +2,12 @@
 
 require 'eac_ruby_utils/simple_cache'
 require 'eac_ruby_utils/simple_cache'
-require 'eac_launcher/publish/base'
-require 'eac_launcher/publish/check_result'
+require 'avm/launcher/publish/base'
+require 'avm/launcher/publish/check_result'
 
 module EacLauncher
   module Git
-    class PublishBase < ::EacLauncher::Publish::Base
+    class PublishBase < ::Avm::Launcher::Publish::Base
       include ::EacRubyUtils::SimpleCache
       include ::EacCli::Speaker
 
@@ -28,7 +28,7 @@ module EacLauncher
       rescue ::StandardError => e
         raise e unless remote_unavailable_error?(e)
 
-        ::EacLauncher::Publish::CheckResult.blocked(e.message)
+        ::Avm::Launcher::Publish::CheckResult.blocked(e.message)
       end
 
       private
@@ -37,7 +37,7 @@ module EacLauncher
         remote = sgit.remote(remote_name)
         return if remote.exist? && remote.url.present?
 
-        ::EacLauncher::Publish::CheckResult.blocked("Remote \"#{remote_name}\" has blank path")
+        ::Avm::Launcher::Publish::CheckResult.blocked("Remote \"#{remote_name}\" has blank path")
       end
 
       def remote_fetch_check_result
@@ -55,23 +55,23 @@ module EacLauncher
       def publish_remote_no_exist_check_result
         return nil if sgit.remote_exist?(remote_name)
 
-        ::EacLauncher::Publish::CheckResult.blocked('Remote does not exist')
+        ::Avm::Launcher::Publish::CheckResult.blocked('Remote does not exist')
       end
 
       def remote_equal_check_result
         return nil unless remote_sha.present? && remote_sha == local_sha
 
-        ::EacLauncher::Publish::CheckResult.updated('Remote equal')
+        ::Avm::Launcher::Publish::CheckResult.updated('Remote equal')
       end
 
       def remote_following_check_result
         return nil unless remote_sha.present? && sgit.descendant?(remote_sha, local_sha)
 
-        ::EacLauncher::Publish::CheckResult.outdated('Remote following')
+        ::Avm::Launcher::Publish::CheckResult.outdated('Remote following')
       end
 
       def divergent_result_check_result
-        ::EacLauncher::Publish::CheckResult.blocked(
+        ::Avm::Launcher::Publish::CheckResult.blocked(
           "Divergent (L: #{local_sha}, R: #{remote_sha})"
         )
       end
@@ -83,7 +83,7 @@ module EacLauncher
       end
 
       def local_following_check_result
-        ::EacLauncher::Publish::CheckResult.pending('Local following')
+        ::Avm::Launcher::Publish::CheckResult.pending('Local following')
       end
 
       def sgit_uncached

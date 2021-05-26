@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'avm/projects/stereotypes/git_subrepo/publish'
-require 'eac_launcher/publish/check_result'
+require 'avm/launcher/publish/check_result'
 
 RSpec.describe Avm::Projects::Stereotypes::GitSubrepo::Publish do
   describe '#check' do
@@ -65,7 +65,7 @@ RSpec.describe Avm::Projects::Stereotypes::GitSubrepo::Publish do
           expect(instance).to be_a(::Avm::Launcher::Instances::Base)
           expect(instance.stereotypes).to include(::Avm::Projects::Stereotypes::GitSubrepo)
 
-          status = ::EacLauncher::Publish::CheckResult.const_get("STATUS_#{status_key}".upcase)
+          status = ::Avm::Launcher::Publish::CheckResult.const_get("STATUS_#{status_key}".upcase)
           publish = described_class.new(instance)
           expect(publish.check.status).to eq(status), "Expected: #{status}, Actual: " \
             "#{publish.check.status}, Message: #{publish.check.message}"
