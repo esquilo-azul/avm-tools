@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'eac_launcher/git/base'
+require 'avm/launcher/git/base'
 require 'eac_cli/speaker'
 require 'eac_ruby_utils/options_consumer'
 require 'eac_ruby_utils/require_sub'
@@ -21,7 +21,7 @@ module Avm
           dir, @skip_validations = consumer.consume_all(:dir, :skip_validations)
           validate_skip_validations
           consumer.validate
-          @git = ::EacLauncher::Git::Base.new(dir)
+          @git = ::Avm::Launcher::Git::Base.new(dir)
         end
 
         def start_banner

@@ -42,7 +42,7 @@ module Avm
         end
 
         def git_uncached
-          ::EacLauncher::Git::Base.new(git_repository_path)
+          ::Avm::Launcher::Git::Base.new(git_repository_path)
         end
 
         def instance_branch

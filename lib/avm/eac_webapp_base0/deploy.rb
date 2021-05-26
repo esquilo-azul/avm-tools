@@ -5,7 +5,7 @@ require 'avm/apps/jobs/base'
 require 'avm/git'
 require 'avm/patches/object/template'
 require 'eac_ruby_utils/core_ext'
-require 'eac_launcher/git/base'
+require 'avm/launcher/git/base'
 require 'net/http'
 
 module Avm

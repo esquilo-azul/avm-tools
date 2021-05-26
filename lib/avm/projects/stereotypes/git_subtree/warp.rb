@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
-require 'eac_launcher/git/warp_base'
-require 'eac_launcher/git/sub_warp_base'
+require 'avm/launcher/git/warp_base'
+require 'avm/launcher/git/sub_warp_base'
 
 module Avm
   module Projects
     module Stereotypes
       class GitSubtree
-        class Warp < ::EacLauncher::Git::WarpBase
-          include ::EacLauncher::Git::SubWarpBase
+        class Warp < ::Avm::Launcher::Git::WarpBase
+          include ::Avm::Launcher::Git::SubWarpBase
 
           private
 

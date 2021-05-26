@@ -12,7 +12,7 @@ module Avm
 
         attr_reader :git, :diff_tree
 
-        # git: [EacLauncher::Git::Base]
+        # git: [Avm::Launcher::Git::Base]
         # diff_tree_tree: a line of command "git diff-tree --no-commit-id -r --full-index"'s output
         def initialize(git, diff_tree_line)
           @git = git

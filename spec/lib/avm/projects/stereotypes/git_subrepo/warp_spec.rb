@@ -42,7 +42,7 @@ RSpec.describe Avm::Projects::Stereotypes::GitSubrepo::Warp do
       expect(instance).to be_a ::Avm::Launcher::Instances::Base
       warp = instance.warped
       expect(warp).to be_a ::Avm::Projects::Stereotypes::GitSubrepo::Warp
-      wgit = ::EacLauncher::Git::Base.new(warp)
+      wgit = ::Avm::Launcher::Git::Base.new(warp)
       expect(wgit.rev_parse('HEAD')).to eq master_ref_previous
     end
   end

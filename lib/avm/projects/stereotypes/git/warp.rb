@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require 'eac_launcher/git/warp_base'
+require 'avm/launcher/git/warp_base'
 
 module Avm
   module Projects
     module Stereotypes
       class Git
-        class Warp < ::EacLauncher::Git::WarpBase
+        class Warp < ::Avm::Launcher::Git::WarpBase
           private
 
           def current_ref

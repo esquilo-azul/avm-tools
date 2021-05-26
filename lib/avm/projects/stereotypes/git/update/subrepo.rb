@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'eac_launcher/git/base'
+require 'avm/launcher/git/base'
 require 'avm/git/commit'
 
 module Avm
@@ -48,7 +48,7 @@ module Avm
               infom 'Pulling subrepo...'
               git_repo.command('subrepo', 'pull', '--force', subpath).execute!
               ::Avm::Git::Commit.new(
-                ::EacLauncher::Git::Base.new(git_repo.root_path.to_path),
+                ::Avm::Launcher::Git::Base.new(git_repo.root_path.to_path),
                 git_repo.rev_parse('HEAD')
               )
             end

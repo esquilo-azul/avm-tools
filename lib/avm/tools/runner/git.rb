@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'avm/core_ext'
-require 'eac_launcher/git/base'
+require 'avm/launcher/git/base'
 
 module Avm
   module Tools
@@ -23,7 +23,7 @@ module Avm
         end
 
         def git
-          @git ||= ::EacLauncher::Git::Base.by_root(repository_path)
+          @git ||= ::Avm::Launcher::Git::Base.by_root(repository_path)
         end
 
         # @return [[EacGit::Local]]

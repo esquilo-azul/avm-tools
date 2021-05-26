@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require 'eac_launcher/git/base'
+require 'avm/launcher/git/base'
 require 'tmpdir'
 require 'avm/git/commit'
 
 RSpec.describe ::Avm::Git::Commit, git: true do
   let(:git) { stubbed_git_local_repo }
-  let(:eac_git) { ::EacLauncher::Git::Base.new(git.root_path.to_path) }
+  let(:eac_git) { ::Avm::Launcher::Git::Base.new(git.root_path.to_path) }
 
   let(:first_commit_sha1) do
     git.file('a.txt').write('AAA')

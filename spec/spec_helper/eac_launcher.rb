@@ -26,16 +26,16 @@ RSpec.configure do |config|
   end
 
   def init_remote(name)
-    require 'eac_launcher/git/base'
-    r = ::EacLauncher::Git::Base.new(::File.join(@remotes_dir, name))
+    require 'avm/launcher/git/base'
+    r = ::Avm::Launcher::Git::Base.new(::File.join(@remotes_dir, name))
     r.init_bare
     r
   end
 
   def init_git(subdir)
-    require 'eac_launcher/git/base'
-    r = ::EacLauncher::Git::Base.new(::File.join(::Avm::Launcher::Context.current.root.real,
-                                                 subdir))
+    require 'avm/launcher/git/base'
+    r = ::Avm::Launcher::Git::Base.new(::File.join(::Avm::Launcher::Context.current.root.real,
+                                                   subdir))
     r.git
     r.execute!('config', 'user.email', 'theuser@example.net')
     r.execute!('config', 'user.name', 'The User')
