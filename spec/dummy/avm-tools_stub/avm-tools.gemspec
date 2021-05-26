@@ -3,12 +3,12 @@
 $LOAD_PATH.push File.expand_path('lib', __dir__)
 
 # Maintain your gem's version:
-require 'eac_launcher/version'
+require 'avm/tools/version'
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
-  s.name        = 'eac_launcher'
-  s.version     = ::EacLauncher::VERSION
+  s.name        = 'avm/tools'
+  s.version     = ::Avm::Tools::VERSION
   s.authors     = ['Esquilo Azul Company']
   s.summary     = 'Utilities to deploy applications and libraries.'
   s.license     = 'MIT'

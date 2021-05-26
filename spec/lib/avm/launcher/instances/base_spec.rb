@@ -4,8 +4,8 @@ require 'avm/launcher/instances/base'
 
 RSpec.describe ::Avm::Launcher::Instances::Base do
   describe '#options' do
-    context 'when instance is "eac_launcher_stub"' do
-      let(:instance) { ::Avm::Launcher::Context.current.instance('/eac_launcher_stub') }
+    context 'when instance is "avm-tools_stub"' do
+      let(:instance) { ::Avm::Launcher::Context.current.instance('/avm-tools_stub') }
 
       it { expect(instance).to be_a(described_class) }
       it { expect(instance.options.git_current_revision).to eq('origin/master') }

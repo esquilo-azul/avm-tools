@@ -6,13 +6,13 @@ RSpec.describe ::Avm::Launcher::Context do
   describe '#instances' do
     it 'returns all stub instances' do
       is = described_class.current.instances.map(&:name)
-      expect(is).to contain_exactly('/eac_launcher_stub', '/ruby_gem_stub')
+      expect(is).to contain_exactly('/avm-tools_stub', '/ruby_gem_stub')
     end
   end
 
   describe '#instance' do
     it 'returns with slash on begin' do
-      expect(described_class.current.instance('/eac_launcher_stub'))
+      expect(described_class.current.instance('/avm-tools_stub'))
         .to be_a(::Avm::Launcher::Instances::Base)
     end
 
