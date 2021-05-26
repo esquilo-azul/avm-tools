@@ -7,7 +7,7 @@ require 'eac_cli/speaker'
 require 'avm/launcher/context/instance_discovery'
 require 'avm/launcher/context/settings'
 require 'eac_launcher/paths/logical'
-require 'eac_launcher/project'
+require 'avm/launcher/project'
 
 module Avm
   module Launcher
@@ -76,7 +76,7 @@ module Avm
           r[i.project_name] ||= []
           r[i.project_name] << i
         end
-        r.map { |name, instances| ::EacLauncher::Project.new(name, instances) }
+        r.map { |name, instances| ::Avm::Launcher::Project.new(name, instances) }
       end
     end
   end
