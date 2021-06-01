@@ -39,7 +39,7 @@ PATH
 PATH
   remote: vendor/eac_cli
   specs:
-    eac_cli (0.18.0)
+    eac_cli (0.19.0)
       colorize (~> 0.8.1)
       docopt (~> 0.6.1)
       eac_config (~> 0.3)
