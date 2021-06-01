@@ -1,7 +1,7 @@
 [subrepo]
   cmdver = 0.4.1
-  commit = cc772961091365a4e0c756e20399e3201d47a92e
+  commit = df6534eac0be9bb9e26f787361fd63dd44290450
   method = rebase
-  parent = 25eeb6960f393a231d0b9ae0f01b70a0b51a74fd
+  parent = 2982ce48c7ee6685e455a56af6147aed3dc0f1d6
   branch = master
   remote = https://github.com/esquilo-azul/eac_ruby_utils.git
