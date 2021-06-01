@@ -34,7 +34,7 @@ module Avm
           end
 
           def run_show
-            infov 'Configuration path', config_node.path
+            infov 'Configuration path', config_node.url
             infov 'Paths included', config_node.self_loaded_nodes.count
             config_node.self_loaded_nodes.each do |loaded_node|
               infov '  * ', loaded_node.url
