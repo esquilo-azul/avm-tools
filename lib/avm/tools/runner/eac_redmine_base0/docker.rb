@@ -7,6 +7,9 @@ module Avm
     class Runner
       class EacRedmineBase0 < ::Avm::EacRailsBase1::Runner
         class Docker < ::Avm::Docker::Runner
+          def use_default_registry?
+            false
+          end
         end
       end
     end
