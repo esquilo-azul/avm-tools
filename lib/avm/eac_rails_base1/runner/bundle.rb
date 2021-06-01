@@ -8,8 +8,7 @@ module Avm
   module EacRailsBase1
     class Runner < ::Avm::EacWebappBase0::Runner
       class Bundle
-        runner_with ::Avm::EacRailsBase1::RunnerWith::Bundle
-        runner_definition do
+        runner_with ::Avm::EacRailsBase1::RunnerWith::Bundle, :help do
           desc 'Runs "bundle ...".'
           pos_arg :'bundle-args', repeat: true, optional: true
         end
