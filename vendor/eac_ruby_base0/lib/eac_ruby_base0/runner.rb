@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-require 'eac_cli/runner_with/help'
-require 'eac_cli/runner_with/subcommands'
-require 'eac_ruby_utils/core_ext'
+require 'eac_cli/core_ext'
 
 module EacRubyBase0
   module Runner
