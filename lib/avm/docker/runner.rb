@@ -83,7 +83,8 @@ module Avm
       end
 
       def registry_uncached
-        registry_from_option || registry_from_instance || ::Avm::Docker::Registry.default
+        registry_from_option || registry_from_instance || registry_from_default ||
+          fatal_error('No registry defined')
       end
 
       def registry_from_option
@@ -91,7 +92,17 @@ module Avm
       end
 
       def registry_from_instance
-        nyi
+        if if_respond(:use_default_registry?, true)
+          instance.docker_registry_optional.if_present { |v| ::Avm::Docker::Registry.new(v) }
+        else
+          ::Avm::Docker::Registry.new(instance.docker_registry)
+        end
+      end
+
+      def registry_from_default
+        return nil unless if_respond(:use_default_registry?, true)
+
+        ::Avm::Docker::Registry.default
       end
 
       def snapshot?
