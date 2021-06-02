@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'avm/apps/config'
 require 'avm/self'
 require 'avm/core_ext'
 
@@ -20,9 +21,9 @@ module Avm
 
           private
 
-          # @return [[EacCli::OldConfigsBridge]]
+          # @return [[EacCli::Config]]
           def config_node
-            ::Avm.configs.sub
+            ::Avm::Apps::Config.current
           end
 
           def run_add

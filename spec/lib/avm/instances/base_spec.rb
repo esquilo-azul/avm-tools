@@ -8,8 +8,8 @@ RSpec.describe ::Avm::Instances::Base do
   let(:app1) { described_class.by_id('app_1') }
   let(:app0) { described_class.by_id('app_0') }
 
-  before do
-    ::Avm.configs_storage_path = ::File.join(__dir__, 'base_spec_configs_storage.yml')
+  around do |example|
+    temp_config(::File.join(__dir__, 'base_spec_configs_storage.yml')) { example.run }
   end
 
   describe '#read_entry' do

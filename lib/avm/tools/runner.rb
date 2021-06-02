@@ -17,6 +17,10 @@ module Avm
       def application
         ::Avm::Self.application
       end
+
+      def run
+        ::Avm::Apps::Config.context.on(::Avm::Self.build_config) { super }
+      end
     end
   end
 end

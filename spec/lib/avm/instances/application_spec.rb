@@ -5,8 +5,11 @@ require 'avm/instances/application'
 RSpec.describe ::Avm::Instances::Application do
   let(:instance) { described_class.new('avm-tools') }
 
+  around do |example|
+    temp_config(::File.join(__dir__, 'application_spec_fixture.yml')) { example.run }
+  end
+
   before do
-    ::Avm.configs_storage_path = ::File.join(__dir__, 'application_spec_fixture.yml')
     ENV.delete('AVMTOOLS_NOT_EXIST')
   end
 

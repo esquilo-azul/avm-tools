@@ -1,20 +1,23 @@
 # frozen_string_literal: true
 
-require 'eac_cli/old_configs'
+require 'avm/self'
+require 'eac_cli/old_configs_bridge'
 require 'tempfile'
-require 'avm/configs'
 
 temp_file = ::Tempfile.new('avm-tools_rspec_storage')
 temp_storage_path = temp_file.path
 temp_file.close
 
 RSpec.configure do |config|
-  config.before do
-    ::Avm.configs_storage_path = temp_storage_path
+  config.around do |example|
+    temp_config(temp_storage_path) { example.run }
+    ::File.unlink(temp_storage_path) if ::File.exist?(temp_storage_path)
   end
 
-  config.after do
-    ::File.unlink(temp_storage_path) if ::File.exist?(temp_storage_path)
+  def temp_config(path, &block)
+    r = ::Avm::Self.build_config(path)
+    ::Avm::Apps::Config.context.on(r, &block) if block
+    r
   end
 end
 
