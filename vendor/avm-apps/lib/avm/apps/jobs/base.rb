@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'avm/apps/jobs/variables_source'
-require 'eac_ruby_utils/core_ext'
+require 'eac_cli/core_ext'
 
 module Avm
   module Apps
