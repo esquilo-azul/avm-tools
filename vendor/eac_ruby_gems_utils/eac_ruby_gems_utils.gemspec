@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
   s.test_files = Dir['{spec}/**/*', '.rspec']
 
   s.add_dependency 'bundler', '~> 2.2', '>= 2.2.17'
-  s.add_dependency 'eac_ruby_utils', '~> 0.29'
+  s.add_dependency 'eac_ruby_utils', '~> 0.67'
 
   # Tests
   s.add_development_dependency 'eac_ruby_gem_support', '~> 0.2'
