@@ -15,7 +15,7 @@ module Avm
       class RubyGem
         class Publish < ::Avm::Launcher::Publish::Base
           include ::EacRubyUtils::SimpleCache
-          include ::EacCli::Speaker
+          enable_speaker
 
           protected
 

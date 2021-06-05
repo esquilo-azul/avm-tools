@@ -12,7 +12,7 @@ module Avm
     module Issue
       class Complete
         include ::EacRubyUtils::SimpleCache
-        include ::EacCli::Speaker
+        enable_speaker
 
         attr_reader :skip_validations
 

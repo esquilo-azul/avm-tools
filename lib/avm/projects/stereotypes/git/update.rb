@@ -19,8 +19,7 @@ module Avm
             clean_all
             selected_subrepos.map do |f|
               infov 'Subrepo', f
-              on_speaker_node do |node|
-                node.stderr_line_prefix = '  '
+              ::EacRubyUtils::Speaker.context.on(::EacCli::Speaker.new(err_line_prefix: '  ')) do
                 ::Avm::Projects::Stereotypes::Git::Update::Subrepo.new(self, f).run
               end
             end

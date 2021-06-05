@@ -10,7 +10,7 @@ module Avm
     module Ruby
       module Gem
         class Build
-          include ::EacCli::Speaker
+          enable_speaker
 
           def initialize(original_gem_root)
             @original_gem_root = original_gem_root

@@ -13,12 +13,8 @@ module Avm
 
       def banner
         infov 'Revision to test', sha1
-        on_speaker_node do |node|
-          node.stderr_line_prefix = '  '
-          infov '* Subject', commit.subject
-          infov '* Success?', successful_label
-          infov '* STDOUT', stdout_cache.content_path
-          infov '* STDERR', stderr_cache.content_path
+        ::EacRubyUtils::Speaker.context.on(::EacCli::Speaker.new(err_line_prefix: '  ')) do
+          revision_banner
         end
       end
 
@@ -47,6 +43,13 @@ module Avm
 
       def git_absolute_path
         ::File.expand_path(git.to_s)
+      end
+
+      def revision_banner
+        infov '* Subject', commit.subject
+        infov '* Success?', successful_label
+        infov '* STDOUT', stdout_cache.content_path
+        infov '* STDERR', stderr_cache.content_path
       end
 
       def root_cache

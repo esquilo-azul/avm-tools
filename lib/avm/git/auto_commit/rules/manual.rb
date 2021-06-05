@@ -17,7 +17,7 @@ module Avm
               return nil unless file.commits.any?
 
               commits_banner
-              request_input('Which commit?', list: commits_by_position).if_present do |v|
+              input('Which commit?', list: commits_by_position).if_present do |v|
                 new_commit_info.fixup(v)
               end
             end

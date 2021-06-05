@@ -2,6 +2,7 @@
 
 require_relative 'base/cache'
 require 'avm/launcher/errors/non_project'
+require 'eac_ruby_utils/speaker/sender'
 
 module Avm
   module Launcher
@@ -10,7 +11,7 @@ module Avm
         class << self
           def extend_object(object)
             object.extend ::EacRubyUtils::SimpleCache
-            object.extend ::EacCli::Speaker
+            object.extend ::EacRubyUtils::Speaker::Sender
             object.extend ::Avm::Launcher::Instances::Base::Cache
             super
           end

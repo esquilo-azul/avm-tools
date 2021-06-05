@@ -58,7 +58,7 @@ module Avm
             return true if parsed.yes?
             return false if parsed.no?
 
-            request_input('Confirm operations?', bool: true)
+            input('Confirm operations?', bool: true)
           end
 
           def repository_uncached

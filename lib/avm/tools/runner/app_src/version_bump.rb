@@ -44,7 +44,7 @@ module Avm
           end
 
           def confirm?
-            parsed.yes? || request_input('Confirm version bump?', bool: true)
+            parsed.yes? || input('Confirm version bump?', bool: true)
           end
 
           def current_version_uncached

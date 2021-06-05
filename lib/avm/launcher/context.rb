@@ -13,7 +13,7 @@ module Avm
   module Launcher
     class Context
       include ::EacRubyUtils::SimpleCache
-      include ::EacCli::Speaker
+      enable_speaker
 
       DEFAULT_PROJECTS_ROOT = '.'
       DEFAULT_SETTINGS_FILE = ::File.join(ENV['HOME'], '.config', 'eac_launcher', 'settings.yml')

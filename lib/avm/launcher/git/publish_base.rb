@@ -10,7 +10,7 @@ module Avm
     module Git
       class PublishBase < ::Avm::Launcher::Publish::Base
         include ::EacRubyUtils::SimpleCache
-        include ::EacCli::Speaker
+        enable_speaker
 
         CHECKERS = %w[remote_url remote_fetch publish_remote_no_exist remote_equal remote_following
                       local_following].freeze
