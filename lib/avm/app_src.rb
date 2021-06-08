@@ -27,7 +27,7 @@ module Avm
     end
 
     def run_job(job, job_args = [])
-      stereotypes.each { |stereotype| run_stereotype_job(stereotype, job, job_args) }
+      stereotypes_jobs(job, job_args).each(&:run)
     end
 
     private
@@ -37,14 +37,14 @@ module Avm
       ::Avm::Apps::Sources::Configuration.find_in_path(path)
     end
 
-    def run_stereotype_job(stereotype, job, job_args)
+    def stereotypes_jobs(job, job_args)
       job_class_method = "#{job}_class"
-      if stereotype.send(job_class_method).present?
-        puts stereotype.label + ": #{job} class found. Running..."
-        stereotype.send(job_class_method).new(self, *job_args).run
-      else
-        puts stereotype.label + ": #{job} class not found"
+      r = []
+      stereotypes.each do |stereotype|
+        r << stereotype.send(job_class_method).new(self, *job_args) if
+          stereotype.send(job_class_method).present?
       end
+      r
     end
 
     def stereotypes_uncached
