@@ -19,6 +19,10 @@ module Avm
             gemfile_lock_commit
           end
 
+          def run_before
+            [:git]
+          end
+
           private
 
           def bundle_update
