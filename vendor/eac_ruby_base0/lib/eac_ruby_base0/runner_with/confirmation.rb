@@ -22,7 +22,7 @@ module EacRubyBase0
         return false if parsed.no?
         return true if parsed.yes?
 
-        request_input(
+        input(
           message || setting_value(:confirm_question_text, default: DEFAULT_CONFIRM_QUESTION_TEXT),
           bool: true
         )
