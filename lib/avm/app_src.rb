@@ -2,6 +2,7 @@
 
 require 'avm/apps/sources/configuration'
 require 'avm/launcher/paths/real'
+require 'avm/projects/stereotype/job_comparator'
 require 'eac_ruby_utils/core_ext'
 require 'avm/projects/stereotypes'
 require 'i18n'
@@ -44,7 +45,7 @@ module Avm
         r << stereotype.send(job_class_method).new(self, *job_args) if
           stereotype.send(job_class_method).present?
       end
-      r
+      r.sort { |a, b| ::Avm::Projects::Stereotype::JobComparator.new(a, b).result }
     end
 
     def stereotypes_uncached
