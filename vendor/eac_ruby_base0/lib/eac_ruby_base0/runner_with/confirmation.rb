@@ -12,6 +12,7 @@ module EacRubyBase0
       common_concern do
         include ::EacCli::Runner
         enable_settings_provider
+        enable_simple_cache
         runner_definition do
           bool_opt '--no', 'Deny confirmation without question.'
           bool_opt '--yes', 'Accept confirmation without question.'
@@ -30,6 +31,12 @@ module EacRubyBase0
 
       def run_confirm(message = nil)
         yield if confirm?(message)
+      end
+
+      private
+
+      def cached_confirm_uncached?(message = nil)
+        confirm?(message)
       end
     end
   end
