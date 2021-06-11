@@ -3,9 +3,7 @@
 module Avm
   module Launcher
     module Instances
-      module Errors
-        class Error < StandardError
-        end
+      class Error < StandardError
       end
     end
   end
