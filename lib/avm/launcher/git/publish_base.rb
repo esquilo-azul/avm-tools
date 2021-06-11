@@ -26,6 +26,8 @@ module Avm
             return result if result
           end
           divergent_result_check_result
+        rescue ::Avm::Launcher::Instances::Error => e
+          ::Avm::Launcher::Publish::CheckResult.blocked(e.message)
         rescue ::StandardError => e
           raise e unless remote_unavailable_error?(e)
 
