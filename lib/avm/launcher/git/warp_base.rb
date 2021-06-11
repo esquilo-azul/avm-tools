@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'avm/launcher/git/mirror_update'
+require 'avm/launcher/instances/error'
 require 'avm/launcher/vendor/github'
 require 'avm/projects/stereotypes/git/publish'
 
@@ -27,7 +28,17 @@ module Avm
 
         attr_reader :instance
 
+        def validate_source_current_revision
+          if source_git.rev_parse(source_instance.options.git_current_revision, false).present?
+            return
+          end
+
+          raise ::Avm::Launcher::Instances::Error, 'Refspec ' \
+            "\"#{source_instance.options.git_current_revision}\" not found in \"#{source_git}\""
+        end
+
         def update
+          validate_source_current_revision
           ::Avm::Launcher::Git::MirrorUpdate.new(
             path,
             source_instance.real,
