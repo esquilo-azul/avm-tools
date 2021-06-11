@@ -39,13 +39,17 @@ module EacGit
       ::EacGit::Executables.git.command('-C', root_path.to_path, *args)
     end
 
+    def raise_error(message)
+      raise "#{root_path}: #{message}"
+    end
+
     def rev_parse(ref, required = false)
       r = command('rev-parse', ref).execute!(exit_outputs: { 128 => nil, 32_768 => nil })
       r.strip! if r.is_a?(String)
       return r if r.present?
       return nil unless required
 
-      raise "Reference \"#{ref}\" not found"
+      raise_error "Reference \"#{ref}\" not found"
     end
 
     def subrepo(subpath)

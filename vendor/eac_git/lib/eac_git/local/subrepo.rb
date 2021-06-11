@@ -12,7 +12,8 @@ module EacGit
 
       common_constructor :local, :subpath do
         self.subpath = subpath.to_pathname
-        raise "Config file \"#{config_absolute_path}\" not found" unless config_absolute_path.file?
+        local.raise_error "Config file \"#{config_absolute_path}\" not found" unless
+          config_absolute_path.file?
       end
 
       def command(subrepo_subcommand, *subrepo_subcommand_args)
