@@ -5,7 +5,7 @@ require 'avm/tools/runner'
 require 'tmpdir'
 require 'fileutils'
 
-::RSpec.describe ::Avm::Tools::Runner::Git::Issue, git: true do
+::RSpec.describe ::Avm::Tools::Runner::Git::Issue::Complete, git: true do
   let(:remote_name) { 'origin' }
   let(:issue_ref) { 'issue_123' }
   let(:remote_repos) { stubbed_git_local_repo(true) }
@@ -32,7 +32,7 @@ require 'fileutils'
 
     context 'when "git issue complete" is called' do
       before do
-        ::Avm::Tools::Runner.run(argv: ['git', '-C', eac_local_repos] + %w[issue --complete --yes])
+        ::Avm::Tools::Runner.run(argv: ['git', '-C', eac_local_repos] + %w[issue complete --yes])
       end
 
       it 'remote repos does not have a issue branch' do
