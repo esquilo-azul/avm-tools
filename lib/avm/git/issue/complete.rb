@@ -1,17 +1,13 @@
 # frozen_string_literal: true
 
-require 'avm/launcher/git/base'
-require 'eac_cli/speaker'
-require 'eac_ruby_utils/options_consumer'
-require 'eac_ruby_utils/require_sub'
-require 'eac_ruby_utils/simple_cache'
-::EacRubyUtils.require_sub(__FILE__)
+require 'avm/core_ext'
 
 module Avm
   module Git
     module Issue
       class Complete
-        include ::EacRubyUtils::SimpleCache
+        require_sub __FILE__, include_modules: true
+        enable_simple_cache
         enable_speaker
 
         attr_reader :skip_validations
