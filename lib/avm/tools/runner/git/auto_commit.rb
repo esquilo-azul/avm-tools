@@ -19,6 +19,7 @@ module Avm
           end
 
           def run
+            runner_context.call(:git).command('reset', 'HEAD').system!
             format_files
             files.each do |file|
               ::Avm::Git::FileAutoFixup.new(runner_context.call(:git), file, rules).run
