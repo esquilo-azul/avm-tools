@@ -40,6 +40,7 @@ PATH
   remote: vendor/avm-eac_webapp_base0
   specs:
     avm-eac_webapp_base0 (0.0.0)
+      avm (~> 0.1)
       eac_ruby_utils (~> 0.68)
 
 PATH
