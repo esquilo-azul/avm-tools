@@ -6,11 +6,12 @@ require 'eac_ruby_utils/core_ext'
 module EacCli
   module RunnerWith
     module Help
+      require_sub __FILE__
       common_concern do
         include ::EacCli::Runner
 
         runner_definition.alt do
-          bool_opt '-h', '--help', 'Show help.', usage: true
+          bool_opt '-h', '--help', 'Show help.', usage: true, required: true
           pos_arg :any_arg_with_help, repeat: true, optional: true, visible: false
         end
 
@@ -27,7 +28,7 @@ module EacCli
       end
 
       def help_text
-        r = ::EacCli::Docopt::DocBuilder.new(self.class.runner_definition).to_s
+        r = ::EacCli::RunnerWith::Help::Builder.new(self.class.runner_definition).to_s
         r += help_extra_text if respond_to?(:help_extra_text)
         r
       end

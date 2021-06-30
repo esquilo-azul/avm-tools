@@ -39,9 +39,8 @@ PATH
 PATH
   remote: vendor/eac_cli
   specs:
-    eac_cli (0.20.2)
+    eac_cli (0.21.1)
       colorize (~> 0.8.1)
-      docopt (~> 0.6.1)
       eac_config (~> 0.3)
       eac_ruby_utils (~> 0.67)
 
@@ -124,7 +123,6 @@ GEM
       parslet (~> 1.5)
     curb (0.9.11)
     diff-lcs (1.4.4)
-    docopt (0.6.1)
     eac_ruby_gem_support (0.2.0)
       rspec (~> 3.9)
       rubocop (~> 0.80.1)

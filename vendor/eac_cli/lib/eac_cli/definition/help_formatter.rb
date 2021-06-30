@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'eac_cli/runner_with/help/builder/alternative'
 require 'eac_ruby_utils/core_ext'
 
 module EacCli
@@ -27,7 +28,7 @@ module EacCli
 
       def positional_argument(positional)
         if positional.subcommand?
-          ::EacCli::DocoptRunner::SUBCOMMANDS_MACRO
+          ::EacCli::RunnerWith::Help::Builder::Alternative::SUBCOMMANDS_MACRO
         else
           r = "<#{positional.name}>"
           r += '...' if positional.repeat?
@@ -52,7 +53,7 @@ module EacCli
       end
 
       def self_usage_arguments
-        [::EacCli::DocoptRunner::PROGRAM_MACRO] +
+        [::EacCli::RunnerWith::Help::Builder::Alternative::PROGRAM_MACRO] +
           definition.options_argument.if_present([]) { |_v| ['[options]'] } +
           self_usage_arguments_options +
           self_usage_arguments_positional

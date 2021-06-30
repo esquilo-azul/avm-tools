@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'eac_cli/docopt/runner_extension'
+require 'eac_cli/parser/alternative'
 
 RSpec.describe ::EacCli::Parser::Alternative do
   let(:instance) { described_class.new(alternative, argv) }
