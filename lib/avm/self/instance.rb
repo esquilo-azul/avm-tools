@@ -12,6 +12,10 @@ module Avm
         ::Avm::Self::DockerImage
       end
 
+      def docker_registry
+        read_entry(::Avm::Self::Instance::EntryKeys::DOCKER_REGISTRY_NAME)
+      end
+
       def docker_run_arguments
         ['-e', "LOCAL_USER_ID=#{::Process.uid}"]
       end
