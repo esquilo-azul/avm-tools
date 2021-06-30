@@ -1,0 +1,25 @@
+#!/bin/bash
+
+set -u
+set -e
+
+function title() {
+  printf ">>>> %s <<<<\n" "$1"
+}
+
+title 'Restarting Apache HTTPD service...'
+sudo service apache2 restart
+
+title 'Restarting SSH service...'
+sudo service ssh restart
+
+title 'Restarting PostgresSQL service...'
+sudo service postgresql restart
+
+title 'Requesting web interface...'
+wget 'http://localhost' &> /dev/null
+
+title 'Reading production log...'
+LOG_FILE='%%redmine_path%%/log/production.log'
+printf " * tail -f \"$LOG_FILE\":\n"
+sudo tail -f "$LOG_FILE"
