@@ -47,7 +47,7 @@ PATH
 PATH
   remote: vendor/avm-eac_redmine_base0
   specs:
-    avm-eac_redmine_base0 (0.0.0)
+    avm-eac_redmine_base0 (0.1.0)
       avm-eac_rails_base1 (~> 0.1)
       eac_ruby_utils (~> 0.68)
 
