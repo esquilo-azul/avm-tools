@@ -39,7 +39,7 @@ PATH
 PATH
   remote: vendor/eac_cli
   specs:
-    eac_cli (0.21.1)
+    eac_cli (0.22.0)
       colorize (~> 0.8.1)
       eac_config (~> 0.3)
       eac_ruby_utils (~> 0.67)
