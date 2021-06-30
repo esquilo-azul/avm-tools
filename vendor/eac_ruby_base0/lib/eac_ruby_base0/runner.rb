@@ -2,6 +2,7 @@
 
 require 'eac_cli/core_ext'
 require 'eac_cli/speaker'
+require 'eac_config/node'
 require 'eac_ruby_utils/speaker'
 
 module EacRubyBase0
@@ -23,10 +24,12 @@ module EacRubyBase0
 
     def run
       ::EacRubyUtils::Speaker.context.on(build_speaker) do
-        if parsed.version?
-          show_version
-        else
-          run_with_subcommand
+        ::EacConfig::Node.context.on(runner_context.call(:application).build_config) do
+          if parsed.version?
+            show_version
+          else
+            run_with_subcommand
+          end
         end
       end
     end
