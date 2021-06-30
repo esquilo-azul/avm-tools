@@ -11,17 +11,27 @@ module EacDocker
     class Templatized < ::EacDocker::Images::Base
       enable_immutable
       immutable_accessor :tag
+      attr_reader :provide_dir
 
       def provide
         ::EacRubyUtils::Fs::Temp.on_directory do |provide_dir|
-          template.apply(self, provide_dir)
-          coded_image(provide_dir).tag(tag).provide
+          begin
+            self.provide_dir = provide_dir
+            template.apply(self, provide_dir)
+            coded_image(provide_dir).tag(tag).provide
+          ensure
+            self.provide_dir = nil
+          end
         end
       end
 
       def coded_image(provide_dir)
         ::EacDocker::Images::Coded.new(provide_dir)
       end
+
+      private
+
+      attr_writer :provide_dir
     end
   end
 end
