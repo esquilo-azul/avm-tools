@@ -37,6 +37,12 @@ PATH
       rouge (~> 3.26)
 
 PATH
+  remote: vendor/avm-eac_webapp_base0
+  specs:
+    avm-eac_webapp_base0 (0.0.0)
+      eac_ruby_utils (~> 0.68)
+
+PATH
   remote: vendor/avm
   specs:
     avm (0.1.0)
@@ -200,6 +206,7 @@ DEPENDENCIES
   avm!
   avm-apps!
   avm-eac_asciidoctor_base0!
+  avm-eac_webapp_base0!
   avm-tools!
   eac_cli!
   eac_config!
