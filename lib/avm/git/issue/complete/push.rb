@@ -17,7 +17,7 @@ module Avm
                         'ok'
                       else
                         r.fetch(:stderr) + "\n#{::Shellwords.join(dry_push_args)}"
-            end
+                      end
             ::Avm::Result.success_or_error(r.fetch(:exit_code).zero?, message)
           end
 
