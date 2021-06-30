@@ -84,7 +84,7 @@ PATH
 PATH
   remote: vendor/eac_ruby_utils
   specs:
-    eac_ruby_utils (0.68.0)
+    eac_ruby_utils (0.69.0)
       activesupport (>= 4.0)
       addressable (~> 2.6)
       filesize
