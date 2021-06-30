@@ -23,12 +23,6 @@ PATH
       ruby-progressbar (~> 1.10, >= 1.10.1)
 
 PATH
-  remote: vendor/avm-eac_redmine_base0
-  specs:
-    avm-eac_redmine_base0 (0.0.0)
-      eac_ruby_utils (~> 0.68)
-
-PATH
   remote: vendor/avm-apps
   specs:
     avm-apps (0.4.0)
@@ -48,6 +42,13 @@ PATH
   specs:
     avm-eac_rails_base1 (0.1.1)
       avm-eac_webapp_base0 (~> 0.1)
+      eac_ruby_utils (~> 0.68)
+
+PATH
+  remote: vendor/avm-eac_redmine_base0
+  specs:
+    avm-eac_redmine_base0 (0.0.0)
+      avm-eac_rails_base1 (~> 0.1)
       eac_ruby_utils (~> 0.68)
 
 PATH
