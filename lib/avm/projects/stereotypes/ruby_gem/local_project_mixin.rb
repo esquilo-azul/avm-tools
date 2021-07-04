@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'avm/patches/eac_ruby_gems_utils/gem'
-require 'avm/version'
+require 'avm/version_number'
 require 'eac_ruby_utils/core_ext'
 
 module Avm
@@ -15,7 +15,7 @@ module Avm
           end
 
           def version
-            ruby_gem.version.if_present { |v| ::Avm::Version.new(v) }
+            ruby_gem.version.if_present { |v| ::Avm::VersionNumber.new(v) }
           end
 
           def version=(value)

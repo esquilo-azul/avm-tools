@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'avm/version'
+require 'avm/version_number'
 require 'eac_cli/core_ext'
 
 module Avm
@@ -63,7 +63,7 @@ module Avm
           end
 
           def target_version_from_new(_current, option_value)
-            ::Avm::Version.new(option_value)
+            ::Avm::VersionNumber.new(option_value)
           end
 
           def target_version_from_segment(current, option_value)
