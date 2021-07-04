@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'eac_docker/debug'
 require 'eac_docker/executables'
 require 'eac_docker/images/base'
 require 'eac_ruby_utils/core_ext'
@@ -26,6 +27,9 @@ module EacDocker
       private
 
       def id_uncached
+        if ::EacDocker::Debug.enabled?
+          ::EacDocker::Executables.docker.command(*build_args.excluding('--quiet')).system!
+        end
         ::EacDocker::Executables.docker.command(*build_args).execute!.strip
       end
 
