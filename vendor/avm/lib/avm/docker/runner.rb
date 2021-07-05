@@ -6,6 +6,8 @@ require 'eac_ruby_utils/core_ext'
 module Avm
   module Docker
     class Runner
+      DOCKER_DEFAULT_REGISTRY_METHOD = :docker_default_registry
+
       enable_speaker
       enable_simple_cache
 
@@ -92,17 +94,11 @@ module Avm
       end
 
       def registry_from_instance
-        if if_respond(:use_default_registry?, true)
-          instance.docker_registry_optional.if_present { |v| ::EacDocker::Registry.new(v) }
-        else
-          ::EacDocker::Registry.new(instance.docker_registry)
-        end
+        instance.docker_registry_optional.if_present { |v| ::EacDocker::Registry.new(v) }
       end
 
       def registry_from_default
-        return nil unless if_respond(:use_default_registry?, true)
-
-        nyi 'Was "::Avm::Docker::Registry.default"'
+        if_respond(DOCKER_DEFAULT_REGISTRY_METHOD, nil)
       end
 
       def snapshot?
