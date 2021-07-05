@@ -2,7 +2,7 @@
 
 require 'avm/apps/config'
 require 'avm/self'
-require 'avm/core_ext'
+require 'avm/tools/core_ext'
 
 module Avm
   module Tools

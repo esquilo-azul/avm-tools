@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'avm/core_ext'
+require 'avm/tools/core_ext'
 
 module Avm
   module Git
