@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
+require 'avm/version'
 require 'eac_ruby_utils/core_ext'
-require 'avm/executables'
-require 'avm/patches/object/template'
 require 'eac_docker/images/templatized'
 
 module Avm
@@ -25,11 +24,11 @@ module Avm
       end
 
       def generator_version
-        ::Avm::Tools::VERSION
+        ::Avm::VERSION
       end
 
       def push
-        ::Avm::Executables.docker.command.append(['push', tag]).system!
+        ::EacDocker::Executables.docker.command.append(['push', tag]).system!
       end
 
       def read_entry(path, options = {})
