@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'avm/core_ext'
-require 'avm/executables'
+require 'eac_docker/executables'
+require 'eac_ruby_utils/core_ext'
 
 module Avm
   module Docker
@@ -10,7 +10,7 @@ module Avm
       common_constructor :instance
 
       def remove
-        ::Avm::Executables.docker.command.append(
+        ::EacDocker::Executables.docker.command.append(
           ['rm', '--force', instance.docker_container_name]
         ).system!
       end
@@ -28,12 +28,12 @@ module Avm
 
       def run_run(options)
         infom "\"docker run #{instance.docker_container_name}...\""
-        ::Avm::Executables.docker.command.append(run_run_arguments(options)).system!
+        ::EacDocker::Executables.docker.command.append(run_run_arguments(options)).system!
       end
 
       def run_start
         infom "\"docker start #{instance.docker_container_name}...\""
-        ::Avm::Executables.docker.command.append(run_start_arguments).system!
+        ::EacDocker::Executables.docker.command.append(run_start_arguments).system!
       end
 
       def run_run_arguments(options)
