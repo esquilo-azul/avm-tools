@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'avm/core_ext'
-require 'avm/docker/registry'
+require 'eac_docker/registry'
+require 'eac_ruby_utils/core_ext'
 
 module Avm
   module Docker
@@ -88,21 +88,21 @@ module Avm
       end
 
       def registry_from_option
-        parsed.registry_name.if_present { |v| ::Avm::Docker::Registry.new(v) }
+        parsed.registry_name.if_present { |v| ::EacDocker::Registry.new(v) }
       end
 
       def registry_from_instance
         if if_respond(:use_default_registry?, true)
-          instance.docker_registry_optional.if_present { |v| ::Avm::Docker::Registry.new(v) }
+          instance.docker_registry_optional.if_present { |v| ::EacDocker::Registry.new(v) }
         else
-          ::Avm::Docker::Registry.new(instance.docker_registry)
+          ::EacDocker::Registry.new(instance.docker_registry)
         end
       end
 
       def registry_from_default
         return nil unless if_respond(:use_default_registry?, true)
 
-        ::Avm::Docker::Registry.default
+        nyi 'Was "::Avm::Docker::Registry.default"'
       end
 
       def snapshot?
