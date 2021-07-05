@@ -4,6 +4,9 @@ require:
 
 Layout/LineLength:
   Max: 100
+  
+Rails/TimeZone:
+  Enabled: false
 
 Style/AsciiComments:
   Enabled: false
