@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'avm/core_ext'
 require 'avm/eac_webapp_base0/runner'
+require 'eac_cli/core_ext'
 
 module Avm
   module EacRailsBase1
