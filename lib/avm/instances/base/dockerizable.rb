@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'eac_docker/executables'
 require 'eac_ruby_utils/core_ext'
 require 'avm/docker/container'
 
@@ -16,7 +17,7 @@ module Avm
         end
 
         def docker_container_exist?
-          ::Avm::Executables.docker.command.append(
+          ::EacDocker::Executables.docker.command.append(
             ['ps', '-qaf', "name=#{docker_container_name}"]
           ).execute!.present?
         end
