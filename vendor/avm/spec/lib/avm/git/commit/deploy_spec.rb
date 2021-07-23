@@ -2,6 +2,7 @@
 
 require 'avm/git/commit'
 require 'avm/git/commit/deploy'
+require 'eac_ruby_utils/fs/temp'
 
 RSpec.describe ::Avm::Git::Commit::Deploy, git: true do
   class << self
