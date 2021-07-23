@@ -2,7 +2,6 @@
 
 require 'addressable'
 require 'avm/files/appendable'
-require 'avm/patches/object/template'
 require 'eac_ruby_utils/core_ext'
 
 module Avm
