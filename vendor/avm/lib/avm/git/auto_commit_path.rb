@@ -21,7 +21,7 @@ module Avm
       end
 
       def relative_path
-        path.relative_path_from(git.root_path)
+        path.expand_path.relative_path_from(git.root_path.expand_path)
       end
     end
   end

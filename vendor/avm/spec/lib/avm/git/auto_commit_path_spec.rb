@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
-require 'avm/launcher/git/base'
-require 'tmpdir'
 require 'avm/git/auto_commit_path'
 
 RSpec.describe ::Avm::Git::AutoCommitPath, git: true do
-  let(:git) { ::Avm::Launcher::Git::Base.new(stubbed_git_local_repo.root_path.to_path) }
+  let(:git) { stubbed_git_local_repo }
 
   describe '#class_name' do
     {
