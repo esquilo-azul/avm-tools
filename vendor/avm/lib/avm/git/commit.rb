@@ -18,13 +18,14 @@ module Avm
 
       attr_reader :git, :sha1
 
+      # @param git [EacGit::Local]
       def initialize(git, sha1)
         @git = git
         @sha1 = sha1
       end
 
       def format(format)
-        git.execute!('--no-pager', 'log', '-1', "--pretty=format:#{format}", sha1).strip
+        git.command('--no-pager', 'log', '-1', "--pretty=format:#{format}", sha1).execute!.strip
       end
 
       FIELDS.each do |field, format|
@@ -51,7 +52,7 @@ module Avm
         args = []
         args << '--root' if root_child?
         args << sha1
-        git.execute!(*::Avm::Git::Commit::DiffTreeLine::GIT_COMMAND_ARGS, *args)
+        git.command(*::Avm::Git::Commit::DiffTreeLine::GIT_COMMAND_ARGS, *args).execute!
       end
     end
   end

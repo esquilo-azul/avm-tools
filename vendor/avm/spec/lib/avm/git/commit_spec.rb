@@ -1,12 +1,9 @@
 # frozen_string_literal: true
 
-require 'avm/launcher/git/base'
-require 'tmpdir'
 require 'avm/git/commit'
 
 RSpec.describe ::Avm::Git::Commit, git: true do
   let(:git) { stubbed_git_local_repo }
-  let(:eac_git) { ::Avm::Launcher::Git::Base.new(git.root_path.to_path) }
 
   let(:first_commit_sha1) do
     git.file('a.txt').write('AAA')
@@ -26,8 +23,8 @@ RSpec.describe ::Avm::Git::Commit, git: true do
     git.rev_parse('HEAD')
   end
 
-  let(:first_commit) { described_class.new(eac_git, first_commit_sha1) }
-  let(:second_commit) { described_class.new(eac_git, second_commit_sha1) }
+  let(:first_commit) { described_class.new(git, first_commit_sha1) }
+  let(:second_commit) { described_class.new(git, second_commit_sha1) }
 
   describe '#files' do
     it { expect(first_commit.files.count).to eq(2) }

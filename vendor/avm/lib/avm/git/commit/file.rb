@@ -12,7 +12,7 @@ module Avm
 
         attr_reader :git, :diff_tree
 
-        # git: [Avm::Launcher::Git::Base]
+        # git: [EacGit::Local]
         # diff_tree_tree: a line of command "git diff-tree --no-commit-id -r --full-index"'s output
         def initialize(git, diff_tree_line)
           @git = git
@@ -38,7 +38,7 @@ module Avm
         def size(sha1)
           return 0 if /\A0+\z/.match(sha1)
 
-          git.execute!('cat-file', '-s', sha1).strip.to_i
+          git.command('cat-file', '-s', sha1).execute!.strip.to_i
         end
       end
     end
