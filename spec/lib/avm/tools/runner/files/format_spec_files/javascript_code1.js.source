@@ -1,0 +1,29 @@
+if (typeof TasksScheduler == "undefined") 
+
+
+
+TasksScheduler = function() {};
+
+TasksScheduler.Status = function   () {
+
+};
+
+// Shortcut
+var _S = TasksScheduler.Status;
+
+      _S.initialized = false;
+
+_S.init = function(url, interval_max) {            
+  if (!_S.initialized) {
+    _S.initialized = true;
+    _S.update();
+  }
+};
+
+
+
+
+
+
+
+
