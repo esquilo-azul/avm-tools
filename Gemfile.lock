@@ -63,6 +63,7 @@ PATH
   specs:
     avm (0.2.0)
       eac_docker (~> 0.3)
+      eac_git (~> 0.6)
       eac_ruby_utils (~> 0.68)
       eac_templates (~> 0.1, >= 0.1.1)
 

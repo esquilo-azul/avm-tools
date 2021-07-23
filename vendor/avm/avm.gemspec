@@ -13,6 +13,7 @@ Gem::Specification.new do |s|
   s.files = Dir['{lib}/**/*']
 
   s.add_dependency 'eac_docker', '~> 0.3'
+  s.add_dependency 'eac_git', '~> 0.6'
   s.add_dependency 'eac_ruby_utils', '~> 0.68'
   s.add_dependency 'eac_templates', '~> 0.1', '>= 0.1.1'
 
