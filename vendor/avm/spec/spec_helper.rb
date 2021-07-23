@@ -14,3 +14,6 @@ RSpec.configure do |config|
   require 'eac_ruby_gem_support/rspec'
   ::EacRubyGemSupport::Rspec.setup(::File.expand_path('..', __dir__))
 end
+
+require 'eac_git/rspec'
+::EacGit::Rspec.configure
