@@ -61,7 +61,7 @@ PATH
 PATH
   remote: vendor/avm
   specs:
-    avm (0.2.0)
+    avm (0.3.0)
       eac_docker (~> 0.3)
       eac_git (~> 0.6)
       eac_ruby_utils (~> 0.68)
