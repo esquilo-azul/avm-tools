@@ -4,7 +4,6 @@ require 'addressable'
 require 'eac_ruby_utils/core_ext'
 require 'avm/files/appendable'
 require 'avm/files/deploy'
-require 'avm/patches/object/template'
 
 module Avm
   module Git
