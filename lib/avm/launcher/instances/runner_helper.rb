@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'avm/launcher/context'
 require 'avm/tools/core_ext'
 require 'avm/launcher/context/instance_collector'
 
