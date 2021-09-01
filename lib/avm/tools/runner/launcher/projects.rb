@@ -10,12 +10,10 @@ module Avm
         class Projects
           runner_with :help, ::Avm::Launcher::Instances::RunnerHelper do
             desc 'Shows available projects.'
-            bool_opt '--recache', 'Rewrite instances cache.'
             bool_opt '-i', '--instances', 'Show instances.'
           end
 
           def run
-            ::Avm::Launcher::Context.current.recache = parsed.recache?
             ::Avm::Launcher::Context.current.projects.each do |p|
               show_project(p)
             end

@@ -9,13 +9,11 @@ module Avm
         class Instances
           runner_with :help, ::Avm::Launcher::Instances::RunnerHelper do
             desc 'Mostra informações sobre instâncias.'
-            bool_opt '--recache', 'Rewrite instances cache.'
             bool_opt '--all', 'Get all instances.'
             pos_arg :instance_path, repeat: true, optional: true
           end
 
           def run
-            ::Avm::Launcher::Context.current.recache = parsed.recache?
             instances.each { |i| show_instance(i) }
           end
 

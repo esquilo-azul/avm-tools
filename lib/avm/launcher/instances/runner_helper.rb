@@ -8,6 +8,14 @@ module Avm
   module Launcher
     module Instances
       module RunnerHelper
+        common_concern do
+          runner_definition do
+            bool_opt '--recache', 'Rewrite instances cache.'
+          end
+
+          set_callback :run, :before, :setup_cache
+        end
+
         def context
           @context ||= ::Avm::Launcher::Context.current
         end
@@ -30,6 +38,10 @@ module Avm
 
         def instance_label(instance)
           "#{instance.name} [#{instance_stereotypes(instance)}]"
+        end
+
+        def setup_cache
+          ::Avm::Launcher::Context.current.recache = parsed.recache?
         end
       end
     end

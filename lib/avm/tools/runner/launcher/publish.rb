@@ -13,14 +13,12 @@ module Avm
             bool_opt '-d', '--dry-run', '"Dry run" publishing.'
             bool_opt '--new', 'Publish projects not published before.'
             bool_opt '--pending', 'Publish only pending.'
-            bool_opt '--recache', 'Rewrite instances cache.'
             bool_opt '--run', 'Confirm publishing.'
             arg_opt '-s', '--stereotype', 'Publish only for stereotype <stereotype>.'
             pos_arg :instance_path, repeat: true, optional: true
           end
 
           def run
-            ::Avm::Launcher::Context.current.recache = parsed.recache?
             build_publish_options
             instances.each do |i|
               next unless i.options.publishable?
