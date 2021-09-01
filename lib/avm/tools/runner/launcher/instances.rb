@@ -9,7 +9,6 @@ module Avm
         class Instances
           runner_with :help, ::Avm::Launcher::Instances::RunnerHelper do
             desc 'Mostra informações sobre instâncias.'
-            bool_opt '--all', 'Get all instances.'
             pos_arg :instance_path, repeat: true, optional: true
           end
 

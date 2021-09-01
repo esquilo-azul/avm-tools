@@ -9,7 +9,6 @@ module Avm
         class Publish
           runner_with :help, ::Avm::Launcher::Instances::RunnerHelper do
             desc 'Publica projetos ou instâncias.'
-            bool_opt '--all', 'Get all instances.'
             bool_opt '-d', '--dry-run', '"Dry run" publishing.'
             bool_opt '--new', 'Publish projects not published before.'
             bool_opt '--run', 'Confirm publishing.'
