@@ -6,8 +6,8 @@ module Avm
   module Tools
     class Runner
       class Launcher
-        class Instances < ::Avm::Launcher::Instances::RunnerHelper
-          runner_with :help do
+        class Instances
+          runner_with :help, ::Avm::Launcher::Instances::RunnerHelper do
             desc 'Mostra informações sobre instâncias.'
             bool_opt '--recache', 'Rewrite instances cache.'
             bool_opt '--all', 'Get all instances.'

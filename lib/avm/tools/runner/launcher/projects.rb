@@ -7,8 +7,8 @@ module Avm
   module Tools
     class Runner
       class Launcher
-        class Projects < ::Avm::Launcher::Instances::RunnerHelper
-          runner_with :help do
+        class Projects
+          runner_with :help, ::Avm::Launcher::Instances::RunnerHelper do
             desc 'Shows available projects.'
             bool_opt '--recache', 'Rewrite instances cache.'
             bool_opt '-i', '--instances', 'Show instances.'

@@ -6,8 +6,8 @@ module Avm
   module Tools
     class Runner
       class Launcher
-        class Publish < ::Avm::Launcher::Instances::RunnerHelper
-          runner_with :help do
+        class Publish
+          runner_with :help, ::Avm::Launcher::Instances::RunnerHelper do
             desc 'Publica projetos ou instâncias.'
             bool_opt '--all', 'Get all instances.'
             bool_opt '-d', '--dry-run', '"Dry run" publishing.'

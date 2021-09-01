@@ -7,7 +7,7 @@ require 'avm/launcher/context/instance_collector'
 module Avm
   module Launcher
     module Instances
-      class RunnerHelper
+      module RunnerHelper
         def context
           @context ||= ::Avm::Launcher::Context.current
         end
