@@ -24,13 +24,9 @@ module Avm
 
         def instances
           collector = ::Avm::Launcher::Context::InstanceCollector.new(context)
-          if parsed.all?
-            collector.add_all
-          elsif parsed.pending?
-            collector.add_pending
-          else
-            parsed.instance_path.flat_map { |p| collector.add_path(p) }
-          end
+          collector.add_all if parsed.all?
+          collector.add_pending if parsed.pending?
+          parsed.instance_path.flat_map { |p| collector.add_path(p) }
           collector.instances
         end
 
