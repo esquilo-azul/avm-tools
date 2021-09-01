@@ -10,6 +10,7 @@ module Avm
       module RunnerHelper
         common_concern do
           runner_definition do
+            bool_opt '--pending', 'Select pending instances.'
             bool_opt '--recache', 'Rewrite instances cache.'
           end
 
