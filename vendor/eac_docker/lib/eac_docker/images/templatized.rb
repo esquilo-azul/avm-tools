@@ -13,6 +13,10 @@ module EacDocker
       immutable_accessor :tag
       attr_reader :provide_dir
 
+      def id
+        tag
+      end
+
       def provide
         ::EacRubyUtils::Fs::Temp.on_directory do |provide_dir|
           begin

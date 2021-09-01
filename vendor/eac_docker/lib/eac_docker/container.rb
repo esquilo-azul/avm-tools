@@ -7,7 +7,7 @@ module EacDocker
     enable_immutable
     immutable_accessor :interactive, :temporary, :tty, type: :boolean
     immutable_accessor :env, type: :hash
-    immutable_accessor :command_arg, :volume, type: :array
+    immutable_accessor :capability, :command_arg, :volume, type: :array
     attr_reader :id
     common_constructor :image
 
@@ -43,8 +43,8 @@ module EacDocker
     end
 
     def run_command_args
-      run_command_boolean_args + run_command_envs_args + run_command_volumes_args + [image.id] +
-        command_args
+      run_command_boolean_args + run_command_capabilities_args + run_command_envs_args +
+        run_command_volumes_args + [image.provide.id] + command_args
     end
 
     def stop
@@ -61,6 +61,10 @@ module EacDocker
       r << '--tty' if tty?
       r << '--rm' if temporary?
       r
+    end
+
+    def run_command_capabilities_args
+      capabilities.flat_map { |capability| ['--cap-add', capability] }
     end
 
     def run_command_volumes_args
