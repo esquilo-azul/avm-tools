@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'avm/tools/core_ext'
+require 'avm/launcher/context/instance_collector'
 
 module Avm
   module Launcher
@@ -10,22 +11,16 @@ module Avm
           @context ||= ::Avm::Launcher::Context.current
         end
 
-        def find_instances(instance_name)
-          context.instances.select { |instance| instance_match?(instance, instance_name) }
-        end
-
-        def instance_match?(instance, instance_name)
-          ::File.fnmatch?(instance_name, instance.name)
-        end
-
         def instances
+          collector = ::Avm::Launcher::Context::InstanceCollector.new(context)
           if parsed.all?
-            context.instances
+            collector.add_all
           elsif parsed.pending?
-            context.pending_instances
+            collector.add_pending
           else
-            parsed.instance_path.flat_map { |p| find_instances(p) }
+            parsed.instance_path.flat_map { |p| collector.add_path(p) }
           end
+          collector.instances
         end
 
         def instance_stereotypes(instance)
