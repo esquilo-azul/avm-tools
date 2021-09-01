@@ -24,7 +24,7 @@ module Avm
         end
 
         def instances
-          instances_set.to_a
+          instances_set.sort
         end
 
         private
