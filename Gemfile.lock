@@ -115,7 +115,7 @@ PATH
 PATH
   remote: vendor/eac_ruby_utils
   specs:
-    eac_ruby_utils (0.69.1)
+    eac_ruby_utils (0.74.0)
       activesupport (>= 4.0)
       addressable (~> 2.6)
       filesize
@@ -139,11 +139,11 @@ GEM
       zeitwerk (~> 2.3)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
-    aranha-parsers (0.7.2)
+    aranha-parsers (0.8.3)
       activesupport (>= 4.0.0)
       addressable (~> 2.7)
       curb (~> 0.9.10)
-      eac_ruby_utils (~> 0.33, >= 0.33.1)
+      eac_ruby_utils (~> 0.74)
       httpclient (~> 2.8, >= 2.8.3)
       ofx-parser (~> 1.1.0)
     asciidoctor (2.0.16)
@@ -155,7 +155,8 @@ GEM
       parslet (~> 1.5)
     curb (0.9.11)
     diff-lcs (1.4.4)
-    eac_ruby_gem_support (0.2.0)
+    eac_ruby_gem_support (0.4.0)
+      eac_ruby_utils (~> 0.74)
       rspec (~> 3.9)
       rubocop (~> 0.80.1)
       rubocop-rails (~> 2.4.2)
