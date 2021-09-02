@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'aranha/parsers/spec/source_target_fixtures_example'
 require 'avm/git/commit/diff_tree_line'
 
 RSpec.describe ::Avm::Git::Commit::DiffTreeLine, git: true do
