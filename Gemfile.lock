@@ -31,7 +31,7 @@ PATH
 PATH
   remote: vendor/avm-eac_asciidoctor_base0
   specs:
-    avm-eac_asciidoctor_base0 (0.3.0)
+    avm-eac_asciidoctor_base0 (0.3.1)
       asciidoctor (~> 2.0, >= 2.0.12)
       avm-eac_webapp_base0 (~> 0.1)
       eac_ruby_utils (~> 0.63)
