@@ -49,7 +49,8 @@ module Avm
 
                 def git_reset_gemfile_lock
                   infom 'Reseting...'
-                  instance.git_repo.command('reset', gemfile_lock).system!
+                  instance.git_repo.command('reset', gemfile_lock).system! if
+                  ::File.exist?(gemfile_lock)
                 end
               end
             end

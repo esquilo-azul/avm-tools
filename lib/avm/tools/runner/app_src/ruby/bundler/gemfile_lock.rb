@@ -16,12 +16,14 @@ module Avm
                 bool_opt '-i', '--install', 'Run "bundle install".'
                 bool_opt '-u', '--update', 'Run "bundle update".'
                 bool_opt '-r', '--recursive', 'Run until Git rebase/cherry-pick is finished.'
-                bool_opt '-a', '--all', 'Same as "-ciru".'
+                bool_opt '-a', '--all', 'Same as "-cirud".'
+                bool_opt '-d', '--delete', 'Delete Gemfile.lock'
               end
 
               def run
                 loop do
                   git_reset_checkout
+                  delete_gemfile_lock
                   bundle_update
                   bundle_install
                   git_continue
@@ -33,6 +35,12 @@ module Avm
 
               def complete?
                 !option_or_all?(:recursive) || !conflict?
+              end
+
+              def delete_gemfile_lock
+                return unless check_capability(__method__, nil, :delete)
+
+                ::FileUtils.rm_f(gemfile_lock)
               end
 
               def rebasing?
@@ -83,7 +91,7 @@ module Avm
 
               def check_capability(caller, capability, option)
                 return false unless option.blank? || option_or_all?(option)
-                return true if instance.respond_to?(capability)
+                return true if capability.if_present(true) { |v| instance.respond_to?(v) }
 
                 warn "Cannot run #{caller}: instance has no capability \"#{capability}\""
                 false
