@@ -91,10 +91,6 @@ module Avm
                 instance.ruby_gem.bundle(*args).system!
               end
 
-              def git_path
-                '.'
-              end
-
               def conflict?
                 rebase_conflict? || cherry_conflict?
               end
