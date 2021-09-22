@@ -38,10 +38,14 @@ module Avm
                 def git_reset_checkout
                   return unless check_capability(__method__, :git_repo, nil)
 
-                  infom 'Reseting...'
-                  instance.git_repo.command('reset', gemfile_lock).system!
+                  git_reset_gemfile_lock
                   infom 'Checkouting...'
                   instance.git_repo.command('checkout', '--', gemfile_lock).system!
+                end
+
+                def git_reset_gemfile_lock
+                  infom 'Reseting...'
+                  instance.git_repo.command('reset', gemfile_lock).system!
                 end
               end
             end
