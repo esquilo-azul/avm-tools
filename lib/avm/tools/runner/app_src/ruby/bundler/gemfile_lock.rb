@@ -87,10 +87,6 @@ module Avm
                 'Gemfile.lock'
               end
 
-              def git_uncached
-                ::EacGit::Local.new(git_path)
-              end
-
               def bundle_run(*args)
                 instance.ruby_gem.bundle(*args).system!
               end
