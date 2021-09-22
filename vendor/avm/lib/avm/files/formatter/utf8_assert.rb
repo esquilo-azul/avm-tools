@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'avm/files/info'
+
 module Avm
   module Files
     class Formatter
