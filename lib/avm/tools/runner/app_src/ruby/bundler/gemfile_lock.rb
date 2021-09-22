@@ -9,6 +9,7 @@ module Avm
         class Ruby
           class Bundler
             class GemfileLock
+              require_sub __FILE__, include_modules: true
               runner_with :help do
                 desc 'Manipulage a "Gemfile.lock" file.'
                 bool_opt '-c', '--continue', 'Continue Git rebase/cherry-pick.'
@@ -38,15 +39,6 @@ module Avm
                 instance.git_repo.root_path.join('.git', 'rebase-merge').exist?
               end
 
-              def git_reset_checkout
-                return unless check_capability(__method__, :git_repo, nil)
-
-                infom 'Reseting...'
-                instance.git_repo.command('reset', gemfile_lock).system!
-                infom 'Checkouting...'
-                instance.git_repo.command('checkout', '--', gemfile_lock).system!
-              end
-
               def bundle_install
                 return unless check_capability(__method__, :ruby_gem, :install)
 
@@ -59,28 +51,6 @@ module Avm
 
                 infom '"bundle update"...'
                 bundle_run('update')
-              end
-
-              def git_continue
-                return unless check_capability(__method__, :git_repo, :continue)
-
-                infom "Adding \"#{gemfile_lock}\"..."
-                instance.git_repo.command('add', gemfile_lock).execute!
-                if rebase_conflict?
-                  git_continue_run('rebase')
-                elsif cherry_conflict?
-                  git_continue_run('cherry-pick')
-                else
-                  raise 'Unknown how to continue'
-                end
-              end
-
-              def git_continue_run(command)
-                infom "\"#{command}\" --continue..."
-                cmd = instance.git_repo.command(command, '--continue').envvar('GIT_EDITOR', 'true')
-                return unless !cmd.system && !conflict?
-
-                fatal_error "\"#{cmd}\" failed and there is no conflict"
               end
 
               def gemfile_lock
