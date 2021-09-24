@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'avm/apps/sources/configuration'
+require 'avm/app_src/configuration'
 require 'avm/result'
 require 'eac_ruby_utils/fs/temp'
 
@@ -36,7 +36,7 @@ module Avm
           end
 
           def configuration_uncached
-            ::Avm::Apps::Sources::Configuration.find_by_path(@git)
+            ::Avm::AppSrc::Configuration.find_by_path(@git)
           end
         end
       end
