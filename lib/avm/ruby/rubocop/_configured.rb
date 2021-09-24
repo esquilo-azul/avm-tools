@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'avm/apps/sources/configuration'
+require 'avm/app_src/configuration'
 
 module Avm
   module Ruby
@@ -22,7 +22,7 @@ module Avm
       private
 
       def configuration_uncached
-        ::Avm::Apps::Sources::Configuration.find_by_path(base_path)
+        ::Avm::AppSrc::Configuration.find_by_path(base_path)
       end
     end
   end
