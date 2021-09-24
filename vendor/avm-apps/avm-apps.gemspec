@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.name        = 'avm-apps'
   s.version     = Avm::Apps::VERSION
   s.authors     = ['Eduardo H. Bogoni']
-  s.summary     = 'AVM components for applications.'
+  s.summary     = 'DEPRECATED: use gem "avm" instead.'
 
   s.files = Dir['{lib}/**/*']
 
