@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'active_support/callbacks'
-require 'avm/apps/jobs/base'
+require 'avm/jobs/base'
 require 'avm/git'
 require 'avm/patches/object/template'
 require 'eac_ruby_utils/core_ext'
@@ -19,7 +19,7 @@ module Avm
       JOBS = (%w[create_build_dir build_content append_instance_content write_on_target
                  setup_files_units assert_instance_branch] + [REQUEST_TEST_JOB]).freeze
 
-      include ::Avm::Apps::Jobs::Base
+      include ::Avm::Jobs::Base
 
       lists.add_symbol :option, :appended_directories, :no_request_test, :reference
 

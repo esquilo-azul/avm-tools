@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'eac_ruby_utils/core_ext'
-require 'avm/apps/jobs/base'
+require 'avm/jobs/base'
 require 'avm/patches/object/template'
 require 'avm/eac_ubuntu_base0/apache'
 require 'avm/patches/object/template'
@@ -11,7 +11,7 @@ module Avm
     class ApacheHost
       JOBS = %w[write_available_no_ssl_site enable_no_ssl_site remove_ssl_site reload_apache
                 run_certbot enable_ssl_site reload_apache].freeze
-      include ::Avm::Apps::Jobs::Base
+      include ::Avm::Jobs::Base
 
       def no_ssl_site_content
         ::Avm::EacWebappBase0::ApacheHost
