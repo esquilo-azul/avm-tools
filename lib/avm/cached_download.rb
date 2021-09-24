@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-require 'avm/fs_cache'
-require 'eac_ruby_utils/core_ext'
+require 'eac_ruby_base0/core_ext'
 
 module Avm
   class CachedDownload
@@ -9,7 +8,7 @@ module Avm
 
     def initialize(url, parent_fs_cache = nil)
       @url = url
-      @fs_cache = (parent_fs_cache || ::Avm.fs_cache).child(url.parameterize)
+      @fs_cache = (parent_fs_cache || fs_cache).child(url.parameterize)
     end
 
     def assert

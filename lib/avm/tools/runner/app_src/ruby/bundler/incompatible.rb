@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'avm/fs_cache'
 require 'avm/ruby/bundler/incompatible_parser'
 require 'eac_ruby_base0/core_ext'
 
@@ -36,9 +35,8 @@ module Avm
                 fs_cache.content_path
               end
 
-              def fs_cache_uncached
-                ::Avm.fs_cache.child(self.class.name.variableize)
-                     .child(instance.path.to_s.variableize)
+              def fs_cache
+                super.child(instance.path.to_s.variableize)
               end
 
               def gem_title(gem_in_conflict)
