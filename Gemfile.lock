@@ -91,6 +91,14 @@ PATH
       eac_templates (~> 0.1)
 
 PATH
+  remote: vendor/eac_fs
+  specs:
+    eac_fs (0.3.0)
+      content-type
+      eac_ruby_utils (~> 0.70)
+      ruby-filemagic
+
+PATH
   remote: vendor/eac_git
   specs:
     eac_git (0.8.0)
@@ -157,10 +165,6 @@ GEM
       parslet (~> 1.5)
     curb (0.9.11)
     diff-lcs (1.4.4)
-    eac_fs (0.3.0)
-      content-type
-      eac_ruby_utils (~> 0.70)
-      ruby-filemagic
     eac_ruby_gem_support (0.4.0)
       eac_ruby_utils (~> 0.74)
       rspec (~> 3.9)
@@ -243,6 +247,7 @@ DEPENDENCIES
   eac_cli!
   eac_config!
   eac_docker!
+  eac_fs!
   eac_git!
   eac_ruby_base0!
   eac_ruby_gem_support (~> 0.2)
