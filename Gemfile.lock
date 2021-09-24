@@ -25,7 +25,7 @@ PATH
 PATH
   remote: vendor/avm-apps
   specs:
-    avm-apps (0.4.1)
+    avm-apps (0.5.0)
       eac_ruby_utils (~> 0.67)
 
 PATH
