@@ -93,7 +93,7 @@ PATH
 PATH
   remote: vendor/eac_git
   specs:
-    eac_git (0.7.3)
+    eac_git (0.8.0)
       eac_ruby_utils (~> 0.74)
       parseconfig (~> 1.0, >= 1.0.8)
 

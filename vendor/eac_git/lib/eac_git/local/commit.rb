@@ -16,10 +16,10 @@ module EacGit
         commiter_all: '%cn <%ce>, %ci'
       }.freeze
 
-      common_constructor :repo, :hash
+      common_constructor :repo, :id
 
       def format(format)
-        repo.command('--no-pager', 'log', '-1', "--pretty=format:#{format}", hash).execute!.strip
+        repo.command('--no-pager', 'log', '-1', "--pretty=format:#{format}", id).execute!.strip
       end
 
       FIELDS.each do |field, format|
@@ -45,7 +45,7 @@ module EacGit
       def diff_tree_execute
         args = []
         args << '--root' if root_child?
-        args << hash
+        args << id
         repo.command(*::EacGit::Local::Commit::DiffTreeLine::GIT_COMMAND_ARGS, *args).execute!
       end
     end

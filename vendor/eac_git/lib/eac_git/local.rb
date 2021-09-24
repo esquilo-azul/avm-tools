@@ -8,6 +8,8 @@ module EacGit
   class Local
     require_sub __FILE__, include_modules: true
 
+    HEAD_REFERENCE = 'HEAD'
+
     common_constructor :root_path do
       self.root_path = root_path.to_pathname
     end
@@ -22,6 +24,11 @@ module EacGit
 
       revparse = command('rev-parse', '--verify', ancestor).execute!.strip
       base == revparse
+    end
+
+    # @return [EacGit::Local::Commit
+    def head(required = true)
+      commit(HEAD_REFERENCE, required)
     end
 
     def merge_base(*commits)
@@ -54,6 +61,12 @@ module EacGit
 
     def subrepo(subpath)
       ::EacGit::Local::Subrepo.new(self, subpath)
+    end
+
+    # @return [Array<EacGit::Local::Subrepo>]
+    def subrepos
+      command('subrepo', '-q', 'status').execute!.split("\n").map(&:strip).select(&:present?)
+                                        .map { |subpath| subrepo(subpath) }
     end
 
     def to_s

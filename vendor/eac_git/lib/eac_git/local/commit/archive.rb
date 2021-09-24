@@ -9,7 +9,7 @@ module EacGit
         # @return [EacRubyUtils::Envs::Command]
         def archive_to_dir(path)
           path = path.to_pathname
-          repo.command('archive', '--format=tar', hash).pipe(
+          repo.command('archive', '--format=tar', id).pipe(
             ::EacGit::Executables.tar.command('-xC', path)
           )
         end
