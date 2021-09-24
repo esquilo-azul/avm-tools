@@ -2,7 +2,6 @@
 
 require 'eac_ruby_utils/core_ext'
 require 'eac_ruby_utils/fs/logs'
-require 'eac_ruby_utils/fs_cache'
 require 'eac_ruby_utils/listable'
 require 'eac_ruby_utils/on_clean_ruby_environment'
 
@@ -53,10 +52,6 @@ module EacRubyGemsUtils
         logs[:stdout].write(r[:stdout])
         logs[:stderr].write(r[:stderr])
         r[:exit_code].zero?
-      end
-
-      def root_cache
-        ::EacRubyUtils.fs_cache.child(gem.root.to_s.parameterize, self.class.name.parameterize)
       end
     end
   end

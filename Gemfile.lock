@@ -108,7 +108,7 @@ PATH
 PATH
   remote: vendor/eac_ruby_gems_utils
   specs:
-    eac_ruby_gems_utils (0.9.5)
+    eac_ruby_gems_utils (0.9.6)
       bundler (~> 2.2, >= 2.2.17)
       eac_ruby_utils (~> 0.70)
 
