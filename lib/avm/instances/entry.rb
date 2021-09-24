@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'avm/apps/config'
+require 'eac_config/node'
 require 'eac_ruby_utils/core_ext'
 
 module Avm
@@ -31,7 +31,7 @@ module Avm
       end
 
       def read(extra_options = {})
-        ::Avm::Apps::Config.current.entry(full_path, options.merge(extra_options)).value
+        ::EacConfig::Node.context.current.entry(full_path, options.merge(extra_options)).value
       end
 
       def suffix_as_array
@@ -47,7 +47,7 @@ module Avm
       end
 
       def write(value)
-        ::Avm::Apps::Config.current.entry(full_path).value = value
+        ::EacConfig::Node.context.current.entry(full_path).value = value
       end
     end
   end

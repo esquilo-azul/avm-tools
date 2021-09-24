@@ -16,7 +16,7 @@ RSpec.configure do |config|
 
   def temp_config(path, &block)
     r = ::Avm::Self.build_config(path)
-    ::Avm::Apps::Config.context.on(r, &block) if block
+    ::EacConfig::Node.context.on(r, &block) if block
     r
   end
 end

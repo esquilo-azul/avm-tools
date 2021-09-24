@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'avm/apps/config'
 require 'avm/launcher/git/base'
 require 'avm/git/commit'
+require 'eac_config/node'
 
 module Avm
   module Tools
@@ -91,7 +91,7 @@ module Avm
           end
 
           def variables_source
-            instance || ::Avm::Apps::Config.current
+            instance || ::EacConfig::Node.context.current
           end
 
           def instance_uncached

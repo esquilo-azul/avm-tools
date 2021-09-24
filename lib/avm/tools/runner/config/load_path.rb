@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'avm/apps/config'
 require 'avm/self'
 require 'avm/tools/core_ext'
+require 'eac_config/node'
 
 module Avm
   module Tools
@@ -23,7 +23,7 @@ module Avm
 
           # @return [[EacCli::Config]]
           def config_node
-            ::Avm::Apps::Config.current
+            ::EacConfig::Node.context.current
           end
 
           def run_add
