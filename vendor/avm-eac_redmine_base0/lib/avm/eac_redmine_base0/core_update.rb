@@ -81,7 +81,7 @@ module Avm
 
       # @return [EacFs::CachedDownload]
       def source_package_uncached
-        ::EacFs::CachedDownload.new(url, ::Avm.fs_cache.child('eac_redmine_base0', 'core_update'))
+        ::EacFs::CachedDownload.new(url, fs_cache)
       end
 
       def validate_empty_dir
