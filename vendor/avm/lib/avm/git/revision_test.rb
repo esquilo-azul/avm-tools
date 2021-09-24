@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'avm/fs_cache'
 require 'eac_ruby_utils/core_ext'
 require 'eac_ruby_utils/ruby'
 
@@ -53,8 +52,8 @@ module Avm
       end
 
       def root_cache
-        ::Avm.fs_cache.child('git', 'revision_test', git_absolute_path.parameterize, sha1,
-                             options.fetch(:test_command).to_s.parameterize)
+        fs_cache.child(git_absolute_path.parameterize, sha1,
+                       options.fetch(:test_command).to_s.parameterize)
       end
 
       def run_test
