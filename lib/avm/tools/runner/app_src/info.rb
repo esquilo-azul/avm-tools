@@ -12,8 +12,14 @@ module Avm
           end
 
           def run
-            infov 'Path', runner_context.call(:instance).path
-            infov 'Stereotypes', runner_context.call(:instance).stereotypes.map(&:label).join(', ')
+            infov 'Path', instance.path
+            infov 'Stereotypes', instance.stereotypes.map(&:label).join(', ')
+          end
+
+          private
+
+          def instance
+            runner_context.call(:instance)
           end
         end
       end
