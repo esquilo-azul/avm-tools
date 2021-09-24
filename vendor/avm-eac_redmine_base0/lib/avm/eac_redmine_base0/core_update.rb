@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 require 'avm/eac_redmine_base0/core_update'
-require 'avm/cached_download'
 require 'avm/sync'
+require 'eac_fs/cached_download'
 require 'eac_ruby_utils/core_ext'
 
 module Avm
@@ -79,8 +79,9 @@ module Avm
                    .add_exclude('/*').add_includes(*target_files_to_remove).move_mode(true).run
       end
 
+      # @return [EacFs::CachedDownload]
       def source_package_uncached
-        ::Avm::CachedDownload.new(url, ::Avm.fs_cache.child('eac_redmine_base0', 'core_update'))
+        ::EacFs::CachedDownload.new(url, ::Avm.fs_cache.child('eac_redmine_base0', 'core_update'))
       end
 
       def validate_empty_dir
