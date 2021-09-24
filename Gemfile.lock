@@ -50,6 +50,7 @@ PATH
   specs:
     avm-eac_redmine_base0 (0.2.0)
       avm-eac_rails_base1 (~> 0.1)
+      eac_fs (~> 0.4)
       eac_ruby_utils (~> 0.68)
 
 PATH
