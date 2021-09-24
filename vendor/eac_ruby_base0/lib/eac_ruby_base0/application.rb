@@ -3,10 +3,10 @@
 require 'eac_cli/config'
 require 'eac_config/envvars_node'
 require 'eac_config/yaml_file_node'
+require 'eac_fs/cache'
 require 'eac_ruby_base0/application_xdg'
 require 'eac_ruby_gems_utils/gem'
 require 'eac_ruby_utils/core_ext'
-require 'eac_ruby_utils/filesystem_cache'
 
 module EacRubyBase0
   class Application
@@ -44,8 +44,8 @@ module EacRubyBase0
     end
 
     def fs_cache
-      @fs_cache ||= ::EacRubyUtils::FilesystemCache.new(
-        cache_dir.join(::EacRubyUtils::FilesystemCache.name.parameterize)
+      @fs_cache ||= ::EacFs::Cache.new(
+        cache_dir.join(::EacFs::Cache.name.parameterize)
       )
     end
 

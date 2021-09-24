@@ -3,6 +3,7 @@
 require 'eac_cli/core_ext'
 require 'eac_cli/speaker'
 require 'eac_config/node'
+require 'eac_fs/cache'
 require 'eac_ruby_utils/speaker'
 
 module EacRubyBase0
@@ -23,19 +24,27 @@ module EacRubyBase0
     end
 
     def run
-      ::EacRubyUtils::Speaker.context.on(build_speaker) do
-        ::EacConfig::Node.context.on(runner_context.call(:application).build_config) do
-          if parsed.version?
-            show_version
-          else
-            run_with_subcommand
-          end
+      on_context do
+        if parsed.version?
+          show_version
+        else
+          run_with_subcommand
         end
       end
     end
 
     def application_version
       runner_context.call(:application).version.to_s
+    end
+
+    def on_context
+      ::EacRubyUtils::Speaker.context.on(build_speaker) do
+        ::EacConfig::Node.context.on(runner_context.call(:application).build_config) do
+          ::EacFs::Cache.context.on(application.fs_cache) do
+            yield
+          end
+        end
+      end
     end
 
     def show_version
