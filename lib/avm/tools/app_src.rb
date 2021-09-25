@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'avm/app_src/base'
 require 'avm/app_src/configuration'
 require 'avm/launcher/paths/real'
 require 'avm/projects/stereotype/job_comparator'
@@ -33,6 +34,10 @@ module Avm
       end
 
       private
+
+      def avm_instance_uncached
+        ::Avm::AppSrc::Base.new(path)
+      end
 
       # @return [Avm::Apps::Sources::Configuration]
       def configuration_uncached
