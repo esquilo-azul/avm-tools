@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'avm/executables'
 require 'avm/files/formatter/formats/generic_plain'
 
 module Avm
