@@ -15,7 +15,6 @@ Gem::Specification.new do |s|
   s.executables = s.files.grep(%r{^exe/}) { |f| File.basename(f) }
 
   s.add_dependency 'aranha-parsers', '~> 0.4'
-  s.add_dependency 'asciidoctor', '~> 2.0', '>= 2.0.12'
   s.add_dependency 'avm', '~> 0.1'
   s.add_dependency 'avm-eac_asciidoctor_base0'
   s.add_dependency 'clipboard', '~> 1.3', '>= 1.3.3'
@@ -23,8 +22,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'eac_ruby_base0', '~> 0.7', '>= 0.7.2'
   s.add_dependency 'eac_ruby_gems_utils', '~> 0.6', '>= 0.6.1'
   s.add_dependency 'git', '~> 1.7'
-  s.add_dependency 'minitar'
-  s.add_dependency 'os'
   s.add_dependency 'ruby-progressbar', '~> 1.10', '>= 1.10.1'
 
   s.add_development_dependency 'eac_ruby_gem_support', '~> 0.2'
