@@ -6,6 +6,9 @@ require 'filemagic'
 
 module EacFs
   class FileInfo
+    UNKNOWN_CONTENT_TYPE_STRING = 'application/octet-stream'
+    UNKNOWN_CONTENT_TYPE = ::ContentType.parse(UNKNOWN_CONTENT_TYPE_STRING)
+
     enable_simple_cache
     attr_reader :magic_string
 
@@ -19,6 +22,8 @@ module EacFs
 
     def content_type_uncached
       ::ContentType.parse(magic_string)
+    rescue ::Parslet::ParseFailed
+      UNKNOWN_CONTENT_TYPE
     end
   end
 end
