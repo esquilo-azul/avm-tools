@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'avm/files/info'
+require 'eac_fs/file_info'
 require 'ostruct'
 
 module Avm
@@ -50,7 +50,7 @@ module Avm
           end
 
           def match_by_type?(file)
-            info = ::Avm::Files::Info.new(file)
+            info = ::EacFs::FileInfo.new(file)
             return unless info.content_type.type == 'text'
 
             valid_types.include?(info.content_type.subtype)

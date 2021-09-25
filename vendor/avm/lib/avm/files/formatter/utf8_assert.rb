@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'avm/files/info'
+require 'eac_fs/file_info'
 
 module Avm
   module Files
@@ -39,7 +39,7 @@ module Avm
         private
 
         def original_info_uncached
-          ::Avm::Files::Info.new(path)
+          ::EacFs::FileInfo.new(path)
         end
 
         def original_charset_uncached
