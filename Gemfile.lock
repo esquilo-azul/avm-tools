@@ -39,6 +39,12 @@ PATH
       eac_ruby_utils (~> 0.68)
 
 PATH
+  remote: vendor/avm-eac_ruby_base1
+  specs:
+    avm-eac_ruby_base1 (0.0.0)
+      eac_ruby_utils (~> 0.76)
+
+PATH
   remote: vendor/avm-eac_webapp_base0
   specs:
     avm-eac_webapp_base0 (0.1.1)
@@ -247,6 +253,7 @@ DEPENDENCIES
   avm-eac_asciidoctor_base0!
   avm-eac_rails_base1!
   avm-eac_redmine_base0!
+  avm-eac_ruby_base1!
   avm-eac_webapp_base0!
   avm-files!
   avm-git!
