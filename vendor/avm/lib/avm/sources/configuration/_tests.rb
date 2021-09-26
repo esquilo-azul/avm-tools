@@ -3,7 +3,7 @@
 require 'avm/patches/eac_ruby_gems_utils/gem'
 
 module Avm
-  module AppSrc
+  module Sources
     class Configuration < ::EacConfig::OldConfigs
       BUNDLE_TEST_COMMAND_KEY = 'test.bundle_command'
       TEST_COMMAND_KEY = 'test.command'

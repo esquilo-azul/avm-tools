@@ -4,7 +4,7 @@ require 'avm/patches/eac_ruby_gems_utils/gem'
 require 'i18n'
 
 module Avm
-  module AppSrc
+  module Sources
     class Configuration < ::EacConfig::OldConfigs
       LOCALE_KEY = :locale
 

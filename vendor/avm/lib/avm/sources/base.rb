@@ -4,7 +4,7 @@ require 'eac_git'
 require 'eac_ruby_utils/core_ext'
 
 module Avm
-  module AppSrc
+  module Sources
     class Base
       enable_simple_cache
       enable_listable
@@ -16,7 +16,7 @@ module Avm
 
       delegate :to_s, to: :path
 
-      # @return [Avm::AppSrc::Base]
+      # @return [Avm::Sources::Base]
       def parent
         options[OPTION_PARENT]
       end
@@ -28,7 +28,7 @@ module Avm
         path.relative_path_from(parent.path)
       end
 
-      # @return [Enumerable<Avm::AppSrc::Base>]
+      # @return [Enumerable<Avm::Sources::Base>]
       def subs
         git_repo.subrepos
                 .map { |subrepo| self.class.new(subrepo.subpath.expand_path(path), parent: self) }

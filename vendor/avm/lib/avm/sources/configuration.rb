@@ -5,7 +5,7 @@ require 'eac_ruby_utils/core_ext'
 require 'yaml'
 
 module Avm
-  module AppSrc
+  module Sources
     class Configuration < ::EacConfig::OldConfigs
       require_sub __FILE__
 

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Avm
-  module AppSrc
+  module Sources
     class Configuration < ::EacConfig::OldConfigs
       RUBOCOP_COMMAND_KEY = 'ruby.rubocop.command'
       RUBOCOP_GEMFILE_KEY = 'ruby.rubocop.gemfile'
