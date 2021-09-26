@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'avm/app_src/configuration'
+require 'avm/sources/configuration'
 require 'eac_ruby_gems_utils/gem'
 require 'eac_ruby_utils/core_ext'
 
@@ -13,7 +13,7 @@ module Avm
         private
 
         def configuration_uncached
-          ::Avm::AppSrc::Configuration.find_in_path(root)
+          ::Avm::Sources::Configuration.find_in_path(root)
         end
 
         def gemfile_path_uncached

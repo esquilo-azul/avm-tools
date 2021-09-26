@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'avm/app_src/base'
-require 'avm/app_src/configuration'
+require 'avm/sources/base'
+require 'avm/sources/configuration'
 require 'avm/launcher/paths/real'
 require 'avm/projects/stereotype/job_comparator'
 require 'eac_ruby_utils/core_ext'
@@ -36,12 +36,12 @@ module Avm
       private
 
       def avm_instance_uncached
-        ::Avm::AppSrc::Base.new(path)
+        ::Avm::Sources::Base.new(path)
       end
 
       # @return [Avm::Apps::Sources::Configuration]
       def configuration_uncached
-        ::Avm::AppSrc::Configuration.find_in_path(path)
+        ::Avm::Sources::Configuration.find_in_path(path)
       end
 
       def stereotypes_jobs(job, job_args)
