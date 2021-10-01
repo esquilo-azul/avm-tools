@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    avm-tools (0.107.0)
+    avm-tools (0.108.0)
       aranha-parsers (~> 0.4)
       avm (~> 0.1)
       avm-eac_asciidoctor_base0
@@ -172,7 +172,7 @@ GEM
     minitar (0.9)
     minitest (5.14.4)
     net-ssh (4.2.0)
-    nokogiri (1.12.4-x86_64-linux)
+    nokogiri (1.12.5-x86_64-linux)
       racc (~> 1.4)
     ofx-parser (1.1.0)
       hpricot (>= 0.6)
