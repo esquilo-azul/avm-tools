@@ -184,7 +184,7 @@ GEM
       hpricot (>= 0.6)
     os (1.1.1)
     parallel (1.21.0)
-    parseconfig (1.1.0)
+    parseconfig (1.1.2)
     parser (3.0.2.0)
       ast (~> 2.4.1)
     parslet (1.8.2)
