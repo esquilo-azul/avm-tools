@@ -3,6 +3,7 @@
 require 'avm/self'
 require 'avm/tools/core_ext'
 require 'eac_config/node'
+require 'eac_ruby_utils/recursive_builder'
 
 module Avm
   module Tools
@@ -15,15 +16,19 @@ module Avm
           end
 
           def run
-            run_show
+            config_nodes.each { |config_node| run_show(config_node) }
             run_add
           end
 
           private
 
           # @return [[EacCli::Config]]
-          def config_node
+          def root_config_node
             ::EacConfig::Node.context.current
+          end
+
+          def config_nodes
+            ::EacRubyUtils::RecursiveBuilder.new(root_config_node, &:self_loaded_nodes).result
           end
 
           def run_add
@@ -34,7 +39,7 @@ module Avm
             end
           end
 
-          def run_show
+          def run_show(config_node)
             infov 'Configuration path', config_node.url
             infov 'Paths included', config_node.self_loaded_nodes.count
             config_node.self_loaded_nodes.each do |loaded_node|
