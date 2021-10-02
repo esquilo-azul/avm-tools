@@ -88,7 +88,7 @@ PATH
 PATH
   remote: vendor/eac_fs
   specs:
-    eac_fs (0.4.0)
+    eac_fs (0.5.0)
       content-type
       eac_ruby_utils (~> 0.70)
       ruby-filemagic
