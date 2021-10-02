@@ -43,8 +43,8 @@ module EacRubyBase0
       delegate "#{item}_xdg_env", "#{item}_dir", to: :app_xdg
     end
 
-    def fs_cache
-      @fs_cache ||= ::EacFs::Cache.new(
+    def self_fs_cache
+      @self_fs_cache ||= ::EacFs::Cache.new(
         cache_dir.join(::EacFs::Cache.name.parameterize)
       )
     end

@@ -40,7 +40,7 @@ module EacRubyBase0
     def on_context
       ::EacRubyUtils::Speaker.context.on(build_speaker) do
         ::EacConfig::Node.context.on(runner_context.call(:application).build_config) do
-          ::EacFs::Cache.context.on(application.fs_cache) do
+          ::EacFs::Cache.context.on(application.self_fs_cache) do
             yield
           end
         end
