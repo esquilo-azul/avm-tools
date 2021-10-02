@@ -39,7 +39,7 @@ module Avm
         ::Avm::Sources::Base.new(path)
       end
 
-      # @return [Avm::Apps::Sources::Configuration]
+      # @return [Avm::Sources::Configuration]
       def configuration_uncached
         ::Avm::Sources::Configuration.find_in_path(path)
       end
