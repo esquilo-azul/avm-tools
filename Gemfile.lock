@@ -103,7 +103,7 @@ PATH
 PATH
   remote: vendor/eac_ruby_base0
   specs:
-    eac_ruby_base0 (0.11.0)
+    eac_ruby_base0 (0.12.0)
       eac_cli (~> 0.22, >= 0.22.2)
       eac_fs (~> 0.3)
       eac_ruby_gems_utils (~> 0.9.6, ~> 0.9)
