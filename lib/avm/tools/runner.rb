@@ -17,10 +17,6 @@ module Avm
       def application
         ::Avm::Self.application
       end
-
-      def run
-        ::EacConfig::Node.context.on(::Avm::Self.build_config) { super }
-      end
     end
   end
 end
