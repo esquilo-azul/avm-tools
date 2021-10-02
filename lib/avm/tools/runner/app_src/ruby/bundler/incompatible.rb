@@ -35,8 +35,8 @@ module Avm
                 fs_cache.content_path
               end
 
-              def fs_cache
-                super.child(instance.path.to_s.variableize)
+              def fs_cache_object_id
+                instance.path.to_s.variableize
               end
 
               def gem_title(gem_in_conflict)
