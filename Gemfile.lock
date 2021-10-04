@@ -58,6 +58,7 @@ PATH
   remote: vendor/avm-git
   specs:
     avm-git (0.0.0)
+      eac_git (~> 0.9)
       eac_ruby_utils (~> 0.76)
 
 PATH
