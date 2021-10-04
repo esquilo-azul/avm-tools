@@ -55,6 +55,12 @@ PATH
       eac_templates (~> 0.2)
 
 PATH
+  remote: vendor/avm-git
+  specs:
+    avm-git (0.0.0)
+      eac_ruby_utils (~> 0.76)
+
+PATH
   remote: vendor/avm
   specs:
     avm (0.6.0)
@@ -241,6 +247,7 @@ DEPENDENCIES
   avm-eac_redmine_base0!
   avm-eac_webapp_base0!
   avm-files!
+  avm-git!
   avm-tools!
   eac_cli!
   eac_config!
