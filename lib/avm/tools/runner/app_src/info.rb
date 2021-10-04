@@ -12,12 +12,22 @@ module Avm
           end
 
           def run
-            infov 'Path', instance.path
-            infov 'Stereotypes', instance.stereotypes.map(&:label).join(', ')
+            show_instance
+            show_source
             show_subs
           end
 
           private
+
+          def show_instance
+            infov 'Path', instance.path
+            infov 'Stereotypes', instance.stereotypes.map(&:label).join(', ')
+          end
+
+          def show_source
+            infov 'Stereotype', runner_context.call(:subject).stereotype
+            infov 'SCM', runner_context.call(:subject).scm
+          end
 
           def show_subs
             infov 'Sub applications', instance.avm_instance.subs.count
