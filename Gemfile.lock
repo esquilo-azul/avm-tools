@@ -46,6 +46,12 @@ PATH
       eac_ruby_utils (~> 0.68)
 
 PATH
+  remote: vendor/avm-files
+  specs:
+    avm-files (0.0.0)
+      eac_ruby_utils (~> 0.76)
+
+PATH
   remote: vendor/avm
   specs:
     avm (0.6.0)
@@ -231,6 +237,7 @@ DEPENDENCIES
   avm-eac_rails_base1!
   avm-eac_redmine_base0!
   avm-eac_webapp_base0!
+  avm-files!
   avm-tools!
   eac_cli!
   eac_config!
