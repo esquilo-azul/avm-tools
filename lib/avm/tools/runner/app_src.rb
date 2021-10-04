@@ -19,6 +19,10 @@ module Avm
           infov 'Stereotypes', instance.stereotypes.map(&:label).join(', ')
         end
 
+        def subject
+          instance.avm_instance
+        end
+
         private
 
         def instance_uncached
