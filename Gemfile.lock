@@ -51,6 +51,7 @@ PATH
     avm-files (0.0.0)
       eac_fs (~> 0.5)
       eac_ruby_utils (~> 0.76)
+      eac_templates (~> 0.2)
 
 PATH
   remote: vendor/avm
