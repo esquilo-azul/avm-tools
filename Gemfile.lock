@@ -42,6 +42,7 @@ PATH
   remote: vendor/avm-eac_ruby_base1
   specs:
     avm-eac_ruby_base1 (0.0.0)
+      avm (~> 0.6)
       eac_ruby_utils (~> 0.76)
 
 PATH
