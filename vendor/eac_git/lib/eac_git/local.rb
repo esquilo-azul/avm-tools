@@ -10,6 +10,17 @@ module EacGit
 
     HEAD_REFERENCE = 'HEAD'
 
+    class << self
+      def find(path)
+        path = path.to_pathname.expand_path
+        if path.join('.git').exist?
+          new(path)
+        elsif path.to_path != '/'
+          find(path.parent)
+        end
+      end
+    end
+
     common_constructor :root_path do
       self.root_path = root_path.to_pathname
     end
