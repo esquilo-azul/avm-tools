@@ -12,8 +12,8 @@ module Avm
           end
 
           def run
-            infov 'Path', runner_context.call(:instance).path
-            runner_context.call(:instance).run_job(:update)
+            infov 'Path', runner_context.call(:subject).path
+            runner_context.call(:subject).update
           end
         end
       end
