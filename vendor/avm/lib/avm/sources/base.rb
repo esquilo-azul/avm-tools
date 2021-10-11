@@ -36,6 +36,10 @@ module Avm
                 .map { |subrepo| self.class.new(subrepo.subpath.expand_path(path), parent: self) }
       end
 
+      def update
+        stereotype.update_source(self)
+      end
+
       private
 
       # @return [EacGit::Local]
