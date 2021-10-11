@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
+require 'avm/registry'
 require 'eac_git'
 require 'eac_ruby_utils/core_ext'
 
 module Avm
   module Sources
     class Base
+      require_sub __FILE__
       enable_simple_cache
       enable_listable
       lists.add_symbol :option, :parent
@@ -39,6 +41,11 @@ module Avm
       # @return [EacGit::Local]
       def git_repo_uncached
         ::EacGit::Local.new(path)
+      end
+
+      # @return [Avm::Scms::Base]
+      def scm_uncached
+        ::Avm::Registry.scms.detect(path)
       end
     end
   end
