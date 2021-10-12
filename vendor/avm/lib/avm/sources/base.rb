@@ -16,6 +16,7 @@ module Avm
         self.options = self.class.lists.option.hash_keys_validate!(options)
       end
 
+      delegate :locale, to: :configuration
       delegate :to_s, to: :path
 
       # @return [Avm::Sources::Base]
