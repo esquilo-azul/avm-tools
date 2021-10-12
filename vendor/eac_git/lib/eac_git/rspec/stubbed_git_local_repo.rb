@@ -3,6 +3,7 @@
 require 'eac_git/local'
 require 'eac_ruby_utils/envs'
 require 'fileutils'
+require 'securerandom'
 require 'tmpdir'
 
 module EacGit
@@ -28,6 +29,16 @@ module EacGit
       class StubbedGitRepository < ::EacGit::Local
         def file(*subpath)
           StubbedGitRepositoryFile.new(self, subpath)
+        end
+
+        # @return [EacGit::Local::Commit
+        def random_commit
+          content = ::SecureRandom.hex
+          file = "#{content}.txt"
+          file(file).write(content)
+          command('add', file).execute!
+          command('commit', '-m', "Random commit: #{file}.").execute!
+          head
         end
       end
 
