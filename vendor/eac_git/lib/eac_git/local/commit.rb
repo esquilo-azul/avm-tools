@@ -7,6 +7,7 @@ module EacGit
     class Commit
       require_sub __FILE__, include_modules: true
       enable_simple_cache
+      include ::Comparable
 
       FIELDS = {
         author_name: '%an', author_email: '%ae', author_date: '%ai',
@@ -17,6 +18,10 @@ module EacGit
       }.freeze
 
       common_constructor :repo, :id
+
+      def <=>(other)
+        [repo, id] <=> [other.repo, other.id]
+      end
 
       def format(format)
         repo.command('--no-pager', 'log', '-1', "--pretty=format:#{format}", id).execute!.strip
