@@ -7,6 +7,7 @@ module EacGit
   # A Git repository in local filesystem.
   class Local
     require_sub __FILE__, include_modules: true
+    include ::Comparable
 
     HEAD_REFERENCE = 'HEAD'
 
@@ -23,6 +24,10 @@ module EacGit
 
     common_constructor :root_path do
       self.root_path = root_path.to_pathname
+    end
+
+    def <=>(other)
+      root_path <=> other.root_path
     end
 
     def commit(ref, required = false)
