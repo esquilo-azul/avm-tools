@@ -29,6 +29,16 @@ module EacGit
       rev_parse(ref, required).if_present { |v| ::EacGit::Local::Commit.new(self, v) }
     end
 
+    def commitize(source)
+      if source.is_a?(::EacGit::Local::Commit)
+        return source if source.repo == self
+
+        source = source.id
+      end
+
+      source.to_s.strip.if_present(nil) { |v| ::EacGit::Local::Commit.new(self, v) }
+    end
+
     def descendant?(descendant, ancestor)
       base = merge_base(descendant, ancestor)
       return false if base.blank?
