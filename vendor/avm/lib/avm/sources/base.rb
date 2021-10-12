@@ -42,6 +42,11 @@ module Avm
 
       private
 
+      # @return [Avm::Sources::Configuration]
+      def configuration_uncached
+        ::Avm::Sources::Configuration.find_in_path(path) || ::Avm::Sources::Configuration.new
+      end
+
       # @return [EacGit::Local]
       def git_repo_uncached
         ::EacGit::Local.new(path)
