@@ -42,6 +42,14 @@ module EacGit
         changed_files.inject(0) { |a, e| a + e.dst_size }
       end
 
+      # @return [EacGit::Local::Commit, nil]
+      def parent
+        ps = parents
+        raise "#{self} has more than one parent" if ps.count > 2
+
+        ps.empty? ? nil : ps.first
+      end
+
       # @return [Array<EacGit::Local::Commit>]
       def parents
         format('%P').each_line.map { |line| repo.commitize(line) }
