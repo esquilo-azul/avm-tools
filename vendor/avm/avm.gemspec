@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'eac_docker', '~> 0.3'
   s.add_dependency 'eac_git', '~> 0.6'
-  s.add_dependency 'eac_ruby_utils', '~> 0.68'
+  s.add_dependency 'eac_ruby_utils', '~> 0.77'
   s.add_dependency 'eac_templates', '~> 0.1', '>= 0.1.1'
   s.add_dependency 'filesize', '~> 0.2'
   s.add_dependency 'htmlbeautifier', '~> 1.3', '>= 1.3.1'
