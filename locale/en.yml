@@ -2,11 +2,6 @@ en:
   avm:
     projects:
       stereotypes:
-        git:
-          update:
-            subrepo:
-              content_updated_fix_message: '%{subpath}: update.'
-              gitrepo_only_changed_fix_message: '%{subpath}/.gitrepo: fix/update.'
         ruby_gem:
           update:
             gemfile_lock_commit_message: 'All gems: update.'
