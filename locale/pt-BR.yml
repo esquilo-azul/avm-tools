@@ -1,9 +1,0 @@
-pt-BR:
-  avm:
-    projects:
-      stereotypes:
-        ruby_gem:
-          update:
-            gemfile_lock_commit_message: 'Todas as gems: atualiza.'
-          version_bump:
-            git_commit_message: Versão para '%{version}'.
