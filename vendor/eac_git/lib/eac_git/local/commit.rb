@@ -14,7 +14,8 @@ module EacGit
         subject: '%s',
         author_all: '%an <%ae>, %ai',
         commiter_name: '%cn', commiter_email: '%ce', commiter_date: '%ci',
-        commiter_all: '%cn <%ce>, %ci'
+        commiter_all: '%cn <%ce>, %ci',
+        raw_body: '%B'
       }.freeze
 
       common_constructor :repo, :id
@@ -41,8 +42,13 @@ module EacGit
         changed_files.inject(0) { |a, e| a + e.dst_size }
       end
 
+      # @return [Array<EacGit::Local::Commit>]
+      def parents
+        format('%P').each_line.map { |line| repo.commitize(line) }
+      end
+
       def root_child?
-        format('%P').blank?
+        parents.empty?
       end
 
       private
