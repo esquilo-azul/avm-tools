@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'avm/patches/object/i18n'
+require 'avm/patches/i18n'
 require 'eac_ruby_utils/core_ext'
 
 module Avm
@@ -47,7 +47,7 @@ module Avm
           end
 
           def git_commit_message
-            translate(__method__, version: target_version, __locale: instance.locale)
+            i18n_translate(__method__, version: target_version, __locale: instance.locale)
           end
 
           def changing_files
