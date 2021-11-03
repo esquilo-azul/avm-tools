@@ -53,6 +53,7 @@ PATH
   remote: vendor/avm-eac_ubuntu_base0
   specs:
     avm-eac_ubuntu_base0 (0.0.0)
+      avm (~> 0.7)
       eac_ruby_utils (~> 0.77, >= 0.77.1)
 
 PATH
