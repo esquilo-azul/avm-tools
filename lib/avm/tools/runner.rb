@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'avm/self'
+require 'avm/registry'
 require 'avm/tools/version'
 require 'eac_ruby_base0/runner'
 
@@ -16,6 +17,10 @@ module Avm
 
       def application
         ::Avm::Self.application
+      end
+
+      def extra_available_subcommands
+        ::Avm::Registry.runners.registered_modules.map { |k| [k.command_argument, k] }.to_h
       end
     end
   end
