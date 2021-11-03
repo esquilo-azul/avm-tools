@@ -7,7 +7,7 @@ module Avm
   module Registry
     require_sub __FILE__
     enable_listable
-    lists.add_symbol :category, :instance_stereotypes, :scms, :source_stereotypes
+    lists.add_symbol :category, :instance_stereotypes, :runners, :scms, :source_stereotypes
 
     class << self
       enable_simple_cache
