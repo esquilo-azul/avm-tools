@@ -76,7 +76,7 @@ PATH
 PATH
   remote: vendor/avm
   specs:
-    avm (0.6.1)
+    avm (0.7.0)
       eac_cli (~> 0.23, >= 0.23.1)
       eac_docker (~> 0.3)
       eac_git (~> 0.6)
