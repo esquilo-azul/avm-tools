@@ -55,6 +55,7 @@ PATH
     avm-eac_ubuntu_base0 (0.0.0)
       avm (~> 0.7)
       eac_ruby_utils (~> 0.77, >= 0.77.1)
+      eac_templates (~> 0.2)
 
 PATH
   remote: vendor/avm-eac_webapp_base0
