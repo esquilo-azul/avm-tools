@@ -18,7 +18,7 @@ PATH
       ruby-progressbar (~> 1.10, >= 1.10.1)
 
 PATH
-  remote: vendor/avm-eac_asciidoctor_base0
+  remote: sub/avm-eac_asciidoctor_base0
   specs:
     avm-eac_asciidoctor_base0 (0.3.1)
       asciidoctor (~> 2.0, >= 2.0.12)
@@ -28,14 +28,14 @@ PATH
       rouge (~> 3.26)
 
 PATH
-  remote: vendor/avm-eac_rails_base1
+  remote: sub/avm-eac_rails_base1
   specs:
     avm-eac_rails_base1 (0.1.2)
       avm-eac_webapp_base0 (~> 0.1)
       eac_ruby_utils (~> 0.68)
 
 PATH
-  remote: vendor/avm-eac_redmine_base0
+  remote: sub/avm-eac_redmine_base0
   specs:
     avm-eac_redmine_base0 (0.2.2)
       avm-eac_rails_base1 (~> 0.1)
@@ -44,14 +44,14 @@ PATH
       eac_ruby_utils (~> 0.68)
 
 PATH
-  remote: vendor/avm-eac_ruby_base1
+  remote: sub/avm-eac_ruby_base1
   specs:
     avm-eac_ruby_base1 (0.1.0)
       avm (~> 0.6)
       eac_ruby_utils (~> 0.76)
 
 PATH
-  remote: vendor/avm-eac_ubuntu_base0
+  remote: sub/avm-eac_ubuntu_base0
   specs:
     avm-eac_ubuntu_base0 (0.1.0)
       avm (~> 0.7)
@@ -59,14 +59,14 @@ PATH
       eac_templates (~> 0.2)
 
 PATH
-  remote: vendor/avm-eac_webapp_base0
+  remote: sub/avm-eac_webapp_base0
   specs:
     avm-eac_webapp_base0 (0.1.1)
       avm (~> 0.1)
       eac_ruby_utils (~> 0.68)
 
 PATH
-  remote: vendor/avm-files
+  remote: sub/avm-files
   specs:
     avm-files (0.2.0)
       avm (~> 0.6)
@@ -75,7 +75,7 @@ PATH
       eac_templates (~> 0.2)
 
 PATH
-  remote: vendor/avm-git
+  remote: sub/avm-git
   specs:
     avm-git (0.1.0)
       avm-files (~> 0.1)
@@ -83,7 +83,7 @@ PATH
       eac_ruby_utils (~> 0.76)
 
 PATH
-  remote: vendor/avm
+  remote: sub/avm
   specs:
     avm (0.7.0)
       eac_cli (~> 0.23, >= 0.23.1)
@@ -96,7 +96,7 @@ PATH
       minitar (~> 0.9)
 
 PATH
-  remote: vendor/eac_cli
+  remote: sub/eac_cli
   specs:
     eac_cli (0.23.1)
       colorize (~> 0.8.1)
@@ -104,21 +104,21 @@ PATH
       eac_ruby_utils (~> 0.70)
 
 PATH
-  remote: vendor/eac_config
+  remote: sub/eac_config
   specs:
     eac_config (0.5.1)
       addressable
       eac_ruby_utils (~> 0.70)
 
 PATH
-  remote: vendor/eac_docker
+  remote: sub/eac_docker
   specs:
     eac_docker (0.4.1)
       eac_ruby_utils (~> 0.74)
       eac_templates (~> 0.1)
 
 PATH
-  remote: vendor/eac_fs
+  remote: sub/eac_fs
   specs:
     eac_fs (0.6.0)
       content-type
@@ -126,14 +126,14 @@ PATH
       ruby-filemagic
 
 PATH
-  remote: vendor/eac_git
+  remote: sub/eac_git
   specs:
     eac_git (0.9.0)
       eac_ruby_utils (~> 0.74)
       parseconfig (~> 1.0, >= 1.0.8)
 
 PATH
-  remote: vendor/eac_ruby_base0
+  remote: sub/eac_ruby_base0
   specs:
     eac_ruby_base0 (0.12.0)
       eac_cli (~> 0.22, >= 0.22.2)
@@ -142,14 +142,14 @@ PATH
       eac_ruby_utils (~> 0.70)
 
 PATH
-  remote: vendor/eac_ruby_gems_utils
+  remote: sub/eac_ruby_gems_utils
   specs:
     eac_ruby_gems_utils (0.9.7)
       bundler (~> 2.2, >= 2.2.25)
       eac_ruby_utils (~> 0.70)
 
 PATH
-  remote: vendor/eac_ruby_utils
+  remote: sub/eac_ruby_utils
   specs:
     eac_ruby_utils (0.77.1)
       activesupport (>= 4.0)
@@ -158,7 +158,7 @@ PATH
       net-ssh (~> 4.2)
 
 PATH
-  remote: vendor/eac_templates
+  remote: sub/eac_templates
   specs:
     eac_templates (0.2.0)
       eac_config (~> 0.5)
