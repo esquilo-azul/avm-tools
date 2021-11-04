@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'avm/tools/core_ext'
-require 'avm/files/rotate'
+require 'avm/data/rotate'
 require 'minitar'
 
 module Avm
@@ -88,7 +88,7 @@ module Avm
           return unless existing == EXISTING_ROTATE
 
           infom "Rotating \"#{data_file_path}\"..."
-          ::Avm::Files::Rotate.new(data_file_path).run
+          ::Avm::Data::Rotate.new(data_file_path).run
         end
 
         def new_build_path
