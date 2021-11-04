@@ -13,6 +13,7 @@ module Avm
 
       runner_with :help do
         desc 'Manipulate Docker images.'
+        bool_opt '-I', '--image-name', 'Output image name.'
         arg_opt '-n', '--registry-name', 'Docker registry\'s name.'
         bool_opt '-p', '--push', 'Push the image to Docker registry.'
         bool_opt '-r', '--run', 'Run or start a container with builded image.'
@@ -27,6 +28,7 @@ module Avm
         setup
         banner
         build
+        output_image_name
         push
         container_run
       end
@@ -82,6 +84,12 @@ module Avm
           entrypoint_args: entrypoint_args,
           clear: parsed.clear?
         )
+      end
+
+      def output_image_name
+        return unless parsed.image_name
+
+        out(docker_image.tag.to_s.strip + "\n")
       end
 
       def registry_uncached
