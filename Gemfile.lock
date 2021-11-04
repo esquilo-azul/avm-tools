@@ -67,7 +67,7 @@ PATH
 PATH
   remote: vendor/avm-files
   specs:
-    avm-files (0.1.0)
+    avm-files (0.2.0)
       avm (~> 0.6)
       eac_fs (~> 0.5)
       eac_ruby_utils (~> 0.76)
