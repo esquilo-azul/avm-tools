@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'avm/files/rotate'
+require 'avm/data/rotate'
 require 'eac_cli/core_ext'
 
 module Avm
@@ -19,7 +19,7 @@ module Avm
           end
 
           def rotate
-            @rotate ||= ::Avm::Files::Rotate.new(
+            @rotate ||= ::Avm::Data::Rotate.new(
               parsed.path,
               space_limit: parsed.space_limit
             )
