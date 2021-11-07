@@ -10,6 +10,7 @@ module Avm
       class DockerImage < ::Avm::Instances::DockerImage
         enable_simple_cache
 
+        INSTALLER_TARGET_TASK = 'redmine_as_apache_base'
         DATABASE_INTERNAL_HOSTNAME = 'localhost'
         REDMINE_SOURCE_HOST_SUBPATH = 'redmine_source'
 
@@ -19,6 +20,10 @@ module Avm
 
         def database_internal
           instance.entry(::Avm::Instances::EntryKeys::DATABASE_HOSTNAME).value == DATABASE_INTERNAL_HOSTNAME
+        end
+
+        def installer_target_task
+          INSTALLER_TARGET_TASK
         end
 
         def redmine_user

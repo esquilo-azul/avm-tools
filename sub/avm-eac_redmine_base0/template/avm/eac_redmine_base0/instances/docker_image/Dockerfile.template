@@ -23,7 +23,7 @@ COPY install_settings.sh "%%redmine_path%%/config/install.sh"
 # Redmine / Instalação
 USER '%%redmine_user%%'
 WORKDIR '%%redmine_user_home%%'
-RUN '%%redmine_path%%/plugins/redmine_installer/installer/run.sh' redmine_as_apache_base
+RUN '%%redmine_path%%/plugins/redmine_installer/installer/run.sh' '%%installer_target_task%%'
 
 # Apache / Configuração do virtualhost
 COPY apache_http_virtualhost.conf /etc/apache2/sites-available/redmine.conf
