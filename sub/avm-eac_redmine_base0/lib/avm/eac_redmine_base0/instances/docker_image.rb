@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'eac_ruby_utils/core_ext'
+require 'avm/eac_ubuntu_base0/instances/base'
 require 'avm/instances/docker_image'
 require 'avm/eac_redmine_base0/patches/object/template'
 
@@ -20,7 +21,7 @@ module Avm
         end
 
         def base_image
-          BASE_IMAGE
+          eac_ubuntu_base0_instance.docker_image.provide.id
         end
 
         def database_internal
@@ -33,11 +34,11 @@ module Avm
         end
 
         def redmine_user
-          'redmine'
+          eac_ubuntu_base0_instance.docker_image.user_name
         end
 
         def redmine_user_home
-          "/home/#{redmine_user}"
+          eac_ubuntu_base0_instance.docker_image.user_home
         end
 
         def redmine_path
@@ -53,6 +54,12 @@ module Avm
         end
 
         private
+
+        def eac_ubuntu_base0_instance
+          r = ::Avm::EacUbuntuBase0::Instances::Base.by_id(instance.id)
+          r.docker_image_options = instance.docker_image_options
+          r
+        end
 
         def git_repo_uncached
           ::EacGit::Local.new(instance.source_instance.fs_path)

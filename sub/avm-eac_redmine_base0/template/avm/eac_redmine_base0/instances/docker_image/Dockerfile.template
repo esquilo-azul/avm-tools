@@ -1,14 +1,9 @@
 FROM '%%base_image%%'
+USER root
 RUN apt-get update -y
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y sudo tzdata git apt-utils
 RUN ln -fs /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
 RUN dpkg-reconfigure --frontend noninteractive tzdata
-
-# Usuário "%%redmine_user%%"
-RUN /usr/sbin/useradd --shell /bin/bash --home-dir '%%redmine_user_home%%' --create-home '%%redmine_user%%'
-RUN /bin/echo '%%redmine_user%%:%%redmine_user%%' | /usr/sbin/chpasswd
-RUN /bin/chown '%%redmine_user%%:%%redmine_user%%' %%redmine_user_home%% -R
-RUN /bin/echo "%%redmine_user%% ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/%%redmine_user%%_all_nopasswd && chmod 0440 /etc/sudoers.d/%%redmine_user%%_all_nopasswd
 
 # Redmine / Código-fonte
 RUN echo '%%redmine_source_git_id%%' '%%redmine_user_home%%/redmine_source_git_id'
