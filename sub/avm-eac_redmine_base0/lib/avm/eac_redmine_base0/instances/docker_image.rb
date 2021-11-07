@@ -19,7 +19,8 @@ module Avm
         end
 
         def database_internal
-          instance.entry(::Avm::Instances::EntryKeys::DATABASE_HOSTNAME).value == DATABASE_INTERNAL_HOSTNAME
+          instance.entry(::Avm::Instances::EntryKeys::DATABASE_HOSTNAME).value ==
+            DATABASE_INTERNAL_HOSTNAME
         end
 
         def installer_target_task
@@ -36,6 +37,10 @@ module Avm
 
         def redmine_path
           "#{redmine_user_home}/redmine_app"
+        end
+
+        def skip_database
+          ENV['SKIP_DATABASE']
         end
 
         def start_path
