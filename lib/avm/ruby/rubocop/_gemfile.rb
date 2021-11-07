@@ -2,7 +2,6 @@
 
 require 'avm/patches/eac_ruby_gems_utils/gem'
 require 'eac_ruby_utils/core_ext'
-require 'eac_ruby_utils/on_clean_ruby_environment'
 
 module Avm
   module Ruby

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'eac_ruby_utils/core_ext'
-require 'eac_ruby_utils/on_clean_ruby_environment'
+require 'eac_ruby_utils/ruby/on_clean_environment'
 
 module Avm
   module Ruby
@@ -38,13 +38,13 @@ module Avm
       end
 
       def rubocop_version_uncached
-        ::EacRubyUtils.on_clean_ruby_environment do
+        ::EacRubyUtils::Ruby.on_clean_environment do
           rubocop_command.append(['--version']).execute!.strip
         end
       end
 
       def run_rubocop
-        ::EacRubyUtils.on_clean_ruby_environment { rubocop_command_with_args.system }
+        ::EacRubyUtils::Ruby.on_clean_environment { rubocop_command_with_args.system }
       end
 
       def start_banner
