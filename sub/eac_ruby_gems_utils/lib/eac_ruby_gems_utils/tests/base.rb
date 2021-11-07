@@ -3,7 +3,6 @@
 require 'eac_ruby_utils/core_ext'
 require 'eac_ruby_utils/fs/logs'
 require 'eac_ruby_utils/listable'
-require 'eac_ruby_utils/on_clean_ruby_environment'
 
 module EacRubyGemsUtils
   module Tests
