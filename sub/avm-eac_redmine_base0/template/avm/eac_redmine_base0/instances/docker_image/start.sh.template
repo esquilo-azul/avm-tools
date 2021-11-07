@@ -9,6 +9,11 @@ function title() {
   infom ">>>> $1 <<<<"
 }
 
+function redmine_install() {
+  title 'Installing Redmine...'
+  "$INSTALL_ROOT/run.sh" '%%installer_target_task%%'
+}
+
 function apache_start() {
   title 'Restarting Apache HTTPD service...'
   sudo service apache2 restart
@@ -39,6 +44,7 @@ function redmine_log() {
   sudo tail -f "$LOG_FILE"
 }
 
+redmine_install
 apache_start
 ssh_start
 postgresql_start
