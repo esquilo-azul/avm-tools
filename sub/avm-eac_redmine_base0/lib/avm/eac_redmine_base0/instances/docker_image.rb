@@ -10,10 +10,15 @@ module Avm
       class DockerImage < ::Avm::Instances::DockerImage
         enable_simple_cache
 
+        DATABASE_INTERNAL_HOSTNAME = 'localhost'
         REDMINE_SOURCE_HOST_SUBPATH = 'redmine_source'
 
         def avm_fs_cache_object_id
           instance.id
+        end
+
+        def database_internal
+          instance.entry(::Avm::Instances::EntryKeys::DATABASE_HOSTNAME).value == DATABASE_INTERNAL_HOSTNAME
         end
 
         def redmine_user

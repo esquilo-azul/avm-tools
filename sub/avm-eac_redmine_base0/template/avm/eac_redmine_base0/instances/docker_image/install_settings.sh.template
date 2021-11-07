@@ -1,3 +1,12 @@
+# Database
+export postgresql_internal='%%database_internal%%'
+export postgresql_host='%%DATABASE.HOSTNAME%%'
+export postgresql_port='%%DATABASE.PORT%%'
+export postgresql_user='%%DATABASE.USERNAME%%'
+export postgresql_password='%%DATABASE.PASSWORD%%'
+export postgresql_database='%%DATABASE.NAME%%'
+export postgresql_extra_settings='%%DATABASE.EXTRA%%'
+
 # Git Hosting
 export redmine_git_hosting_ssh_key_name=redmine_git_hosting_id
 export git_repositories_hierarchical_organisation=false

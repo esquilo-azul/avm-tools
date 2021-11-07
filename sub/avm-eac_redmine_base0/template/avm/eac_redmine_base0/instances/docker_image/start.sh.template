@@ -20,6 +20,8 @@ function ssh_start() {
 }
 
 function postgresql_start() {
+  if ! bool_r "$postgresql_internal"; then return 0; fi
+
   title 'Restarting PostgresSQL service...'
   sudo service postgresql restart
 }
