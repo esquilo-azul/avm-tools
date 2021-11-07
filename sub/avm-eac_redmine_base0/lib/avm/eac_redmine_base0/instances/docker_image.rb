@@ -10,12 +10,17 @@ module Avm
       class DockerImage < ::Avm::Instances::DockerImage
         enable_simple_cache
 
+        BASE_IMAGE = 'ubuntu:20.04'
         INSTALLER_TARGET_TASK = 'redmine_as_apache_base'
         DATABASE_INTERNAL_HOSTNAME = 'localhost'
         REDMINE_SOURCE_HOST_SUBPATH = 'redmine_source'
 
         def avm_fs_cache_object_id
           instance.id
+        end
+
+        def base_image
+          BASE_IMAGE
         end
 
         def database_internal
