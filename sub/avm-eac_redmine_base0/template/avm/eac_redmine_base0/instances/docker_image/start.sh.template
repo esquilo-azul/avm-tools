@@ -7,19 +7,35 @@ function title() {
   printf ">>>> %s <<<<\n" "$1"
 }
 
-title 'Restarting Apache HTTPD service...'
-sudo service apache2 restart
+function apache_start() {
+  title 'Restarting Apache HTTPD service...'
+  sudo service apache2 restart
+}
 
-title 'Restarting SSH service...'
-sudo service ssh restart
+function ssh_start() {
+  title 'Restarting SSH service...'
+  sudo service ssh restart
+}
 
-title 'Restarting PostgresSQL service...'
-sudo service postgresql restart
+function postgresql_start() {
+  title 'Restarting PostgresSQL service...'
+  sudo service postgresql restart
+}
 
-title 'Requesting web interface...'
-wget 'http://localhost' &> /dev/null
+function request_http_interface() {
+  title 'Requesting web interface...'
+  wget 'http://localhost' &> /dev/null
+}
 
-title 'Reading production log...'
-LOG_FILE='%%redmine_path%%/log/production.log'
-printf " * tail -f \"$LOG_FILE\":\n"
-sudo tail -f "$LOG_FILE"
+function redmine_log() {
+  title 'Reading production log...'
+  LOG_FILE='%%redmine_path%%/log/production.log'
+  printf " * tail -f \"$LOG_FILE\":\n"
+  sudo tail -f "$LOG_FILE"
+}
+
+apache_start
+ssh_start
+postgresql_start
+request_http_interface
+redmine_log
