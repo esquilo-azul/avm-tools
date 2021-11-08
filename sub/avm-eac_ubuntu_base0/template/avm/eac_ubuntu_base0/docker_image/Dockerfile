@@ -3,6 +3,8 @@ RUN apt-get update -y
 
 # Timezone
 RUN apt-get install -y tzdata
+RUN ln -fs /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
+RUN dpkg-reconfigure --frontend noninteractive tzdata
 
 # Default user
 RUN /usr/sbin/useradd --shell /bin/bash --home-dir /home/myuser --create-home myuser
