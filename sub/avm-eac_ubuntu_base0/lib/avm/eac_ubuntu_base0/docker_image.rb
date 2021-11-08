@@ -13,6 +13,10 @@ module Avm
         'eac_ubuntu_base0'
       end
 
+      def user_home
+        ::File.join('/home', user_name)
+      end
+
       def user_name
         USER_NAME
       end

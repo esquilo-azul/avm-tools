@@ -7,9 +7,9 @@ RUN ln -fs /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
 RUN dpkg-reconfigure --frontend noninteractive tzdata
 
 # Default user
-RUN /usr/sbin/useradd --shell /bin/bash --home-dir /home/%%user_name%% --create-home %%user_name%%
+RUN /usr/sbin/useradd --shell /bin/bash --home-dir %%user_home%% --create-home %%user_name%%
 RUN /bin/echo '%%user_name%%:%%user_name%%' | /usr/sbin/chpasswd
-RUN /bin/chown %%user_name%%:%%user_name%% /home/%%user_name%% -R
+RUN /bin/chown %%user_name%%:%%user_name%% %%user_home%% -R
 
 # Sudo
 RUN apt-get install -y sudo
@@ -17,6 +17,6 @@ RUN /bin/echo "%%user_name%% ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/%%user_nam
 
 # Container
 USER %%user_name%%
-WORKDIR /home/%%user_name%%
+WORKDIR %%user_home%%
 ENTRYPOINT /bin/bash
 CMD apt-get update -y && apt-get dist-upgrade -y
