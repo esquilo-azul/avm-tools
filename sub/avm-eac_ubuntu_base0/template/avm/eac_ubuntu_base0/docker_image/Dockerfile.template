@@ -1,5 +1,8 @@
 FROM ubuntu:20.04
+
+# Base system update
 RUN apt-get update -y
+RUN apt-get dist-upgrade -y
 
 # Timezone
 RUN apt-get install -y tzdata
@@ -19,4 +22,3 @@ RUN /bin/echo "%%user_name%% ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/%%user_nam
 USER %%user_name%%
 WORKDIR %%user_home%%
 ENTRYPOINT /bin/bash
-CMD apt-get update -y && apt-get dist-upgrade -y
