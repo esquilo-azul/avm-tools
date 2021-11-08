@@ -3,8 +3,10 @@
 set -u
 set -e
 
+source '%%redmine_path%%/plugins/redmine_installer/installer/environment.sh'
+
 function title() {
-  printf ">>>> %s <<<<\n" "$1"
+  infom ">>>> $1 <<<<"
 }
 
 function apache_start() {
