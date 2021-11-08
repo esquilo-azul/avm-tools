@@ -7,6 +7,7 @@ module Avm
     class Base
       module AutoValues
         module Database
+          DEFAULT_EXTRA = ''
           DEFAULT_HOSTNAME = '127.0.0.1'
           DEFAULT_LIMIT = 5
           DEFAULT_PORTS = {
@@ -17,6 +18,10 @@ module Avm
           }.freeze
           DEFAULT_SYSTEM = 'postgresql'
           DEFAULT_TIMEOUT = 5000
+
+          def auto_database_extra
+            database_auto_common('hostname') || DEFAULT_EXTRA
+          end
 
           def auto_database_name
             inherited_entry_value(::Avm::Instances::EntryKeys::DATABASE_ID,

@@ -43,7 +43,7 @@ module Avm
 
       {
         '' => %w[fs_path host_id source_instance_id],
-        database: %w[id hostname limit name password port system timeout username],
+        database: %w[id hostname limit name password port system timeout username extra],
         docker: %w[registry],
         mailer: {
           '' => %w[id from reply_to],
