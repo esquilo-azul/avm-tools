@@ -21,4 +21,4 @@ RUN /bin/echo "%%user_name%% ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/%%user_nam
 # Container
 USER %%user_name%%
 WORKDIR %%user_home%%
-ENTRYPOINT /bin/bash
+CMD /bin/bash
