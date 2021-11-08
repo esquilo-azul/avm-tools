@@ -20,6 +20,10 @@ module Avm
       def user_name
         USER_NAME
       end
+
+      def user_password
+        user_name
+      end
     end
   end
 end
