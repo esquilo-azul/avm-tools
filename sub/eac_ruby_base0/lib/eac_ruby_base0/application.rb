@@ -58,7 +58,7 @@ module EacRubyBase0
     end
 
     def vendor_dir
-      gemspec_dir.join('vendor')
+      gemspec_dir.join('sub')
     end
 
     private
