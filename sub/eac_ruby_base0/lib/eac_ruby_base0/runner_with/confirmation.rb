@@ -2,7 +2,6 @@
 
 require 'eac_cli/runner'
 require 'eac_ruby_utils/core_ext'
-require 'eac_ruby_utils/fs/traversable'
 
 module EacRubyBase0
   module RunnerWith

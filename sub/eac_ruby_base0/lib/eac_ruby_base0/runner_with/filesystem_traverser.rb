@@ -2,7 +2,7 @@
 
 require 'eac_cli/runner'
 require 'eac_ruby_utils/core_ext'
-require 'eac_ruby_utils/fs/traversable'
+require 'eac_fs/traversable'
 require 'eac_ruby_utils/settings_provider'
 
 module EacRubyBase0
@@ -12,7 +12,7 @@ module EacRubyBase0
 
       common_concern do
         include ::EacCli::Runner
-        include ::EacRubyUtils::Fs::Traversable
+        include ::EacFs::Traversable
         enable_settings_provider
         include TopMethods
         runner_definition do
