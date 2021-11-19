@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 require 'eac_ruby_utils/core_ext'
-require 'eac_ruby_utils/fs/traversable'
+require 'eac_fs/traversable'
 
 module Avm
   module Files
     class Formatter
-      include ::EacRubyUtils::Fs::Traversable
+      include ::EacFs::Traversable
       require_sub __FILE__
       enable_simple_cache
       enable_speaker
