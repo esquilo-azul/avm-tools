@@ -10,6 +10,7 @@ module Avm
         class Test
           runner_with :help do
             desc 'Test local project.'
+            bool_opt '-m', '--main', 'Test main source.'
           end
 
           def run
@@ -39,6 +40,10 @@ module Avm
             end
           end
 
+          def include_main?
+            parsed.main?
+          end
+
           def reset_tested_units
             self.tested_units = []
           end
@@ -57,7 +62,7 @@ module Avm
 
           def test_builder
             ::Avm::Sources::Tests::Builder.new(runner_context.call(:subject))
-                                          .include_main(true).include_subs(true)
+                                          .include_main(include_main?).include_subs(true)
           end
 
           def test_performer_uncached
