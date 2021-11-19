@@ -10,6 +10,7 @@ module Avm
         class Test
           runner_with :help do
             desc 'Test local project.'
+            bool_opt '-a', '--all', 'Same as "--self --subs".'
             bool_opt '-m', '--main', 'Test main source.'
             bool_opt '-s', '--subs', 'Test subs\' sources.'
           end
@@ -42,11 +43,11 @@ module Avm
           end
 
           def include_main?
-            parsed.main?
+            parsed.main? || parsed.all?
           end
 
           def include_subs?
-            parsed.subs?
+            parsed.subs? || parsed.all?
           end
 
           def reset_tested_units
