@@ -11,6 +11,7 @@ module Avm
           runner_with :help do
             desc 'Test local project.'
             bool_opt '-m', '--main', 'Test main source.'
+            bool_opt '-s', '--subs', 'Test subs\' sources.'
           end
 
           def run
@@ -44,6 +45,10 @@ module Avm
             parsed.main?
           end
 
+          def include_subs?
+            parsed.subs?
+          end
+
           def reset_tested_units
             self.tested_units = []
           end
@@ -62,7 +67,7 @@ module Avm
 
           def test_builder
             ::Avm::Sources::Tests::Builder.new(runner_context.call(:subject))
-                                          .include_main(include_main?).include_subs(true)
+                                          .include_main(include_main?).include_subs(include_subs?)
           end
 
           def test_performer_uncached
