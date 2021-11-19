@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'avm/tools/core_ext'
+require 'avm/sources/tests/builder'
 
 module Avm
   module Tools
@@ -12,17 +13,62 @@ module Avm
           end
 
           def run
-            runner_context.call(:instance_banner)
-            infov 'Test command', test_command
-            if test_command.present?
-              test_command.system!
+            reset_tested_units
+            start_banner
+            show_units_results
+            final_result
+          end
+
+          private
+
+          attr_accessor :tested_units
+
+          def failed_units
+            tested_units.select(&:failed?)
+          end
+
+          def final_result
+            if failed_units.any?
+              failed_units.each do |unit|
+                infov '  * Source', unit
+                info unit.logs.truncate_all
+              end
+              fatal_error 'Some test did not pass'
             else
-              fatal_error 'No test command found'
+              success 'None test failed'
             end
           end
 
-          def test_command
-            runner_context.call(:instance).configuration.if_present(&:any_test_command)
+          def reset_tested_units
+            self.tested_units = []
+          end
+
+          def show_units_results
+            test_performer.units.each do |unit|
+              infov unit, unit_result(unit)
+              tested_units << unit
+            end
+          end
+
+          def start_banner
+            runner_context.call(:instance_banner)
+            infov 'Selected units', test_performer.units.count
+          end
+
+          def test_builder
+            ::Avm::Sources::Tests::Builder.new(runner_context.call(:subject))
+                                          .include_main(true).include_subs(true)
+          end
+
+          def test_performer_uncached
+            test_builder.performer
+          end
+
+          def unit_result(unit)
+            (
+              [unit.result.to_label] +
+              %i[stdout stderr].map { |label| "#{label.to_s.upcase}: #{unit.logs[label]}" }
+            ).join(' | '.blue)
           end
         end
       end
