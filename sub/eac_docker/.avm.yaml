@@ -1,4 +1,3 @@
 ---
 locale: en
-test:
-  bundle_command: exec rspec
+bundle_test_command: exec rspec
