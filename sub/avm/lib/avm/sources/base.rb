@@ -8,6 +8,7 @@ module Avm
   module Sources
     class Base
       require_sub __FILE__, include_modules: true
+      compare_by :path
       enable_simple_cache
       enable_listable
       lists.add_symbol :option, :parent
