@@ -49,7 +49,7 @@ PATH
   specs:
     avm-eac_ruby_base1 (0.1.0)
       avm (~> 0.9)
-      eac_ruby_utils (~> 0.76)
+      eac_ruby_utils (~> 0.80)
 
 PATH
   remote: sub/avm-eac_ubuntu_base0
