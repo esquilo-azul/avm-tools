@@ -19,6 +19,7 @@ module Avm
 
       delegate :locale, to: :old_configuration
       delegate :to_s, to: :path
+      delegate :tester, to: :stereotype
 
       # @return [Avm::Sources::Base]
       def parent
