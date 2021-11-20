@@ -14,6 +14,7 @@ module Avm
             bool_opt '-f', '--fail-fast', 'Abort after first failure.'
             bool_opt '-m', '--main', 'Test main source.'
             bool_opt '-s', '--subs', 'Test subs\' sources.'
+            pos_arg :source_id, repeat: true, optional: true
           end
 
           def run
@@ -69,8 +70,10 @@ module Avm
           end
 
           def test_builder
-            ::Avm::Sources::Tests::Builder.new(runner_context.call(:subject))
-                                          .include_main(include_main?).include_subs(include_subs?)
+            r = ::Avm::Sources::Tests::Builder.new(runner_context.call(:subject))
+                                              .include_main(include_main?)
+                                              .include_subs(include_subs?)
+            parsed.source_id.inject(r) { |a, e| a.include_id(e) }
           end
 
           def test_performer_uncached
