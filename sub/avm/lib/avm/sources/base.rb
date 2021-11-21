@@ -9,6 +9,7 @@ module Avm
     class Base
       require_sub __FILE__, include_modules: true
       compare_by :path
+      enable_abstract_methods
       enable_simple_cache
       enable_listable
       lists.add_symbol :option, :parent
@@ -16,6 +17,8 @@ module Avm
         self.path = path.to_pathname.expand_path
         self.options = ::Avm::Sources::Base.lists.option.hash_keys_validate!(options)
       end
+
+      abstract_methods :valid?
 
       delegate :locale, to: :old_configuration
       delegate :to_s, to: :path
