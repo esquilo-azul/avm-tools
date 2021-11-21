@@ -32,7 +32,7 @@ module Avm
           def show_subs
             infov 'Sub applications', instance.avm_instance.subs.count
             instance.avm_instance.subs.each do |subapp|
-              infov '  * ', subapp.relative_path
+              infov '  * ', "#{subapp.relative_path} [#{subapp.class}]"
             end
           end
 
