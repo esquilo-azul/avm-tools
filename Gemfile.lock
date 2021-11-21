@@ -56,6 +56,7 @@ PATH
   specs:
     avm-eac_ruby_base1 (0.2.0)
       avm (~> 0.9)
+      avm-eac_generic_base0 (~> 0.1)
       eac_ruby_gems_utils (~> 0.9, >= 0.9.8)
       eac_ruby_utils (~> 0.80)
 
