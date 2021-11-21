@@ -18,7 +18,7 @@ module Avm
         self.options = ::Avm::Sources::Base.lists.option.hash_keys_validate!(options)
       end
 
-      abstract_methods :valid?
+      abstract_methods :update, :valid?
 
       delegate :locale, to: :old_configuration
       delegate :to_s, to: :path
@@ -39,10 +39,6 @@ module Avm
       def subs
         git_repo.subrepos
                 .map { |subrepo| self.class.new(subrepo.subpath.expand_path(path), parent: self) }
-      end
-
-      def update
-        stereotype.update_source(self)
       end
 
       private
