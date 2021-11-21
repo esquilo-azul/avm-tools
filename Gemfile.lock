@@ -22,7 +22,7 @@ PATH
   specs:
     avm-eac_asciidoctor_base0 (0.3.2)
       asciidoctor (~> 2.0, >= 2.0.12)
-      avm-eac_webapp_base0 (~> 0.1)
+      avm-eac_webapp_base0 (~> 0.2)
       eac_ruby_utils (~> 0.63)
       os
       rouge (~> 3.26)
