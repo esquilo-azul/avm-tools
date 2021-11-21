@@ -16,7 +16,7 @@ module Avm
       end
 
       def detect_optional(*registered_initialize_args)
-        registered_modules.lazy.map { |klass| klass.new(*registered_initialize_args) }
+        registered_modules.reverse.lazy.map { |klass| klass.new(*registered_initialize_args) }
                           .find(&:valid?)
       end
 
@@ -39,18 +39,20 @@ module Avm
       private
 
       def registered_modules_uncached
-        (single_registered_modules + provider_registered_modules)
-          .select { |v| valid_registered_module?(v) }.uniq.sort_by { |s| [s.name] }
+        registered_gems.flat_map { |registry| modules_from_registry(registry) }
+                       .select { |v| valid_registered_module?(v) }.uniq
       end
 
-      def single_registered_modules
-        single_instance_registry.registered.map(&:registered_module)
-      end
-
-      def provider_registered_modules
-        provider_registry.registered.map(&:registered_module).flat_map do |provider_class|
-          provider_class.new.all
+      def modules_from_registry(registry)
+        if registry.registry.module_suffix == provider_module_suffix
+          registry.registered_module.new.all
+        else
+          [registry.registered_module]
         end
+      end
+
+      def registered_gems
+        (single_instance_registry.registered + provider_registry.registered).sort
       end
 
       def single_instance_registry_uncached
