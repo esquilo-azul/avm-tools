@@ -13,16 +13,6 @@ module Avm
         self.class.name
       end
 
-      # @return [Avm::SourceStereotypes::Tester]
-      def tester
-        tester_class.new(self)
-      end
-
-      # @return [Class<Avm::SourceStereotypes::Tester>
-      def tester_class
-        Avm::SourceStereotypes::Tester
-      end
-
       def to_s
         name
       end

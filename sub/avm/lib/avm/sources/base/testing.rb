@@ -6,7 +6,15 @@ module Avm
   module Sources
     class Base
       module Testing
-        delegate :tester, to: :stereotype
+        # @return [Avm::SourceStereotypes::Tester]
+        def tester
+          tester_class.new(stereotype)
+        end
+
+        # @return [Class<Avm::SourceStereotypes::Tester>
+        def tester_class
+          Avm::SourceStereotypes::Tester
+        end
       end
     end
   end
