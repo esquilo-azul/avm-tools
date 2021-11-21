@@ -11,6 +11,7 @@ module Avm
           runner_with :help do
             desc 'Test local project.'
             bool_opt '-a', '--all', 'Same as "--self --subs".'
+            bool_opt '-f', '--fail-fast', 'Abort after first failure.'
             bool_opt '-m', '--main', 'Test main source.'
             bool_opt '-s', '--subs', 'Test subs\' sources.'
           end
@@ -58,6 +59,7 @@ module Avm
             test_performer.units.each do |unit|
               infov unit, unit_result(unit)
               tested_units << unit
+              break if unit.failed? && parsed.fail_fast?
             end
           end
 
