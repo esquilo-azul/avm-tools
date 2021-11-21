@@ -20,6 +20,11 @@ module Avm
         self.class.name.demodulize
       end
 
+      # @return [Enumerable<Avm::Scms::Base>]
+      def subs
+        raise_abstract_method __method__
+      end
+
       def to_s
         name
       end
