@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'avm/tools/core_ext'
-require 'avm/git/issue/complete'
+require 'avm/sources/issues/complete'
 
 module Avm
   module Tools
@@ -44,7 +44,8 @@ module Avm
             private
 
             def complete_uncached
-              ::Avm::Git::Issue::Complete.new(git_complete_issue_options)
+              ::Avm::Sources::Issues::Complete.new(runner_context.call(:subject),
+                                                   git_complete_issue_options)
             end
 
             def skip_validations
@@ -52,11 +53,11 @@ module Avm
             end
 
             def git_complete_issue_options
-              { dir: runner_context.call(:repository_path), skip_validations: skip_validations }
+              { skip_validations: skip_validations }
             end
 
             def doc_validations_list
-              ::Avm::Git::Issue::Complete::VALIDATIONS.keys.map { |k| "  * #{k}" }.join("\n")
+              ::Avm::Sources::Issues::Complete::VALIDATIONS.keys.map { |k| "  * #{k}" }.join("\n")
             end
 
             def uncomplete_unfail?

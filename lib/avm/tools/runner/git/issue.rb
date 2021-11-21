@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'avm/tools/core_ext'
-require 'avm/git/issue/complete'
 
 module Avm
   module Tools
