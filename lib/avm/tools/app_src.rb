@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'avm/sources/base'
+require 'avm/registry'
 require 'avm/sources/configuration'
 require 'avm/launcher/paths/real'
 require 'avm/projects/stereotype/job_comparator'
@@ -36,7 +36,7 @@ module Avm
       private
 
       def avm_instance_uncached
-        ::Avm::Sources::Base.new(path)
+        ::Avm::Registry.sources.detect(path)
       end
 
       # @return [Avm::Sources::Configuration]
