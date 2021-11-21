@@ -25,7 +25,7 @@ module Avm
           end
 
           def show_source
-            infov 'Stereotype', runner_context.call(:subject).stereotype
+            infov 'Stereotype', runner_context.call(:subject).class
             infov 'SCM', runner_context.call(:subject).scm
           end
 
