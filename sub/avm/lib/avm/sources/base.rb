@@ -37,16 +37,10 @@ module Avm
 
       # @return [Enumerable<Avm::Sources::Base>]
       def subs
-        git_repo.subrepos
-                .map { |subrepo| self.class.new(subrepo.subpath.expand_path(path), parent: self) }
+        scm.subs.map { |subrepo| self.class.new(subrepo.path, parent: self) }
       end
 
       private
-
-      # @return [EacGit::Local]
-      def git_repo_uncached
-        ::EacGit::Local.new(path)
-      end
 
       # @return [Avm::Scms::Base]
       def scm_uncached
