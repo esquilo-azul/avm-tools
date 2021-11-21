@@ -6,14 +6,14 @@ module Avm
   module Sources
     class Base
       module Testing
-        # @return [Avm::SourceStereotypes::Tester]
+        # @return [Avm::Sources::Tester]
         def tester
           tester_class.new(stereotype)
         end
 
-        # @return [Class<Avm::SourceStereotypes::Tester>
+        # @return [Class<Avm::Sources::Tester>
         def tester_class
-          Avm::SourceStereotypes::Tester
+          Avm::Sources::Tester
         end
       end
     end

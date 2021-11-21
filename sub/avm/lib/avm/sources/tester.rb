@@ -3,8 +3,8 @@
 require 'eac_ruby_utils/core_ext'
 
 module Avm
-  module SourceStereotypes
-    class Tester
+  module Sources
+    module Tester
       TEST_COMMAND_CONFIGURATION_KEY = :test_command
 
       enable_simple_cache

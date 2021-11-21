@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'avm/source_stereotypes/tester'
+require 'avm/sources/tester'
 require 'eac_ruby_utils/core_ext'
 require 'eac_ruby_utils/envs'
 
