@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 require 'avm/tools/core_ext'
-require 'avm/sources/issues/deliver'
+require 'avm/git/issue/deliver'
 
 module Avm
   module Tools
     class Runner
-      class Git
+      class AppSrc
         class Issue
           class Deliver
             runner_with :confirmation, :help do
@@ -25,7 +25,7 @@ module Avm
             private
 
             def deliver_uncached
-              ::Avm::Sources::Issues::Deliver.new(runner_context.call(:git_repo))
+              ::Avm::Git::Issue::Deliver.new(runner_context.call(:subject).scm.git_repo)
             end
           end
         end
