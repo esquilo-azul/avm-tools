@@ -7,8 +7,6 @@ require 'eac_ruby_utils/envs'
 module Avm
   module SourceStereotypes
     class Base
-      enable_abstract_methods
-      abstract_methods :valid?
       common_constructor :source
 
       def name
@@ -27,6 +25,10 @@ module Avm
 
       def to_s
         name
+      end
+
+      def valid?
+        true
       end
     end
   end
