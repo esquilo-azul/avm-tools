@@ -12,7 +12,7 @@ module Avm
       enable_listable
       lists.add_symbol :option, :parent
       common_constructor :path, :options, default: [{}] do
-        self.path = path.to_pathname
+        self.path = path.to_pathname.expand_path
         self.options = self.class.lists.option.hash_keys_validate!(options)
       end
 
