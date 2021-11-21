@@ -79,7 +79,7 @@ PATH
 PATH
   remote: sub/avm-git
   specs:
-    avm-git (0.2.0)
+    avm-git (0.3.0)
       avm-files (~> 0.1)
       eac_git (~> 0.9)
       eac_ruby_utils (~> 0.76)
