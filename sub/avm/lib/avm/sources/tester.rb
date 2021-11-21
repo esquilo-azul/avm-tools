@@ -8,8 +8,7 @@ module Avm
       TEST_COMMAND_CONFIGURATION_KEY = :test_command
 
       enable_simple_cache
-      common_constructor :source_stereotype
-      delegate :source, to: :source_stereotype
+      common_constructor :source
 
       # @return [EacRubyUtils::Envs::Command, nil]
       def test_command

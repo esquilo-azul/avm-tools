@@ -8,7 +8,7 @@ module Avm
       module Testing
         # @return [Avm::Sources::Tester]
         def tester
-          tester_class.new(stereotype)
+          tester_class.new(self)
         end
 
         # @return [Class<Avm::Sources::Tester>
