@@ -12,7 +12,7 @@ module Avm
       def detect(*registered_initialize_args)
         detect_optional(*registered_initialize_args) ||
           raise("No registered module valid for #{registered_initialize_args}" \
-            " (Module suffix: #{module_suffix})")
+            " (Module suffix: #{module_suffix}, Available: #{registered_modules.join(', ')})")
       end
 
       def detect_optional(*registered_initialize_args)
