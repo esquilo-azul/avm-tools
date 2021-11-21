@@ -52,11 +52,6 @@ module Avm
       def scm_uncached
         ::Avm::Registry.scms.detect(path)
       end
-
-      # @return [Avm::SourceStereotypes::Base]
-      def stereotype_uncached
-        ::Avm::Registry.source_stereotypes.detect(self)
-      end
     end
   end
 end
