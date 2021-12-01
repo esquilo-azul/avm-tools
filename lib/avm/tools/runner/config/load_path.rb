@@ -34,7 +34,7 @@ module Avm
           def run_add
             parsed.push.if_present do |v|
               infov 'Path to add', v
-              config_node.load_path.push(v)
+              root_config_node.write_node.load_path.push(v)
               success 'Path included'
             end
           end
