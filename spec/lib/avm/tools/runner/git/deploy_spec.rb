@@ -36,7 +36,7 @@ require 'tmpdir'
   context 'with local target' do
     before do
       commit_sha1
-      run_command(target_dir)
+      avm_tools_runner_run(target_dir)
     end
 
     it { expect(::File.read(target_stub_file1)).to eq(stub_content1) }
@@ -45,7 +45,7 @@ require 'tmpdir'
     context 'with second commit' do
       before do
         commit_sha2
-        run_command(target_dir)
+        avm_tools_runner_run(target_dir)
       end
 
       it { expect(::File.exist?(target_stub_file1)).to eq(false) }
@@ -60,7 +60,7 @@ require 'tmpdir'
     before do
       ENV['MY_VALUE'] = '123'
       commit_sha1
-      run_command('--append-dirs', append_dirs, target_dir)
+      avm_tools_runner_run('--append-dirs', append_dirs, target_dir)
     end
 
     it { expect(::File.read(target_stub_file1)).to eq(stub_content1) }
@@ -76,7 +76,7 @@ require 'tmpdir'
     before do
       ENV['MYINSTANCE_DEV_MY_VALUE'] = '123'
       commit_sha1
-      run_command('-i', 'my-instance_dev', '--append-dirs', append_dirs, target_dir)
+      avm_tools_runner_run('-i', 'my-instance_dev', '--append-dirs', append_dirs, target_dir)
     end
 
     it { expect(::File.read(target_stub_file1)).to eq(stub_content1) }
@@ -101,7 +101,7 @@ require 'tmpdir'
 
     before do
       commit_sha1
-      run_command(target_url)
+      avm_tools_runner_run(target_url)
     end
 
     it { expect(env.file(target_stub_file1).read).to eq(stub_content1) }
@@ -110,7 +110,7 @@ require 'tmpdir'
     context 'with second commit' do
       before do
         commit_sha2
-        run_command(target_url)
+        avm_tools_runner_run(target_url)
       end
 
       it { expect(env.file(target_stub_file1).exist?).to eq(false) }
@@ -118,7 +118,7 @@ require 'tmpdir'
     end
   end
 
-  def run_command(*argv)
-    ::Avm::Tools::Runner.run(argv: ['git', '-C', git.root_path.to_path, 'deploy'] + argv)
+  def avm_tools_runner_args_prefix
+    ['git', '-C', git.root_path.to_path, 'deploy']
   end
 end
