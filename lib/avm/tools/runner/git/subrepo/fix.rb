@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 require 'avm/tools/core_ext'
+require 'avm/git/auto_commit/rules/unique'
+require 'avm/git/file_auto_fixup'
+require 'avm/git/subrepo_checks'
 require 'eac_git/local'
 
 module Avm
