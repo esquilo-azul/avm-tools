@@ -1,0 +1,21 @@
+default: &default
+  adapter: %%DATABASE.SYSTEM%%
+  pool: %%DATABASE.LIMIT%%
+  timeout: %%DATABASE.TIMEOUT%%
+  encoding: unicode
+  username: %%DATABASE.USERNAME%%
+  password: %%DATABASE.PASSWORD%%
+  host: %%DATABASE.HOSTNAME%%
+  port: %%DATABASE.PORT%%
+  reconnect: true
+
+development: &development
+  <<: *default
+  database: %%DATABASE.NAME%%
+
+production:
+  <<: *development
+
+test:
+  <<: *default
+  database: %%DATABASE.NAME%%_test
