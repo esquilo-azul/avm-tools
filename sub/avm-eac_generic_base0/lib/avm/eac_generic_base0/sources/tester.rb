@@ -19,9 +19,9 @@ module Avm
           end
         end
 
-        # @return [EacRubyUtils::Fs::Logs]
+        # @return [EacFs::Logs]
         def logs
-          @logs ||= ::EacRubyUtils::Fs::Logs.new.add(:stdout).add(:stderr)
+          @logs ||= ::EacFs::Logs.new.add(:stdout).add(:stderr)
         end
 
         # @return [Avm::Sources::Tests::Result]
