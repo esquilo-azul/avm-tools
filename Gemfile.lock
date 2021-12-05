@@ -157,6 +157,7 @@ PATH
   specs:
     eac_ruby_gems_utils (0.9.8)
       bundler
+      eac_fs (~> 0.8)
       eac_ruby_utils (~> 0.81)
 
 PATH
