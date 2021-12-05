@@ -10,7 +10,7 @@ module Avm
 
       abstract_methods :result, :logs
 
-      # @return [EacRubyUtils::Fs::Logs]
+      # @return [EacFs::Logs]
       def logs
         raise_abstract_method __method__
       end

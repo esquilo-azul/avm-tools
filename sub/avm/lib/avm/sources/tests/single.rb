@@ -2,7 +2,7 @@
 
 require 'avm/sources/tests/result'
 require 'eac_ruby_utils/core_ext'
-require 'eac_ruby_utils/fs/logs'
+require 'eac_fs/logs'
 
 module Avm
   module Sources
