@@ -19,10 +19,6 @@ module Avm
 
       delegate :command_argument, :stereotype_name, to: :class
 
-      runner_with :help, :subcommands do
-        subcommands
-      end
-
       def to_s
         stereotype_name
       end
