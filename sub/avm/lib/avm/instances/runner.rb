@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
+require 'avm/runners/base'
 require 'eac_cli/core_ext'
 
 module Avm
   module Instances
-    class Runner
+    class Runner < ::Avm::Runners::Base
       class << self
         def instance_class
           ::Avm.const_get(stereotype_name).const_get('Instance')
