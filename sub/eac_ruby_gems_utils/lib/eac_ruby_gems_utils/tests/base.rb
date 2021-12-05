@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'eac_ruby_utils/core_ext'
-require 'eac_ruby_utils/fs/logs'
+require 'eac_fs/logs'
 require 'eac_ruby_utils/listable'
 
 module EacRubyGemsUtils
@@ -33,7 +33,7 @@ module EacRubyGemsUtils
       private
 
       def logs_uncached
-        ::EacRubyUtils::Fs::Logs.new.add(:stdout).add(:stderr)
+        ::EacFs::Logs.new.add(:stdout).add(:stderr)
       end
 
       def result_uncached
