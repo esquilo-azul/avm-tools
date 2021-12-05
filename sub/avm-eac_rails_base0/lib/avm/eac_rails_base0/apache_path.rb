@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'avm/eac_rails_base0/patches/object/template'
 require 'avm/eac_webapp_base0/apache_path'
 require 'eac_ruby_utils/core_ext'
 
