@@ -11,6 +11,10 @@ module EacFs
       TRUNCATE_DEFAULT_LENGTH = 1000
       TRUNCATE_APPEND_TEXT = '(...) '
 
+      def file_size
+        file.file? ? file.size : 0
+      end
+
       # @param length [Integer]
       # @return [String]
       def truncate(length = TRUNCATE_DEFAULT_LENGTH)
@@ -25,7 +29,7 @@ module EacFs
       # @return [String]
       def truncate_with_label(length = TRUNCATE_DEFAULT_LENGTH)
         x = truncate(length)
-        y = [label, file, ::Filesize.from("#{file.size} B").pretty].join(' / ')
+        y = [label, file, ::Filesize.from("#{file_size} B").pretty].join(' / ')
         x.blank? ? ">>> #{y} (Blank) <<<" : ">>> #{y}\n#{x}\n<<< #{y}\n"
       end
 
