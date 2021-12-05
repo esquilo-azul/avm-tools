@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    avm-tools (0.113.1)
+    avm-tools (0.113.2)
       aranha-parsers (~> 0.4)
       avm (~> 0.9)
       avm-eac_asciidoctor_base0
