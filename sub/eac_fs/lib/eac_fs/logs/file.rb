@@ -14,7 +14,7 @@ module EacFs
       # @param length [Integer]
       # @return [String]
       def truncate(length = TRUNCATE_DEFAULT_LENGTH)
-        content = file.read.strip
+        content = file.file? ? file.read.strip : ''
         return content if content.length <= TRUNCATE_DEFAULT_LENGTH
 
         TRUNCATE_APPEND_TEXT + content[content.length - length + TRUNCATE_APPEND_TEXT.length,
