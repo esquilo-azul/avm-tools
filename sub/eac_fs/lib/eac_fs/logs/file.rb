@@ -32,9 +32,11 @@ module EacFs
       # @param length [Integer]
       # @return [String]
       def truncate_with_label(length = TRUNCATE_DEFAULT_LENGTH)
-        x = truncate(length)
-        y = [label, file, pretty_file_size].join(' / ')
-        x.blank? ? ">>> #{y} (Blank) <<<" : ">>> #{y}\n#{x}\n<<< #{y}\n"
+        header = [label, file, pretty_file_size].join(' / ')
+        return ">>> #{header} (Not found) <<<" unless file.file?
+
+        content = truncate(length)
+        content.blank? ? ">>> #{header} (Blank) <<<" : ">>> #{header}\n#{content}\n<<< #{header}\n"
       end
 
       protected
