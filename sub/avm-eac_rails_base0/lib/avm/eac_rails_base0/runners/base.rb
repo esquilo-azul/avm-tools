@@ -10,6 +10,14 @@ module Avm
     module Runners
       class Base < ::Avm::EacRailsBase1::Runner
         require_sub __FILE__
+
+        STEREOTYPE_NAME = 'EacRailsBase0'
+
+        class << self
+          def stereotype_name
+            STEREOTYPE_NAME
+          end
+        end
       end
     end
   end
