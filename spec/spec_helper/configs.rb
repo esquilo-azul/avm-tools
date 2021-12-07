@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'avm/self'
+require 'avm/tools/self'
 require 'eac_cli/old_configs_bridge'
 require 'tempfile'
 
@@ -15,7 +15,7 @@ RSpec.configure do |config|
   end
 
   def temp_config(path, &block)
-    r = ::Avm::Self.build_config(path)
+    r = ::Avm::Tools::Self.build_config(path)
     ::EacConfig::Node.context.on(r, &block) if block
     r
   end

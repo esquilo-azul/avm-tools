@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'avm/tools/core_ext'
-require 'avm/self'
+require 'avm/tools/self'
 
 module Avm
   module Tools
@@ -14,7 +14,7 @@ module Avm
         end
 
         def instance
-          ::Avm::Self.instance
+          ::Avm::Tools::Self.instance
         end
       end
     end

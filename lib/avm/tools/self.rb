@@ -5,8 +5,10 @@ require 'eac_ruby_base0/application'
 require 'eac_ruby_utils/require_sub'
 require 'avm/instances/base'
 
+
 module Avm
-  module Self
+  module Tools
+    module Self
     ::EacRubyUtils.require_sub(__FILE__)
 
     class << self
@@ -23,8 +25,9 @@ module Avm
       end
 
       def instance
-        @instance ||= ::Avm::Self::Instance.by_id('avm-tools_self')
+        @instance ||= ::Avm::Tools::Self::Instance.by_id('avm-tools_self')
       end
+    end
     end
   end
 end

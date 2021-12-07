@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'avm/self'
 require 'avm/tools/core_ext'
 require 'eac_config/node'
 require 'eac_ruby_utils/recursive_builder'

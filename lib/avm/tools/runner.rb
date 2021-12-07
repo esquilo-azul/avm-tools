@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'avm/self'
+require 'avm/tools/self'
 require 'avm/registry'
 require 'avm/tools/version'
 require 'eac_ruby_base0/runner'
@@ -16,7 +16,7 @@ module Avm
       end
 
       def application
-        ::Avm::Self.application
+        ::Avm::Tools::Self.application
       end
 
       def extra_available_subcommands
