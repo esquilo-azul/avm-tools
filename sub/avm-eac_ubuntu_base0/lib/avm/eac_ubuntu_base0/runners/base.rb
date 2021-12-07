@@ -13,6 +13,10 @@ module Avm
 
         INSTANCE_ID = 'eac-ubuntu-base0_self'
 
+        runner_with :help, :subcommands do
+          subcommands
+        end
+
         private
 
         def instance_uncached
