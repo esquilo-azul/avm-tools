@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'avm/docker/image'
-require 'avm/eac_ubuntu_base0/patches/object/template'
+require 'eac_templates/from_all_gems'
 require 'eac_ruby_utils/core_ext'
 
 module Avm
