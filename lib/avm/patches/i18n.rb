@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'avm/self/root'
+require 'avm/tools/self'
 require 'i18n'
 
 module Avm
@@ -12,7 +12,7 @@ module Avm
         end
 
         def locale_files_paths
-          ::Avm::Self.root.join('locale').glob('*.yml')
+          ::Avm::Tools::Self.root.join('locale').glob('*.yml')
         end
       end
     end
