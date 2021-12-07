@@ -2,9 +2,8 @@
 
 require 'eac_ruby_utils/core_ext'
 require 'avm/jobs/base'
-require 'avm/patches/object/template'
 require 'avm/eac_ubuntu_base0/apache'
-require 'avm/patches/object/template'
+require 'eac_templates/core_ext'
 
 module Avm
   module EacWebappBase0
