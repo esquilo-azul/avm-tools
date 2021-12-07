@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'avm/eac_rails_base0/patches/object/template'
+require 'eac_templates/core_ext'
 require 'avm/eac_webapp_base0/deploy'
 require 'avm/instances/entry_keys'
 
