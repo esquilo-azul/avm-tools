@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.authors     = ['Put here the authors']
   s.summary     = 'Put here de description.'
 
-  s.files = Dir['{lib}/**/*']
+  s.files = Dir['{lib,template}/**/*']
 
   s.add_dependency 'asciidoctor', '~> 2.0', '>= 2.0.12'
   s.add_dependency 'avm-eac_webapp_base0', '~> 0.2'
