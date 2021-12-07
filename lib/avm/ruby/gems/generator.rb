@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'avm/patches/object/template'
+require 'eac_templates/core_ext'
 require 'eac_ruby_utils/core_ext'
 
 module Avm

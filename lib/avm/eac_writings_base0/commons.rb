@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'avm/patches/object/template'
+require 'eac_templates/core_ext'
 require 'singleton'
 
 module Avm
