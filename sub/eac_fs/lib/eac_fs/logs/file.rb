@@ -11,6 +11,8 @@ module EacFs
       TRUNCATE_DEFAULT_LENGTH = 1000
       TRUNCATE_APPEND_TEXT = '(...) '
 
+      delegate :remove, to: :file
+
       def file_size
         file.file? ? file.size : 0
       end
