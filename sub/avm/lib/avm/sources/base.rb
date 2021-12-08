@@ -37,7 +37,7 @@ module Avm
 
       # @return [Enumerable<Avm::Sources::Base>]
       def subs
-        scm.subs.map { |subrepo| self.class.new(subrepo.path, parent: self) }
+        scm.subs.map { |subrepo| ::Avm::Registry.sources.detect(subrepo.path, parent: self) }
       end
 
       private
