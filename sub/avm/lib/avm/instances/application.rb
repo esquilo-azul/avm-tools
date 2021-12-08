@@ -20,6 +20,10 @@ module Avm
       def instance(suffix)
         ::Avm::Instances::Base.new(self, suffix)
       end
+
+      def name
+        entry(::Avm::Instances::EntryKeys::NAME).read
+      end
     end
   end
 end
