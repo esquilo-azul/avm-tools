@@ -89,6 +89,7 @@ PATH
     avm-eac_webapp_base0 (0.2.0)
       avm (~> 0.1)
       avm-eac_generic_base0 (~> 0.1)
+      avm-eac_ubuntu_base0 (~> 0.2.1)
       eac_ruby_utils (~> 0.68)
 
 PATH
