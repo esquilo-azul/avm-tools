@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'avm/instances/base'
-require 'avm/postgresql/instance_with'
+require 'avm/eac_postgresql_base0/instance_with'
 require 'avm/data/instance/files_unit'
 require 'avm/data/instance/package'
 require 'avm/eac_webapp_base0/deploy/file_unit'
@@ -10,7 +10,7 @@ module Avm
   module EacWebappBase0
     class Instance < ::Avm::Instances::Base
       require_sub __FILE__
-      include ::Avm::Postgresql::InstanceWith
+      include ::Avm::EacPostgresqlBase0::InstanceWith
 
       FILES_UNITS = [].freeze
 
