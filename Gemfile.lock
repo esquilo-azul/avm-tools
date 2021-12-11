@@ -36,6 +36,12 @@ PATH
       eac_ruby_utils (~> 0.80)
 
 PATH
+  remote: sub/avm-eac_postgresql_base0
+  specs:
+    avm-eac_postgresql_base0 (0.0.0)
+      eac_ruby_utils (~> 0.82)
+
+PATH
   remote: sub/avm-eac_rails_base0
   specs:
     avm-eac_rails_base0 (0.1.0)
@@ -311,6 +317,7 @@ DEPENDENCIES
   avm!
   avm-eac_asciidoctor_base0!
   avm-eac_generic_base0!
+  avm-eac_postgresql_base0!
   avm-eac_rails_base0!
   avm-eac_rails_base1!
   avm-eac_redmine_base0!
