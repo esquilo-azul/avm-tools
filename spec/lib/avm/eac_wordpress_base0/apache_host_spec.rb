@@ -12,9 +12,9 @@ RSpec.describe ::Avm::EacWordpressBase0::ApacheHost do
     end
 
     before do
-      ENV['STUBAPP_0_FS_PATH'] = '/path/to/stub-app_0'
-      ENV['STUBAPP_0_WEB_URL'] = 'http://stubapp.net'
-      ENV['STUBAPP_0_SYSTEM_USERNAME'] = 'myuser'
+      instance.entry('fs_path').write('/path/to/stub-app_0')
+      instance.entry('web.url').write('http://stubapp.net')
+      instance.entry('system.username').write('myuser')
     end
 
     it do
