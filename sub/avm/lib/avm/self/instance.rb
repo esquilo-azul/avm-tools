@@ -8,6 +8,14 @@ require 'avm/eac_ubuntu_base0/docker_image'
 module Avm
   module Self
     class Instance < ::Avm::Instances::Base
+      DEFAULT_INSTANCE_ID = 'avm_self'
+
+      class << self
+        def default
+          @default ||= by_id(DEFAULT_INSTANCE_ID)
+        end
+      end
+
       def docker_image_class
         ::Avm::Self::DockerImage
       end
