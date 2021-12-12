@@ -9,8 +9,8 @@ module Avm
       module AutoValues
         module Data
           def auto_data_default_dump_path
-            ::Avm::Self
-              .instance
+            ::Avm::Self::Instance
+              .default
               .read_entry_optional(::Avm::Self::Instance::EntryKeys::DATA_DEFAULT_PATH)
               .if_present do |v|
               ::File.join(
