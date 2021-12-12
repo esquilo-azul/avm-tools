@@ -47,7 +47,13 @@ module Avm
       end
 
       def write(value)
-        ::EacConfig::Node.context.current.entry(full_path).value = value
+        context_entry.value = value
+      end
+
+      private
+
+      def context_entry
+        ::EacConfig::Node.context.current.entry(full_path)
       end
     end
   end
