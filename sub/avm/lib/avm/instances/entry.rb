@@ -27,11 +27,11 @@ module Avm
       end
 
       def optional_value
-        read(required: false, noinput: true) || auto_value
+        context_entry.found? ? context_entry.value : auto_value
       end
 
-      def read(extra_options = {})
-        ::EacConfig::Node.context.current.entry(full_path, options.merge(extra_options)).value
+      def read
+        context_entry.value
       end
 
       def suffix_as_array
