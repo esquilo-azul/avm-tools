@@ -135,7 +135,7 @@ PATH
 PATH
   remote: sub/eac_config
   specs:
-    eac_config (0.6.0)
+    eac_config (0.7.0)
       addressable
       eac_ruby_utils (~> 0.81)
 
