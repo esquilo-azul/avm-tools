@@ -5,12 +5,12 @@ require 'avm/instances/application'
 RSpec.describe ::Avm::Instances::Application do
   let(:instance) { described_class.new('avm-tools') }
 
-  around do |example|
-    temp_config(::File.join(__dir__, 'application_spec_fixture.yml')) { example.run }
-  end
+  ::EacRubyUtils::Rspec
+    .default_setup
+    .stub_eac_config_node(self, ::File.join(__dir__, 'application_spec_fixture.yml'))
 
   before do
-    ENV.delete('AVMTOOLS_NOT_EXIST')
+    instance.entry('exist').write('exist')
   end
 
   describe '#id' do

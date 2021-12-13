@@ -8,9 +8,9 @@ RSpec.describe ::Avm::Instances::Base do
   let(:app1) { described_class.by_id('app_1') }
   let(:app0) { described_class.by_id('app_0') }
 
-  around do |example|
-    temp_config(::File.join(__dir__, 'base_spec_configs_storage.yml')) { example.run }
-  end
+  ::EacRubyUtils::Rspec
+    .default_setup
+    .stub_eac_config_node(self, ::File.join(__dir__, 'base_spec_configs_storage.yml'))
 
   describe '#read_entry' do
     context 'when a auto value is requested' do
@@ -40,7 +40,7 @@ RSpec.describe ::Avm::Instances::Base do
           ::Avm::Instances::EntryKeys::DATABASE_PORT => 5432,
           ::Avm::Instances::EntryKeys::MAILER_ID => 'mailer_0',
           ::Avm::Instances::EntryKeys::MAILER_FROM => 'noreply@example.net',
-          ::Avm::Instances::EntryKeys::MAILER_REPLY_TO => '',
+          ::Avm::Instances::EntryKeys::MAILER_REPLY_TO => nil,
           ::Avm::Instances::EntryKeys::MAILER_SMTP_ADDRESS => 'smtp.example.net',
           ::Avm::Instances::EntryKeys::MAILER_SMTP_PORT => '587',
           ::Avm::Instances::EntryKeys::MAILER_SMTP_DOMAIN => 'example.net',
