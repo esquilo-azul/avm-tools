@@ -13,6 +13,10 @@ module EacFs
 
       delegate :remove, to: :file
 
+      def clean
+        file.truncate(0) if file.exist?
+      end
+
       def file_size
         file.file? ? file.size : 0
       end

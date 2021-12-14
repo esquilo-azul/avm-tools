@@ -24,6 +24,11 @@ module EacFs
     end
 
     # @return [EacFs::Logs]
+    def clean_all
+      log_set.values.each(&:clean)
+    end
+
+    # @return [EacFs::Logs]
     def remove_all
       log_set.each_key { |label| remove(label) }
 
