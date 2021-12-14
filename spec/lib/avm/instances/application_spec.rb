@@ -9,10 +9,6 @@ RSpec.describe ::Avm::Instances::Application do
     .default_setup
     .stub_eac_config_node(self, ::File.join(__dir__, 'application_spec_fixture.yml'))
 
-  before do
-    instance.entry('exist').write('exist')
-  end
-
   describe '#id' do
     it { expect(instance.id).to eq('avm-tools') }
   end
