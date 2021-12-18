@@ -1,16 +1,15 @@
 # frozen_string_literal: true
 
+require 'avm/instances/entry_keys'
+
 module Avm
   module Instances
     class Base
       module AutoValues
         module Filesystem
-          FS_PATH_KEY = :fs_path
-
           def auto_fs_path
-            inherited_entry_value(::Avm::Instances::EntryKeys::HOST_ID, FS_PATH_KEY) do |v|
-              v + '/' + id
-            end
+            inherited_entry_value(::Avm::Instances::EntryKeys::HOST_ID,
+                                  ::Avm::Instances::EntryKeys::FS_PATH) { |v| v + '/' + id }
           end
 
           def auto_data_fs_path
