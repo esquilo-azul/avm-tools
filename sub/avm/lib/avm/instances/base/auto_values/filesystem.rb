@@ -13,9 +13,8 @@ module Avm
           end
 
           def auto_data_fs_path
-            inherited_entry_value(::Avm::Instances::EntryKeys::HOST_ID, :data_fs_path) do |v|
-              v + '/' + id
-            end
+            inherited_entry_value(::Avm::Instances::EntryKeys::HOST_ID,
+                                  ::Avm::Instances::EntryKeys::DATA_FS_PATH) { |v| v + '/' + id }
           end
 
           def auto_fs_url
