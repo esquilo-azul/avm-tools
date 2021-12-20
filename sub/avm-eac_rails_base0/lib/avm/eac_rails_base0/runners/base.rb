@@ -2,6 +2,8 @@
 
 require 'avm/eac_rails_base0/instance'
 require 'avm/eac_rails_base0/deploy'
+require 'avm/eac_rails_base0/apache_host'
+require 'avm/eac_rails_base0/apache_path'
 require 'avm/eac_rails_base1/runner'
 require 'eac_ruby_utils/core_ext'
 
