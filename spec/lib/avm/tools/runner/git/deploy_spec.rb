@@ -58,7 +58,7 @@ require 'tmpdir'
     let(:target_stub_file4) { ::File.join(target_dir, 'stub4.txt') }
 
     before do
-      ENV['MY_VALUE'] = '123'
+      ::EacConfig::Node.context.current.entry('my_value').value = '123'
       commit_sha1
       avm_tools_runner_run('--append-dirs', append_dirs, target_dir)
     end
@@ -74,7 +74,7 @@ require 'tmpdir'
     let(:target_stub_file4) { ::File.join(target_dir, 'stub4.txt') }
 
     before do
-      ENV['MYINSTANCE_DEV_MY_VALUE'] = '123'
+      ::EacConfig::Node.context.current.entry('my-instance_dev.my_value').value = '123'
       commit_sha1
       avm_tools_runner_run('-i', 'my-instance_dev', '--append-dirs', append_dirs, target_dir)
     end
