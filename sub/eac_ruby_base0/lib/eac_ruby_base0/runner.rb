@@ -37,14 +37,13 @@ module EacRubyBase0
       runner_context.call(:application).version.to_s
     end
 
-    def on_context
-      ::EacRubyUtils::Speaker.context.on(build_speaker) do
-        ::EacConfig::Node.context.on(runner_context.call(:application).build_config) do
-          ::EacFs::Cache.context.on(application.self_fs_cache) do
-            yield
-          end
-        end
+    def on_context(&block)
+      top_block = block
+      available_contexts.each do |context|
+        last_block = top_block
+        top_block = ::Proc.new { context.object.on(context.builder.call, &last_block) }
       end
+      top_block.call
     end
 
     def show_version
@@ -62,6 +61,19 @@ module EacRubyBase0
     end
 
     private
+
+    # @return [Array<EacRubyUtils::Struct>]
+    def available_contexts
+      [
+        [:cache, ::EacFs::Cache.context, -> { application.self_fs_cache }],
+        [:config, ::EacConfig::Node.context, -> { runner_context.call(:application).build_config }],
+        [:speaker, ::EacRubyUtils::Speaker.context, -> { build_speaker }]
+      ].map { |row| available_context_row_to_struct(row) }
+    end
+
+    def available_context_row_to_struct(row)
+      %i[type object builder].zip(row).to_h.to_struct
+    end
 
     def build_speaker
       options = {}
