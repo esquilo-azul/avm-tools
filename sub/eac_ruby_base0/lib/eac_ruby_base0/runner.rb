@@ -8,7 +8,6 @@ require 'eac_ruby_utils/speaker'
 
 module EacRubyBase0
   module Runner
-    require_sub __FILE__
     enable_speaker
     common_concern do
       include ::EacCli::RunnerWith::Help
