@@ -40,6 +40,8 @@ module EacRubyBase0
     def on_context(&block)
       top_block = block
       available_contexts.each do |context|
+        next if context.object.any?
+
         last_block = top_block
         top_block = ::Proc.new { context.object.on(context.builder.call, &last_block) }
       end
