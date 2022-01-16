@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
 
   s.files = Dir['{lib,vendor}/**/*']
 
-  s.add_dependency 'eac_ruby_utils', '~> 0.74'
+  s.add_dependency 'eac_ruby_utils', '~> 0.83'
   s.add_dependency 'parseconfig', '~> 1.0', '>= 1.0.8'
 
   s.add_development_dependency 'aranha-parsers', '~> 0.8', '>= 0.8.2'
