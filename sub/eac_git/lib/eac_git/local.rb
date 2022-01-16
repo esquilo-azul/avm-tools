@@ -52,6 +52,16 @@ module EacGit
       source.to_s.strip.if_present(nil) { |v| ::EacGit::Local::Commit.new(self, v) }
     end
 
+    # Retrieves the current local branch.
+    #
+    # @return [EacGit::Local::Branch, nil]
+    def current_branch
+      command('symbolic-ref', '--quiet', HEAD_REFERENCE)
+        .execute!(exit_outputs: { 256 => '' })
+        .gsub(%r{\Arefs/heads/}, '').strip
+        .if_present { |v| branch(v) }
+    end
+
     def descendant?(descendant, ancestor)
       base = merge_base(descendant, ancestor)
       return false if base.blank?
