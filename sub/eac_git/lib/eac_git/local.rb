@@ -30,6 +30,14 @@ module EacGit
       root_path <=> other.root_path
     end
 
+    # Retrieves a local branch.
+    #
+    # @param name [String] Ex.: for "refs/heads/master", name should be "master".
+    # @return [EacGit::Local::Branch]
+    def branch(name)
+      ::EacGit::Local::Branch.new(self, name)
+    end
+
     def commit(ref, required = false)
       rev_parse(ref, required).if_present { |v| ::EacGit::Local::Commit.new(self, v) }
     end
