@@ -12,7 +12,7 @@ RSpec.describe ::Avm::EacRailsBase0::ApachePath do
     let(:expected_content) { expect_file.read }
 
     before do
-      instance.entry(::Avm::Instances::Base::FS_PATH_KEY).write('/path/to/stub-app_0')
+      instance.entry(::Avm::Instances::EntryKeys::FS_PATH).write('/path/to/stub-app_0')
       instance.entry('web.url').write('http://stubapp.net/stub-app_0')
     end
 
