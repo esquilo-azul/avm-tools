@@ -8,6 +8,7 @@ require 'avm/launcher/context/instance_discovery'
 require 'avm/launcher/context/settings'
 require 'avm/launcher/paths/logical'
 require 'avm/launcher/project'
+require 'avm/tools/self'
 
 module Avm
   module Launcher
@@ -65,7 +66,7 @@ module Avm
       end
 
       def default_cache_root
-        ::File.join(ENV['HOME'], '.cache', 'eac_launcher')
+        ::Avm::Tools::Self.application.cache_dir.join('launcher')
       end
 
       def default_option(key)
