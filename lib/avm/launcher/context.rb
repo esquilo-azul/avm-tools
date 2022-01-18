@@ -78,7 +78,7 @@ module Avm
       end
 
       def default_settings_file
-        ::File.join(ENV['HOME'], '.config', 'eac_launcher', 'settings.yml')
+        ::Avm::Tools::Self.application.config_dir.join('launcher.yaml')
       end
 
       def projects_uncached
