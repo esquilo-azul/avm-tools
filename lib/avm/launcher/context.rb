@@ -15,10 +15,6 @@ module Avm
       include ::EacRubyUtils::SimpleCache
       enable_speaker
 
-      DEFAULT_PROJECTS_ROOT = '.'
-      DEFAULT_SETTINGS_FILE = ::File.join(ENV['HOME'], '.config', 'eac_launcher', 'settings.yml')
-      DEFAULT_CACHE_ROOT = ::File.join(ENV['HOME'], '.cache', 'eac_launcher')
-
       class << self
         attr_writer :current
 
@@ -68,8 +64,20 @@ module Avm
         ::Avm::Self::Instance.default.entry([CONFIG_PATH_PREFIX, key].join('.')).optional_value
       end
 
+      def default_cache_root
+        ::File.join(ENV['HOME'], '.cache', 'eac_launcher')
+      end
+
       def default_option(key)
-        self.class.const_get("DEFAULT_#{key}".underscore.upcase)
+        send("default_#{key}".underscore)
+      end
+
+      def default_projects_root
+        '.'
+      end
+
+      def default_settings_file
+        ::File.join(ENV['HOME'], '.config', 'eac_launcher', 'settings.yml')
       end
 
       def projects_uncached
