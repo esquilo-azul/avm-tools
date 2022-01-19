@@ -13,6 +13,7 @@ module EacGit
         author_name: '%an', author_email: '%ae', author_date: '%ai',
         subject: '%s',
         author_all: '%an <%ae>, %ai',
+        commit_hash: '%H',
         commiter_name: '%cn', commiter_email: '%ce', commiter_date: '%ci',
         commiter_all: '%cn <%ce>, %ci',
         raw_body: '%B'
