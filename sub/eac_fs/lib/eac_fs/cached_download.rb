@@ -13,7 +13,7 @@ module Avm
     end
 
     def assert
-      download unless fs_cache.cached?
+      download unless fs_cache.stored?
     end
 
     def download

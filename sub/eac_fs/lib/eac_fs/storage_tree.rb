@@ -4,9 +4,7 @@ require 'eac_ruby_utils/core_ext'
 require 'fileutils'
 
 module EacFs
-  class Cache
-    enable_context
-
+  class StorageTree
     CONTENT_FILE_NAME = '__content__'
 
     attr_reader :path
@@ -18,19 +16,19 @@ module EacFs
     end
 
     def clear
-      return unless cached?
+      return unless stored?
 
       ::File.unlink(content_path)
     end
 
     def read
-      return nil unless cached?
+      return nil unless stored?
 
       ::File.read(content_path)
     end
 
     def read_or_cache
-      write(yield) unless cached?
+      write(yield) unless stored?
 
       read
     end
@@ -45,7 +43,7 @@ module EacFs
       self.class.new(path, *child_path_parts)
     end
 
-    def cached?
+    def stored?
       ::File.exist?(content_path)
     end
 
