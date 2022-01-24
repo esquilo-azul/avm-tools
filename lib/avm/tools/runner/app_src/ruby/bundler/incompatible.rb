@@ -17,7 +17,7 @@ module Avm
 
               def run
                 infov 'Cache path', fs_cache.content_path
-                infov 'Cached?', fs_cache.cached?
+                infov 'Cached?', fs_cache.stored?
                 parser.gems_in_conflict.each do |gem_in_conflict|
                   print_gem_in_conflict(gem_in_conflict)
                 end
@@ -31,7 +31,7 @@ module Avm
               end
 
               def content_path
-                fs_cache.write(bundle_update) unless fs_cache.cached? && parsed.last?
+                fs_cache.write(bundle_update) unless fs_cache.stored? && parsed.last?
                 fs_cache.content_path
               end
 
