@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'avm/launcher/context'
 require 'avm/launcher/instances/base'
 
 RSpec.describe ::Avm::Launcher::Instances::Base do
