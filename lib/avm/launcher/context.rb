@@ -34,6 +34,8 @@ module Avm
       attr_reader :root, :settings, :cache_root
       attr_accessor :publish_options, :recache, :instance_manager
 
+      CONFIG_PATH_PREFIX = 'launcher'
+
       def initialize(options = {})
         @options = options.with_indifferent_access
         @root = ::Avm::Launcher::Paths::Logical.new(self, nil, build_option(:projects_root), '/')
@@ -59,11 +61,11 @@ module Avm
       private
 
       def build_option(key)
-        @options[key] || env_option(key) || default_option(key)
+        @options[key] || config_option(key) || default_option(key)
       end
 
-      def env_option(key)
-        ENV["EAC_LAUNCHER_#{key}".underscore.upcase]
+      def config_option(key)
+        ::Avm::Self::Instance.default.entry([CONFIG_PATH_PREFIX, key].join('.')).optional_value
       end
 
       def default_option(key)
