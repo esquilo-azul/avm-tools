@@ -3,7 +3,8 @@
 require 'eac_cli/config'
 require 'eac_config/envvars_node'
 require 'eac_config/yaml_file_node'
-require 'eac_fs/cache'
+require 'eac_fs/contexts'
+require 'eac_fs/storage_tree'
 require 'eac_ruby_base0/application_xdg'
 require 'eac_ruby_gems_utils/gem'
 require 'eac_ruby_utils/core_ext'
@@ -43,10 +44,13 @@ module EacRubyBase0
       delegate "#{item}_xdg_env", "#{item}_dir", to: :app_xdg
     end
 
-    def self_fs_cache
-      @self_fs_cache ||= ::EacFs::Cache.new(
-        cache_dir.join(::EacFs::Cache.name.parameterize)
-      )
+    ::EacFs::Contexts::TYPES.each do |type|
+      class_eval <<CODE, __FILE__, __LINE__ + 1
+  # @return [EacFs::StorageTree]
+  def self_fs_#{type}
+    @self_fs_#{type} ||= ::EacFs::StorageTree.new(#{type}_dir.join('eac_fs'))
+  end
+CODE
     end
 
     def home_dir

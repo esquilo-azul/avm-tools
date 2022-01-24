@@ -3,7 +3,7 @@
 require 'eac_cli/core_ext'
 require 'eac_cli/speaker'
 require 'eac_config/node'
-require 'eac_fs/cache'
+require 'eac_fs/contexts'
 require 'eac_ruby_utils/speaker'
 
 module EacRubyBase0
@@ -65,8 +65,7 @@ module EacRubyBase0
 
     # @return [Array<EacRubyUtils::Struct>]
     def available_contexts
-      [
-        [:cache, ::EacFs::Cache.context, -> { application.self_fs_cache }],
+      filesystem_available_contexts + [
         [:config, ::EacConfig::Node.context, -> { runner_context.call(:application).build_config }],
         [:speaker, ::EacRubyUtils::Speaker.context, -> { build_speaker }]
       ].map { |row| available_context_row_to_struct(row) }
@@ -81,6 +80,13 @@ module EacRubyBase0
       options[:err_out] = ::StringIO.new if parsed.quiet?
       options[:in_in] = FailIfRequestInput.new if parsed.no_input?
       ::EacCli::Speaker.new(options)
+    end
+
+    def filesystem_available_contexts
+      ::EacFs::Contexts::TYPES.map do |type|
+        key = "fs_#{type}".to_sym
+        [key, ::EacFs::Contexts.send(key).context, -> { application.send("self_#{key}") }]
+      end
     end
   end
 end
