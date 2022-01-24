@@ -85,7 +85,7 @@ module EacRubyBase0
     def filesystem_available_contexts
       ::EacFs::Contexts::TYPES.map do |type|
         key = "fs_#{type}".to_sym
-        [key, ::EacFs::Contexts.send(key).context, -> { application.send("self_#{key}") }]
+        [key, ::EacFs::Contexts.send(type), -> { application.send("self_#{key}") }]
       end
     end
   end
