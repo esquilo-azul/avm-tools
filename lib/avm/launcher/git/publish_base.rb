@@ -86,6 +86,8 @@ module Avm
         end
 
         def local_following_check_result
+          return nil unless local_following?
+
           ::Avm::Launcher::Publish::CheckResult.pending('Local following')
         end
 
