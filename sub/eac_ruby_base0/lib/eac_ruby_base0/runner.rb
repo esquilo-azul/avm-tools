@@ -65,10 +65,10 @@ module EacRubyBase0
 
     # @return [Array<EacRubyUtils::Struct>]
     def available_contexts
-      filesystem_available_contexts + [
+      (filesystem_available_contexts + [
         [:config, ::EacConfig::Node.context, -> { runner_context.call(:application).build_config }],
         [:speaker, ::EacRubyUtils::Speaker.context, -> { build_speaker }]
-      ].map { |row| available_context_row_to_struct(row) }
+      ]).map { |row| available_context_row_to_struct(row) }
     end
 
     def available_context_row_to_struct(row)
