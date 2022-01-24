@@ -27,7 +27,7 @@ module EacFs
       ::File.read(content_path)
     end
 
-    def read_or_cache
+    def read_or_store
       write(yield) unless stored?
 
       read
