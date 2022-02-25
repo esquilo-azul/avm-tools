@@ -1,18 +1,34 @@
 # frozen_string_literal: true
 
+require 'eac_ruby_utils/listable'
 require 'eac_ruby_utils/simple_cache'
 
 module EacRubyUtils
   module Envs
     class Executable
+      include ::EacRubyUtils::Listable
       include ::EacRubyUtils::SimpleCache
 
-      attr_reader :env, :name, :check_args
+      lists.add_symbol :option, :check_args, :auto_validate
+
+      DEFAULT_AUTO_VALIDATE = true
+
+      attr_reader :env, :name, :options
 
       def initialize(env, name, *check_args)
         @env = env
         @name = name
-        @check_args = check_args
+        self.options = self.class.lists.option.hash_keys_validate!(check_args.extract_options!)
+        options[OPTION_CHECK_ARGS] = check_args unless options.key?(OPTION_CHECK_ARGS)
+        options.freeze
+      end
+
+      def auto_validate?
+        options.key?(OPTION_AUTO_VALIDATE) ? options[OPTION_AUTO_VALIDATE] : DEFAULT_AUTO_VALIDATE
+      end
+
+      def check_args
+        options[OPTION_CHECK_ARGS]
       end
 
       def exist?
@@ -32,7 +48,7 @@ module EacRubyUtils
       end
 
       def command(*command_args)
-        validate!
+        validate! if auto_validate?
         env.command(*executable_args, *command_args)
       end
 
@@ -49,6 +65,8 @@ module EacRubyUtils
       end
 
       private
+
+      attr_writer :options
 
       def exist_uncached
         env.command(*executable_args, *check_args).execute!
