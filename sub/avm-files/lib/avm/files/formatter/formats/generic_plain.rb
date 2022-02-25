@@ -7,8 +7,8 @@ module Avm
     class Formatter
       module Formats
         class GenericPlain < ::Avm::Files::Formatter::Formats::Base
-          VALID_BASENAMES = %w[*.bat *.css.coffee *.java *.js *.rb *.scss *.sql *.tex *.url *.yml
-                               *.yaml].freeze
+          VALID_BASENAMES = %w[*.asm *.bat *.css.coffee *.java *.js *.rb *.s *.scss *.sql *.tex
+                               *.url *.yml *.yaml].freeze
 
           VALID_TYPES = %w[plain x-shellscript].freeze
 
