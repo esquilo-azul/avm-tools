@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'addressable/uri'
 require 'avm/eac_redmine_base0/data_unit'
 require 'avm/eac_redmine_base0/instances/docker_image'
 require 'avm/eac_webapp_base0/instance'
@@ -31,6 +32,13 @@ module Avm
             all: ::Avm::EacRedmineBase0::DataUnit.new(self)
           }
         )
+      end
+
+      # @return [Addressable::URI]
+      def root_url
+        r = ::Addressable::URI.parse(read_entry(::Avm::Instances::EntryKeys::WEB_URL))
+        r.query_values = nil
+        r
       end
     end
   end
