@@ -44,13 +44,7 @@ module Avm
       end
 
       def import_url
-        url(IMPORT_PATH)
-      end
-
-      def url(path)
-        uri = ::Addressable::URI.parse(instance.read_entry('web.url')) + path
-        uri.query_values = { key: instance.read_entry('admin.api_key') }
-        uri.to_s
+        instance.rest_api.build_service_url(IMPORT_PATH).to_s
       end
     end
   end
