@@ -162,6 +162,12 @@ PATH
       parseconfig (~> 1.0, >= 1.0.8)
 
 PATH
+  remote: sub/eac_rest
+  specs:
+    eac_rest (0.3.4)
+      eac_ruby_utils (~> 0.70)
+
+PATH
   remote: sub/eac_ruby_base0
   specs:
     eac_ruby_base0 (0.16.1)
@@ -340,6 +346,7 @@ DEPENDENCIES
   eac_docker!
   eac_fs!
   eac_git!
+  eac_rest!
   eac_ruby_base0!
   eac_ruby_gem_support (~> 0.2)
   eac_ruby_gems_utils!
