@@ -3,12 +3,15 @@
 require 'addressable/uri'
 require 'avm/eac_redmine_base0/data_unit'
 require 'avm/eac_redmine_base0/instances/docker_image'
+require 'avm/eac_redmine_base0/rest_api'
 require 'avm/eac_webapp_base0/instance'
 require 'avm/eac_rails_base1/instance'
 
 module Avm
   module EacRedmineBase0
     class Instance < ::Avm::EacRailsBase1::Instance
+      enable_simple_cache
+
       FILES_UNITS = { files: 'files' }.freeze
 
       def docker_image_class
@@ -39,6 +42,15 @@ module Avm
         r = ::Addressable::URI.parse(read_entry(::Avm::Instances::EntryKeys::WEB_URL))
         r.query_values = nil
         r
+      end
+
+      private
+
+      # @return [Avm::EacRedmineBase0::RestApi]
+      def rest_api_uncached
+        url = root_url
+        url.query_values = { key: read_entry('api.key') }
+        ::Avm::EacRedmineBase0::RestApi.new(url)
       end
     end
   end
