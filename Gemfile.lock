@@ -164,7 +164,7 @@ PATH
 PATH
   remote: sub/eac_rest
   specs:
-    eac_rest (0.3.4)
+    eac_rest (0.4.0)
       eac_ruby_utils (~> 0.70)
 
 PATH
