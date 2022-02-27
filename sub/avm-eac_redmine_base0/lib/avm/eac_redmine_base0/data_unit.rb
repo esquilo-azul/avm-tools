@@ -10,6 +10,7 @@ module Avm
     class DataUnit < ::Avm::Data::Instance::Unit
       common_constructor :instance
 
+      EXPORT_PATH = '/backup/export'
       EXTENSION = '.tar'
 
       def do_dump(data_path)
@@ -38,7 +39,7 @@ module Avm
       end
 
       def export_url
-        url('/backup/export')
+        url(EXPORT_PATH)
       end
 
       def import_url
