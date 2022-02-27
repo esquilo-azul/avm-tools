@@ -12,6 +12,7 @@ module Avm
 
       EXPORT_PATH = '/backup/export'
       EXTENSION = '.tar'
+      IMPORT_PATH = '/backup/import.json'
 
       def do_dump(data_path)
         ::File.open(data_path, 'wb') do |file|
@@ -43,7 +44,7 @@ module Avm
       end
 
       def import_url
-        url('/backup/import.json')
+        url(IMPORT_PATH)
       end
 
       def url(path)
