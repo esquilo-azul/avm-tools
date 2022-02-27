@@ -16,7 +16,7 @@ module Avm
 
       def do_dump(data_path)
         ::File.open(data_path, 'wb') do |file|
-          file << URI.parse(export_url).read
+          file << export_request.response.body_data_or_raise
         end
       end
 
@@ -39,8 +39,8 @@ module Avm
         true
       end
 
-      def export_url
-        url(EXPORT_PATH)
+      def export_request
+        instance.rest_api.request(EXPORT_PATH)
       end
 
       def import_url
