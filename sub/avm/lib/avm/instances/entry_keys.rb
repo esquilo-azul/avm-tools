@@ -48,7 +48,7 @@ module Avm
         mailer: {
           '' => %w[id from reply_to],
           smtp: %w[address port domain username password authentication openssl_verify_mode
-                   starttls_auto]
+                   starttls_auto tls]
         },
         ssh: %w[hostname port url username],
         web: %w[authority hostname path port scheme url userinfo]
