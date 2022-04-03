@@ -1,13 +1,20 @@
 # frozen_string_literal: true
 
 require 'avm/eac_postgresql_base0/instance/data_unit'
+require 'eac_ruby_utils/core_ext'
 
 module Avm
   module EacPostgresqlBase0
     class Instance
+      require_sub __FILE__
+
       def initialize(env, connection_params)
         @env = env
         @connection_params = connection_params.with_indifferent_access
+      end
+
+      def assert
+        ::Avm::EacPostgresqlBase0::Instance::Assert.new(self).perform
       end
 
       def data_unit
