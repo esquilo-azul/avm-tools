@@ -3,7 +3,6 @@
 require 'avm/instances/base'
 require 'avm/self/docker_image'
 require 'avm/self/instance/entry_keys'
-require 'avm/eac_ubuntu_base0/docker_image'
 
 module Avm
   module Self
