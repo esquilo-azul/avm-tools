@@ -8,6 +8,8 @@ module Avm
     class Instance
       require_sub __FILE__
 
+      MAINTENANCE_DATABASE = 'postgres'
+
       common_constructor :env, :connection_params do
         self.connection_params = connection_params.with_indifferent_access
       end
@@ -29,12 +31,12 @@ module Avm
         dump_command.append(['@ESC_|', 'gzip', '-9', '-c'])
       end
 
-      def psql_command
-        env.command("@ESC_PGPASSWORD=#{password}", 'psql', *common_command_args)
+      def psql_command(database = true)
+        env.command("@ESC_PGPASSWORD=#{password}", 'psql', *common_command_args(database))
       end
 
-      def psql_command_command(sql)
-        psql_command.append(['--quiet', '--tuples-only', '--command', sql])
+      def psql_command_command(sql, database = true)
+        psql_command(database).append(['--quiet', '--tuples-only', '--command', sql])
       end
 
       def root_psql_command(sql = nil)
@@ -43,8 +45,9 @@ module Avm
         env.command(*args)
       end
 
-      def common_command_args
-        ['--host', host, '--username', user, '--port', port, name]
+      def common_command_args(database = true)
+        ['--host', host, '--username', user, '--port', port,
+         (database ? name : MAINTENANCE_DATABASE)]
       end
 
       def host
