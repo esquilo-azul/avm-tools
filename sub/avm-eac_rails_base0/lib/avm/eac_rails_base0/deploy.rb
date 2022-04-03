@@ -18,7 +18,7 @@ module Avm
 
       def assert_database
         infom 'Asserting database...'
-        instance.rake('db:create').system!
+        instance.pg.assert
       end
 
       def bundle_install
