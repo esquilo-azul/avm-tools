@@ -31,6 +31,12 @@ module Avm
         psql_command.append(['--quiet', '--tuples-only', '--command', sql])
       end
 
+      def root_psql_command(sql = nil)
+        args = ['sudo', '-u', 'postgres', 'psql']
+        args += ['--quiet', '--tuples-only', '--command', sql] if sql.present?
+        env.command(*args)
+      end
+
       private
 
       attr_reader :env, :connection_params
