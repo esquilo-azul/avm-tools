@@ -8,9 +8,8 @@ module Avm
     class Instance
       require_sub __FILE__
 
-      def initialize(env, connection_params)
-        @env = env
-        @connection_params = connection_params.with_indifferent_access
+      common_constructor :env, :connection_params do
+        self.connection_params = connection_params.with_indifferent_access
       end
 
       def assert
@@ -45,8 +44,6 @@ module Avm
       end
 
       private
-
-      attr_reader :env, :connection_params
 
       def common_command_args
         ['--host', host, '--username', user, '--port', port, name]
