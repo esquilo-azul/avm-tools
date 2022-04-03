@@ -43,8 +43,6 @@ module Avm
         env.command(*args)
       end
 
-      private
-
       def common_command_args
         ['--host', host, '--username', user, '--port', port, name]
       end
