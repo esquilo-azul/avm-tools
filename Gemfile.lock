@@ -5,7 +5,7 @@ PATH
       aranha-parsers (~> 0.4)
       avm (~> 0.17)
       avm-eac_asciidoctor_base0
-      avm-eac_rails_base0 (~> 0.1)
+      avm-eac_rails_base0 (~> 0.2)
       avm-eac_redmine_base0 (~> 0.4)
       avm-eac_ruby_base1 (~> 0.1)
       avm-eac_ubuntu_base0 (~> 0.2)
