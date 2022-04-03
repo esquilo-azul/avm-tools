@@ -10,7 +10,12 @@ class Object
       def fs_#{type}
         oid = fs_object_id_by_type(:'#{type}')
         oid = [oid.to_s] unless oid.is_a?(::Enumerable)
-        oid.inject(self.class.fs_#{type}) { |a, e| a.child(e.to_s) }
+        oid.inject(fs_#{type}_parent) { |a, e| a.child(e.to_s) }
+      end
+
+      # @return [EacFs::StorageTree]
+      def fs_#{type}_parent
+        self.class.fs_#{type}
       end
     CODE
   end
