@@ -37,7 +37,7 @@ module Avm
           end
 
           def auto_database_password
-            database_auto_common('password')
+            database_auto_common('password') || id
           end
 
           def auto_database_port
@@ -45,7 +45,7 @@ module Avm
           end
 
           def auto_database_username
-            database_auto_common('username')
+            database_auto_common('username') || id
           end
 
           def auto_database_system
