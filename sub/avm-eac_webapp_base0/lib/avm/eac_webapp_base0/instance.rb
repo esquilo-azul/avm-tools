@@ -5,12 +5,14 @@ require 'avm/eac_postgresql_base0/instance_with'
 require 'avm/data/instance/files_unit'
 require 'avm/data/instance/package'
 require 'avm/eac_webapp_base0/deploy/file_unit'
+require 'avm/eac_ubuntu_base0/instances/base'
 
 module Avm
   module EacWebappBase0
     class Instance < ::Avm::Instances::Base
       require_sub __FILE__
       include ::Avm::EacPostgresqlBase0::InstanceWith
+      enable_simple_cache
 
       FILES_UNITS = [].freeze
 
@@ -44,6 +46,11 @@ module Avm
       end
 
       private
+
+      # @return [Avm::EacUbuntuBase0::Instances::Base]
+      def platform_instance_uncached
+        ::Avm::EacUbuntuBase0::Instances::Base.by_id(id)
+      end
 
       def files_units
         self.class.const_get('FILES_UNITS').transform_values do |fs_path_subpath|
