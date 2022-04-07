@@ -10,6 +10,12 @@ module Avm
         def docker_image_class
           ::Avm::EacUbuntuBase0::DockerImage
         end
+
+        def file_sudo_write(path, content)
+          ::EacRubyUtils::Envs.local.command('echo', content).pipe(
+            host_env.command('sudo', 'tee', path)
+          ).execute!
+        end
       end
     end
   end
