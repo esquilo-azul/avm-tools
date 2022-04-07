@@ -1,0 +1,12 @@
+[Unit]
+Description='%%description%%'
+After=postgresql.service
+
+[Service]
+Type=forking
+%%service_exec_lines%%
+Restart=%%restart%%
+User=%%user%%
+
+[Install]
+WantedBy=multi-user.target
