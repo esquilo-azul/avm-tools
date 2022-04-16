@@ -15,8 +15,8 @@ module Avm
         end
 
         def project_banner
-          infov 'Project', project.name
-          infov 'Path', project.root
+          infov 'Project', project.application.name
+          infov 'Path', project.path
         end
 
         private
