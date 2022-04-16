@@ -29,7 +29,7 @@ module Avm
           end
 
           def default_target_directory
-            runner_context.call(:project).root.join('build')
+            runner_context.call(:project).path.join('build')
           end
 
           def open
