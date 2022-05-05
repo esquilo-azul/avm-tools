@@ -45,6 +45,7 @@ module Avm
         '' => %w[data_fs_path fs_path host_id name source_instance_id],
         database: %w[id hostname limit name password port system timeout username extra],
         docker: %w[registry],
+        fs: %w[url],
         mailer: {
           '' => %w[id from reply_to],
           smtp: %w[address port domain username password authentication openssl_verify_mode
