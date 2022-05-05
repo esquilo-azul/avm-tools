@@ -21,6 +21,12 @@ module Avm
           instance.id
         end
 
+        def apache_setup
+          return '' if web_path_present?
+
+          template.child('Dockerfile_apache_setup').apply(self)
+        end
+
         def base_image
           eac_ubuntu_base0_instance.docker_image.provide.id
         end

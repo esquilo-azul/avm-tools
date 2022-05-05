@@ -1,0 +1,8 @@
+COPY apache_http_virtualhost.conf /etc/apache2/sites-available/redmine.conf
+COPY apache_https_virtualhost.conf /etc/apache2/sites-available/redmine_ssl.conf
+USER root
+RUN a2ensite redmine
+RUN a2ensite redmine_ssl
+RUN a2dissite 000-default
+RUN a2enmod ssl
+RUN service apache2 restart
