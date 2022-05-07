@@ -25,7 +25,7 @@ module Avm
         end
 
         def default_target_directory
-          project.root.join('build')
+          project.path.join('build')
         end
 
         def target_directory
