@@ -43,6 +43,7 @@ module Avm
 
       {
         '' => %w[data_fs_path fs_path host_id name source_instance_id],
+        admin: %w[username password api_key],
         database: %w[id hostname limit name password port system timeout username extra],
         docker: %w[registry],
         fs: %w[url],
