@@ -76,7 +76,7 @@ module Avm
 
       def sync_content
         ::Avm::Sync.new(source_path, target_path)
-                   .add_exclude('/*').add_includes(*target_files_to_remove).move_mode(true).run
+          .add_exclude('/*').add_includes(*target_files_to_remove).move_mode(true).run
       end
 
       # @return [EacFs::CachedDownload]
@@ -99,8 +99,8 @@ module Avm
 
       def target_files_to_remove
         git_repo.command('ls-files').execute!
-                .each_line.map { |v| "/#{v.strip}" }
-                .without(*TARGET_KEEP)
+          .each_line.map { |v| "/#{v.strip}" }
+          .without(*TARGET_KEEP)
       end
 
       def target_path_uncached
