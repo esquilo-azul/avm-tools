@@ -35,7 +35,7 @@ module Avm
 
       def append_file_content(target_path, content)
         appended << ::Avm::Files::Appendable::FileContent
-                    .new(self, target_path, content)
+                      .new(self, target_path, content)
         self
       end
 
