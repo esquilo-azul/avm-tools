@@ -19,8 +19,8 @@ module EacGit
       # @return [String, nil]
       def url
         local.command('remote', 'get-url', name)
-             .execute!(exit_outputs: { NO_SUCH_REMOTE_CODE => nil })
-             .if_present(nil, &:strip)
+          .execute!(exit_outputs: { NO_SUCH_REMOTE_CODE => nil })
+          .if_present(nil, &:strip)
       end
     end
   end

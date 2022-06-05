@@ -110,7 +110,7 @@ module EacGit
     # @return [Array<EacGit::Local::Subrepo>]
     def subrepos
       command('subrepo', '-q', 'status').execute!.split("\n").map(&:strip).select(&:present?)
-                                        .map { |subpath| subrepo(subpath) }
+        .map { |subpath| subrepo(subpath) }
     end
 
     def to_s
