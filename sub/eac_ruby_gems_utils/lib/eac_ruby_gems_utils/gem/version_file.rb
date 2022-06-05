@@ -26,8 +26,8 @@ module EacRubyGemsUtils
 
       def new_value_content(new_value)
         path.read.each_line
-            .map { |line| new_value_line(line, new_value) }
-            .join
+          .map { |line| new_value_line(line, new_value) }
+          .join
       end
 
       def new_value_line(line, new_value)
