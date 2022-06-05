@@ -23,7 +23,7 @@ module EacRubyBase0
     delegate :version, to: :self_gem
 
     def all_gems
-      vendor_gems + [self_gem]
+      sub_gems + [self_gem]
     end
 
     # @return [EacCli::Config]
@@ -75,7 +75,7 @@ CODE
       ::EacRubyGemsUtils::Gem.new(gemspec_dir)
     end
 
-    def vendor_gems_uncached
+    def sub_gems_uncached
       r = []
       vendor_dir.children.each do |c|
         vgem = ::EacRubyGemsUtils::Gem.new(c)
