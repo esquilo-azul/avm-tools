@@ -12,7 +12,8 @@ module Avm
         enable_simple_cache
 
         BASE_IMAGE = 'ubuntu:20.04'
-        INSTALLER_TARGET_TASK = 'redmine_as_apache_base'
+        INSTALLER_TARGET_TASK_WITH_WEB_PATH_BLANK = 'redmine_as_apache_base'
+        INSTALLER_TARGET_TASK_WITH_WEB_PATH_PRESENT = 'redmine_as_apache_path'
         DATABASE_INTERNAL_HOSTNAME = 'localhost'
         REDMINE_SOURCE_HOST_SUBPATH = 'redmine_source'
 
@@ -30,7 +31,11 @@ module Avm
         end
 
         def installer_target_task
-          INSTALLER_TARGET_TASK
+          if web_path_present?
+            INSTALLER_TARGET_TASK_WITH_WEB_PATH_PRESENT
+          else
+            INSTALLER_TARGET_TASK_WITH_WEB_PATH_BLANK
+          end
         end
 
         def redmine_user
