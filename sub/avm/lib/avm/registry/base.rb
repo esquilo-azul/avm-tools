@@ -17,7 +17,7 @@ module Avm
 
       def detect_optional(*registered_initialize_args)
         registered_modules.reverse.lazy.map { |klass| klass.new(*registered_initialize_args) }
-                          .find(&:valid?)
+          .find(&:valid?)
       end
 
       def provider_module_suffix
@@ -40,7 +40,7 @@ module Avm
 
       def registered_modules_uncached
         registered_gems.flat_map { |registry| modules_from_registry(registry) }
-                       .select { |v| valid_registered_module?(v) }.uniq
+          .select { |v| valid_registered_module?(v) }.uniq
       end
 
       def modules_from_registry(registry)

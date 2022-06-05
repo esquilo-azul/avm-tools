@@ -33,7 +33,7 @@ module Avm
         # @return [Array<Avm::Sources::Tests::Single>]
         def available_units
           @available_units ||= ([main_source] + main_source.subs)
-                               .map { |a_source| create_unit(a_source) }
+                                 .map { |a_source| create_unit(a_source) }
         end
 
         def available_units_from_main

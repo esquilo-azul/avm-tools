@@ -9,8 +9,8 @@ module Avm
       module AutoValues
         module Mailer
           ::Avm::Instances::EntryKeys.all.select { |c| c.to_s.start_with?('mailer.') }
-                                     .reject { |c| c == ::Avm::Instances::EntryKeys::MAILER_ID }
-                                     .each do |mailer_key|
+            .reject { |c| c == ::Avm::Instances::EntryKeys::MAILER_ID }
+            .each do |mailer_key|
             define_method ::Avm::Instances::Entry.auto_value_method_name(mailer_key) do
               mailer_auto_common(mailer_key)
             end
