@@ -53,6 +53,10 @@ module Avm
           '/start.sh'
         end
 
+        def web_path_present?
+          ::Addressable::URI.parse(instance.web_url).path.present?
+        end
+
         private
 
         def eac_ubuntu_base0_instance
