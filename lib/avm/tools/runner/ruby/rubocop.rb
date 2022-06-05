@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'avm/tools/core_ext'
-require 'avm/ruby/rubocop'
+require 'avm/eac_ruby_base1/rubocop'
 
 module Avm
   module Tools
@@ -15,7 +15,7 @@ module Avm
           end
 
           def run
-            ::Avm::Ruby::Rubocop.new(path, parsed.rubocop_args).run
+            ::Avm::EacRubyBase1::Rubocop.new(path, parsed.rubocop_args).run
           end
 
           private
