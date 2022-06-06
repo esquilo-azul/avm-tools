@@ -30,5 +30,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'git', '~> 1.7'
   s.add_dependency 'ruby-progressbar', '~> 1.10', '>= 1.10.1'
 
-  s.add_development_dependency 'eac_ruby_gem_support', '~> 0.2'
+  s.add_development_dependency 'eac_ruby_gem_support', '~> 0.5.1'
 end
