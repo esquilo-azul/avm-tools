@@ -7,7 +7,7 @@ require 'yaml'
 module Avm
   module Sources
     class Configuration < ::EacConfig::OldConfigs
-      require_sub __FILE__
+      require_sub __FILE__, include_modules: true
 
       FILENAMES = %w[.avm.yml .avm.yaml].freeze
 
