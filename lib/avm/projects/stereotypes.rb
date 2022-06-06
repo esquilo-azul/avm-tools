@@ -11,8 +11,8 @@ module Avm
       class << self
         def list
           @list ||= constants.map { |c| const_get(c) }
-                             .select { |c| c.included_modules.include?(Avm::Projects::Stereotype) }
-                             .freeze
+                      .select { |c| c.included_modules.include?(Avm::Projects::Stereotype) }
+                      .freeze
         end
       end
     end

@@ -51,7 +51,7 @@ module Avm
 
           def revisions_uncached
             runner_context.call(:git).execute!('log', '--pretty=format:%H', 'origin/master..HEAD')
-                          .each_line.map(&:strip).reverse.map do |sha1|
+              .each_line.map(&:strip).reverse.map do |sha1|
               ::Avm::Git::RevisionTest.new(runner_context.call(:git), sha1, test_revision_options)
             end
           end

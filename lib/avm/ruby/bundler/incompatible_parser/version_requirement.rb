@@ -9,7 +9,7 @@ module Avm
       class IncompatibleParser
         class VersionRequirement < ::Avm::Ruby::Bundler::IncompatibleParser::LineParserBase
           LINE_PARSER = /\A([a-z][a-z_0-9]*)(?: \((.+)\))?\z/
-                        .to_parser { |m| new(m[1], m[2]) }
+                          .to_parser { |m| new(m[1], m[2]) }
 
           enable_simple_cache
           attr_accessor :stack

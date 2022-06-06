@@ -29,7 +29,7 @@ module Avm
                 def git_continue_run(command)
                   infom "\"#{command}\" --continue..."
                   cmd = instance.git_repo.command(command, '--continue')
-                                .envvar('GIT_EDITOR', 'true')
+                          .envvar('GIT_EDITOR', 'true')
                   return unless !cmd.system && !conflict?
 
                   fatal_error "\"#{cmd}\" failed and there is no conflict"

@@ -10,7 +10,7 @@ module Avm
           DEFAULT_FORMAT = '%p'
           FIELDS = {
             i: :index, w: :worktree, p: :path, a: :absolute_path
-          }.map { |k, v| ["%#{k}", v] }.to_h
+          }.transform_keys { |k| "%#{k}" }
 
           runner_with :help do
             desc 'Lists dirty files in Git repository.'

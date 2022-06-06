@@ -13,7 +13,7 @@ module Avm
 
         def initialize(path)
           @gems_in_conflict = ::Avm::Ruby::Bundler::IncompatibleParser::LineBuffer
-                              .from_file(path).gems_in_conflict.freeze
+                                .from_file(path).gems_in_conflict.freeze
         end
 
         def data

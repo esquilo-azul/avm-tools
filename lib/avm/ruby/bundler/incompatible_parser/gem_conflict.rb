@@ -9,7 +9,7 @@ module Avm
       class IncompatibleParser
         class GemConflict < ::Avm::Ruby::Bundler::IncompatibleParser::LineParserBase
           LINE_PARSER = /Bundler could not find compatible versions for gem "(.+)":/
-                        .to_parser { |m| new(m[1]) }
+                          .to_parser { |m| new(m[1]) }
 
           enable_simple_cache
           common_constructor :gem_name

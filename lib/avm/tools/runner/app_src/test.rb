@@ -71,8 +71,8 @@ module Avm
 
           def test_builder
             r = ::Avm::Sources::Tests::Builder.new(runner_context.call(:subject))
-                                              .include_main(include_main?)
-                                              .include_subs(include_subs?)
+                  .include_main(include_main?)
+                  .include_subs(include_subs?)
             parsed.source_id.inject(r) { |a, e| a.include_id(e) }
           end
 

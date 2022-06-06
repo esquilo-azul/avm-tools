@@ -9,7 +9,7 @@ module Avm
       class IncompatibleParser
         class DependsOn < ::Avm::Ruby::Bundler::IncompatibleParser::LineParserBase
           LINE_PARSER = /(.+) was resolved to (.+), which depends on/
-                        .to_parser { |m| new(m[1], m[2]) }
+                          .to_parser { |m| new(m[1], m[2]) }
 
           common_constructor :gem_name, :version do
             self.version = ::Gem::Version.new(version)
