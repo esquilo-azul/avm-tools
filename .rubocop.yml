@@ -57,9 +57,6 @@ Style/AsciiComments:
 Style/Documentation:
   Enabled: false
 
-Style/DoubleNegation:
-  Enabled: false
-
 Style/HashEachMethods:
   Enabled: true
 

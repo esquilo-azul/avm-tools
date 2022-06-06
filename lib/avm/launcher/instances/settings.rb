@@ -23,7 +23,7 @@ module Avm
         end
 
         def publishable?
-          !!publishable_value
+          publishable_value ? true : false
         end
 
         def stereotype_publishable?(stereotype)
@@ -39,11 +39,15 @@ module Avm
         end
 
         def parse_publishable_value(value, hash_to_true)
-          return value.with_indifferent_access if !hash_to_true && value.is_a?(::Hash)
+          return value.with_indifferent_access if parse_publishable_value_hash?(value, hash_to_true)
           return true if value.nil? || value == true
           return false if value == false
 
-          !!value
+          value ? true : false
+        end
+
+        def parse_publishable_value_hash?(value, hash_to_true)
+          !hash_to_true && value.is_a?(::Hash)
         end
       end
     end
