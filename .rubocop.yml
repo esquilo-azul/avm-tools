@@ -49,7 +49,6 @@ RSpec:
     - spec/lib/avm/projects/stereotypes/git_subrepo/warp_spec.rb
     - spec/lib/avm/projects/stereotypes/ruby_gem_spec.rb
     - spec/lib/avm/projects/stereotypes/ruby_gem/publish_spec.rb
-    - spec/lib/eac_launcher/**/*
 
 Style/AsciiComments:
   Enabled: false
