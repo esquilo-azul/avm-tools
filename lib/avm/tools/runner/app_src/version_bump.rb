@@ -8,14 +8,13 @@ module Avm
     class Runner
       class AppSrc
         class VersionBump
-          runner_with :help do
+          runner_with :help, :confirmation do
             desc 'Bump version of a local project.'
             arg_opt '-n', '--new', 'Set new version.'
             arg_opt '-s', '--segment', 'Increment de <segment>-th segment (Left-most is 0)'
             bool_opt '-M', '--major', 'Same as --segment=0.'
             bool_opt '-m', '--minor', 'Same as --segment=1.'
             bool_opt '-p', '--patch', 'Same as --segment=2.'
-            bool_opt '-y', '--yes', 'Bump without confirmation.'
           end
 
           def run
@@ -41,10 +40,6 @@ module Avm
             runner_context.call(:instance_banner)
             infov 'Current version', current_version.if_present('-')
             infov 'Target version', target_version.if_present('-')
-          end
-
-          def confirm?
-            parsed.yes? || input('Confirm version bump?', bool: true)
           end
 
           def current_version_uncached
