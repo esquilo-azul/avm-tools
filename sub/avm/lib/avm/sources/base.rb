@@ -21,7 +21,6 @@ module Avm
       abstract_methods :update, :valid?
 
       delegate :locale, to: :old_configuration
-      delegate :to_s, to: :path
 
       # @return [Avm::Sources::Base]
       def parent
@@ -33,6 +32,10 @@ module Avm
         return path if parent.blank?
 
         path.relative_path_from(parent.path)
+      end
+
+      def to_s
+        "#{self.class}[#{path}]"
       end
 
       # @return [Enumerable<Avm::Sources::Base>]
