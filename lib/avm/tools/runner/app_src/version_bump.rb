@@ -25,7 +25,7 @@ module Avm
           def run_version_changed
             infom 'Version changed'
             if confirm?
-              runner_context.call(:instance).run_job(:version_bump, target_version)
+              runner_context.call(:subject).version_bump(target_version)
               success 'Bumped'
             else
               fatal_error 'Bump unconfirmed'
@@ -37,13 +37,13 @@ module Avm
           end
 
           def start_banner
-            runner_context.call(:instance_banner)
+            infov 'Instance', runner_context.call(:subject)
             infov 'Current version', current_version.if_present('-')
             infov 'Target version', target_version.if_present('-')
           end
 
           def current_version_uncached
-            runner_context.call(:instance).if_respond('version')
+            runner_context.call(:subject).if_respond('version')
           end
 
           def target_version_uncached
