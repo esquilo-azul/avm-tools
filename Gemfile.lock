@@ -31,7 +31,7 @@ PATH
 PATH
   remote: sub/avm-eac_generic_base0
   specs:
-    avm-eac_generic_base0 (0.1.1)
+    avm-eac_generic_base0 (0.2.0)
       avm (~> 0.19)
       eac_ruby_utils (~> 0.80)
 
