@@ -8,6 +8,9 @@ module Avm
   module EacGenericBase0
     module Sources
       class Base < ::Avm::Sources::Base
+        require_sub __FILE__, include_modules: true
+        enable_abstract_methods
+
         # @return [Avm::EacGenericBase0::Sources::Tester]
         def tester_class
           Avm::EacGenericBase0::Sources::Tester

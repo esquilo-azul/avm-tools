@@ -1,0 +1,6 @@
+pt-BR:
+  avm:
+    eac_generic_base0:
+      sources:
+        base:
+          version_bump_commit_message: Versão para '%{version}'.
