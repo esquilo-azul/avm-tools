@@ -8,6 +8,11 @@ module Avm
       module Parent
         # @return [Avm::Sources::Base]
         def parent
+          parent_by_option
+        end
+
+        # @return [Avm::Sources::Base]
+        def parent_by_option
           options[OPTION_PARENT]
         end
       end
