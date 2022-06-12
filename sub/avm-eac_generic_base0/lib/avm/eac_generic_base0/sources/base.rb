@@ -14,7 +14,7 @@ module Avm
         end
 
         def valid?
-          path.directory?
+          ::Avm::Registry.scms.detect_optional(path).present?
         end
       end
     end
