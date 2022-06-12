@@ -22,11 +22,6 @@ module Avm
 
       delegate :locale, to: :old_configuration
 
-      # @return [Avm::Sources::Base]
-      def parent
-        options[OPTION_PARENT]
-      end
-
       # @return [Pathname]
       def relative_path
         return path if parent.blank?
