@@ -28,6 +28,10 @@ module Avm
           nil
         end
 
+        def temp_instance
+          new(::Tempfile.new(['.avm', '.yaml']))
+        end
+
         private
 
         def internal_find_path(absolute_pathname)
