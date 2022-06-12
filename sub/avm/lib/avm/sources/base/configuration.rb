@@ -29,7 +29,8 @@ module Avm
 
         # @return [Avm::Sources::Configuration]
         def old_configuration_uncached
-          ::Avm::Sources::Configuration.find_in_path(path)
+          ::Avm::Sources::Configuration.find_in_path(path) ||
+            ::Avm::Sources::Configuration.temp_instance
         end
       end
     end
