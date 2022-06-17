@@ -131,7 +131,7 @@ PATH
     eac_cli (0.27.3)
       colorize (~> 0.8.1)
       eac_config (~> 0.8)
-      eac_ruby_utils (~> 0.83)
+      eac_ruby_utils (~> 0.95)
 
 PATH
   remote: sub/eac_config
