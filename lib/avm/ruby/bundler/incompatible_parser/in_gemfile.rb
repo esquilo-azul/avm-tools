@@ -10,8 +10,6 @@ module Avm
         class InGemfile < ::Avm::Ruby::Bundler::IncompatibleParser::LineParserBase
           LINE_PARSER = /In Gemfile:/
                           .to_parser { |_m| new }
-
-          common_constructor
         end
       end
     end
