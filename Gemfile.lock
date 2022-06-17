@@ -273,7 +273,7 @@ GEM
       concurrent-ruby (~> 1.0)
     jaro_winkler (1.5.4)
     minitar (0.9)
-    minitest (5.15.0)
+    minitest (5.16.0)
     multipart-post (2.2.3)
     net-ssh (4.2.0)
     nokogiri (1.13.6-x86_64-linux)
