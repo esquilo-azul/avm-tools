@@ -175,7 +175,7 @@ PATH
       eac_cli (~> 0.26)
       eac_fs (~> 0.10)
       eac_ruby_gems_utils (~> 0.9.6, ~> 0.9)
-      eac_ruby_utils (~> 0.70)
+      eac_ruby_utils (~> 0.95, >= 0.95.1)
 
 PATH
   remote: sub/eac_ruby_gems_utils
