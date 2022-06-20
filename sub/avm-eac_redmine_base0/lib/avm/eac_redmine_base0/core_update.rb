@@ -36,6 +36,10 @@ module Avm
         infov 'Package size', source_package.path.size
       end
 
+      def fs_object_id
+        [instance.id, version].join('_').variableize
+      end
+
       private
 
       attr_reader :tempdir
