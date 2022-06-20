@@ -32,7 +32,7 @@ module Avm
           end
 
           def url
-            options.fetch('--url') || url_by_version
+            parsed.url || url_by_version
           end
 
           def url_by_version
