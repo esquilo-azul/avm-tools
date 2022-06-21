@@ -6,7 +6,7 @@ PATH
       avm (~> 0.18)
       avm-eac_asciidoctor_base0 (~> 0.3, >= 0.3.4)
       avm-eac_rails_base0 (~> 0.3)
-      avm-eac_redmine_base0 (~> 0.5, >= 0.5.1)
+      avm-eac_redmine_base0 (~> 0.5, >= 0.5.2)
       avm-eac_ruby_base1 (~> 0.2)
       avm-eac_ubuntu_base0 (~> 0.3)
       avm-files (~> 0.1)
