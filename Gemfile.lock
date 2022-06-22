@@ -280,6 +280,8 @@ GEM
     nokogiri (1.13.6)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
+    nokogiri (1.13.6-x86_64-linux)
+      racc (~> 1.4)
     ofx-parser (1.1.0)
       hpricot (>= 0.6)
     os (1.1.4)
@@ -361,4 +363,4 @@ DEPENDENCIES
   eac_templates!
 
 BUNDLED WITH
-   2.2.25
+   2.3.16
