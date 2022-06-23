@@ -14,7 +14,6 @@ module Avm
           def run
             show_instance
             show_source
-            show_subs
           end
 
           private
@@ -27,13 +26,6 @@ module Avm
           def show_source
             infov 'Stereotype', runner_context.call(:subject).class
             infov 'SCM', runner_context.call(:subject).scm
-          end
-
-          def show_subs
-            infov 'Sub applications', instance.avm_instance.subs.count
-            instance.avm_instance.subs.each do |subapp|
-              infov '  * ', "#{subapp.relative_path} [#{subapp.class}]"
-            end
           end
 
           def instance
