@@ -17,6 +17,8 @@ module Avm
           end
 
           def start_banner
+            infov 'Include PATH', runner_context.call(:subject).subs_include_path
+            infov 'Exclude PATH', runner_context.call(:subject).subs_exclude_path
             infov 'Count', runner_context.call(:subject).subs.count
           end
 
