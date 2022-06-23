@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'eac_config/yaml_file_node'
 require 'eac_ruby_utils/core_ext'
 require 'eac_ruby_utils/yaml'
 require 'shellwords'
@@ -10,21 +11,27 @@ module Avm
       module Configuration
         # @return [Array<String>, nil]
         def read_configuration_as_shell_words(key)
-          configuration[key].if_present do |v|
+          configuration.entry(key).value.if_present do |v|
             v.is_a?(::Enumerable) ? v.map(&:to_s) : ::Shellwords.split(v.to_s)
           end
         end
 
         private
 
-        # @return [Hash]
+        # @return [EacConfig::YamlFileNode]
         def configuration_uncached
           ::Avm::Sources::Configuration::FILENAMES.each do |filename|
-            file_path = path.join(filename)
-            return ::EacRubyUtils::Yaml.load_file(file_path).with_indifferent_access if
-            file_path.exist?
+            configuration_with_filename(filename, true)
           end
-          {}
+          configuration_with_filename(::Avm::Sources::Configuration::FILENAMES.first, false)
+        end
+
+        # @return [EacConfig::YamlFileNode, nil]
+        def configuration_with_filename(filename, needs_exist)
+          file_path = path.join(filename)
+          return ::EacConfig::YamlFileNode.new(file_path) if !needs_exist || file_path.exist?
+
+          nil
         end
 
         # @return [Avm::Sources::Configuration]
