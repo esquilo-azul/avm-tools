@@ -7,10 +7,13 @@ module Avm
     class Runner
       class AppSrc
         class Subs
+          PADDING = '  '
+
           runner_with :help, :output do
             desc 'Output source\'s subs.'
             bool_opt '-i', '--info'
             bool_opt '-R', '--recursive'
+            bool_opt '-t', '--tree'
           end
 
           def run
@@ -27,7 +30,7 @@ module Avm
           def output_content
             b = []
             runner_context.call(:subject).subs.each do |sub|
-              b += sub_output_content_lines(sub)
+              b += sub_output_content_lines(sub, 0)
             end
             b.map { |line| "#{line}\n" }.join
           end
@@ -40,19 +43,26 @@ module Avm
             }.map { |k, v| "#{k}: #{v}" }.join(', ') + ']'
           end
 
-          def sub_label(sub)
-            sub.path.relative_path_from(runner_context.call(:subject).path).to_s +
-              sub_info_label(sub)
+          def sub_label(sub, level)
+            sub_self_label(sub, level) + sub_info_label(sub)
           end
 
-          def sub_output_content_lines(sub)
-            [sub_label(sub)] + sub_subs_output_content_lines(sub)
+          def sub_self_label(sub, level)
+            if parsed.tree?
+              (PADDING * level) + sub.relative_path.to_s
+            else
+              sub.path.relative_path_from(runner_context.call(:subject).path).to_s
+            end
           end
 
-          def sub_subs_output_content_lines(sub)
+          def sub_output_content_lines(sub, level)
+            [sub_label(sub, level)] + sub_subs_output_content_lines(sub, level)
+          end
+
+          def sub_subs_output_content_lines(sub, level)
             return [] unless parsed.recursive?
 
-            sub.subs.flat_map { |sub_sub| sub_output_content_lines(sub_sub) }
+            sub.subs.flat_map { |sub_sub| sub_output_content_lines(sub_sub, level + 1) }
           end
         end
       end
