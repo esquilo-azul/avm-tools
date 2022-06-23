@@ -9,6 +9,7 @@ module Avm
         class Subs
           runner_with :help, :output do
             desc 'Output source\'s subs.'
+            bool_opt '-R', '--recursive'
           end
 
           def run
@@ -35,7 +36,13 @@ module Avm
           end
 
           def sub_output_content_lines(sub)
-            [sub_label(sub)]
+            [sub_label(sub)] + sub_subs_output_content_lines(sub)
+          end
+
+          def sub_subs_output_content_lines(sub)
+            return [] unless parsed.recursive?
+
+            sub.subs.flat_map { |sub_sub| sub_output_content_lines(sub_sub) }
           end
         end
       end
