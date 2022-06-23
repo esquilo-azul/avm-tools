@@ -9,6 +9,7 @@ module Avm
         class Subs
           runner_with :help, :output do
             desc 'Output source\'s subs.'
+            bool_opt '-i', '--info'
             bool_opt '-R', '--recursive'
           end
 
@@ -31,8 +32,17 @@ module Avm
             b.map { |line| "#{line}\n" }.join
           end
 
+          def sub_info_label(sub)
+            return '' unless parsed.info?
+
+            ' [' + {
+              'CLASS' => sub.class.name
+            }.map { |k, v| "#{k}: #{v}" }.join(', ') + ']'
+          end
+
           def sub_label(sub)
-            sub.path.relative_path_from(runner_context.call(:subject).path).to_s
+            sub.path.relative_path_from(runner_context.call(:subject).path).to_s +
+              sub_info_label(sub)
           end
 
           def sub_output_content_lines(sub)
