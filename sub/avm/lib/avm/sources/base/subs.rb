@@ -14,7 +14,20 @@ module Avm
 
         # @return [Enumerable<Avm::Sources::Base>]
         def subs
-          scm.subs.map { |subrepo| ::Avm::Registry.sources.detect(subrepo.path, parent: self) }
+          subs_paths_to_search
+            .map { |sub_path| ::Avm::Registry.sources.detect_optional(sub_path, parent: self) }
+            .reject(&:blank?)
+            .sort_by { |sub| [sub.path] }
+        end
+
+        def subs_paths_to_search
+          subs_include_paths.flat_map do |subs_include_path|
+            ::Pathname.glob(path.join(subs_include_path)).reject do |sub_path|
+              subs_exclude_paths.any? do |subs_exclude_path|
+                sub_path.fnmatch?(path.join(subs_exclude_path).to_path)
+              end
+            end
+          end
         end
 
         %i[include exclude].each do |type|
