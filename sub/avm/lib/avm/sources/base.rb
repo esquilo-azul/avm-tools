@@ -22,6 +22,11 @@ module Avm
 
       delegate :locale, to: :old_configuration
 
+      # @return [EacRubyUtils::Envs::LocalEnv]
+      def env
+        ::EacRubyUtils::Envs::LocalEnv.new
+      end
+
       # @return [Hash<String, Class>]
       def extra_available_subcommands
         {}
