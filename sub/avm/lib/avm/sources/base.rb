@@ -22,6 +22,11 @@ module Avm
 
       delegate :locale, to: :old_configuration
 
+      # @return [Hash<String, Class>]
+      def extra_available_subcommands
+        {}
+      end
+
       # @return [Pathname]
       def relative_path
         return path if parent.blank?
