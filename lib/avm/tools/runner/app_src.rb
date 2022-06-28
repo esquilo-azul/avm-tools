@@ -23,6 +23,8 @@ module Avm
           instance.avm_instance
         end
 
+        delegate :extra_available_subcommands, to: :subject
+
         private
 
         def instance_uncached
