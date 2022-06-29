@@ -8,14 +8,14 @@ module Avm
     module Sources
       class Base < ::Avm::EacRailsBase1::Sources::Base
         REDMINE_LIB_SUBPATH = 'lib/redmine.rb'
-        SUBS_PATHS_DEFAULT = ['plugins/*'].freeze
+        SUBS_INCLUDE_PATHS_DEFAULT = ['plugins/*'].freeze
 
         def redmine_lib_path
           path.join(REDMINE_LIB_SUBPATH)
         end
 
-        def subs_paths_default
-          SUBS_PATHS_DEFAULT
+        def subs_include_paths_default
+          SUBS_INCLUDE_PATHS_DEFAULT
         end
 
         def valid?
