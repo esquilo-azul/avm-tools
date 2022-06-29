@@ -8,13 +8,13 @@ module Avm
     module Sources
       class Base < ::Avm::EacRailsBase1::Sources::Base
         CONFIG_RU_SUBPATH = 'config.ru'
-        SUBS_PATHS_DEFAULT = ['sub/*/*'].freeze
+        SUBS_INCLUDE_PATHS_DEFAULT = ['sub/*/*'].freeze
 
         def config_ru_path
           path.join(CONFIG_RU_SUBPATH)
         end
 
-        def subs_paths_default
+        def subs_include_paths_default
           SUBS_PATHS_DEFAULT
         end
 
