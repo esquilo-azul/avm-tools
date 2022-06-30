@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'avm/registry'
+require 'avm/scms/null'
 require 'eac_git'
 require 'eac_ruby_utils/core_ext'
 
@@ -47,7 +48,7 @@ module Avm
 
       # @return [Avm::Scms::Base]
       def scm_uncached
-        ::Avm::Registry.scms.detect(path)
+        ::Avm::Registry.scms.detect_optional(path) || ::Avm::Scms::Null.new(path)
       end
     end
   end
