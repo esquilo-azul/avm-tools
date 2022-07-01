@@ -9,6 +9,8 @@ module Avm
     enable_listable
     lists.add_symbol :category, :instance_stereotypes, :runners, :scms, :sources
 
+    WITH_PATH = [CATEGORY_SCMS, CATEGORY_SOURCES].freeze
+
     class << self
       enable_simple_cache
 
@@ -21,7 +23,15 @@ module Avm
 
       ::Avm::Registry.lists.category.each_value do |category|
         define_method "#{category}_uncached" do
-          ::Avm::Registry::Base.new(category.to_s.camelize)
+          registry_class(category).new(category.to_s.camelize)
+        end
+      end
+
+      def registry_class(category)
+        if WITH_PATH.include?(category)
+          ::Avm::Registry::WithPath
+        else
+          ::Avm::Registry::Base
         end
       end
     end
