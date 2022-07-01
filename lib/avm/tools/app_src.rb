@@ -17,6 +17,7 @@ module Avm
         source_stereotypes_mixins
       end
 
+      delegate :configuration, to: :avm_instance
       delegate :to_s, to: :path
 
       def locale
@@ -37,11 +38,6 @@ module Avm
 
       def avm_instance_uncached
         ::Avm::Registry.sources.detect(path)
-      end
-
-      # @return [Avm::Sources::Configuration]
-      def configuration_uncached
-        ::Avm::Sources::Configuration.find_in_path(path)
       end
 
       def stereotypes_jobs(job, job_args)
