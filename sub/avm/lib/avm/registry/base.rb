@@ -11,8 +11,7 @@ module Avm
 
       def detect(*registered_initialize_args)
         detect_optional(*registered_initialize_args) ||
-          raise("No registered module valid for #{registered_initialize_args}" \
-            " (Module suffix: #{module_suffix}, Available: #{registered_modules.join(', ')})")
+          raise_not_found(*registered_initialize_args)
       end
 
       def detect_optional(*registered_initialize_args)
@@ -37,6 +36,11 @@ module Avm
       end
 
       private
+
+      def raise_not_found(*args)
+        raise("No registered module valid for #{args}" \
+            " (Module suffix: #{module_suffix}, Available: #{registered_modules.join(', ')})")
+      end
 
       def registered_modules_uncached
         registered_gems.flat_map { |registry| modules_from_registry(registry) }
