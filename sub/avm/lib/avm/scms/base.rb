@@ -34,12 +34,7 @@ module Avm
 
       # @return [Avm::Scms::Base]
       def parent_scm
-        parent_path = path.parent
-        until parent_path.root?
-          ::Avm::Registry.scms.detect_optional(parent_path).if_present { |v| return v }
-          parent_path = parent_path.parent
-        end
-        nil
+        ::Avm::Registry.scms.detect_by_path_optional(path.parent)
       end
     end
   end
