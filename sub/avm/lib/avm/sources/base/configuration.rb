@@ -9,6 +9,8 @@ module Avm
   module Sources
     class Base
       module Configuration
+        CONFIGURATION_FILENAMES = %w[.avm.yml .avm.yaml].freeze
+
         # @return [Array<String>, nil]
         def read_configuration_as_shell_words(key)
           configuration.entry(key).value.if_present do |v|
@@ -28,10 +30,10 @@ module Avm
 
         # @return [EacConfig::YamlFileNode]
         def configuration_uncached
-          ::Avm::Sources::Configuration::FILENAMES.each do |filename|
+          CONFIGURATION_FILENAMES.each do |filename|
             configuration_with_filename(filename, true)
           end
-          configuration_with_filename(::Avm::Sources::Configuration::FILENAMES.first, false)
+          configuration_with_filename(CONFIGURATION_FILENAMES.first, false)
         end
 
         # @return [EacConfig::YamlFileNode, nil]
