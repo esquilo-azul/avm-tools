@@ -33,7 +33,7 @@ module Avm
       private
 
       # @return [Avm::Scms::Base]
-      def parent_scm
+      def parent_scm_uncached
         ::Avm::Registry.scms.detect_by_path_optional(path.parent)
       end
     end
