@@ -6,6 +6,12 @@ module Avm
   module Sources
     class Base
       module Testing
+        TEST_COMMAND_KEY = 'test.command'
+
+        def configured_test_command
+          read_configuration_as_env_command(TEST_COMMAND_KEY)
+        end
+
         # @return [Avm::Sources::Tester]
         def tester
           tester_class.new(self)
