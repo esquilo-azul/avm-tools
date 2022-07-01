@@ -16,6 +16,14 @@ module Avm
           end
         end
 
+        # Utility to read a configuration as a [EacRubyUtils::Envs::Command].
+        # @return [EacRubyUtils::Envs::Command]
+        def read_configuration_as_env_command(key)
+          read_configuration_as_shell_words(key).if_present do |v|
+            env.command(v).chdir(path)
+          end
+        end
+
         private
 
         # @return [EacConfig::YamlFileNode]
