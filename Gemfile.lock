@@ -178,15 +178,6 @@ PATH
       eac_ruby_utils (~> 0.70)
 
 PATH
-  remote: sub/eac_ruby_base0
-  specs:
-    eac_ruby_base0 (0.16.4)
-      eac_cli (~> 0.27, >= 0.27.5)
-      eac_fs (~> 0.10)
-      eac_ruby_gems_utils (~> 0.9.6, ~> 0.9)
-      eac_ruby_utils (~> 0.95, >= 0.95.1)
-
-PATH
   remote: sub/eac_ruby_gems_utils
   specs:
     eac_ruby_gems_utils (0.9.10)
@@ -239,6 +230,11 @@ GEM
       parslet (~> 1.5)
     curb (0.9.11)
     diff-lcs (1.5.0)
+    eac_ruby_base0 (0.16.4)
+      eac_cli (~> 0.27, >= 0.27.5)
+      eac_fs (~> 0.10)
+      eac_ruby_gems_utils (~> 0.9.6, ~> 0.9)
+      eac_ruby_utils (~> 0.95, >= 0.95.1)
     eac_ruby_gem_support (0.5.1)
       eac_ruby_utils (~> 0.74)
       rspec (~> 3.9)
@@ -366,7 +362,6 @@ DEPENDENCIES
   eac_fs!
   eac_git!
   eac_rest!
-  eac_ruby_base0!
   eac_ruby_gem_support (~> 0.5.1)
   eac_ruby_gems_utils!
   eac_ruby_utils!
