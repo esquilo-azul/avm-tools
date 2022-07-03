@@ -122,19 +122,6 @@ PATH
       eac_ruby_utils (~> 0.76)
 
 PATH
-  remote: sub/avm
-  specs:
-    avm (0.22.0)
-      eac_cli (~> 0.23, >= 0.23.1)
-      eac_docker (~> 0.3)
-      eac_git (~> 0.6)
-      eac_ruby_utils (~> 0.95)
-      eac_templates (~> 0.1, >= 0.1.1)
-      filesize (~> 0.2)
-      htmlbeautifier (~> 1.3, >= 1.3.1)
-      minitar (~> 0.9)
-
-PATH
   remote: sub/eac_cli
   specs:
     eac_cli (0.27.5)
@@ -215,6 +202,15 @@ GEM
       ofx-parser (~> 1.1.0)
     asciidoctor (2.0.17)
     ast (2.4.2)
+    avm (0.22.0)
+      eac_cli (~> 0.23, >= 0.23.1)
+      eac_docker (~> 0.3)
+      eac_git (~> 0.6)
+      eac_ruby_utils (~> 0.95)
+      eac_templates (~> 0.1, >= 0.1.1)
+      filesize (~> 0.2)
+      htmlbeautifier (~> 1.3, >= 1.3.1)
+      minitar (~> 0.9)
     clipboard (1.3.6)
     colorize (0.8.1)
     concurrent-ruby (1.1.10)
@@ -338,7 +334,6 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  avm!
   avm-eac_asciidoctor_base0!
   avm-eac_generic_base0!
   avm-eac_postgresql_base0!
