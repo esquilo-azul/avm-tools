@@ -178,14 +178,6 @@ PATH
       eac_ruby_utils (~> 0.70)
 
 PATH
-  remote: sub/eac_ruby_gems_utils
-  specs:
-    eac_ruby_gems_utils (0.9.10)
-      bundler
-      eac_fs (~> 0.8)
-      eac_ruby_utils (~> 0.81)
-
-PATH
   remote: sub/eac_ruby_utils
   specs:
     eac_ruby_utils (0.95.1)
@@ -241,6 +233,10 @@ GEM
       rubocop (~> 0.80.1)
       rubocop-rails (~> 2.4.2)
       rubocop-rspec (~> 1.38.1)
+    eac_ruby_gems_utils (0.9.10)
+      bundler
+      eac_fs (~> 0.8)
+      eac_ruby_utils (~> 0.81)
     faraday (1.10.0)
       faraday-em_http (~> 1.0)
       faraday-em_synchrony (~> 1.0)
@@ -363,7 +359,6 @@ DEPENDENCIES
   eac_git!
   eac_rest!
   eac_ruby_gem_support (~> 0.5.1)
-  eac_ruby_gems_utils!
   eac_ruby_utils!
   eac_templates!
 
