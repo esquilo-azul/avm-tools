@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'avm/patches/eac_ruby_gems_utils/gem'
 require 'eac_cli/core_ext'
 
 module Avm

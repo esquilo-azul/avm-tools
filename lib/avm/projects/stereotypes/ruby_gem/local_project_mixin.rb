@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'avm/patches/eac_ruby_gems_utils/gem'
+require 'avm/eac_ruby_base1/sources/base'
 require 'avm/version_number'
 require 'eac_ruby_utils/core_ext'
 
@@ -9,9 +9,9 @@ module Avm
     module Stereotypes
       class RubyGem
         module LocalProjectMixin
-          # @return [EacRubyGemsUtils::Gem]
+          # @return [Avm::EacRubyBase1::Sources::Base]
           def ruby_gem
-            @ruby_gem ||= ::EacRubyGemsUtils::Gem.new(path)
+            @ruby_gem ||= ::Avm::EacRubyBase1::Sources::Base.new(path)
           end
 
           def version
