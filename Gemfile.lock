@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    avm-tools (0.120.1)
+    avm-tools (0.120.2)
       aranha-parsers (~> 0.4)
       avm (~> 0.22)
       avm-eac_asciidoctor_base0 (~> 0.3, >= 0.3.4)
@@ -200,10 +200,10 @@ GEM
       parslet (~> 1.5)
     curb (0.9.11)
     diff-lcs (1.5.0)
-    eac_ruby_base0 (0.16.4)
+    eac_ruby_base0 (0.16.5)
+      avm-eac_ruby_base1 (~> 0.8)
       eac_cli (~> 0.27, >= 0.27.5)
       eac_fs (~> 0.10)
-      eac_ruby_gems_utils (~> 0.9.6, ~> 0.9)
       eac_ruby_utils (~> 0.95, >= 0.95.1)
     eac_ruby_gem_support (0.5.1)
       eac_ruby_utils (~> 0.74)
