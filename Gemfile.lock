@@ -84,14 +84,6 @@ PATH
       eac_ruby_utils (~> 0.76)
 
 PATH
-  remote: sub/eac_cli
-  specs:
-    eac_cli (0.27.5)
-      colorize (~> 0.8.1)
-      eac_config (~> 0.8)
-      eac_ruby_utils (~> 0.95)
-
-PATH
   remote: sub/eac_config
   specs:
     eac_config (0.8.1)
@@ -195,6 +187,10 @@ GEM
       parslet (~> 1.5)
     curb (0.9.11)
     diff-lcs (1.5.0)
+    eac_cli (0.27.5)
+      colorize (~> 0.8.1)
+      eac_config (~> 0.8)
+      eac_ruby_utils (~> 0.95)
     eac_ruby_base0 (0.16.5)
       avm-eac_ruby_base1 (~> 0.8)
       eac_cli (~> 0.27, >= 0.27.5)
@@ -311,7 +307,6 @@ DEPENDENCIES
   avm-files!
   avm-git!
   avm-tools!
-  eac_cli!
   eac_config!
   eac_docker!
   eac_fs!
