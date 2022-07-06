@@ -20,7 +20,7 @@ module Avm
 
           def show_instance
             infov 'Path', instance.path
-            infov 'Stereotypes', instance.stereotypes.map(&:label).join(', ')
+            infov 'Launcher stereotypes', instance.stereotypes.map(&:label).join(', ')
           end
 
           def show_source
