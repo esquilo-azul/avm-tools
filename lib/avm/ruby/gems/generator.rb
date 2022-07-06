@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'avm/eac_ruby_base1/sources/base'
 require 'eac_templates/core_ext'
 require 'eac_ruby_utils/core_ext'
 
@@ -110,7 +111,7 @@ module Avm
         end
 
         def self_gem_uncached
-          ::EacRubyGemsUtils::Gem.new(root_directory)
+          ::Avm::EacRubyBase1::Sources::Base.new(root_directory)
         end
 
         def template_apply(from, to)

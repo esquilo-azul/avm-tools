@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'avm/eac_ruby_base1/sources/base'
 require 'avm/tools/runner'
 
 ::RSpec.describe ::Avm::Tools::Runner::Ruby::Rubocop do
@@ -11,13 +12,13 @@ require 'avm/tools/runner'
 
   {
     dir1: '0.48.1',
-    dir2: ::EacRubyGemsUtils::Gem.new(APP_ROOT).gemfile_lock_gem_version('rubocop').to_s,
+    dir2: ::Avm::EacRubyBase1::Sources::Base.new(APP_ROOT).gemfile_lock_gem_version('rubocop').to_s,
     dir3: '0.48.1',
     dir4: '33.33.33'
   }.each do |dir_name, rubocop_version|
     context "when dir is #{dir_name}" do
       let(:dir) { send(dir_name) }
-      let(:thegem) { ::EacRubyGemsUtils::Gem.new(dir) }
+      let(:thegem) { ::Avm::EacRubyBase1::Sources::Base.new(dir) }
 
       before do
         thegem.bundle.system! if thegem.gemfile_path.exist?
