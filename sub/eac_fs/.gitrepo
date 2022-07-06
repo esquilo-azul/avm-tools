@@ -1,7 +1,0 @@
-[subrepo]
-  cmdver = 0.4.1
-  commit = cd8f5600e1af540b094db141703de88e823491e1
-  method = merge
-  parent = 3e8a83bd0c66d9db0a092453d7adde95c6a01c5c
-  branch = master
-  remote = https://github.com/esquilo-azul/eac_fs.git

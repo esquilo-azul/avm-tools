@@ -98,14 +98,6 @@ PATH
       eac_templates (~> 0.1)
 
 PATH
-  remote: sub/eac_fs
-  specs:
-    eac_fs (0.12.1)
-      content-type
-      eac_ruby_utils (~> 0.70)
-      ruby-filemagic
-
-PATH
   remote: sub/eac_git
   specs:
     eac_git (0.12.1)
@@ -191,6 +183,10 @@ GEM
       colorize (~> 0.8.1)
       eac_config (~> 0.8)
       eac_ruby_utils (~> 0.95)
+    eac_fs (0.12.1)
+      content-type
+      eac_ruby_utils (~> 0.70)
+      ruby-filemagic
     eac_ruby_base0 (0.16.5)
       avm-eac_ruby_base1 (~> 0.8)
       eac_cli (~> 0.27, >= 0.27.5)
@@ -309,7 +305,6 @@ DEPENDENCIES
   avm-tools!
   eac_config!
   eac_docker!
-  eac_fs!
   eac_git!
   eac_rest!
   eac_ruby_gem_support (~> 0.5.1)
