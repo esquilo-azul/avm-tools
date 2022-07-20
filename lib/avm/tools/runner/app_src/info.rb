@@ -9,12 +9,14 @@ module Avm
         class Info
           runner_with :help do
             desc 'Show information about local project instance.'
+            bool_opt '-p', '--parent', 'Show the parent source.'
             bool_opt '-t', '--tests', 'Show test commands.'
           end
 
           def run
             show_instance
             show_source
+            show_parent
             show_test_commands
           end
 
@@ -23,6 +25,12 @@ module Avm
           def show_instance
             infov 'Path', instance.path
             infov 'Launcher stereotypes', instance.stereotypes.map(&:label).join(', ')
+          end
+
+          def show_parent
+            return unless parsed.parent?
+
+            infov 'Parent', runner_context.call(:subject).parent
           end
 
           def show_source
