@@ -1,7 +1,0 @@
-[subrepo]
-  cmdver = 0.4.1
-  commit = 2eb2217e4258cf8718d578f625c2ec4ac3825716
-  method = merge
-  parent = 08ddc11f566465846de62a44983d458af92bf508
-  branch = master
-  remote = https://github.com/esquilo-azul/eac_config.git

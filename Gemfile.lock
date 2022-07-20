@@ -60,13 +60,6 @@ PATH
       eac_ruby_utils (~> 0.76)
 
 PATH
-  remote: sub/eac_config
-  specs:
-    eac_config (0.8.1)
-      addressable
-      eac_ruby_utils (~> 0.83)
-
-PATH
   remote: sub/eac_docker
   specs:
     eac_docker (0.4.1)
@@ -162,6 +155,9 @@ GEM
       colorize (~> 0.8.1)
       eac_config (~> 0.8)
       eac_ruby_utils (~> 0.95)
+    eac_config (0.8.1)
+      addressable
+      eac_ruby_utils (~> 0.83)
     eac_fs (0.12.2)
       content-type
       eac_ruby_utils (~> 0.70)
@@ -285,7 +281,6 @@ DEPENDENCIES
   avm-files!
   avm-git!
   avm-tools!
-  eac_config!
   eac_docker!
   eac_git!
   eac_rest!
