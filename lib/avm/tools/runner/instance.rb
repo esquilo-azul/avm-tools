@@ -14,6 +14,10 @@ module Avm
           subcommands
         end
 
+        def extra_available_subcommands
+          instance.if_present({}, &:extra_available_subcommands)
+        end
+
         private
 
         def instance_uncached
