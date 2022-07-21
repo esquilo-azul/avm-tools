@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'avm/instances/base'
+require 'avm/registry'
 require 'eac_cli/core_ext'
 
 module Avm
@@ -21,7 +22,7 @@ module Avm
         private
 
         def instance_uncached
-          ::Avm::Instances::Base.by_id(parsed.instance_id)
+          ::Avm::Registry.instances.detect(parsed.instance_id)
         end
       end
     end
