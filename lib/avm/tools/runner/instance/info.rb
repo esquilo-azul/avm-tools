@@ -22,6 +22,7 @@ module Avm
           def base_banner
             infov 'ID', instance.id
             infov 'Application ID', instance.application.id
+            infov 'Application stereotype', instance.application.stereotype
             infov 'Suffix', instance.suffix
           end
 
