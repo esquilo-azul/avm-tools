@@ -4,7 +4,6 @@ require:
 
 AllCops:
   Exclude:
-    - sub/**/*
     - spec/lib/avm/tools/runner/ruby/gems/generate_spec_files/**/*
   TargetRailsVersion: 5.2
   TargetRubyVersion: 2.7
