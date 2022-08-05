@@ -13,7 +13,7 @@ module Avm
         private
 
         def target_subpath
-          ::Avm::EacWritingsBase0::ProjectBuild.chapter_filename(
+          ::Avm::EacLatexBase0::Sources::Build.chapter_filename(
             File.basename(File.dirname(subpath))
           ) + '.tex'
         end

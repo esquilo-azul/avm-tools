@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'avm/eac_writings_base0/project_build'
+require 'avm/eac_latex_base0/sources/build'
 require 'eac_cli/core_ext'
 
 module Avm
@@ -19,7 +19,7 @@ module Avm
             def run
               runner_context.call(:project_banner)
               infov 'Build options', build_options
-              ::Avm::EacWritingsBase0::ProjectBuild.new(runner_context.call(:project), parsed)
+              ::Avm::EacLatexBase0::Sources::Build.new(runner_context.call(:project), parsed)
             end
 
             private

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'avm/eac_writings_base0/project_build'
+require 'avm/eac_latex_base0/sources/build'
 require 'eac_cli/core_ext'
 
 module Avm

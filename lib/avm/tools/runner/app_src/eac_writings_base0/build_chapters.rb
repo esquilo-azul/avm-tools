@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'avm/eac_writings_base0/project_build'
+require 'avm/eac_latex_base0/sources/build'
 require 'eac_cli/core_ext'
 
 module Avm
@@ -17,7 +17,7 @@ module Avm
               runner_context.call(:project_banner)
               output_dir.mkpath
               project.chapters.each_with_index do |c, i|
-                ::Avm::EacWritingsBase0::ProjectBuild.new(project, chapter_build_options(c, i))
+                ::Avm::EacLatexBase0::Sources::Build.new(project, chapter_build_options(c, i))
               end
             end
 
