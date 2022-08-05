@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'avm/eac_writings_base0/project'
+require 'avm/eac_latex_base0/sources/base'
 require 'eac_cli/core_ext'
 
 module Avm
@@ -24,7 +24,7 @@ module Avm
           private
 
           def project_uncached
-            ::Avm::EacWritingsBase0::Project.new(runner_context.call(:instance_path))
+            ::Avm::EacLatexBase0::Sources::Base.new(runner_context.call(:instance_path))
           end
         end
       end
