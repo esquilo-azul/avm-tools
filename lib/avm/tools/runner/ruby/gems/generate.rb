@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'avm/ruby/gems/generator'
+require 'avm/eac_ruby_base1/source_generators/base'
 require 'eac_cli/core_ext'
 
 module Avm
@@ -23,7 +23,7 @@ module Avm
             private
 
             def generator_uncached
-              ::Avm::Ruby::Gems::Generator.new(parsed.path, generator_options)
+              ::Avm::EacRubyBase1::SourceGenerators::Base.new(parsed.path, generator_options)
             end
 
             def generator_options
