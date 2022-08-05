@@ -1,18 +1,14 @@
 # frozen_string_literal: true
 
+require 'avm/sources/runner'
 require 'avm/tools/app_src'
 require 'eac_cli/core_ext'
 
 module Avm
   module Tools
     class Runner
-      class AppSrc
+      class AppSrc < ::Avm::Sources::Runner
         require_sub __FILE__
-        runner_with :help, :subcommands do
-          desc 'Utilities for local projects.'
-          arg_opt '-C', '--path', 'Path to local project instance.'
-          subcommands
-        end
 
         def instance_banner
           infov 'Instance', instance
@@ -20,19 +16,13 @@ module Avm
         end
 
         def subject
-          instance.avm_instance
+          source
         end
-
-        delegate :extra_available_subcommands, to: :subject
 
         private
 
         def instance_uncached
-          ::Avm::Tools::AppSrc.new(instance_path)
-        end
-
-        def instance_path_uncached
-          (parsed.path || '.').to_pathname.expand_path
+          ::Avm::Tools::AppSrc.new(source_path)
         end
       end
     end
