@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'avm-eac_ruby_base1', '~> 0.19'
   s.add_dependency 'avm-eac_ubuntu_base0', '~> 0.3'
   s.add_dependency 'avm-files', '~> 0.3', '>= 0.3.2'
-  s.add_dependency 'avm-git', '~> 0.3', '>= 0.3.1'
+  s.add_dependency 'avm-git', '~> 0.4'
   s.add_dependency 'clipboard', '~> 1.3', '>= 1.3.3'
   s.add_dependency 'curb', '~> 0.9.10'
   s.add_dependency 'eac_git', '~> 0.12', '>= 0.12.1'
