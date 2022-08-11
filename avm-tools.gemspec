@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'clipboard', '~> 1.3', '>= 1.3.6'
   s.add_dependency 'curb', '~> 0.9', '>= 0.9.11'
   s.add_dependency 'eac_git', '~> 0.12', '>= 0.12.1'
-  s.add_dependency 'eac_ruby_base0', '~> 0.16', '>= 0.16.4'
+  s.add_dependency 'eac_ruby_base0', '~> 0.16', '>= 0.16.6'
   s.add_dependency 'eac_templates', '~> 0.3', '>= 0.3.1'
   s.add_dependency 'git', '~> 1.7'
   s.add_dependency 'ruby-progressbar', '~> 1.10', '>= 1.10.1'
