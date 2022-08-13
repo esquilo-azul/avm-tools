@@ -14,18 +14,12 @@ module Avm
           end
 
           def run
-            show_instance
             show_source
             show_parent
             show_test_commands
           end
 
           private
-
-          def show_instance
-            infov 'Path', instance.path
-            infov 'Launcher stereotypes', instance.stereotypes.map(&:label).join(', ')
-          end
 
           def show_parent
             return unless parsed.parent?
@@ -34,6 +28,7 @@ module Avm
           end
 
           def show_source
+            infov 'Path', runner_context.call(:subject).path
             infov 'Stereotype', runner_context.call(:subject).class
             infov 'SCM', runner_context.call(:subject).scm
           end
