@@ -9,6 +9,7 @@ module Avm
         class Info
           SOURCE_PROPERTIES = {
             path: 'Path',
+            application: 'Application',
             class: 'Stereotype',
             scm: 'SCM'
           }.freeze
