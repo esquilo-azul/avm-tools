@@ -7,6 +7,12 @@ module Avm
     class Runner
       class AppSrc
         class Info
+          SOURCE_PROPERTIES = {
+            path: 'Path',
+            class: 'Stereotype',
+            scm: 'SCM'
+          }.freeze
+
           runner_with :help do
             desc 'Show information about local project instance.'
             bool_opt '-p', '--parent', 'Show the parent source.'
@@ -28,9 +34,9 @@ module Avm
           end
 
           def show_source
-            infov 'Path', runner_context.call(:subject).path
-            infov 'Stereotype', runner_context.call(:subject).class
-            infov 'SCM', runner_context.call(:subject).scm
+            SOURCE_PROPERTIES.each do |property, label|
+              infov label, runner_context.call(:subject).send(property)
+            end
           end
 
           def show_test_commands
