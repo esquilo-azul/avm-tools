@@ -71,7 +71,7 @@ module Avm
           def dev_instance_fs_path
             instance.if_present do |v|
               v.application.instance('dev').read_entry_optional(
-                ::Avm::Instances::EntryKeys::FS_PATH
+                ::Avm::Instances::EntryKeys::INSTALL_PATH
               )
             end
           end
