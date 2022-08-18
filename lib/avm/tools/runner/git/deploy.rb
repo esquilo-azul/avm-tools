@@ -86,7 +86,7 @@ module Avm
 
           def target_url
             parsed.target_url.if_present { |v| return v }
-            instance.if_present { |v| return v.read_entry(::Avm::Instances::EntryKeys::FS_URL) }
+            instance.if_present { |v| return v.install_url }
             nil
           end
 
