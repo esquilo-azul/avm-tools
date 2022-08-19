@@ -25,7 +25,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'eac_git', '~> 0.12', '>= 0.12.2'
   s.add_dependency 'eac_ruby_base0', '~> 0.16', '>= 0.16.6'
   s.add_dependency 'eac_templates', '~> 0.3', '>= 0.3.1'
-  s.add_dependency 'git', '~> 1.11'
+  s.add_dependency 'git', '~> 1.12'
   s.add_dependency 'ruby-progressbar', '~> 1.11'
 
   s.add_development_dependency 'eac_ruby_gem_support', '~> 0.5.1'
