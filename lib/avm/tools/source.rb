@@ -10,7 +10,7 @@ require 'i18n'
 
 module Avm
   module Tools
-    class AppSrc
+    class Source
       enable_simple_cache
       common_constructor :path do
         self.path = path.to_pathname
