@@ -6,7 +6,7 @@ require 'avm/git/issue/deliver'
 module Avm
   module Tools
     class Runner
-      class AppSrc
+      class Source < ::Avm::Sources::Runner
         class Issue
           class Deliver
             runner_with :confirmation, :help do

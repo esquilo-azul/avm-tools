@@ -5,7 +5,7 @@ require 'eac_cli/core_ext'
 module Avm
   module Tools
     class Runner
-      class AppSrc
+      class Source < ::Avm::Sources::Runner
         class Ruby
           require_sub __FILE__
           runner_with :help, :subcommands do

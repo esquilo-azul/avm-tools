@@ -5,7 +5,7 @@ require 'avm/tools/core_ext'
 module Avm
   module Tools
     class Runner
-      class AppSrc
+      class Source < ::Avm::Sources::Runner
         class Issue
           require_sub __FILE__
           runner_with :help, :subcommands do

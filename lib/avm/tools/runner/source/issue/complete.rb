@@ -6,7 +6,7 @@ require 'avm/git/issue/complete'
 module Avm
   module Tools
     class Runner
-      class AppSrc
+      class Source < ::Avm::Sources::Runner
         class Issue
           class Complete
             runner_with :confirmation, :help do

@@ -6,7 +6,7 @@ require 'avm/sources/tests/builder'
 module Avm
   module Tools
     class Runner
-      class AppSrc
+      class Source < ::Avm::Sources::Runner
         class Test
           runner_with :help do
             desc 'Test local project.'
@@ -83,7 +83,7 @@ module Avm
           def unit_result(unit)
             (
               [unit.result.to_label] +
-              %i[stdout stderr].map { |label| "#{label.to_s.upcase}: #{unit.logs[label]}" }
+                %i[stdout stderr].map { |label| "#{label.to_s.upcase}: #{unit.logs[label]}" }
             ).join(' | '.blue)
           end
         end

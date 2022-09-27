@@ -5,7 +5,7 @@ require 'avm/tools/core_ext'
 module Avm
   module Tools
     class Runner
-      class AppSrc
+      class Source < ::Avm::Sources::Runner
         class Info
           SOURCE_PROPERTIES = {
             path: 'Path',

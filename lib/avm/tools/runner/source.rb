@@ -7,7 +7,7 @@ require 'eac_cli/core_ext'
 module Avm
   module Tools
     class Runner
-      class AppSrc < ::Avm::Sources::Runner
+      class Source < ::Avm::Sources::Runner
         require_sub __FILE__
 
         def instance_banner

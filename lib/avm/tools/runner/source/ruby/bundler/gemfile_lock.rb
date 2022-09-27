@@ -5,7 +5,7 @@ require 'eac_ruby_base0/core_ext'
 module Avm
   module Tools
     class Runner
-      class AppSrc
+      class Source < ::Avm::Sources::Runner
         class Ruby
           class Bundler
             class GemfileLock
