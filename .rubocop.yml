@@ -20,7 +20,6 @@ Layout/MultilineMethodCallIndentation:
 
 Metrics/AbcSize:
   Exclude:
-    - spec/lib/avm/launcher/ruby/gem/build_spec.rb
     - spec/lib/avm/projects/stereotypes/git_subrepo/publish_spec.rb
 
 Rails/DynamicFindBy:
@@ -38,12 +37,8 @@ Rails/TimeZone:
 RSpec:
   Exclude:
     - spec/lib/avm/launcher/context_spec.rb
-    - spec/lib/avm/launcher/ruby/gem/build_spec.rb
-    - spec/lib/avm/launcher/ruby/gem/specification_spec.rb
     - spec/lib/avm/projects/stereotypes/git_subrepo/publish_spec.rb
     - spec/lib/avm/projects/stereotypes/git_subrepo/warp_spec.rb
-    - spec/lib/avm/projects/stereotypes/ruby_gem_spec.rb
-    - spec/lib/avm/projects/stereotypes/ruby_gem/publish_spec.rb
 
 Style/AsciiComments:
   Enabled: false

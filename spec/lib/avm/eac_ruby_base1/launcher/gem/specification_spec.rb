@@ -5,14 +5,14 @@ RSpec.describe ::Avm::EacRubyBase1::Launcher::Gem::Specification do
   let(:instance) { described_class.new(gemspec_file) }
 
   describe '#parse_version_file' do
-    it 'parses valid version file' do
+    it 'parses valid version file' do # rubocop:disable RSpec/MultipleExpectations
       file = ::File.join(DUMMY_DIR, 'ruby_gem_stub', 'lib', 'ruby_gem_stub', 'version.rb')
       expect(::File.exist?(file)).to eq true
       version = described_class.parse_version_file(file)
       expect(version).to eq('1.0.0.pre.stub')
     end
 
-    it 'does not parse invalid version file' do
+    it 'does not parse invalid version file' do # rubocop:disable RSpec/MultipleExpectations
       file = __FILE__
       expect(::File.exist?(file)).to eq true
       version = described_class.parse_version_file(file)

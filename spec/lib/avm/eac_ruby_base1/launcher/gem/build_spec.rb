@@ -7,7 +7,7 @@ RSpec.describe ::Avm::EacRubyBase1::Launcher::Gem::Build do
   describe '#output_file' do
     let(:gem_dir) { ::File.join(DUMMY_DIR, 'ruby_gem_stub') }
 
-    it 'builds .gem file' do
+    it 'builds .gem file' do # rubocop:disable RSpec/ExampleLength
       expect(::File.directory?(gem_dir)).to eq true
       build = described_class.new(gem_dir)
 
@@ -32,7 +32,7 @@ RSpec.describe ::Avm::EacRubyBase1::Launcher::Gem::Build do
       expect(build.builded?).to eq false
     end
 
-    def assert_open(build)
+    def assert_open(build) # rubocop:disable Metrics/AbcSize
       expect(build.output_file.present?).to eq true
       expect(build.builded?).to eq true
       expect(::File.exist?(build.output_file)).to eq true
