@@ -2,7 +2,7 @@
 
 require 'avm/launcher/git/mirror_update'
 require 'avm/launcher/instances/error'
-require 'avm/launcher/vendor/github'
+require 'avm/git/vendor/github'
 require 'avm/projects/stereotypes/git/publish'
 
 module Avm
@@ -59,7 +59,7 @@ module Avm
         end
 
         def target_remote_url
-          ::Avm::Launcher::Vendor::Github.to_ssh_url(source_git.git.remote(source_remote_name).url)
+          ::Avm::Git::Vendor::Github.to_ssh_url(source_git.git.remote(source_remote_name).url)
         end
       end
     end

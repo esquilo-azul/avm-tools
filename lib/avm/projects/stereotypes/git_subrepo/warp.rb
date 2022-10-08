@@ -4,7 +4,7 @@ require 'eac_ruby_utils/simple_cache'
 require 'avm/launcher/git/sub_warp_base'
 require 'avm/launcher/errors/base'
 require 'avm/launcher/paths/real'
-require 'avm/launcher/vendor/github'
+require 'avm/git/vendor/github'
 
 module Avm
   module Projects
@@ -77,7 +77,7 @@ module Avm
           end
 
           def target_remote_url
-            ::Avm::Launcher::Vendor::Github.to_ssh_url(
+            ::Avm::Git::Vendor::Github.to_ssh_url(
               parent_git_warped.subrepo_remote_url(to_parent_git_path)
             )
           end
