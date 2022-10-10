@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'avm/projects/stereotype'
+require 'avm/launcher/stereotype'
 require 'avm/launcher/errors/base'
 
 module Avm
@@ -17,7 +17,7 @@ module Avm
         end
 
         def find_parent_instance(current)
-          if ::Avm::Projects::Stereotype.git_stereotypes.any? { |s| current.stereotype?(s) }
+          if ::Avm::Launcher::Stereotype.git_stereotypes.any? { |s| current.stereotype?(s) }
             return current
           end
 

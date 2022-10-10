@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'avm/projects/stereotype'
+require 'avm/launcher/stereotype'
 require 'avm/launcher/ruby/gem/specification'
 require 'eac_ruby_utils/core_ext'
 
@@ -9,7 +9,7 @@ module Avm
     module Stereotypes
       class RubyGem
         require_sub __FILE__
-        include Avm::Projects::Stereotype
+        include Avm::Launcher::Stereotype
 
         class << self
           def match?(path)

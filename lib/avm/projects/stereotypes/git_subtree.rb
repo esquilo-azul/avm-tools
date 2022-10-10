@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'avm/projects/stereotype'
+require 'avm/launcher/stereotype'
 require 'avm/projects/stereotypes/git'
 require 'eac_ruby_utils/core_ext'
 
@@ -9,7 +9,7 @@ module Avm
     module Stereotypes
       class GitSubtree
         require_sub __FILE__
-        include Avm::Projects::Stereotype
+        include Avm::Launcher::Stereotype
 
         class << self
           def match?(path)
@@ -42,7 +42,7 @@ module Avm
           end
 
           def other_nogit_stereotype?(path)
-            Avm::Projects::Stereotype.nogit_stereotypes.any? { |s| s.match?(path) }
+            Avm::Launcher::Stereotype.nogit_stereotypes.any? { |s| s.match?(path) }
           end
         end
       end

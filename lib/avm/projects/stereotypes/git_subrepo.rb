@@ -2,14 +2,14 @@
 
 require 'avm/launcher/git/error'
 require 'eac_ruby_utils/core_ext'
-require 'avm/projects/stereotype'
+require 'avm/launcher/stereotype'
 
 module Avm
   module Projects
     module Stereotypes
       class GitSubrepo
         require_sub __FILE__
-        include Avm::Projects::Stereotype
+        include Avm::Launcher::Stereotype
 
         class << self
           def match?(path)

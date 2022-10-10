@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'avm/launcher/context'
+require 'avm/launcher/stereotype'
 
 RSpec.describe ::Avm::Launcher::Context do
   describe '#instances' do
@@ -43,7 +44,7 @@ RSpec.describe ::Avm::Launcher::Context do
 
         it { expect(sub).to be_a(::Avm::Launcher::Instances::Base) }
         it do
-          ::Avm::Projects::Stereotype.git_stereotypes
+          ::Avm::Launcher::Stereotype.git_stereotypes
             .each { |s| expect(sub.stereotypes).not_to include(s) }
         end
         it { expect(instance).to be_a(::Avm::Launcher::Instances::Base) }
@@ -63,7 +64,7 @@ RSpec.describe ::Avm::Launcher::Context do
 
         it { expect(sub).to be_a(::Avm::Launcher::Instances::Base) }
         it do
-          ::Avm::Projects::Stereotype.git_stereotypes
+          ::Avm::Launcher::Stereotype.git_stereotypes
             .each { |s| expect(sub.stereotypes).not_to include(s) }
         end
         it { expect(instance).to be_a(::Avm::Launcher::Instances::Base) }
