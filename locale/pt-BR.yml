@@ -1,7 +1,0 @@
-pt-BR:
-  avm:
-    projects:
-      stereotypes:
-        ruby_gem:
-          version_bump:
-            git_commit_message: Versão para '%{version}'.
