@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'avm/sources/runner'
-require 'avm/tools/source'
 require 'eac_cli/core_ext'
 
 module Avm
@@ -12,12 +11,6 @@ module Avm
 
         def subject
           source
-        end
-
-        private
-
-        def instance_uncached
-          ::Avm::Tools::Source.new(source_path)
         end
       end
     end
