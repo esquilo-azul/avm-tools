@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 require 'active_support/core_ext/object'
-require 'avm/launcher/ruby/gem/build'
+require 'avm/eac_ruby_base1/launcher/gem/build'
 
-RSpec.describe ::Avm::Launcher::Ruby::Gem::Build do
+RSpec.describe ::Avm::EacRubyBase1::Launcher::Gem::Build do
   describe '#output_file' do
     let(:gem_dir) { ::File.join(DUMMY_DIR, 'ruby_gem_stub') }
 

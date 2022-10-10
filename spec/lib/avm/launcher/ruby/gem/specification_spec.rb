@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe ::Avm::Launcher::Ruby::Gem::Specification do
+RSpec.describe ::Avm::EacRubyBase1::Launcher::Gem::Specification do
   let(:gemspec_file) { ::File.join(DUMMY_DIR, 'ruby_gem_stub', 'ruby_gem_stub.gemspec') }
   let(:instance) { described_class.new(gemspec_file) }
 
