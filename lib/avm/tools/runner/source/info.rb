@@ -48,10 +48,6 @@ module Avm
               infov "  * #{name}", command
             end
           end
-
-          def instance
-            runner_context.call(:instance)
-          end
         end
       end
     end
