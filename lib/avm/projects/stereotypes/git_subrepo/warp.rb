@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'eac_ruby_utils/simple_cache'
-require 'avm/launcher/git/sub_warp_base'
+require 'avm/git/launcher/sub_warp_base'
 require 'avm/launcher/errors/base'
 require 'avm/launcher/paths/real'
 require 'avm/git/vendor/github'
@@ -11,7 +11,7 @@ module Avm
     module Stereotypes
       class GitSubrepo
         class Warp < ::Avm::Launcher::Paths::Real
-          include ::Avm::Launcher::Git::SubWarpBase
+          include ::Avm::Git::Launcher::SubWarpBase
           include ::EacRubyUtils::SimpleCache
 
           attr_reader :instance
@@ -46,11 +46,11 @@ module Avm
           end
 
           def init_aux
-            ::Avm::Launcher::Git::Base.new(aux_path).init_bare
+            ::Avm::Git::Launcher::Base.new(aux_path).init_bare
           end
 
           def parent_git_warped_uncached
-            ::Avm::Launcher::Git::Base.new(parent_instance.warped)
+            ::Avm::Git::Launcher::Base.new(parent_instance.warped)
           end
 
           def aux_path
@@ -58,7 +58,7 @@ module Avm
           end
 
           def warped_git_uncached
-            ::Avm::Launcher::Git::Base.new(instance.cache_path('git_repository'))
+            ::Avm::Git::Launcher::Base.new(instance.cache_path('git_repository'))
           end
 
           def push_to_aux
@@ -68,11 +68,11 @@ module Avm
           end
 
           def reset
-            ::Avm::Launcher::Git::MirrorUpdate.new(warped_git, aux_path, 'master')
+            ::Avm::Git::Launcher::MirrorUpdate.new(warped_git, aux_path, 'master')
           end
 
           def assert_target_remote
-            warped_git.assert_remote_url(::Avm::Launcher::Git::WarpBase::TARGET_REMOTE,
+            warped_git.assert_remote_url(::Avm::Git::Launcher::WarpBase::TARGET_REMOTE,
                                          target_remote_url)
           end
 

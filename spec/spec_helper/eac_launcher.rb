@@ -26,15 +26,15 @@ RSpec.configure do |config|
   end
 
   def init_remote(name)
-    require 'avm/launcher/git/base'
-    r = ::Avm::Launcher::Git::Base.new(::File.join(@remotes_dir, name))
+    require 'avm/git/launcher/base'
+    r = ::Avm::Git::Launcher::Base.new(::File.join(@remotes_dir, name))
     r.init_bare
     r
   end
 
   def init_git(subdir)
-    require 'avm/launcher/git/base'
-    r = ::Avm::Launcher::Git::Base.new(::File.join(::Avm::Launcher::Context.current.root.real,
+    require 'avm/git/launcher/base'
+    r = ::Avm::Git::Launcher::Base.new(::File.join(::Avm::Launcher::Context.current.root.real,
                                                    subdir))
     r.git
     r.execute!('config', 'user.email', 'theuser@example.net')

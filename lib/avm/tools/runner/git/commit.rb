@@ -2,7 +2,7 @@
 
 require 'eac_cli/speaker'
 require 'eac_ruby_utils/simple_cache'
-require 'avm/launcher/git/base'
+require 'avm/git/launcher/base'
 require 'filesize'
 require 'avm/git/commit'
 
@@ -76,7 +76,7 @@ module Avm
           end
 
           def git_uncached
-            ::Avm::Launcher::Git::Base.new(runner_context.call(:repository_path))
+            ::Avm::Git::Launcher::Base.new(runner_context.call(:repository_path))
           end
 
           def commit_uncached

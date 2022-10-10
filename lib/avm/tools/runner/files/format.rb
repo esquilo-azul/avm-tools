@@ -2,7 +2,7 @@
 
 require 'avm/files/formatter'
 require 'eac_cli/core_ext'
-require 'avm/launcher/git/base'
+require 'avm/git/launcher/base'
 
 module Avm
   module Tools
@@ -29,7 +29,7 @@ module Avm
           end
 
           def git
-            @git ||= ::Avm::Launcher::Git::Base.new('.')
+            @git ||= ::Avm::Git::Launcher::Base.new('.')
           end
 
           def git_dirty_files

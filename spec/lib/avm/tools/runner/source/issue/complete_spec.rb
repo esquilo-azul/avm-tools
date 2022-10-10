@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'avm/launcher/git/base'
+require 'avm/git/launcher/base'
 require 'avm/tools/runner'
 require 'tmpdir'
 require 'fileutils'
@@ -10,7 +10,7 @@ require 'fileutils'
   let(:issue_ref) { 'issue_123' }
   let(:remote_repos) { stubbed_git_local_repo(true) }
   let(:local_repos) { stubbed_git_local_repo }
-  let(:eac_local_repos) { ::Avm::Launcher::Git::Base.new(local_repos.root_path.to_path) }
+  let(:eac_local_repos) { ::Avm::Git::Launcher::Base.new(local_repos.root_path.to_path) }
 
   context 'when branch is pushed' do
     before do

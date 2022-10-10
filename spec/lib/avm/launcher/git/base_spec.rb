@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'avm/launcher/git/base'
+require 'avm/git/launcher/base'
 
-RSpec.describe ::Avm::Launcher::Git::Base do
+RSpec.describe ::Avm::Git::Launcher::Base do
   context 'new non-bare repository' do
     let(:repo) do
       r = described_class.new(::Dir.mktmpdir)

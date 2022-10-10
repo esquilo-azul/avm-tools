@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'avm/launcher/git/error'
+require 'avm/git/launcher/error'
 require 'eac_ruby_utils/core_ext'
 require 'avm/launcher/stereotype'
 
@@ -25,7 +25,7 @@ module Avm
               m = /remote\s*=\s(.+)/.match(l)
               return m[1] if m
             end
-            raise ::Avm::Launcher::Git::Error.new(path, '"remote = ... " not found')
+            raise ::Avm::Git::Launcher::Error.new(path, '"remote = ... " not found')
           end
         end
       end

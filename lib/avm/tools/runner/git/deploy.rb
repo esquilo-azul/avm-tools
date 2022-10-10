@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'avm/launcher/git/base'
+require 'avm/git/launcher/base'
 require 'avm/git/commit'
 require 'eac_config/node'
 
@@ -57,7 +57,7 @@ module Avm
           end
 
           def git_uncached
-            ::Avm::Launcher::Git::Base.new(git_repository_path)
+            ::Avm::Git::Launcher::Base.new(git_repository_path)
           end
 
           def git_repository_path

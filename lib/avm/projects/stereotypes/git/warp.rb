@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require 'avm/launcher/git/warp_base'
+require 'avm/git/launcher/warp_base'
 
 module Avm
   module Projects
     module Stereotypes
       class Git
-        class Warp < ::Avm::Launcher::Git::WarpBase
+        class Warp < ::Avm::Git::Launcher::WarpBase
           private
 
           def current_ref
