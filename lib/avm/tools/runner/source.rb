@@ -10,11 +10,6 @@ module Avm
       class Source < ::Avm::Sources::Runner
         require_sub __FILE__
 
-        def instance_banner
-          infov 'Instance', instance
-          infov 'Stereotypes', instance.stereotypes.map(&:label).join(', ')
-        end
-
         def subject
           source
         end

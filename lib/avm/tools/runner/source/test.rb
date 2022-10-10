@@ -65,7 +65,7 @@ module Avm
           end
 
           def start_banner
-            runner_context.call(:instance_banner)
+            runner_context.call(:source_banner)
             infov 'Selected units', test_performer.units.count
           end
 
