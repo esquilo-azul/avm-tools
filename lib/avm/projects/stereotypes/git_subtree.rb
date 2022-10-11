@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'avm/launcher/stereotype'
-require 'avm/projects/stereotypes/git'
+require 'avm/git/launcher_stereotypes/git'
 require 'eac_ruby_utils/core_ext'
 
 module Avm
@@ -29,7 +29,7 @@ module Avm
           def parent_git(parent_path)
             return nil unless parent_path
 
-            if ::Avm::Projects::Stereotypes::Git.match?(parent_path)
+            if ::Avm::Git::LauncherStereotypes::Git.match?(parent_path)
               parent_path
             else
               parent_git(parent_path.parent_path)
@@ -37,7 +37,7 @@ module Avm
           end
 
           def other_git_stereotype?(path)
-            ::Avm::Projects::Stereotypes::Git.match?(path) ||
+            ::Avm::Git::LauncherStereotypes::Git.match?(path) ||
               ::Avm::Projects::Stereotypes::GitSubrepo.match?(path)
           end
 

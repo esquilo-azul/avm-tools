@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'avm/git/launcher_stereotypes/git'
 require 'eac_ruby_utils/core_ext'
 
 module Avm
