@@ -68,7 +68,7 @@ RSpec.describe ::Avm::Launcher::Context do
             .each { |s| expect(sub.stereotypes).not_to include(s) }
         end
         it { expect(instance).to be_a(::Avm::Launcher::Instances::Base) }
-        it { expect(instance.stereotypes).to include(::Avm::Projects::Stereotypes::GitSubtree) }
+        it { expect(instance.stereotypes).to include(::Avm::Git::LauncherStereotypes::GitSubtree) }
       end
 
       context 'subtree present' do
@@ -82,7 +82,7 @@ RSpec.describe ::Avm::Launcher::Context do
         it 'recognizes subtree instance' do
           i = described_class.current.instance('/subtree_main_app/mylib')
           expect(i).to be_a(::Avm::Launcher::Instances::Base)
-          expect(i.stereotypes).to include(::Avm::Projects::Stereotypes::GitSubtree)
+          expect(i.stereotypes).to include(::Avm::Git::LauncherStereotypes::GitSubtree)
         end
       end
 
