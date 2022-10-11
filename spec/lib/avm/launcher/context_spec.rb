@@ -23,14 +23,14 @@ RSpec.describe ::Avm::Launcher::Context do
         @repos = init_remote('mylib_repos')
 
         wc = init_git('mylib_wc')
-        touch_commit(wc, 'init.rb')
+        touch_commit(wc, 'app.gemspec')
         wc.execute!('remote', 'add', 'origin', @repos)
         wc.execute!('push', 'origin', 'master')
       end
 
       it 'recovers recursive subinstance GitSubrepo' do
         app = init_git('app')
-        touch_commit(app, 'sub1/init.rb')
+        touch_commit(app, 'sub1/app.gemspec')
         app.execute!('subrepo', 'clone', @repos, 'sub1/mylib')
         sub = described_class.current.instance('/app/sub1')
         expect(sub).to be_a(::Avm::Launcher::Instances::Base)
@@ -44,7 +44,7 @@ RSpec.describe ::Avm::Launcher::Context do
 
       it 'recovers recursive subinstance GitSubtree' do
         app = init_git('app')
-        touch_commit(app, 'sub1/init.rb')
+        touch_commit(app, 'sub1/app.gemspec')
         app.execute!('subtree', 'add', '-P', 'sub1/mylib', @repos, 'master')
         app.execute!('remote', 'add', 'mylib', @repos)
         sub = described_class.current.instance('/app/sub1')
