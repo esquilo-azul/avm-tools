@@ -10,4 +10,8 @@ require 'avm/tools/runner'
   it do
     expect { avm_tools_runner_run }.not_to raise_error
   end
+
+  it do
+    expect { avm_tools_runner_run('--deprecated') }.not_to raise_error
+  end
 end

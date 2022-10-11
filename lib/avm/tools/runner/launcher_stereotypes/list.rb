@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'avm/launcher/stereotype'
+require 'avm/projects/stereotypes'
 require 'avm/tools/core_ext'
 
 module Avm
@@ -7,7 +9,9 @@ module Avm
     class Runner
       class LauncherStereotypes
         class List
-          runner_with :help, :output
+          runner_with :help, :output do
+            bool_opt '-d', '--deprecated'
+          end
 
           def run
             infov 'Found', stereotypes.count
@@ -21,11 +25,15 @@ module Avm
           private
 
           def stereotypes
-            registry_stereotypes
+            (parsed.deprecated? ? deprecated_stereotypes : registry_stereotypes)
           end
 
           def registry_stereotypes
             ::Avm::Registry.launcher_stereotypes.available.sort_by { |s| [s.name] }
+          end
+
+          def deprecated_stereotypes
+            ::Avm::Launcher::Stereotype.stereotypes.sort_by { |s| [s.stereotype_name] }
           end
         end
       end
