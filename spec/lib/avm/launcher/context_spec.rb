@@ -48,7 +48,7 @@ RSpec.describe ::Avm::Launcher::Context do
             .each { |s| expect(sub.stereotypes).not_to include(s) }
         end
         it { expect(instance).to be_a(::Avm::Launcher::Instances::Base) }
-        it { expect(instance.stereotypes).to include(::Avm::Projects::Stereotypes::GitSubrepo) }
+        it { expect(instance.stereotypes).to include(::Avm::Git::LauncherStereotypes::GitSubrepo) }
       end
 
       context 'when sub is a GitSubtree' do

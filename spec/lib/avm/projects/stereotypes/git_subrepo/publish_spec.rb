@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require 'avm/projects/stereotypes/git_subrepo/publish'
+require 'avm/git/launcher_stereotypes/git_subrepo/publish'
 require 'avm/launcher/publish/check_result'
 
-RSpec.describe Avm::Projects::Stereotypes::GitSubrepo::Publish do
+RSpec.describe Avm::Git::LauncherStereotypes::GitSubrepo::Publish do
   describe '#check' do
     context 'on clean context' do
       let(:settings_path) { ::File.join(__dir__, 'publish_spec_settings.yml') }
@@ -63,7 +63,7 @@ RSpec.describe Avm::Projects::Stereotypes::GitSubrepo::Publish do
         def check_publish_status(status_key)
           instance = app_mylib_instance
           expect(instance).to be_a(::Avm::Launcher::Instances::Base)
-          expect(instance.stereotypes).to include(::Avm::Projects::Stereotypes::GitSubrepo)
+          expect(instance.stereotypes).to include(::Avm::Git::LauncherStereotypes::GitSubrepo)
 
           status = ::Avm::Launcher::Publish::CheckResult.const_get("STATUS_#{status_key}".upcase)
           publish = described_class.new(instance)
