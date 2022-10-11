@@ -17,52 +17,65 @@ RSpec.describe ::Avm::Launcher::Context do
     end
 
     context 'subinstance mylib' do
-      before do
-        temp_context(::File.join(__dir__, 'context_spec.yml'))
-
-        @repos = init_remote('mylib_repos')
-
+      let(:mylib_repos) do
+        r = init_remote('mylib_repos')
         wc = init_git('mylib_wc')
         touch_commit(wc, 'app.gemspec')
-        wc.execute!('remote', 'add', 'origin', @repos)
+        wc.execute!('remote', 'add', 'origin', r)
         wc.execute!('push', 'origin', 'master')
+        r
       end
 
-      it 'recovers recursive subinstance GitSubrepo' do
-        app = init_git('app')
-        touch_commit(app, 'sub1/app.gemspec')
-        app.execute!('subrepo', 'clone', @repos, 'sub1/mylib')
-        sub = described_class.current.instance('/app/sub1')
-        expect(sub).to be_a(::Avm::Launcher::Instances::Base)
-        ::Avm::Projects::Stereotype.git_stereotypes.each do |s|
-          expect(sub.stereotypes).not_to include(s)
-        end
-        instance = described_class.current.instance('/app/sub1/mylib')
-        expect(instance).to be_a(::Avm::Launcher::Instances::Base)
-        expect(instance.stereotypes).to include(::Avm::Projects::Stereotypes::GitSubrepo)
+      before do
+        temp_context(::File.join(__dir__, 'context_spec.yml'))
+        mylib_repos
       end
 
-      it 'recovers recursive subinstance GitSubtree' do
-        app = init_git('app')
-        touch_commit(app, 'sub1/app.gemspec')
-        app.execute!('subtree', 'add', '-P', 'sub1/mylib', @repos, 'master')
-        app.execute!('remote', 'add', 'mylib', @repos)
-        sub = described_class.current.instance('/app/sub1')
-        expect(sub).to be_a(::Avm::Launcher::Instances::Base)
-        ::Avm::Projects::Stereotype.git_stereotypes.each do |s|
-          expect(sub.stereotypes).not_to include(s)
+      context 'when sub is a GitSubrepo' do
+        let(:sub) { described_class.current.instance('/app/sub1') }
+        let(:instance) { described_class.current.instance('/app/sub1/mylib') }
+
+        before do
+          app = init_git('app')
+          touch_commit(app, 'sub1/app.gemspec')
+          app.execute!('subrepo', 'clone', mylib_repos, 'sub1/mylib')
         end
-        instance = described_class.current.instance('/app/sub1/mylib')
-        expect(instance).to be_a(::Avm::Launcher::Instances::Base)
-        expect(instance.stereotypes).to include(::Avm::Projects::Stereotypes::GitSubtree)
+
+        it { expect(sub).to be_a(::Avm::Launcher::Instances::Base) }
+        it do
+          ::Avm::Projects::Stereotype.git_stereotypes
+            .each { |s| expect(sub.stereotypes).not_to include(s) }
+        end
+        it { expect(instance).to be_a(::Avm::Launcher::Instances::Base) }
+        it { expect(instance.stereotypes).to include(::Avm::Projects::Stereotypes::GitSubrepo) }
+      end
+
+      context 'when sub is a GitSubtree' do
+        let(:sub) { described_class.current.instance('/app/sub1') }
+        let(:instance) { described_class.current.instance('/app/sub1/mylib') }
+
+        before do
+          app = init_git('app')
+          touch_commit(app, 'sub1/app.gemspec')
+          app.execute!('subtree', 'add', '-P', 'sub1/mylib', mylib_repos, 'master')
+          app.execute!('remote', 'add', 'mylib', mylib_repos)
+        end
+
+        it { expect(sub).to be_a(::Avm::Launcher::Instances::Base) }
+        it do
+          ::Avm::Projects::Stereotype.git_stereotypes
+            .each { |s| expect(sub.stereotypes).not_to include(s) }
+        end
+        it { expect(instance).to be_a(::Avm::Launcher::Instances::Base) }
+        it { expect(instance.stereotypes).to include(::Avm::Projects::Stereotypes::GitSubtree) }
       end
 
       context 'subtree present' do
         before do
-          @app = init_git('subtree_main_app')
-          touch_commit(@app, 'file1')
-          @app.execute!('subtree', 'add', '-P', 'mylib', @repos, 'master')
-          @app.execute!('remote', 'add', 'mylib', @repos)
+          app = init_git('subtree_main_app')
+          touch_commit(app, 'file1')
+          app.execute!('subtree', 'add', '-P', 'mylib', mylib_repos, 'master')
+          app.execute!('remote', 'add', 'mylib', mylib_repos)
         end
 
         it 'recognizes subtree instance' do
@@ -77,7 +90,7 @@ RSpec.describe ::Avm::Launcher::Context do
           app = init_git('app') # HEAD: master
           touch_commit(app, 'file2')
           app.execute!('checkout', '-b', 'not_master') # HEAD: not_master
-          app.execute!('subrepo', 'clone', @repos, 'mylib')
+          app.execute!('subrepo', 'clone', mylib_repos, 'mylib')
           expect(described_class.current.instance('/app/mylib')).to be_nil
         end
       end
@@ -88,7 +101,7 @@ RSpec.describe ::Avm::Launcher::Context do
             app = init_git('app') # HEAD: master
             touch_commit(app, 'file2')
             app.execute!('checkout', '-b', 'not_master') # HEAD: not_master
-            app.execute!('subrepo', 'clone', @repos, 'mylib')
+            app.execute!('subrepo', 'clone', mylib_repos, 'mylib')
             expect(described_class.current.instance('/app/mylib')).to be_nil
           end
         end
@@ -98,7 +111,7 @@ RSpec.describe ::Avm::Launcher::Context do
             app = init_git('app') # HEAD: master
             touch_commit(app, 'file3')
             app.execute!('branch', '-f', 'not_master')
-            app.execute!('subrepo', 'clone', @repos, 'mylib')
+            app.execute!('subrepo', 'clone', mylib_repos, 'mylib')
             app.execute!('checkout', 'not_master') # HEAD: not_master
             expect(described_class.current.instance('/app/mylib'))
               .to be_a(::Avm::Launcher::Instances::Base)
