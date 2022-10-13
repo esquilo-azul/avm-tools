@@ -38,7 +38,6 @@ Rails/TimeZone:
 RSpec:
   Exclude:
     - spec/lib/avm/launcher/context_spec.rb
-    - spec/lib/avm/launcher/git/base_spec.rb
     - spec/lib/avm/launcher/ruby/gem/build_spec.rb
     - spec/lib/avm/launcher/ruby/gem/specification_spec.rb
     - spec/lib/avm/projects/stereotypes/git_subrepo/publish_spec.rb
