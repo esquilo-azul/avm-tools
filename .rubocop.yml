@@ -3,8 +3,6 @@ require:
   - rubocop-rspec
 
 AllCops:
-  Exclude:
-    - spec/lib/avm/tools/runner/ruby/gems/generate_spec_files/**/*
   TargetRailsVersion: 5.2
   TargetRubyVersion: 2.7
 
@@ -43,7 +41,6 @@ RSpec:
     - spec/lib/avm/launcher/git/base_spec.rb
     - spec/lib/avm/launcher/ruby/gem/build_spec.rb
     - spec/lib/avm/launcher/ruby/gem/specification_spec.rb
-    - spec/lib/avm/launcher/vendor/github_spec.rb
     - spec/lib/avm/projects/stereotypes/git_subrepo/publish_spec.rb
     - spec/lib/avm/projects/stereotypes/git_subrepo/warp_spec.rb
     - spec/lib/avm/projects/stereotypes/ruby_gem_spec.rb
