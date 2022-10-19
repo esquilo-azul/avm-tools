@@ -29,6 +29,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'ruby-progressbar', '~> 1.11'
 
   s.add_development_dependency 'avm-eac_php_base0', '~> 0.2'
+  s.add_development_dependency 'avm-eac_python_base0', '~> 0.1'
   s.add_development_dependency 'avm-eac_webapp_base0', '~> 0.11'
   s.add_development_dependency 'eac_ruby_gem_support', '~> 0.5.1'
 end
