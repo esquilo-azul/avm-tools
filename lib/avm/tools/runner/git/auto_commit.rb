@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'eac_cli/core_ext'
-require 'avm/files/formatter'
+require 'avm/file_formats/search_formatter'
 require 'avm/git/file_auto_fixup'
 require 'avm/git/auto_commit/rules'
 
@@ -40,7 +40,9 @@ module Avm
             return unless parsed.format?
 
             infom 'Formating files...'
-            ::Avm::Files::Formatter.new(files, ::Avm::Files::Formatter::OPTION_APPLY => true).run
+            ::Avm::FileFormats::SearchFormatter
+              .new(files, ::Avm::FileFormats::SearchFormatter::OPTION_APPLY => true)
+              .run
           end
 
           def dirty_files

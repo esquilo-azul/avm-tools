@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'avm/files/formatter'
+require 'avm/file_formats/search_formatter'
 require 'eac_cli/core_ext'
 require 'avm/git/launcher/base'
 
@@ -19,13 +19,13 @@ module Avm
           end
 
           def run
-            ::Avm::Files::Formatter.new(source_paths, formatter_options).run
+            ::Avm::FileFormats::SearchFormatter.new(source_paths, formatter_options).run
           end
 
           def formatter_options
-            { ::Avm::Files::Formatter::OPTION_APPLY => parsed.apply?,
-              ::Avm::Files::Formatter::OPTION_RECURSIVE => !parsed.no_recursive?,
-              ::Avm::Files::Formatter::OPTION_VERBOSE => parsed.verbose? }
+            { ::Avm::FileFormats::SearchFormatter::OPTION_APPLY => parsed.apply?,
+              ::Avm::FileFormats::SearchFormatter::OPTION_RECURSIVE => !parsed.no_recursive?,
+              ::Avm::FileFormats::SearchFormatter::OPTION_VERBOSE => parsed.verbose? }
           end
 
           def git
