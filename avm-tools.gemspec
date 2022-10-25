@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'aranha-parsers', '~> 0.14', '>= 0.14.4'
   s.add_dependency 'avm', '~> 0.52'
-  s.add_dependency 'avm-eac_ruby_base1', '~> 0.26'
+  s.add_dependency 'avm-eac_ruby_base1', '~> 0.26', '>= 0.26.1'
   s.add_dependency 'avm-eac_ubuntu_base0', '~> 0.3'
   s.add_dependency 'avm-files', '~> 0.5'
   s.add_dependency 'avm-git', '~> 0.8'
