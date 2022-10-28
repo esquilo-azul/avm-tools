@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-require 'avm/git/launcher/base'
-require 'avm/git/commit'
+require 'avm/git/scms/git'
 require 'eac_config/node'
 
 module Avm
@@ -49,7 +48,7 @@ module Avm
           end
 
           def reference_sha1_uncached
-            git.rev_parse(reference)
+            git.git_repo.rev_parse(reference)
           end
 
           def reference
@@ -57,7 +56,7 @@ module Avm
           end
 
           def git_uncached
-            ::Avm::Git::Launcher::Base.new(git_repository_path)
+            ::Avm::Git::Scms::Git.new(git_repository_path)
           end
 
           def git_repository_path
@@ -77,7 +76,7 @@ module Avm
           end
 
           def deploy
-            ::Avm::Git::Commit.new(git, reference_sha1)
+            git.commit(reference_sha1)
               .deploy_to_url(target_url)
               .append_templatized_directories(appended_directories)
               .variables_source_set(variables_source)
