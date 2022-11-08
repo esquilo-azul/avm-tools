@@ -19,7 +19,7 @@ module Avm
           def run
             build_publish_options
             instances.each do |i|
-              next unless i.options.publishable?
+              next unless i.publishable?
 
               i.send(instance_method)
             end
