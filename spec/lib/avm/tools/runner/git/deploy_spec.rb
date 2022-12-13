@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'avm/eac_ubuntu_base0/rspec/ssh_docker_server'
 require 'avm/tools/runner'
 require 'tmpdir'
 
@@ -86,7 +87,8 @@ require 'tmpdir'
   end
 
   context 'with ssh target', docker: true do
-    let(:env) { ::StubbedDockerServer.env }
+    let(:ssh_server) { ::Avm::EacUbuntuBase0::Rspec::SshDockerServer.new }
+    let(:env) { ssh_server.env }
     let(:tmpdir) { env.command('mktemp', '-d').execute! }
     let(:target_dir) { ::File.join(tmpdir, 'target') }
     let(:target_url) do
@@ -96,7 +98,7 @@ require 'tmpdir'
     end
 
     around do |example|
-      ::StubbedDockerServer.on_run(&example)
+      ssh_server.on_run(&example)
     end
 
     before do
