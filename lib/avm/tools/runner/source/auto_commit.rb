@@ -8,7 +8,7 @@ require 'avm/scms/auto_commit/rules'
 module Avm
   module Tools
     class Runner
-      class Git
+      class Source < ::Avm::Sources::Runner
         class AutoCommit
           runner_with :help do
             desc 'Auto fixup files.'
@@ -19,10 +19,10 @@ module Avm
           end
 
           def run
-            runner_context.call(:git).command('reset', 'HEAD').system!
             format_files
             files.each do |file|
-              ::Avm::Scms::AutoCommit::ForFile.new(runner_context.call(:git), file, rules).run
+              ::Avm::Scms::AutoCommit::ForFile.new(runner_context.call(:source).scm, file, rules)
+                .run
             end
           end
 
@@ -48,9 +48,7 @@ module Avm
           def dirty_files
             return [] unless parsed.dirty?
 
-            runner_context.call(:git).dirty_files.map do |file|
-              file.path.to_pathname.expand_path(runner_context.call(:git).root_path)
-            end
+            runner_context.call(:source).scm.changed_files.map(&:absolute_path)
           end
 
           def rules
