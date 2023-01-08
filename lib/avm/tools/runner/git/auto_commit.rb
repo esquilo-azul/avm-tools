@@ -2,8 +2,8 @@
 
 require 'eac_cli/core_ext'
 require 'avm/file_formats/search_formatter'
-require 'avm/git/file_auto_fixup'
-require 'avm/git/auto_commit/rules'
+require 'avm/scms/auto_commit/for_file'
+require 'avm/scms/auto_commit/rules'
 
 module Avm
   module Tools
@@ -22,7 +22,7 @@ module Avm
             runner_context.call(:git).command('reset', 'HEAD').system!
             format_files
             files.each do |file|
-              ::Avm::Git::FileAutoFixup.new(runner_context.call(:git), file, rules).run
+              ::Avm::Scms::AutoCommit::ForFile.new(runner_context.call(:git), file, rules).run
             end
           end
 
@@ -55,7 +55,7 @@ module Avm
 
           def rules
             parsed.rule.map do |rule_string|
-              ::Avm::Git::AutoCommit::Rules.parse(rule_string)
+              ::Avm::Scms::AutoCommit::Rules.parse(rule_string)
             end
           end
 

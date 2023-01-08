@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 require 'avm/tools/core_ext'
-require 'avm/git/auto_commit/rules/unique'
-require 'avm/git/file_auto_fixup'
+require 'avm/git/scms/git'
 require 'avm/git/subrepo_checks'
+require 'avm/scms/auto_commit/rules/unique'
+require 'avm/scms/auto_commit/for_file'
 require 'eac_git/local'
 
 module Avm
@@ -31,8 +32,10 @@ module Avm
               infov 'Dirty files', local_repos.dirty_files.count
               local_repos.dirty_files.each do |file|
                 infov '  * Ammending', file.path
-                ::Avm::Git::FileAutoFixup.new(runner_context.call(:git), file.path,
-                                              [::Avm::Git::AutoCommit::Rules::Unique.new]).run
+                ::Avm::Scms::AutoCommit::ForFile.new(
+                  git_scm, file.path,
+                  [::Avm::Scms::AutoCommit::Rules::Unique.new]
+                ).run
               end
             end
 
@@ -41,6 +44,11 @@ module Avm
               c = new_check(true)
               c.show_result
               !c.result.error?
+            end
+
+            # @return [Avm::Git::Scms::Git]
+            def git_scm_uncached
+              ::Avm::Git::Scms::Git.new(runner_context.call(:git).root_path)
             end
 
             def new_check(fix_parent = false)
