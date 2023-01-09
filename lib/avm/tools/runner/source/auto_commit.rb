@@ -26,6 +26,11 @@ module Avm
             end
           end
 
+          def help_extra_text
+            "Rules\n" + ::Avm::Scms::AutoCommit::Rules.all
+                          .map { |r| '  ' + r.keys.join(', ') + "\n" }.join
+          end
+
           private
 
           def files_uncached
