@@ -39,7 +39,8 @@ module Avm
             return '' unless parsed.info?
 
             ' [' + {
-              'CLASS' => sub.class.name
+              'CLASS' => sub.class.name,
+              'SCM' => sub.scm.class.name
             }.map { |k, v| "#{k}: #{v}" }.join(', ') + ']'
           end
 
