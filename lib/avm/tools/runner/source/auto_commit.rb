@@ -2,8 +2,8 @@
 
 require 'eac_cli/core_ext'
 require 'avm/file_formats/search_formatter'
-require 'avm/scms/auto_commit/for_file'
 require 'avm/scms/auto_commit/rules'
+require 'avm/sources/auto_commit/for_file'
 
 module Avm
   module Tools
@@ -21,7 +21,7 @@ module Avm
           def run
             format_files
             files.each do |file|
-              ::Avm::Scms::AutoCommit::ForFile.new(runner_context.call(:source).scm, file, rules)
+              ::Avm::Sources::AutoCommit::ForFile.new(runner_context.call(:source), file, rules)
                 .run
             end
           end
