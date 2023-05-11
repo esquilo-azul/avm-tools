@@ -11,7 +11,6 @@ module Avm
         class Data
           class Dump
             DUMP_EXPIRE_TIME = 1.day
-            DEFAULT_DUMP_PATH_ENTRY_SUFFIX = 'data.default_dump_path'
             NO_DUMP_MESSAGE = 'Dump "%s" already exist and rewrite options was no setted nor ' \
               'dump was expired.'
 
@@ -48,7 +47,7 @@ module Avm
             end
 
             def default_dump_path
-              instance.read_entry(DEFAULT_DUMP_PATH_ENTRY_SUFFIX)
+              instance.data_default_dump_path
             end
 
             def package_dump_existing
