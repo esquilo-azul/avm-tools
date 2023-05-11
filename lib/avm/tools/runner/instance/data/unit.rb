@@ -30,9 +30,9 @@ module Avm
               data_package.unit(parsed.identifier)
             end
 
-            # @return [Hash<String, Enumerable<String>]
+            # @return [String]
             def help_extra_text
-              super.merge('Available units' => available_units_ids)
+              help_join_sections(super, list_section('Available units', available_units_ids))
             end
           end
         end
