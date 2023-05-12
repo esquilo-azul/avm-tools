@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'avm-git', '~> 0.13', '>= 0.13.2'
   s.add_dependency 'clipboard', '~> 1.3', '>= 1.3.6'
   s.add_dependency 'curb', '~> 0.9', '>= 0.9.11'
-  s.add_dependency 'eac_git', '~> 0.14'
+  s.add_dependency 'eac_git', '~> 0.14', '>= 0.14.1'
   s.add_dependency 'eac_ruby_base0', '~> 0.17', '>= 0.17.2'
   s.add_dependency 'eac_templates', '~> 0.3', '>= 0.3.2'
   s.add_dependency 'git', '~> 1.13', '>= 1.13.1'
