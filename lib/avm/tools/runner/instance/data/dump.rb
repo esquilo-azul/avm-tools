@@ -20,6 +20,11 @@ module Avm
               arg_opt '-p', '--dump-path', 'Set DUMP_PATH variable.'
             end
 
+            # @return [String]
+            def help_extra_text
+              "Default dump path: \"#{default_dump_path}\""
+            end
+
             def run
               infov 'Instance to dump', "#{instance} (#{instance.class})"
               if package_dump.runnable?
