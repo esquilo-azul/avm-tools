@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'avm/launcher/stereotype'
-require 'avm/projects/stereotypes'
 require 'avm/tools/core_ext'
 
 module Avm
