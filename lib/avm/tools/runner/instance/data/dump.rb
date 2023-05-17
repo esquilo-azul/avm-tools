@@ -38,10 +38,6 @@ module Avm
 
             private
 
-            def instance
-              runner_context.call(:instance)
-            end
-
             def package_dump_uncached
               instance
                 .data_package.dump(dump_path, existing: package_dump_existing)
