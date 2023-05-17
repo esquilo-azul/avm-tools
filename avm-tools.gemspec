@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.bindir = 'exe'
   s.executables = s.files.grep(%r{^exe/}) { |f| File.basename(f) }
 
-  s.add_dependency 'aranha-parsers', '~> 0.17', '>= 0.17.1'
+  s.add_dependency 'aranha-parsers', '~> 0.18'
   s.add_dependency 'avm', '~> 0.71'
   s.add_dependency 'avm-eac_ruby_base1', '~> 0.30', '>= 0.30.2'
   s.add_dependency 'avm-eac_ubuntu_base0', '~> 0.4', '>= 0.4.2'
