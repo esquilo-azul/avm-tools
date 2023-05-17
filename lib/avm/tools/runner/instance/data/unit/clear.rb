@@ -10,11 +10,7 @@ module Avm
         class Data
           class Unit
             class Clear
-              runner_with :help
-
-              def run
-                runner_context.call(:data_unit).clear
-              end
+              runner_with :help, :instance_data_clear
             end
           end
         end
