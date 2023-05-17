@@ -13,6 +13,11 @@ module Avm
             desc 'Data utilities for EacRailsBase0 instances.'
             subcommands
           end
+
+          # @return [Avm::Instances::Data::Package]
+          def data_owner
+            instance.data_package
+          end
         end
       end
     end
