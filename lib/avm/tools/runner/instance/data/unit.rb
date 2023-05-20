@@ -15,6 +15,8 @@ module Avm
               subcommands
             end
 
+            for_context :data_owner
+
             # @return [Enumerable<String>]
             def available_units_ids
               data_package.units_ids
