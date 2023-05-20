@@ -15,7 +15,7 @@ module Avm
               end
 
               def run
-                runner_context.call(:data_unit).dump(dump_path)
+                data_owner.dump(dump_path)
               end
 
               # @return [String]
@@ -30,7 +30,7 @@ module Avm
 
               # @return [String]
               def default_dump_path
-                runner_context.call(:data_unit).data_default_dump_path
+                data_owner.data_default_dump_path
               end
             end
           end

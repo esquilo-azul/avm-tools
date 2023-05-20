@@ -15,7 +15,7 @@ module Avm
               end
 
               def run
-                runner_context.call(:data_unit).load(dump_path)
+                data_owner.load(dump_path)
               end
 
               # @return [Pathname]

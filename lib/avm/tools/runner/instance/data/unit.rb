@@ -29,11 +29,6 @@ module Avm
 
             # @return [Avm::Instances::Data::Unit]
             def data_owner
-              data_unit
-            end
-
-            # @return [Avm::Instances::Data::Unit]
-            def data_unit
               data_package.unit(parsed.identifier)
             end
 
