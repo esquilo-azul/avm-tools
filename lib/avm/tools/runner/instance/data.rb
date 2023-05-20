@@ -14,6 +14,8 @@ module Avm
             subcommands
           end
 
+          for_context :data_owner
+
           # @return [Avm::Instances::Data::Package]
           def data_owner
             instance.data_package
