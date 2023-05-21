@@ -15,7 +15,7 @@ module Avm
               'dump was expired.'
 
             runner_with :help do
-              desc 'Dump utility for EacRailsBase instance.'
+              desc 'Dump utility for instance.'
               bool_opt '-w', '--rewrite', 'Forces dump overwrite.'
               pos_arg :dump_path, optional: true
             end
