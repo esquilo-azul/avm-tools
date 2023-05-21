@@ -14,7 +14,11 @@ module Avm
         end
 
         def run
-          data_performer.perform
+          if data_performer.performable?
+            data_performer.perform
+          else
+            warn("Cannot perform: #{data_performer.cannot_perform_reason}")
+          end
         end
 
         private
