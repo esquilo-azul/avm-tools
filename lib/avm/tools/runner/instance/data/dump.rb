@@ -9,7 +9,7 @@ module Avm
       class Instance < ::Avm::Instances::Runner
         class Data
           class Dump
-            runner_with :help, :instance_data_dump do
+            runner_with :help, :include_exclude, :instance_data_dump do
               desc 'Dump utility for instance.'
             end
           end
