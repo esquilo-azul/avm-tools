@@ -14,13 +14,13 @@ module Avm
         end
 
         def run
-          performer.perform
+          data_performer.perform
         end
 
         private
 
         # @return [Avm::Data::Performer]
-        def performer_uncached
+        def data_performer_uncached
           %i[include exclude].inject(data_performer_class.new(data_owner)) do |a1, e1|
             if_respond(e1, []).inject(a1) { |a2, e2| a2.send(e1, e2) }
           end
