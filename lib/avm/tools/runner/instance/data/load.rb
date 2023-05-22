@@ -9,7 +9,7 @@ module Avm
       class Instance < ::Avm::Instances::Runner
         class Data
           class Load
-            runner_with :help, :instance_data_load do
+            runner_with :help, :include_exclude, :instance_data_load do
               desc 'Load utility for instance.'
             end
           end
