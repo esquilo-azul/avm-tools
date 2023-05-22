@@ -10,18 +10,7 @@ module Avm
         class Data
           class Unit
             class Load
-              runner_with :help do
-                pos_arg :dump_path
-              end
-
-              def run
-                data_owner.load(dump_path)
-              end
-
-              # @return [Pathname]
-              def dump_path
-                parsed.dump_path.to_pathname
-              end
+              runner_with :help, :instance_data_load
             end
           end
         end
