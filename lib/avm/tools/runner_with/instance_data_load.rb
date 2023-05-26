@@ -53,7 +53,7 @@ module Avm
         # @return [Avm::Data::Dumper]
         def source_instance_dumper
           data_performer_set_includes_excludes(
-            ::Avm::Data::Dumper.new(source_instance.data_package).overwrite(parsed.rewrite?)
+            ::Avm::Data::Dumper.new(source_instance_data_owner).overwrite(parsed.rewrite?)
           )
         end
 
