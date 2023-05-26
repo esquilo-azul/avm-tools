@@ -32,10 +32,6 @@ module Avm
               infov key, instance.read_entry_optional(key)
             end
           end
-
-          def instance
-            runner_context.call(:instance)
-          end
         end
       end
     end
