@@ -28,7 +28,7 @@ module Avm
           end
 
           def entry_keys_banner
-            ::Avm::Instances::EntryKeys.all.each do |key|
+            instance.entry_keys.each do |key|
               infov key, instance.read_entry_optional(key)
             end
           end
