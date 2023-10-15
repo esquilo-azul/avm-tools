@@ -12,4 +12,5 @@ Gem::Specification.new do |s|
   s.authors     = ['Esquilo Azul Company']
   s.summary     = 'Ruby gem stub for tests.'
   s.files = Dir['{lib}/**/*']
+  s.required_ruby_version = '>= 2.7.0'
 end

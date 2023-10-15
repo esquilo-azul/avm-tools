@@ -14,6 +14,7 @@ Gem::Specification.new do |s|
   s.license     = 'MIT'
 
   s.files = Dir['{exe,lib}/**/*', 'Gemfile', 'MIT-LICENSE', 'README.rdoc']
+  s.required_ruby_version = '>= 2.7.0'
   s.bindir = 'exe'
   s.executables = s.files.grep(%r{^exe/}) { |f| File.basename(f) }
 

@@ -1,10 +1,6 @@
+---
 inherit_gem:
-  eac_ruby_gem_support: .rubocop.yml
-Gemspec/RequiredRubyVersion:
-  Exclude:
-  - avm-tools.gemspec
-  - spec/dummy/avm-tools_stub/avm-tools.gemspec
-  - spec/dummy/ruby_gem_stub/ruby_gem_stub.gemspec
+  eac_ruby_gem_support: ".rubocop.yml"
 Layout/LineContinuationLeadingSpace:
   Exclude:
   - lib/avm/tools/runner/source/issue/complete.rb
