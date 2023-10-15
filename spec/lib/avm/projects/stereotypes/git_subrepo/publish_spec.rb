@@ -60,7 +60,7 @@ RSpec.describe Avm::Git::LauncherStereotypes::GitSubrepo::Publish do
           end
         end
 
-        def check_publish_status(status_key)
+        def check_publish_status(status_key) # rubocop:disable Metrics/AbcSize
           instance = app_mylib_instance
           expect(instance).to be_a(::Avm::Launcher::Instances::Base)
           expect(instance.stereotypes).to include(::Avm::Git::LauncherStereotypes::GitSubrepo)
