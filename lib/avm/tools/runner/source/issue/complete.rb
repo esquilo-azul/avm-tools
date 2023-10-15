@@ -11,10 +11,10 @@ module Avm
           class Complete
             runner_with :confirmation, :help do
               desc 'Closes a issue in a Git repository.'
-              bool_opt '-f', '--uncomplete-unfail', 'Do not exit with error if issue is not' \
-                ' completed or is invalid.'
-              arg_opt '-s', '--skip-validations', 'Does not validate conditions on <validations>' \
-                ' (Comma separated value).'
+              bool_opt '-f', '--uncomplete-unfail', 'Do not exit with error if issue is not ' \
+                'completed or is invalid.'
+              arg_opt '-s', '--skip-validations', 'Does not validate conditions on <validations> ' \
+                '(Comma separated value).'
             end
 
             def run
