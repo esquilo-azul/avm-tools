@@ -1,56 +1,105 @@
-require:
-  - rubocop-rails
-  - rubocop-rspec
-
-AllCops:
-  TargetRailsVersion: 5.2
-  TargetRubyVersion: 2.7
-
-Metrics/BlockLength:
+inherit_gem:
+  eac_ruby_gem_support: .rubocop.yml
+Gemspec/RequiredRubyVersion:
   Exclude:
-    - '**/*.gemspec'
-    - 'spec/**/*_spec.rb'
-    - 'spec/spec_helper/eac_launcher.rb'
-
-Layout/LineLength:
-  Max: 100
-
-Layout/MultilineMethodCallIndentation:
-  EnforcedStyle: indented_relative_to_receiver
-
+  - avm-tools.gemspec
+  - spec/dummy/avm-tools_stub/avm-tools.gemspec
+  - spec/dummy/ruby_gem_stub/ruby_gem_stub.gemspec
+Layout/LineContinuationLeadingSpace:
+  Exclude:
+  - lib/avm/tools/runner/source/issue/complete.rb
+Layout/LineEndStringConcatenationIndentation:
+  Exclude:
+  - lib/avm/tools/runner/source/issue/complete.rb
+  - lib/avm/tools/runner_with/instance_data_dump.rb
+  - spec/lib/avm/projects/stereotypes/git_subrepo/publish_spec.rb
 Metrics/AbcSize:
   Exclude:
-    - spec/lib/avm/projects/stereotypes/git_subrepo/publish_spec.rb
-
-Rails/DynamicFindBy:
-  Enabled: false
-
-Rails/Output:
-  Enabled: false
-
-Rails/SkipsModelValidations:
-  Enabled: false
-
-Rails/TimeZone:
-  Enabled: false
-
-RSpec:
+  - spec/lib/avm/projects/stereotypes/git_subrepo/publish_spec.rb
+RSpec/BeEq:
   Exclude:
-    - spec/lib/avm/launcher/context_spec.rb
-    - spec/lib/avm/projects/stereotypes/git_subrepo/publish_spec.rb
-    - spec/lib/avm/projects/stereotypes/git_subrepo/warp_spec.rb
-
-Style/AsciiComments:
-  Enabled: false
-
-Style/Documentation:
-  Enabled: false
-
-Style/HashEachMethods:
-  Enabled: true
-
-Style/HashTransformKeys:
-  Enabled: true
-
-Style/HashTransformValues:
-  Enabled: true
+  - spec/lib/avm/projects/stereotypes/git_subrepo/publish_spec.rb
+  - spec/lib/avm/projects/stereotypes/git_subrepo/warp_spec.rb
+  - spec/lib/avm/tools/runner/files/rotate_spec.rb
+  - spec/lib/avm/tools/runner/git/deploy_spec.rb
+RSpec/ContextWording:
+  Exclude:
+  - spec/lib/avm/launcher/context_spec.rb
+  - spec/lib/avm/projects/stereotypes/git_subrepo/publish_spec.rb
+RSpec/EmptyLineAfterExample:
+  Exclude:
+  - spec/lib/avm/launcher/context_spec.rb
+RSpec/ExampleLength:
+  Exclude:
+  - spec/lib/avm/launcher/context_spec.rb
+  - spec/lib/avm/projects/stereotypes/git_subrepo/warp_spec.rb
+RSpec/FilePath:
+  Exclude:
+  - spec/lib/avm/projects/stereotypes/git_subrepo/publish_spec.rb
+  - spec/lib/avm/projects/stereotypes/git_subrepo/warp_spec.rb
+RSpec/IndexedLet:
+  Exclude:
+  - spec/lib/avm/tools/runner/git/deploy_spec.rb
+RSpec/InstanceVariable:
+  Exclude:
+  - spec/lib/avm/projects/stereotypes/git_subrepo/warp_spec.rb
+RSpec/MetadataStyle:
+  Exclude:
+  - spec/lib/avm/tools/runner/git/deploy_spec.rb
+  - spec/lib/avm/tools/runner/source/issue/complete_spec.rb
+RSpec/MultipleExpectations:
+  Exclude:
+  - spec/lib/avm/launcher/context_spec.rb
+  - spec/lib/avm/projects/stereotypes/git_subrepo/warp_spec.rb
+RSpec/MultipleMemoizedHelpers:
+  Exclude:
+  - spec/lib/avm/tools/runner/git/deploy_spec.rb
+RSpec/NestedGroups:
+  Exclude:
+  - spec/lib/avm/launcher/context_spec.rb
+  - spec/lib/avm/projects/stereotypes/git_subrepo/publish_spec.rb
+RSpec/NoExpectationExample:
+  Exclude:
+  - spec/lib/avm/projects/stereotypes/git_subrepo/publish_spec.rb
+  - spec/lib/avm/tools/runner/files/rotate_spec.rb
+RSpec/ScatteredLet:
+  Exclude:
+  - spec/lib/avm/projects/stereotypes/git_subrepo/publish_spec.rb
+RSpec/SpecFilePathFormat:
+  Exclude:
+  - spec/lib/avm/projects/stereotypes/git_subrepo/publish_spec.rb
+  - spec/lib/avm/projects/stereotypes/git_subrepo/warp_spec.rb
+Rails/CompactBlank:
+  Exclude:
+  - lib/avm/tools/runner/source/issue/complete.rb
+Rails/IndexBy:
+  Exclude:
+  - lib/avm/tools/runner.rb
+Style/MapToHash:
+  Exclude:
+  - lib/avm/tools/runner.rb
+Style/OptionalBooleanParameter:
+  Exclude:
+  - lib/avm/tools/runner/git/subrepo/fix.rb
+Style/RedundantConstantBase:
+  Exclude:
+  - Gemfile
+  - spec/dummy/avm-tools_stub/avm-tools.gemspec
+  - spec/dummy/ruby_gem_stub/ruby_gem_stub.gemspec
+  - spec/lib/avm/launcher/context_spec.rb
+  - spec/lib/avm/projects/stereotypes/git_subrepo/publish_spec.rb
+  - spec/lib/avm/projects/stereotypes/git_subrepo/warp_spec.rb
+  - spec/lib/avm/tools/runner/files/rotate_spec.rb
+  - spec/lib/avm/tools/runner/git/deploy_spec.rb
+  - spec/lib/avm/tools/runner/launcher_stereotypes/list_spec.rb
+  - spec/lib/avm/tools/runner/source/issue/complete_spec.rb
+  - spec/lib/avm/tools/runner_spec.rb
+  - spec/rubocop_spec.rb
+  - spec/spec_helper/avm_tools_runner.rb
+  - spec/spec_helper/eac_launcher.rb
+  - spec/spec_helper.rb
+Style/StringConcatenation:
+  Exclude:
+  - lib/avm/tools/runner/git/dirty_files.rb
+  - lib/avm/tools/runner/source/auto_commit.rb
+  - lib/avm/tools/runner/source/subs.rb

@@ -6,7 +6,7 @@ require 'avm/tools/version'
 
 Gem::Specification.new do |s|
   s.name        = 'avm-tools'
-  s.version     = ::Avm::Tools::VERSION
+  s.version     = Avm::Tools::VERSION
   s.authors     = ['Esquilo Azul Company']
   s.summary     = 'Tools for AVM.'
 
@@ -28,5 +28,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'git', '~> 1.18'
   s.add_dependency 'ruby-progressbar', '~> 1.13'
 
-  s.add_development_dependency 'eac_ruby_gem_support', '~> 0.5.1'
+  s.add_development_dependency 'eac_ruby_gem_support', '~> 0.8.1'
 end
