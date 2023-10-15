@@ -67,8 +67,11 @@ RSpec.describe Avm::Git::LauncherStereotypes::GitSubrepo::Publish do
 
           status = ::Avm::Launcher::Publish::CheckResult.const_get("STATUS_#{status_key}".upcase)
           publish = described_class.new(instance)
-          expect(publish.check.status).to eq(status), "Expected: #{status}, Actual: " \
+          expect(publish.check.status).to(
+            eq(status),
+            "Expected: #{status}, Actual: " \
             "#{publish.check.status}, Message: #{publish.check.message}"
+          )
         end
 
         def app_mylib_instance

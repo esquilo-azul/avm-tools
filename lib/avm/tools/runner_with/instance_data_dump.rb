@@ -25,7 +25,7 @@ module Avm
 
         DUMP_EXPIRE_TIME = 1.day
         NO_DUMP_MESSAGE = 'Dump "%s" already exist and rewrite options was no setted nor ' \
-          'dump was expired.'
+                          'dump was expired.'
 
         # @return [Class]
         def data_performer_class

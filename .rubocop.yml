@@ -1,11 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Layout/LineEndStringConcatenationIndentation:
-  Exclude:
-  - lib/avm/tools/runner/source/issue/complete.rb
-  - lib/avm/tools/runner_with/instance_data_dump.rb
-  - spec/lib/avm/projects/stereotypes/git_subrepo/publish_spec.rb
 Metrics/AbcSize:
   Exclude:
   - spec/lib/avm/projects/stereotypes/git_subrepo/publish_spec.rb
