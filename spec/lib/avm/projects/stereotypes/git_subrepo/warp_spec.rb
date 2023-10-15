@@ -27,10 +27,10 @@ RSpec.describe Avm::Git::LauncherStereotypes::GitSubrepo::Warp do
 
     it 'revisions should match' do
       master_ref = @repos.rev_parse('master')
-      expect(master_ref.present?).to eq true
+      expect(master_ref.present?).to be true
 
       master_ref_previous = @repos.rev_parse('master^')
-      expect(master_ref_previous.present?).to eq true
+      expect(master_ref_previous.present?).to be true
 
       @app2.execute!('subrepo', 'branch', 'mylib', '--fetch', '--force')
       expect(@app2.rev_parse('subrepo/mylib')).to eq master_ref

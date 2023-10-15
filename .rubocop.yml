@@ -1,12 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-RSpec/BeEq:
-  Exclude:
-  - spec/lib/avm/projects/stereotypes/git_subrepo/publish_spec.rb
-  - spec/lib/avm/projects/stereotypes/git_subrepo/warp_spec.rb
-  - spec/lib/avm/tools/runner/files/rotate_spec.rb
-  - spec/lib/avm/tools/runner/git/deploy_spec.rb
 RSpec/ContextWording:
   Exclude:
   - spec/lib/avm/launcher/context_spec.rb

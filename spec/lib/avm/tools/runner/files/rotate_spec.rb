@@ -26,7 +26,7 @@ end
     ::FileUtils.touch(source_path)
   end
 
-  it { expect(::File.exist?(source_path)).to eq(true) }
+  it { expect(::File.exist?(source_path)).to be(true) }
 
   context 'when run' do
     let(:files_with_prefix) { ::Dir["#{workdir}/myfile_*.tar.gz"] }
@@ -35,7 +35,7 @@ end
       ::Avm::Tools::Runner.run(argv: ['files', 'rotate', source_path])
     end
 
-    it { expect(::File.exist?(source_path)).to eq(false) }
+    it { expect(::File.exist?(source_path)).to be(false) }
     it { expect(files_with_prefix.count).to eq(1) }
   end
 

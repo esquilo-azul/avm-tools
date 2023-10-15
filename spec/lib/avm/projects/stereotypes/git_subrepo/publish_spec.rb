@@ -37,7 +37,7 @@ RSpec.describe Avm::Git::LauncherStereotypes::GitSubrepo::Publish do
             touch_commit(app, 'mylib/file3')
           end
 
-          it { expect(::Avm::Launcher::Context.current.publish_options[:confirm]).to eq(true) }
+          it { expect(::Avm::Launcher::Context.current.publish_options[:confirm]).to be(true) }
           it { check_publish_status(:pending) }
 
           context 'after publishing' do

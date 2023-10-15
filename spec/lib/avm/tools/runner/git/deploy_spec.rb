@@ -41,7 +41,7 @@ require 'tmpdir'
     end
 
     it { expect(::File.read(target_stub_file1)).to eq(stub_content1) }
-    it { expect(::File.exist?(target_stub_file2)).to eq(false) }
+    it { expect(::File.exist?(target_stub_file2)).to be(false) }
 
     context 'with second commit' do
       before do
@@ -49,7 +49,7 @@ require 'tmpdir'
         avm_tools_runner_run(target_dir)
       end
 
-      it { expect(::File.exist?(target_stub_file1)).to eq(false) }
+      it { expect(::File.exist?(target_stub_file1)).to be(false) }
       it { expect(::File.read(target_stub_file2)).to eq(stub_content2) }
     end
   end
@@ -65,7 +65,7 @@ require 'tmpdir'
     end
 
     it { expect(::File.read(target_stub_file1)).to eq(stub_content1) }
-    it { expect(::File.exist?(target_stub_file2)).to eq(false) }
+    it { expect(::File.exist?(target_stub_file2)).to be(false) }
     it { expect(::File.read(target_stub_file3)).to eq("MyValue: 123\n") }
     it { expect(::File.read(target_stub_file4)).to eq("MyValue: %%MY_VALUE%%\n") }
   end
@@ -81,7 +81,7 @@ require 'tmpdir'
     end
 
     it { expect(::File.read(target_stub_file1)).to eq(stub_content1) }
-    it { expect(::File.exist?(target_stub_file2)).to eq(false) }
+    it { expect(::File.exist?(target_stub_file2)).to be(false) }
     it { expect(::File.read(target_stub_file3)).to eq("MyValue: 123\n") }
     it { expect(::File.read(target_stub_file4)).to eq("MyValue: %%MY_VALUE%%\n") }
   end
@@ -107,7 +107,7 @@ require 'tmpdir'
     end
 
     it { expect(env.file(target_stub_file1).read).to eq(stub_content1) }
-    it { expect(env.file(target_stub_file2).exist?).to eq(false) }
+    it { expect(env.file(target_stub_file2).exist?).to be(false) }
 
     context 'with second commit' do
       before do
@@ -115,7 +115,7 @@ require 'tmpdir'
         avm_tools_runner_run(target_url)
       end
 
-      it { expect(env.file(target_stub_file1).exist?).to eq(false) }
+      it { expect(env.file(target_stub_file1).exist?).to be(false) }
       it { expect(env.file(target_stub_file2).read).to eq(stub_content2) }
     end
   end
