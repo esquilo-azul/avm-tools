@@ -10,7 +10,8 @@ module Avm
           APPLICATION_PROPERTIES = {
             id: 'ID',
             name: 'Name',
-            organization: 'Organization'
+            organization: 'Organization',
+            scm: 'SCM'
           }.freeze
 
           runner_with :help, :output_item do
