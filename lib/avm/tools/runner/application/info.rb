@@ -11,7 +11,8 @@ module Avm
             id: 'ID',
             name: 'Name',
             organization: 'Organization',
-            scm: 'SCM'
+            scm: 'SCM',
+            stereotype: 'Stereotype'
           }.freeze
 
           runner_with :help, :output_item do
