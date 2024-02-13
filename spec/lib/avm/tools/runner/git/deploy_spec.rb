@@ -4,7 +4,7 @@ require 'avm/eac_ubuntu_base0/rspec/ssh_docker_server'
 require 'avm/tools/runner'
 require 'tmpdir'
 
-::RSpec.describe ::Avm::Tools::Runner::Git::Deploy, git: true do
+::RSpec.describe ::Avm::Tools::Runner::Git::Deploy, :git do
   let(:git) { stubbed_git_local_repo }
   let(:reference) { git.current_branch }
   let(:stub_file1) { 'stub1.txt' } # rubocop:disable RSpec/IndexedLet
@@ -86,7 +86,7 @@ require 'tmpdir'
     it { expect(::File.read(target_stub_file4)).to eq("MyValue: %%MY_VALUE%%\n") }
   end
 
-  context 'with ssh target', docker: true do
+  context 'with ssh target', :docker do
     let(:ssh_server) { ::Avm::EacUbuntuBase0::Rspec::SshDockerServer.new }
     let(:env) { ssh_server.env }
     let(:tmpdir) { env.command('mktemp', '-d').execute! }
