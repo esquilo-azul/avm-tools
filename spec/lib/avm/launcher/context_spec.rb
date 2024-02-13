@@ -83,7 +83,7 @@ RSpec.describe ::Avm::Launcher::Context do
           app.execute!('remote', 'add', 'mylib', mylib_repos)
         end
 
-        it 'recognizes subtree instance' do
+        it 'recognizes subtree instance' do # rubocop:disable RSpec/MultipleExpectations
           i = described_class.current.instance('/subtree_main_app/mylib')
           expect(i).to be_a(::Avm::Launcher::Instances::Base)
           expect(i.stereotypes).to include(::Avm::Git::LauncherStereotypes::GitSubtree)

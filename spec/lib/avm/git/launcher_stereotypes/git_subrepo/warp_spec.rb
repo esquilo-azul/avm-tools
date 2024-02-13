@@ -25,7 +25,7 @@ RSpec.describe Avm::Git::LauncherStereotypes::GitSubrepo::Warp do
       app2.execute!('subrepo', 'push', 'mylib')
     end
 
-    it 'revisions should match' do # rubocop:disable RSpec/ExampleLength
+    it 'revisions should match' do # rubocop:disable RSpec/ExampleLength, RSpec/MultipleExpectations
       master_ref = repos.rev_parse('master')
       expect(master_ref.present?).to be true
 
