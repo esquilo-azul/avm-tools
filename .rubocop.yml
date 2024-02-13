@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-RSpec/EmptyLineAfterExample:
-  Exclude:
-  - spec/lib/avm/launcher/context_spec.rb
 RSpec/ExampleLength:
   Exclude:
   - spec/lib/avm/launcher/context_spec.rb

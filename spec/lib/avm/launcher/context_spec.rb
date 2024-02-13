@@ -43,10 +43,12 @@ RSpec.describe ::Avm::Launcher::Context do
         end
 
         it { expect(sub).to be_a(::Avm::Launcher::Instances::Base) }
+
         it do
           ::Avm::Launcher::Stereotype.git_stereotypes
             .each { |s| expect(sub.stereotypes).not_to include(s) }
         end
+
         it { expect(instance).to be_a(::Avm::Launcher::Instances::Base) }
         it { expect(instance.stereotypes).to include(::Avm::Git::LauncherStereotypes::GitSubrepo) }
       end
@@ -63,10 +65,12 @@ RSpec.describe ::Avm::Launcher::Context do
         end
 
         it { expect(sub).to be_a(::Avm::Launcher::Instances::Base) }
+
         it do
           ::Avm::Launcher::Stereotype.git_stereotypes
             .each { |s| expect(sub.stereotypes).not_to include(s) }
         end
+
         it { expect(instance).to be_a(::Avm::Launcher::Instances::Base) }
         it { expect(instance.stereotypes).to include(::Avm::Git::LauncherStereotypes::GitSubtree) }
       end
