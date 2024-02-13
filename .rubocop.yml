@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-RSpec/IndexedLet:
-  Exclude:
-  - spec/lib/avm/tools/runner/git/deploy_spec.rb
 RSpec/InstanceVariable:
   Exclude:
   - spec/lib/avm/git/launcher_stereotypes/git_subrepo/warp_spec.rb

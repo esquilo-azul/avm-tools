@@ -7,11 +7,11 @@ require 'tmpdir'
 ::RSpec.describe ::Avm::Tools::Runner::Git::Deploy, git: true do
   let(:git) { stubbed_git_local_repo }
   let(:reference) { git.current_branch }
-  let(:stub_file1) { 'stub1.txt' }
-  let(:stub_content1) { 'CONTENT 111' }
-  let(:stub_file2) { 'stub2.txt' }
-  let(:stub_content2) { 'CONTENT 222' }
-  let(:commit_sha1) do
+  let(:stub_file1) { 'stub1.txt' } # rubocop:disable RSpec/IndexedLet
+  let(:stub_content1) { 'CONTENT 111' } # rubocop:disable RSpec/IndexedLet
+  let(:stub_file2) { 'stub2.txt' } # rubocop:disable RSpec/IndexedLet
+  let(:stub_content2) { 'CONTENT 222' } # rubocop:disable RSpec/IndexedLet
+  let(:commit_sha1) do # rubocop:disable RSpec/IndexedLet
     git.file(stub_file1).write(stub_content1)
     git.command('add', stub_file1).execute!
     git.command('commit', '-m', 'First commit.').execute!
@@ -22,7 +22,7 @@ require 'tmpdir'
   end
   let(:target_dir) { ::File.join(::Dir.mktmpdir, 'target') }
 
-  let(:commit_sha2) do
+  let(:commit_sha2) do # rubocop:disable RSpec/IndexedLet
     git.command('checkout', commit_sha1).execute!
     git.file(stub_file1).delete
     git.file(stub_file2).write(stub_content2)
@@ -31,8 +31,8 @@ require 'tmpdir'
     git.rev_parse('HEAD')
   end
 
-  let(:target_stub_file1) { ::File.join(target_dir, stub_file1) }
-  let(:target_stub_file2) { ::File.join(target_dir, stub_file2) }
+  let(:target_stub_file1) { ::File.join(target_dir, stub_file1) } # rubocop:disable RSpec/IndexedLet
+  let(:target_stub_file2) { ::File.join(target_dir, stub_file2) } # rubocop:disable RSpec/IndexedLet
 
   context 'with local target' do
     before do
@@ -55,8 +55,8 @@ require 'tmpdir'
   end
 
   context 'with append directories' do
-    let(:target_stub_file3) { ::File.join(target_dir, 'stub3.txt') }
-    let(:target_stub_file4) { ::File.join(target_dir, 'stub4.txt') }
+    let(:target_stub_file3) { ::File.join(target_dir, 'stub3.txt') } # rubocop:disable RSpec/IndexedLet
+    let(:target_stub_file4) { ::File.join(target_dir, 'stub4.txt') } # rubocop:disable RSpec/IndexedLet
 
     before do
       ::EacConfig::Node.context.current.entry('my_value').value = '123'
@@ -71,8 +71,8 @@ require 'tmpdir'
   end
 
   context 'with instance' do
-    let(:target_stub_file3) { ::File.join(target_dir, 'stub3.txt') }
-    let(:target_stub_file4) { ::File.join(target_dir, 'stub4.txt') }
+    let(:target_stub_file3) { ::File.join(target_dir, 'stub3.txt') } # rubocop:disable RSpec/IndexedLet
+    let(:target_stub_file4) { ::File.join(target_dir, 'stub4.txt') } # rubocop:disable RSpec/IndexedLet
 
     before do
       ::EacConfig::Node.context.current.entry('my-instance_dev.my_value').value = '123'
