@@ -17,7 +17,7 @@ RSpec.describe ::Avm::Launcher::Context do
         .to be_a(::Avm::Launcher::Instances::Base)
     end
 
-    context 'subinstance mylib' do
+    context 'when the subinstance is mylib' do
       let(:mylib_repos) do
         r = init_remote('mylib_repos')
         wc = init_git('mylib_wc')
@@ -71,7 +71,7 @@ RSpec.describe ::Avm::Launcher::Context do
         it { expect(instance.stereotypes).to include(::Avm::Git::LauncherStereotypes::GitSubtree) }
       end
 
-      context 'subtree present' do
+      context 'when subtree is present' do
         before do
           app = init_git('subtree_main_app')
           touch_commit(app, 'file1')
@@ -86,7 +86,7 @@ RSpec.describe ::Avm::Launcher::Context do
         end
       end
 
-      context 'subinstance in HEAD and not in git_current_revision' do
+      context 'when subinstance in HEAD and not in git_current_revision' do
         it 'does not return subinstance' do
           app = init_git('app') # HEAD: master
           touch_commit(app, 'file2')
@@ -96,8 +96,8 @@ RSpec.describe ::Avm::Launcher::Context do
         end
       end
 
-      context 'subinstances in/not in HEAD and not in/in git_current_revision' do
-        context 'subinstance in HEAD and not in git_current_revision' do
+      context 'when subinstances in/not in HEAD and not in/in git_current_revision' do
+        context 'when subinstance in HEAD and not in git_current_revision' do
           it 'does not return subinstance' do
             app = init_git('app') # HEAD: master
             touch_commit(app, 'file2')
@@ -107,7 +107,7 @@ RSpec.describe ::Avm::Launcher::Context do
           end
         end
 
-        context 'subinstance not in HEAD and in git_current_revision' do
+        context 'when subinstance not in HEAD and in git_current_revision' do
           it 'returns subinstance' do
             app = init_git('app') # HEAD: master
             touch_commit(app, 'file3')

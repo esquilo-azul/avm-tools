@@ -5,14 +5,14 @@ require 'avm/launcher/publish/check_result'
 
 RSpec.describe Avm::Git::LauncherStereotypes::GitSubrepo::Publish do
   describe '#check' do
-    context 'on clean context' do
+    context 'with clean context' do
       let(:settings_path) { ::File.join(__dir__, 'publish_spec_settings.yml') }
 
       before do
         temp_context(settings_path)
       end
 
-      context 'on app with subrepo' do
+      context 'with app with subrepo' do
         let(:remote_repos) { init_remote('mylib') }
 
         before do
@@ -31,7 +31,7 @@ RSpec.describe Avm::Git::LauncherStereotypes::GitSubrepo::Publish do
 
         it { check_publish_status(:updated) }
 
-        context 'after subrepo updated and before publishing' do
+        context 'after subrepo updated and before publishing' do # rubocop:disable RSpec/ContextWording
           before do
             ::Avm::Launcher::Context.current.publish_options[:confirm] = true
             touch_commit(app, 'mylib/file3')
@@ -40,12 +40,12 @@ RSpec.describe Avm::Git::LauncherStereotypes::GitSubrepo::Publish do
           it { expect(::Avm::Launcher::Context.current.publish_options[:confirm]).to be(true) }
           it { check_publish_status(:pending) }
 
-          context 'after publishing' do
+          context 'after publishing' do # rubocop:disable RSpec/ContextWording
             before { described_class.new(app_mylib_instance).run }
 
             it { check_publish_status(:updated) }
 
-            context 'after reset context' do
+            context 'after reset context' do # rubocop:disable RSpec/ContextWording
               before do
                 sleep 2
                 ::Avm::Launcher::Context.current = ::Avm::Launcher::Context.new(
