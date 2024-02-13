@@ -112,7 +112,7 @@ RSpec.describe ::Avm::Launcher::Context do
         end
 
         context 'when subinstance not in HEAD and in git_current_revision' do
-          it 'returns subinstance' do
+          it 'returns subinstance' do # rubocop:disable RSpec/ExampleLength
             app = init_git('app') # HEAD: master
             touch_commit(app, 'file3')
             app.execute!('branch', '-f', 'not_master')
