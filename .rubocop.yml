@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-RSpec/MultipleMemoizedHelpers:
-  Exclude:
-  - spec/lib/avm/tools/runner/git/deploy_spec.rb
 RSpec/NestedGroups:
   Exclude:
   - spec/lib/avm/launcher/context_spec.rb
