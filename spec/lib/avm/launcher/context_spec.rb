@@ -3,7 +3,7 @@
 require 'avm/launcher/context'
 require 'avm/launcher/stereotype'
 
-RSpec.describe ::Avm::Launcher::Context do
+RSpec.describe Avm::Launcher::Context do
   describe '#instances' do
     it 'returns all stub instances' do
       is = described_class.current.instances.map(&:name)
@@ -14,7 +14,7 @@ RSpec.describe ::Avm::Launcher::Context do
   describe '#instance' do
     it 'returns with slash on begin' do
       expect(described_class.current.instance('/avm-tools_stub'))
-        .to be_a(::Avm::Launcher::Instances::Base)
+        .to be_a(Avm::Launcher::Instances::Base)
     end
 
     context 'when the subinstance is mylib' do
@@ -28,7 +28,7 @@ RSpec.describe ::Avm::Launcher::Context do
       end
 
       before do
-        temp_context(::File.join(__dir__, 'context_spec.yml'))
+        temp_context(File.join(__dir__, 'context_spec.yml'))
         mylib_repos
       end
 
@@ -42,15 +42,15 @@ RSpec.describe ::Avm::Launcher::Context do
           app.execute!('subrepo', 'clone', mylib_repos, 'sub1/mylib')
         end
 
-        it { expect(sub).to be_a(::Avm::Launcher::Instances::Base) }
+        it { expect(sub).to be_a(Avm::Launcher::Instances::Base) }
 
         it do
-          ::Avm::Launcher::Stereotype.git_stereotypes
+          Avm::Launcher::Stereotype.git_stereotypes
             .each { |s| expect(sub.stereotypes).not_to include(s) }
         end
 
-        it { expect(instance).to be_a(::Avm::Launcher::Instances::Base) }
-        it { expect(instance.stereotypes).to include(::Avm::Git::LauncherStereotypes::GitSubrepo) }
+        it { expect(instance).to be_a(Avm::Launcher::Instances::Base) }
+        it { expect(instance.stereotypes).to include(Avm::Git::LauncherStereotypes::GitSubrepo) }
       end
 
       context 'when sub is a GitSubtree' do # rubocop:disable RSpec/NestedGroups
@@ -64,15 +64,15 @@ RSpec.describe ::Avm::Launcher::Context do
           app.execute!('remote', 'add', 'mylib', mylib_repos)
         end
 
-        it { expect(sub).to be_a(::Avm::Launcher::Instances::Base) }
+        it { expect(sub).to be_a(Avm::Launcher::Instances::Base) }
 
         it do
-          ::Avm::Launcher::Stereotype.git_stereotypes
+          Avm::Launcher::Stereotype.git_stereotypes
             .each { |s| expect(sub.stereotypes).not_to include(s) }
         end
 
-        it { expect(instance).to be_a(::Avm::Launcher::Instances::Base) }
-        it { expect(instance.stereotypes).to include(::Avm::Git::LauncherStereotypes::GitSubtree) }
+        it { expect(instance).to be_a(Avm::Launcher::Instances::Base) }
+        it { expect(instance.stereotypes).to include(Avm::Git::LauncherStereotypes::GitSubtree) }
       end
 
       context 'when subtree is present' do # rubocop:disable RSpec/NestedGroups
@@ -85,8 +85,8 @@ RSpec.describe ::Avm::Launcher::Context do
 
         it 'recognizes subtree instance' do # rubocop:disable RSpec/MultipleExpectations
           i = described_class.current.instance('/subtree_main_app/mylib')
-          expect(i).to be_a(::Avm::Launcher::Instances::Base)
-          expect(i.stereotypes).to include(::Avm::Git::LauncherStereotypes::GitSubtree)
+          expect(i).to be_a(Avm::Launcher::Instances::Base)
+          expect(i.stereotypes).to include(Avm::Git::LauncherStereotypes::GitSubtree)
         end
       end
 
@@ -119,7 +119,7 @@ RSpec.describe ::Avm::Launcher::Context do
             app.execute!('subrepo', 'clone', mylib_repos, 'mylib')
             app.execute!('checkout', 'not_master') # HEAD: not_master
             expect(described_class.current.instance('/app/mylib'))
-              .to be_a(::Avm::Launcher::Instances::Base)
+              .to be_a(Avm::Launcher::Instances::Base)
           end
         end
       end

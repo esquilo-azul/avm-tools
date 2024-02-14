@@ -8,7 +8,7 @@ require 'ruby_gem_stub/version'
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
   s.name        = 'ruby_gem_stub'
-  s.version     = ::RubyGemStub::VERSION
+  s.version     = RubyGemStub::VERSION
   s.authors     = ['Esquilo Azul Company']
   s.summary     = 'Ruby gem stub for tests.'
   s.files = Dir['{lib}/**/*']

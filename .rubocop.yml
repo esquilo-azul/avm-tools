@@ -1,23 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Style/RedundantConstantBase:
-  Exclude:
-  - Gemfile
-  - spec/dummy/avm-tools_stub/avm-tools.gemspec
-  - spec/dummy/ruby_gem_stub/ruby_gem_stub.gemspec
-  - spec/lib/avm/launcher/context_spec.rb
-  - spec/lib/avm/git/launcher_stereotypes/git_subrepo/publish_spec.rb
-  - spec/lib/avm/git/launcher_stereotypes/git_subrepo/warp_spec.rb
-  - spec/lib/avm/tools/runner/files/rotate_spec.rb
-  - spec/lib/avm/tools/runner/git/deploy_spec.rb
-  - spec/lib/avm/tools/runner/launcher_stereotypes/list_spec.rb
-  - spec/lib/avm/tools/runner/source/issue/complete_spec.rb
-  - spec/lib/avm/tools/runner_spec.rb
-  - spec/rubocop_spec.rb
-  - spec/spec_helper/avm_tools_runner.rb
-  - spec/spec_helper/eac_launcher.rb
-  - spec/spec_helper.rb
 Style/StringConcatenation:
   Exclude:
   - lib/avm/tools/runner/git/dirty_files.rb

@@ -8,7 +8,7 @@ require 'avm/tools/version'
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
   s.name        = 'avm/tools'
-  s.version     = ::Avm::Tools::VERSION
+  s.version     = Avm::Tools::VERSION
   s.authors     = ['Esquilo Azul Company']
   s.summary     = 'Utilities to deploy applications and libraries.'
   s.license     = 'MIT'

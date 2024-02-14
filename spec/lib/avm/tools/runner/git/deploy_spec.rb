@@ -4,7 +4,7 @@ require 'avm/eac_ubuntu_base0/rspec/ssh_docker_server'
 require 'avm/tools/runner'
 require 'tmpdir'
 
-::RSpec.describe ::Avm::Tools::Runner::Git::Deploy, :git do # rubocop:disable RSpec/MultipleMemoizedHelpers
+RSpec.describe Avm::Tools::Runner::Git::Deploy, :git do # rubocop:disable RSpec/MultipleMemoizedHelpers
   let(:git) { stubbed_git_local_repo }
   let(:reference) { git.current_branch }
   let(:stub_file1) { 'stub1.txt' } # rubocop:disable RSpec/IndexedLet
@@ -18,9 +18,9 @@ require 'tmpdir'
     git.rev_parse('HEAD')
   end
   let(:append_dirs) do
-    [1, 2].map { |n| ::File.join(__dir__, 'deploy_spec_files', "append#{n}") }.join(':')
+    [1, 2].map { |n| File.join(__dir__, 'deploy_spec_files', "append#{n}") }.join(':')
   end
-  let(:target_dir) { ::File.join(::Dir.mktmpdir, 'target') }
+  let(:target_dir) { File.join(Dir.mktmpdir, 'target') }
 
   let(:commit_sha2) do # rubocop:disable RSpec/IndexedLet
     git.command('checkout', commit_sha1).execute!
@@ -31,8 +31,8 @@ require 'tmpdir'
     git.rev_parse('HEAD')
   end
 
-  let(:target_stub_file1) { ::File.join(target_dir, stub_file1) } # rubocop:disable RSpec/IndexedLet
-  let(:target_stub_file2) { ::File.join(target_dir, stub_file2) } # rubocop:disable RSpec/IndexedLet
+  let(:target_stub_file1) { File.join(target_dir, stub_file1) } # rubocop:disable RSpec/IndexedLet
+  let(:target_stub_file2) { File.join(target_dir, stub_file2) } # rubocop:disable RSpec/IndexedLet
 
   context 'with local target' do # rubocop:disable RSpec/MultipleMemoizedHelpers
     before do
@@ -40,8 +40,8 @@ require 'tmpdir'
       avm_tools_runner_run(target_dir)
     end
 
-    it { expect(::File.read(target_stub_file1)).to eq(stub_content1) }
-    it { expect(::File.exist?(target_stub_file2)).to be(false) }
+    it { expect(File.read(target_stub_file1)).to eq(stub_content1) }
+    it { expect(File.exist?(target_stub_file2)).to be(false) }
 
     context 'with second commit' do # rubocop:disable RSpec/MultipleMemoizedHelpers
       before do
@@ -49,48 +49,48 @@ require 'tmpdir'
         avm_tools_runner_run(target_dir)
       end
 
-      it { expect(::File.exist?(target_stub_file1)).to be(false) }
-      it { expect(::File.read(target_stub_file2)).to eq(stub_content2) }
+      it { expect(File.exist?(target_stub_file1)).to be(false) }
+      it { expect(File.read(target_stub_file2)).to eq(stub_content2) }
     end
   end
 
   context 'with append directories' do # rubocop:disable RSpec/MultipleMemoizedHelpers
-    let(:target_stub_file3) { ::File.join(target_dir, 'stub3.txt') } # rubocop:disable RSpec/IndexedLet
-    let(:target_stub_file4) { ::File.join(target_dir, 'stub4.txt') } # rubocop:disable RSpec/IndexedLet
+    let(:target_stub_file3) { File.join(target_dir, 'stub3.txt') } # rubocop:disable RSpec/IndexedLet
+    let(:target_stub_file4) { File.join(target_dir, 'stub4.txt') } # rubocop:disable RSpec/IndexedLet
 
     before do
-      ::EacConfig::Node.context.current.entry('my_value').value = '123'
+      EacConfig::Node.context.current.entry('my_value').value = '123'
       commit_sha1
       avm_tools_runner_run('--append-dirs', append_dirs, target_dir)
     end
 
-    it { expect(::File.read(target_stub_file1)).to eq(stub_content1) }
-    it { expect(::File.exist?(target_stub_file2)).to be(false) }
-    it { expect(::File.read(target_stub_file3)).to eq("MyValue: 123\n") }
-    it { expect(::File.read(target_stub_file4)).to eq("MyValue: %%MY_VALUE%%\n") }
+    it { expect(File.read(target_stub_file1)).to eq(stub_content1) }
+    it { expect(File.exist?(target_stub_file2)).to be(false) }
+    it { expect(File.read(target_stub_file3)).to eq("MyValue: 123\n") }
+    it { expect(File.read(target_stub_file4)).to eq("MyValue: %%MY_VALUE%%\n") }
   end
 
   context 'with instance' do # rubocop:disable RSpec/MultipleMemoizedHelpers
-    let(:target_stub_file3) { ::File.join(target_dir, 'stub3.txt') } # rubocop:disable RSpec/IndexedLet
-    let(:target_stub_file4) { ::File.join(target_dir, 'stub4.txt') } # rubocop:disable RSpec/IndexedLet
+    let(:target_stub_file3) { File.join(target_dir, 'stub3.txt') } # rubocop:disable RSpec/IndexedLet
+    let(:target_stub_file4) { File.join(target_dir, 'stub4.txt') } # rubocop:disable RSpec/IndexedLet
 
     before do
-      ::EacConfig::Node.context.current.entry('my-instance_dev.my_value').value = '123'
+      EacConfig::Node.context.current.entry('my-instance_dev.my_value').value = '123'
       commit_sha1
       avm_tools_runner_run('-i', 'my-instance_dev', '--append-dirs', append_dirs, target_dir)
     end
 
-    it { expect(::File.read(target_stub_file1)).to eq(stub_content1) }
-    it { expect(::File.exist?(target_stub_file2)).to be(false) }
-    it { expect(::File.read(target_stub_file3)).to eq("MyValue: 123\n") }
-    it { expect(::File.read(target_stub_file4)).to eq("MyValue: %%MY_VALUE%%\n") }
+    it { expect(File.read(target_stub_file1)).to eq(stub_content1) }
+    it { expect(File.exist?(target_stub_file2)).to be(false) }
+    it { expect(File.read(target_stub_file3)).to eq("MyValue: 123\n") }
+    it { expect(File.read(target_stub_file4)).to eq("MyValue: %%MY_VALUE%%\n") }
   end
 
   context 'with ssh target', :docker do # rubocop:disable RSpec/MultipleMemoizedHelpers
-    let(:ssh_server) { ::Avm::EacUbuntuBase0::Rspec::SshDockerServer.new }
+    let(:ssh_server) { Avm::EacUbuntuBase0::Rspec::SshDockerServer.new }
     let(:env) { ssh_server.env }
     let(:tmpdir) { env.command('mktemp', '-d').execute! }
-    let(:target_dir) { ::File.join(tmpdir, 'target') }
+    let(:target_dir) { File.join(tmpdir, 'target') }
     let(:target_url) do
       r = env.uri.dup
       r.path = target_dir

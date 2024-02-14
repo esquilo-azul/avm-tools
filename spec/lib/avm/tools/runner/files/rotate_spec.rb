@@ -17,31 +17,31 @@ class StubClock
   end
 end
 
-::RSpec.describe ::Avm::Tools::Runner::Files::Rotate do
-  let(:workdir) { ::Dir.mktmpdir }
+RSpec.describe Avm::Tools::Runner::Files::Rotate do
+  let(:workdir) { Dir.mktmpdir }
   let(:source_basename) { 'myfile.tar.gz' }
-  let(:source_path) { ::File.join(workdir, source_basename) }
+  let(:source_path) { File.join(workdir, source_basename) }
 
   before do
-    ::FileUtils.touch(source_path)
+    FileUtils.touch(source_path)
   end
 
-  it { expect(::File.exist?(source_path)).to be(true) }
+  it { expect(File.exist?(source_path)).to be(true) }
 
   context 'when run' do
-    let(:files_with_prefix) { ::Dir["#{workdir}/myfile_*.tar.gz"] }
+    let(:files_with_prefix) { Dir["#{workdir}/myfile_*.tar.gz"] }
 
     before do
-      ::Avm::Tools::Runner.run(argv: ['files', 'rotate', source_path])
+      Avm::Tools::Runner.run(argv: ['files', 'rotate', source_path])
     end
 
-    it { expect(::File.exist?(source_path)).to be(false) }
+    it { expect(File.exist?(source_path)).to be(false) }
     it { expect(files_with_prefix.count).to eq(1) }
   end
 
   describe 'space limit' do
-    let(:tempdir) { ::Dir.mktmpdir }
-    let(:clock) { ::StubClock.new(2000, 1, 1) }
+    let(:tempdir) { Dir.mktmpdir }
+    let(:clock) { StubClock.new(2000, 1, 1) }
 
     it 'limit space used by rotated files' do # rubocop:disable RSpec/NoExpectationExample
       file1 = create_and_rotate_stub_file([], [])
@@ -63,9 +63,9 @@ end
     end
 
     def create_stub_file
-      stub_path = ::File.join(tempdir, 'stub.ext')
-      ::File.write(stub_path, 'A' * 16)
-      ::FileUtils.touch(stub_path, mtime: clock.tick)
+      stub_path = File.join(tempdir, 'stub.ext')
+      File.write(stub_path, 'A' * 16)
+      FileUtils.touch(stub_path, mtime: clock.tick)
       stub_path
     end
   end
