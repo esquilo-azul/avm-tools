@@ -32,7 +32,7 @@ RSpec.describe ::Avm::Launcher::Context do
         mylib_repos
       end
 
-      context 'when sub is a GitSubrepo' do
+      context 'when sub is a GitSubrepo' do # rubocop:disable RSpec/NestedGroups
         let(:sub) { described_class.current.instance('/app/sub1') }
         let(:instance) { described_class.current.instance('/app/sub1/mylib') }
 
@@ -53,7 +53,7 @@ RSpec.describe ::Avm::Launcher::Context do
         it { expect(instance.stereotypes).to include(::Avm::Git::LauncherStereotypes::GitSubrepo) }
       end
 
-      context 'when sub is a GitSubtree' do
+      context 'when sub is a GitSubtree' do # rubocop:disable RSpec/NestedGroups
         let(:sub) { described_class.current.instance('/app/sub1') }
         let(:instance) { described_class.current.instance('/app/sub1/mylib') }
 
@@ -75,7 +75,7 @@ RSpec.describe ::Avm::Launcher::Context do
         it { expect(instance.stereotypes).to include(::Avm::Git::LauncherStereotypes::GitSubtree) }
       end
 
-      context 'when subtree is present' do
+      context 'when subtree is present' do # rubocop:disable RSpec/NestedGroups
         before do
           app = init_git('subtree_main_app')
           touch_commit(app, 'file1')
@@ -90,7 +90,7 @@ RSpec.describe ::Avm::Launcher::Context do
         end
       end
 
-      context 'when subinstance in HEAD and not in git_current_revision' do
+      context 'when subinstance in HEAD and not in git_current_revision' do # rubocop:disable RSpec/NestedGroups
         it 'does not return subinstance' do
           app = init_git('app') # HEAD: master
           touch_commit(app, 'file2')
@@ -100,8 +100,8 @@ RSpec.describe ::Avm::Launcher::Context do
         end
       end
 
-      context 'when subinstances in/not in HEAD and not in/in git_current_revision' do
-        context 'when subinstance in HEAD and not in git_current_revision' do
+      context 'when subinstances in/not in HEAD and not in/in git_current_revision' do # rubocop:disable RSpec/NestedGroups
+        context 'when subinstance in HEAD and not in git_current_revision' do # rubocop:disable RSpec/NestedGroups
           it 'does not return subinstance' do
             app = init_git('app') # HEAD: master
             touch_commit(app, 'file2')
@@ -111,7 +111,7 @@ RSpec.describe ::Avm::Launcher::Context do
           end
         end
 
-        context 'when subinstance not in HEAD and in git_current_revision' do
+        context 'when subinstance not in HEAD and in git_current_revision' do # rubocop:disable RSpec/NestedGroups
           it 'returns subinstance' do # rubocop:disable RSpec/ExampleLength
             app = init_git('app') # HEAD: master
             touch_commit(app, 'file3')

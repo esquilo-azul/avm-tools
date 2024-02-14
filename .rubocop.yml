@@ -1,10 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-RSpec/NestedGroups:
-  Exclude:
-  - spec/lib/avm/launcher/context_spec.rb
-  - spec/lib/avm/git/launcher_stereotypes/git_subrepo/publish_spec.rb
 RSpec/NoExpectationExample:
   Exclude:
   - spec/lib/avm/git/launcher_stereotypes/git_subrepo/publish_spec.rb
