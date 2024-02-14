@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Style/OptionalBooleanParameter:
-  Exclude:
-  - lib/avm/tools/runner/git/subrepo/fix.rb
 Style/RedundantConstantBase:
   Exclude:
   - Gemfile
