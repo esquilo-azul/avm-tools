@@ -20,7 +20,7 @@ module Avm
       end
 
       def extra_available_subcommands
-        ::Avm::Registry.runners.registered_modules.map { |k| [k.command_argument, k] }.to_h
+        ::Avm::Registry.runners.registered_modules.index_by(&:command_argument)
       end
     end
   end
