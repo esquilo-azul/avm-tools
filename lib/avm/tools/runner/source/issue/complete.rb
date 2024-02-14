@@ -48,7 +48,7 @@ module Avm
             end
 
             def skip_validations
-              parsed.skip_validations.to_s.split(',').map(&:strip).reject(&:blank?)
+              parsed.skip_validations.to_s.split(',').map(&:strip).compact_blank
             end
 
             def git_complete_issue_options
