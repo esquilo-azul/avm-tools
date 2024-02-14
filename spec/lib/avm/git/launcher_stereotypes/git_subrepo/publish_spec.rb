@@ -29,7 +29,7 @@ RSpec.describe Avm::Git::LauncherStereotypes::GitSubrepo::Publish do
           r
         end
 
-        it { check_publish_status(:updated) }
+        it { check_publish_status(:updated) } # rubocop:disable RSpec/NoExpectationExample
 
         context 'after subrepo updated and before publishing' do # rubocop:disable RSpec/ContextWording, RSpec/NestedGroups
           before do
@@ -38,12 +38,12 @@ RSpec.describe Avm::Git::LauncherStereotypes::GitSubrepo::Publish do
           end
 
           it { expect(::Avm::Launcher::Context.current.publish_options[:confirm]).to be(true) }
-          it { check_publish_status(:pending) }
+          it { check_publish_status(:pending) } # rubocop:disable RSpec/NoExpectationExample
 
           context 'after publishing' do # rubocop:disable RSpec/ContextWording, RSpec/NestedGroups
             before { described_class.new(app_mylib_instance).run }
 
-            it { check_publish_status(:updated) }
+            it { check_publish_status(:updated) } # rubocop:disable RSpec/NoExpectationExample
 
             context 'after reset context' do # rubocop:disable RSpec/ContextWording, RSpec/NestedGroups
               before do
@@ -55,7 +55,7 @@ RSpec.describe Avm::Git::LauncherStereotypes::GitSubrepo::Publish do
                 )
               end
 
-              it { check_publish_status(:updated) }
+              it { check_publish_status(:updated) } # rubocop:disable RSpec/NoExpectationExample
             end
           end
         end

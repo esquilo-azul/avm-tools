@@ -43,7 +43,7 @@ end
     let(:tempdir) { ::Dir.mktmpdir }
     let(:clock) { ::StubClock.new(2000, 1, 1) }
 
-    it 'limit space used by rotated files' do
+    it 'limit space used by rotated files' do # rubocop:disable RSpec/NoExpectationExample
       file1 = create_and_rotate_stub_file([], [])
       file2 = create_and_rotate_stub_file([file1], [])
       file3 = create_and_rotate_stub_file([file2], [file1])

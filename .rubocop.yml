@@ -1,10 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-RSpec/NoExpectationExample:
-  Exclude:
-  - spec/lib/avm/git/launcher_stereotypes/git_subrepo/publish_spec.rb
-  - spec/lib/avm/tools/runner/files/rotate_spec.rb
 RSpec/ScatteredLet:
   Exclude:
   - spec/lib/avm/git/launcher_stereotypes/git_subrepo/publish_spec.rb
