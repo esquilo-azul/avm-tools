@@ -19,7 +19,7 @@ module Avm
           end
 
           def help_extra_text
-            "Format fields:\n" + FIELDS.map { |k, v| "  #{k} => #{v}" }.join("\n")
+            "Format fields:\n" + FIELDS.map { |k, v| "  #{k} => #{v}" }.join("\n") # rubocop:disable Style/StringConcatenation
           end
 
           def run

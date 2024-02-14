@@ -27,8 +27,8 @@ module Avm
           end
 
           def help_extra_text
-            "Rules\n" + ::Avm::Scms::AutoCommit::Rules.all
-                          .map { |r| '  ' + r.keys.join(', ') + "\n" }.join
+            "Rules\n" + ::Avm::Scms::AutoCommit::Rules.all # rubocop:disable Style/StringConcatenation
+                          .map { |r| "  #{r.keys.join(', ')}\n" }.join
           end
 
           private

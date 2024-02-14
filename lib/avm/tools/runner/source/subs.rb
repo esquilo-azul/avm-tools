@@ -38,7 +38,7 @@ module Avm
           def sub_info_label(sub)
             return '' unless parsed.info?
 
-            ' [' + {
+            ' [' + { # rubocop:disable Style/StringConcatenation
               'CLASS' => sub.class.name,
               'SCM' => sub.scm.class.name
             }.map { |k, v| "#{k}: #{v}" }.join(', ') + ']'

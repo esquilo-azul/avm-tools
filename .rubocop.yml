@@ -1,8 +1,3 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Style/StringConcatenation:
-  Exclude:
-  - lib/avm/tools/runner/git/dirty_files.rb
-  - lib/avm/tools/runner/source/auto_commit.rb
-  - lib/avm/tools/runner/source/subs.rb
