@@ -22,7 +22,7 @@ RSpec.describe Avm::Git::LauncherStereotypes::GitSubrepo::Publish do
           wc.execute!('push', 'publish', 'master')
         end
 
-        let!(:app) do
+        let!(:app) do # rubocop:disable RSpec/ScatteredLet
           r = init_git('app')
           touch_commit(r, 'file2')
           r.execute!('subrepo', 'clone', remote_repos, 'mylib')
