@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 require 'avm/file_formats/search_formatter'
+require 'avm/registry'
 require 'eac_cli/core_ext'
-require 'avm/git/launcher/base'
 
 module Avm
   module Tools
@@ -14,7 +14,7 @@ module Avm
             bool_opt '-a', '--apply', 'Confirm changes.'
             bool_opt '-n', '--no-recursive', 'No recursive.'
             bool_opt '-v', '--verbose', 'Verbose'
-            bool_opt '-d', '--git-dirty', 'Select Git dirty files to format.'
+            bool_opt '-d', '--dirty', 'Select modified files to format.'
             pos_arg :paths, repeat: true, optional: true
           end
 
@@ -28,17 +28,17 @@ module Avm
               ::Avm::FileFormats::SearchFormatter::OPTION_VERBOSE => parsed.verbose? }
           end
 
-          def git
-            @git ||= ::Avm::Git::Launcher::Base.new('.')
+          def scm
+            @scm ||= ::Avm::Registry.scms.detect('.')
           end
 
-          def git_dirty_files
-            git.dirty_files.map { |f| git.root_path.join(f.path) }.select(&:exist?).map(&:to_s)
+          def dirty_files
+            scm.dirty_files.map { |f| scm.root_path.join(f.path) }.select(&:exist?).map(&:to_s)
           end
 
           def source_paths
-            if parsed.git_dirty?
-              parsed.paths + git_dirty_files
+            if parsed.dirty?
+              parsed.paths + dirty_files
             else
               parsed.paths.if_present(%w[.])
             end
