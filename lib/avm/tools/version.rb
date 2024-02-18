@@ -2,6 +2,6 @@
 
 module Avm
   module Tools
-    VERSION = '0.160.1'
+    VERSION = '0.160.2'
   end
 end
