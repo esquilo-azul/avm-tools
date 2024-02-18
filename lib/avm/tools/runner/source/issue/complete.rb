@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'avm/tools/core_ext'
-require 'avm/git/issue/complete'
 
 module Avm
   module Tools
@@ -10,7 +9,7 @@ module Avm
         class Issue
           class Complete
             runner_with :confirmation, :help do
-              desc 'Closes a issue in a Git repository.'
+              desc 'Closes a issue in a remote repository.'
               bool_opt '-f', '--uncomplete-unfail', 'Do not exit with error if issue is not ' \
                                                     'completed or is invalid.'
               arg_opt '-s', '--skip-validations', 'Does not validate conditions on <validations> ' \
@@ -44,20 +43,19 @@ module Avm
             private
 
             def complete_uncached
-              ::Avm::Git::Issue::Complete.new(git_complete_issue_options)
+              runner_context.call(:subject).completer(complete_issue_options)
             end
 
             def skip_validations
               parsed.skip_validations.to_s.split(',').map(&:strip).compact_blank
             end
 
-            def git_complete_issue_options
-              { dir: runner_context.call(:subject).path.to_path,
-                skip_validations: skip_validations }
+            def complete_issue_options
+              { skip_validations: skip_validations }
             end
 
             def doc_validations_list
-              ::Avm::Git::Issue::Complete::VALIDATIONS.keys.map { |k| "  * #{k}" }.join("\n")
+              complete.validation_keys.map { |k| "  * #{k}" }.join("\n")
             end
 
             def uncomplete_unfail?
