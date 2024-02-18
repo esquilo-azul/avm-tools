@@ -10,7 +10,7 @@ module Avm
         class Issue
           class Deliver
             runner_with :confirmation, :help do
-              desc 'Deliver a issue in a Git repository.'
+              desc 'Deliver a issue in a remote repository.'
             end
 
             def run
