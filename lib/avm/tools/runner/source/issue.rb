@@ -9,7 +9,7 @@ module Avm
         class Issue
           require_sub __FILE__
           runner_with :help, :subcommands do
-            desc 'Issue operations within Git.'
+            desc 'Issue operations within source.'
             subcommands
           end
         end
