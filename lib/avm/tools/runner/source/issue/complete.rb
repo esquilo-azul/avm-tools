@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'avm/tools/core_ext'
+require 'clipboard'
 
 module Avm
   module Tools
@@ -19,6 +20,8 @@ module Avm
             def run
               return unless run_validate
               return unless run_complete
+
+              clipboard_copy_tracker_message
 
               success('Done!')
             end
@@ -41,6 +44,11 @@ module Avm
             end
 
             private
+
+            def clipboard_copy_tracker_message
+              ::Clipboard.copy(complete.textile_tracker_message)
+              infov 'Copied to clipboard', complete.textile_tracker_message
+            end
 
             def complete_uncached
               runner_context.call(:subject).completer(complete_issue_options)
