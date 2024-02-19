@@ -18,7 +18,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'avm', '~> 0.86', '>= 0.86.1'
   s.add_dependency 'clipboard', '~> 1.3', '>= 1.3.6'
-  s.add_dependency 'curb', '~> 0.9', '>= 0.9.11'
   s.add_dependency 'eac_git', '~> 0.16'
   s.add_dependency 'eac_ruby_base0', '~> 0.19'
   s.add_dependency 'eac_templates', '~> 0.5', '>= 0.5.1'
