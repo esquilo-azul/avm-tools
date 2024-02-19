@@ -19,7 +19,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'avm', '~> 0.86', '>= 0.86.1'
   s.add_dependency 'clipboard', '~> 1.3', '>= 1.3.6'
   s.add_dependency 'eac_ruby_base0', '~> 0.19'
-  s.add_dependency 'git', '~> 1.19', '>= 1.19.1'
   s.add_dependency 'ruby-progressbar', '~> 1.13'
 
   s.add_development_dependency 'avm-git', '~> 0.17'
