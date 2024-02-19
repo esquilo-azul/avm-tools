@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 2.7.0'
 
   s.add_dependency 'aranha-parsers', '~> 0.22'
-  s.add_dependency 'avm', '~> 0.86'
+  s.add_dependency 'avm', '~> 0.86', '>= 0.86.1'
   s.add_dependency 'avm-eac_ruby_base1', '~> 0.33', '>= 0.33.1'
   s.add_dependency 'avm-eac_ubuntu_base0', '~> 0.5'
   s.add_dependency 'avm-files', '~> 0.7'
