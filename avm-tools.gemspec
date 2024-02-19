@@ -17,7 +17,6 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 2.7.0'
 
   s.add_dependency 'avm', '~> 0.86', '>= 0.86.1'
-  s.add_dependency 'avm-files', '~> 0.7'
   s.add_dependency 'avm-git', '~> 0.17'
   s.add_dependency 'clipboard', '~> 1.3', '>= 1.3.6'
   s.add_dependency 'curb', '~> 0.9', '>= 0.9.11'
