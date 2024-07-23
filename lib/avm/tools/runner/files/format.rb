@@ -13,7 +13,7 @@ module Avm
             desc 'Format files.'
             bool_opt '-a', '--apply', 'Confirm changes.'
             bool_opt '-n', '--no-recursive', 'No recursive.'
-            bool_opt '-v', '--verbose', 'Verbose'
+            bool_opt '-q', '--quiet', 'Do not output messages.'
             bool_opt '-d', '--dirty', 'Select modified files to format.'
             pos_arg :paths, repeat: true, optional: true
           end
@@ -25,7 +25,7 @@ module Avm
           def formatter_options
             { ::Avm::FileFormats::SearchFormatter::OPTION_APPLY => parsed.apply?,
               ::Avm::FileFormats::SearchFormatter::OPTION_RECURSIVE => !parsed.no_recursive?,
-              ::Avm::FileFormats::SearchFormatter::OPTION_VERBOSE => parsed.verbose? }
+              ::Avm::FileFormats::SearchFormatter::OPTION_VERBOSE => !parsed.quiet? }
           end
 
           def scm
