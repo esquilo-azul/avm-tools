@@ -33,7 +33,7 @@ module Avm
           end
 
           def dirty_files
-            scm.dirty_files.map { |f| scm.root_path.join(f.path) }.select(&:exist?).map(&:to_s)
+            scm.changed_files.map(&:absolute_path).select(&:exist?).map(&:to_path)
           end
 
           def source_paths
