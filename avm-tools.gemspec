@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = '>= 2.7.0'
 
-  s.add_dependency 'avm', '~> 0.86', '>= 0.86.1'
+  s.add_dependency 'avm', '~> 0.94'
   s.add_dependency 'clipboard', '~> 1.3', '>= 1.3.6'
   s.add_dependency 'eac_ruby_base0', '~> 0.19'
 
