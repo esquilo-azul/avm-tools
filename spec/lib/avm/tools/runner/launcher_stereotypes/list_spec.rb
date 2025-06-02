@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'avm/tools/runner'
-
 RSpec.describe Avm::Tools::Runner::LauncherStereotypes::List do
   def avm_tools_runner_args_prefix
     %w[launcher-stereotypes list]

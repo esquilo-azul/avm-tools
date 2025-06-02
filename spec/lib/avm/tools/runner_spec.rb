@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'avm/tools/runner'
-require 'avm/tools/version'
-
 RSpec.describe Avm::Tools::Runner do
   let(:argv) { %w[--version] }
   let(:instance) { described_class.create(argv: argv) }

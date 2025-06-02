@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'avm/tools/runner'
 require 'tmpdir'
 require 'fileutils'
 

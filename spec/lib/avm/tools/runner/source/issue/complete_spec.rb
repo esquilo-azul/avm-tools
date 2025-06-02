@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'avm/git/launcher/base'
-require 'avm/tools/runner'
 require 'tmpdir'
 require 'fileutils'
 
