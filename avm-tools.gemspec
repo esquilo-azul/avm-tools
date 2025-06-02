@@ -20,6 +20,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'clipboard', '~> 1.4', '>= 1.4.1'
   s.add_dependency 'eac_ruby_base0', '~> 0.19'
 
-  s.add_development_dependency 'avm-git', '~> 0.17'
+  s.add_development_dependency 'avm-git', '~> 0.19'
   s.add_development_dependency 'eac_ruby_gem_support', '~> 0.8.1'
 end
