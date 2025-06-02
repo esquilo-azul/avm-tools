@@ -15,9 +15,7 @@ module Avm
         desc 'Tools for AVM.'
       end
 
-      def application
-        ::Avm::Tools::Self.application
-      end
+      delegate :application, to: :'::Avm::Tools::Self'
 
       def extra_available_subcommands
         ::Avm::Registry.runners.registered_modules.index_by(&:command_argument)
