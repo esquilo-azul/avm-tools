@@ -70,7 +70,7 @@ module Avm
               parsed.uncomplete_unfail?
             end
 
-            def uncomplete_message(message)
+            def uncomplete_message(message) # rubocop:disable Naming/PredicateMethod
               if uncomplete_unfail?
                 warn(message)
               else
