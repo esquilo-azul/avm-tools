@@ -2,5 +2,5 @@
 # frozen_string_literal: true
 
 $LOAD_PATH.unshift("#{__dir__}/../lib")
-require 'avm/tools/runner'
+require 'avm/tools'
 Avm::Tools::Runner.run
