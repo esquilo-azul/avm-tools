@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'avm/source_generators/runner'
-
 module Avm
   module Tools
     class Runner

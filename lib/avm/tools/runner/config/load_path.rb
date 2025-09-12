@@ -1,9 +1,5 @@
 # frozen_string_literal: true
 
-require 'avm/tools/core_ext'
-require 'eac_config/node'
-require 'eac_ruby_utils'
-
 module Avm
   module Tools
     class Runner

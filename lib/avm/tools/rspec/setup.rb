@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'avm/tools/rspec/helpers/runner'
-require 'eac_ruby_utils'
-
 module Avm
   module Tools
     module Rspec

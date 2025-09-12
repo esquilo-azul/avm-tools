@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'avm/tools/core_ext'
-require 'avm/self/instance'
-
 module Avm
   module Tools
     class Runner

@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'avm/launcher/instances/runner_helper'
-
 module Avm
   module Tools
     class Runner

@@ -1,9 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_base0/application'
-require 'eac_ruby_utils'
-require 'avm/instances/base'
-
 module Avm
   module Tools
     module Self

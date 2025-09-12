@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'avm/data/rotate'
-require 'eac_cli/core_ext'
-
 module Avm
   module Tools
     class Runner

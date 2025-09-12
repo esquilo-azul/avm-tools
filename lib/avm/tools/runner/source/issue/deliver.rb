@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'avm/tools/core_ext'
-require 'avm/sources/issues/deliver'
-
 module Avm
   module Tools
     class Runner

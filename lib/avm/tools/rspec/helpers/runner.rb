@@ -10,7 +10,6 @@ module Avm
           end
 
           def avm_tools_runner_run(*argv)
-            require 'avm/tools/runner'
             Avm::Tools::Runner.run(argv: avm_tools_runner_args_prefix + argv)
           end
         end

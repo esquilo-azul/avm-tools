@@ -1,10 +1,5 @@
 # frozen_string_literal: true
 
-require 'avm/data/dumper'
-require 'avm/data/loader'
-require 'eac_cli/core_ext'
-require 'avm/tools/runner_with/instance_data_performer'
-
 module Avm
   module Tools
     module RunnerWith

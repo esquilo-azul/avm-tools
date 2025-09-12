@@ -1,10 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_cli/core_ext'
-require 'avm/file_formats/search_formatter'
-require 'avm/scms/auto_commit/rules'
-require 'avm/sources/auto_commit/for_file'
-
 module Avm
   module Tools
     class Runner

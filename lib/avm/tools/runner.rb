@@ -1,10 +1,5 @@
 # frozen_string_literal: true
 
-require 'avm/tools/self'
-require 'avm/registry'
-require 'avm/tools/version'
-require 'eac_ruby_base0/runner'
-
 module Avm
   module Tools
     class Runner
