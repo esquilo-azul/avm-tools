@@ -4,7 +4,6 @@ module Avm
   module Tools
     class Runner
       class Files
-        require_sub __FILE__
         runner_with :help, :subcommands do
           desc 'Files utilities for AVM.'
           subcommands

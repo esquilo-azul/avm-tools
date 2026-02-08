@@ -15,8 +15,6 @@ module Avm
         def application_uncached
           ::Avm::Registry.applications.detect(parsed.application_id)
         end
-
-        require_sub __FILE__
       end
     end
   end

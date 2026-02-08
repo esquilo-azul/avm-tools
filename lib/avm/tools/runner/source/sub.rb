@@ -18,8 +18,6 @@ module Avm
           def source_sub_uncached
             source.sub(parsed.sub_path)
           end
-
-          require_sub __FILE__
         end
       end
     end

@@ -4,8 +4,6 @@ module Avm
   module Tools
     class Runner
       class Source < ::Avm::Sources::Runner
-        require_sub __FILE__
-
         def subject
           source
         end

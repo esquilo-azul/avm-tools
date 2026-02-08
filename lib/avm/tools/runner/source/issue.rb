@@ -5,7 +5,6 @@ module Avm
     class Runner
       class Source < ::Avm::Sources::Runner
         class Issue
-          require_sub __FILE__
           runner_with :help, :subcommands do
             desc 'Issue operations within source.'
             subcommands

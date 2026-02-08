@@ -6,7 +6,6 @@ module Avm
       class Instance < ::Avm::Instances::Runner
         class Data
           class Unit
-            require_sub __FILE__
             runner_with :help, :subcommands do
               pos_arg :identifier
               subcommands

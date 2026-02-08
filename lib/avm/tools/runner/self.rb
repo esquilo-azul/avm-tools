@@ -4,7 +4,6 @@ module Avm
   module Tools
     class Runner
       class Self
-        require_sub __FILE__
         runner_with :help, :subcommands do
           desc 'Utilities for self avm-tools.'
           subcommands

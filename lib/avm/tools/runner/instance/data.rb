@@ -5,7 +5,6 @@ module Avm
     class Runner
       class Instance < ::Avm::Instances::Runner
         class Data
-          require_sub __FILE__
           runner_with :help, :subcommands do
             desc 'Data utilities for EacRailsBase0 instances.'
             subcommands

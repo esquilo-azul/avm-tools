@@ -4,7 +4,6 @@ module Avm
   module Tools
     class Runner
       class Applications
-        require_sub __FILE__
         runner_with :help, :subcommands do
           subcommands
         end
