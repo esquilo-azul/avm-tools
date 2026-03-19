@@ -9,7 +9,8 @@ module Avm
             path: 'Path',
             application: 'Application',
             class: 'Stereotype',
-            scm: 'SCM'
+            scm: 'SCM',
+            version: 'Version'
           }.freeze
 
           runner_with :help do
