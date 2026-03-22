@@ -40,7 +40,7 @@ module Avm
           end
 
           def current_version_uncached
-            runner_context.call(:subject).if_respond('version')
+            runner_context.call(:subject).version
           end
 
           def target_version_uncached
