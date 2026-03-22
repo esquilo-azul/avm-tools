@@ -44,14 +44,14 @@ module Avm
           end
 
           def target_version_uncached
-            r = current_version
-            %w[new segment major minor patch].each do |option|
-              option_value = parsed[option]
-              next if option_value.blank?
+            current_version.if_present do |r|
+              %w[new segment major minor patch].inject(r) do |a, e|
+                option_value = parsed[e]
+                next a if option_value.blank?
 
-              r = send("target_version_from_#{option}", r, option_value)
+                send("target_version_from_#{e}", a, option_value)
+              end
             end
-            r
           end
 
           def target_version_from_new(_current, option_value)
